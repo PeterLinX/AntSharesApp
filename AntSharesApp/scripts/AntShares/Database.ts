@@ -1,4 +1,6 @@
-﻿namespace AntShares
+﻿/// <reference path="Wallets/Store/DBStore.ts"/>
+
+namespace AntShares
 {
     export class Database
     {

@@ -1,4 +1,6 @@
-﻿namespace AntShares
+﻿/// <reference path="UInt64.ts"/>
+
+namespace AntShares
 {
     export class Fixed8
     {

@@ -1,4 +1,6 @@
-﻿namespace AntShares.Wallets
+﻿/// <reference path="DBStore.ts"/>
+
+namespace AntShares.Wallets
 {
     export class CoinStore extends DBStore
     {

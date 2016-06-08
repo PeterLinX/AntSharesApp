@@ -1,4 +1,6 @@
-﻿namespace AntShares
+﻿/// <reference path="UIntBase.ts"/>
+
+namespace AntShares
 {
     export class UInt160 extends UIntBase
     {
