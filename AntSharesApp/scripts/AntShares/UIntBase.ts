@@ -20,7 +20,14 @@
             this._bytes = value;
         }
 
-        
-        
+        public toString(): string
+        {
+            return this._bytes.reverse().toHexString();
+        }
+
+        public serialize(): Uint8Array
+        {
+            return new Uint8Array(this._bytes.buffer, this._bytes.byteOffset, this._bytes.byteLength);
+        }
     }
 }
