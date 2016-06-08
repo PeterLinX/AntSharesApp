@@ -1,4 +1,6 @@
-﻿namespace AntShares.Wallets
+﻿/// <reference path="../Core/Transaction.ts"/>
+
+namespace AntShares.Wallets
 {
     export class Wallet
     {

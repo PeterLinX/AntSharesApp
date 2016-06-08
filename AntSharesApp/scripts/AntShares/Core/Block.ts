@@ -1,4 +1,6 @@
-﻿namespace AntShares.Core
+﻿/// <reference path="Transaction.ts"/>
+
+namespace AntShares.Core
 {
     export class Block
     {
