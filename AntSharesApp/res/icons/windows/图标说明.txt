@@ -1,0 +1,13 @@
+Square30x30Logo.scale-100	电脑任务栏图标（电脑上图标如果设置背景会会有灰边）
+Square44x44Logo.scale-100	电脑、win10m应用列表图标
+Square44x44Logo.scale-240	wp8.1应用列表图标（电脑上图标如果设置背景会会有灰边）
+Square70x70Logo.scale-100	电脑磁贴-小
+Square71x71Logo.scale-100	win10m磁贴-小
+Square71x71Logo.scale-240	wp8.1磁贴-小
+Square150x150Logo.scale-100	电脑、win10m磁贴-中
+Square150x150Logo.scale-240	wp8.1磁贴-中
+Square310x310Logo.scale-100	电脑、win10m磁贴-大
+StoreLogo.scale-100			应用商店未知图标
+StoreLogo.scale-240			应用商店大图片
+Wide310x150Logo.scale-100	电脑、win10m磁贴-宽
+Wide310x150Logo.scale-240	wp8.1磁贴-宽

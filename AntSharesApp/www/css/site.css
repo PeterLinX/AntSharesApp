@@ -1,0 +1,67 @@
+﻿@font-face { font-family: 'iconfont'; src: url('../fonts/iconfont.eot'); /* IE9*/ src: url('../fonts/iconfont.eot?#iefix') format('../fonts/embedded-opentype'), /* IE6-IE8 */ url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */ url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */ }
+@font-face { font-family: 'sourceCodePro'; src: url('../fonts/SourceCodePro-Regular.ttf'); }
+
+.iconfont { font-family: "iconfont" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale; }
+header a.iconfont, header a.iconfont:hover, header a.iconfont:focus { position: absolute; top: 0; left: 0; padding: 0 20px 0 15px; color: #fff; font-size: 25px; line-height: 50px; text-decoration: none; }
+html { height: 100%; }
+body { height: 100%; font-family: "微软雅黑 light" !important; color: #666; overflow-x: hidden; }
+header, footer { position: absolute; background: gray; font-size: 18px; text-align: center; color: #fff; line-height: 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px; padding: 0 50px; }
+header { top: 0; font-weight: bold; }
+footer { bottom: 0; }
+fieldset { overflow-x: hidden; }
+a, a:hover, a:focus, a:active { outline: none !important; text-decoration: none; white-space: nowrap; }
+input[type=checkbox], input[type=checkbox]:focus { width: 22px; height: 22px; margin: 6px 12px 0 6px; outline: none; float: left; }
+input[type="radio"] { vertical-align: -3px; }
+.mm-navbar { height: 50px; }
+.nomargin { margin: 0 !important; }
+.nopadding { padding: 0 !important; }
+.circle { border-radius: 50%; box-shadow: #777 0px 1px 5px; }
+
+/* 改进的 jquery.mmenu.widescreen.css */
+@media only screen and (min-width:768px) {
+    .mm-menu.mm-offcanvas { display: block; }
+    header a { display: none; }
+    .mm-menu.mm-offcanvas:not(.mm-opened) + .mm-page { margin-left: 300px; }
+    header, footer { border-left: 1px solid white; }
+}
+
+@media only screen and (min-width:375px) {
+    html.mm-opening .mm-slideout { -webkit-transform: translate(300px, 0); -moz-transform: translate(300px, 0); -ms-transform: translate(300px, 0); -o-transform: translate(300px, 0); transform: translate(300px, 0); }
+}
+
+/*设置侧边栏边框样式*/
+.mm-navbar > .mm-title { font-size: 18px; padding: 15px 0; }
+.mm-listview > li i.iconfont { margin-right: 18px; }
+.mm-listview > li > a, .mm-listview > li > span { padding: 12px 10px 12px 20px; }
+.mm-listview > li:not(.mm-divider)::after { left: 0; }
+.mm-listview > li a:hover { border-left: 5px solid #0cf; }
+.mm-listview > li:hover .mm-listview > li a:hover { padding-left: 15px; }
+.mm-listview > li.mm-selected > a, .mm-listview > li.mm-selected > span { padding-left: 15px; }
+.mm-menu { max-width: 300px; }
+.mm-menu > .mm-panels { top: 50px; }
+.mm-menu.mm-theme-dark.mm-vertical .mm-listview > li > a.mm-next.mm-fullsubopen { background-color: rgba(0,0,0,0); }
+.mm-menu.mm-offcanvas { display: block; transition: margin-left .4s ease; }
+.mm-menu.mm-theme-dark .mm-listview > li.mm-selected > a:not(.mm-next) { border-left: 5px solid #0cf; background-color: rgba(0,0,0,0); }
+.mm-menu.mm-theme-dark { background: -webkit-linear-gradient(120deg, #251f40, #713e5c); background: linear-gradient(120deg, #251f40, #713e5c); }
+.mm-slideout { height: 100%; transition: transform .4s ease, margin-left .4s ease; }
+header.mm-slideout { position: fixed; top: 0; left: 0; }
+.mm-panels, .mm-panels > .mm-panel { background: none; }
+nav:not(.mm-menu) { display: none; }
+.content { background: white; height: 100%; padding: 0; }
+.content > .tab-content > .tab-pane { position: relative; height: 100%; }
+.page-header { border-bottom: 1px solid #eee; padding: 50px 0 9px; margin: 0 0 20px; cursor: default; }
+.mm-menu .buttonbar-item:after { content: none !important; display: none !important; }
+.alert.bottom { position: absolute; bottom: 0; }
+.x { position: absolute; top: 0; right: 8px; font-size: 16px; }
+.account-list li { margin-bottom: 10px; }
+.account-list li span { background-color: #f0f0f0; border-radius: 4px; padding: 6px 10px; letter-spacing: 1px; width: 50%; word-break: break-all; vertical-align: middle; display: inline-block; }
+.account-list li .btn { margin-left: 5px; padding: 5px 12px; }
+.list_wallet_ul { margin-top: 5px; }
+ul, ol { padding-left: 0 !important; list-style: none !important; }
+pre { white-space: pre-line; }
+/*修复Chrome浏览器pre标签不换行的Bug*/
+.change-wallet-name { padding-top: 7px; color: #337ab7; }
+footer span { font-family: "sourceCodePro"; }
+.issuer { margin-bottom: 10px; }
+.all-coin { height: 150px; margin-top: 10px; line-height: 1.5; display: none; }
+textarea.pre { display: block; outline:none; font-weight:bold; width:100%; padding: 9.5px; margin: 0 0 10px; font-size: 13px; line-height: 1.42857143; color: #333; word-break: break-all; word-wrap: break-word; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px; }
