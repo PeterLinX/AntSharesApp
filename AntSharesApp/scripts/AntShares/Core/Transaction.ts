@@ -1,25 +1,19 @@
-﻿/*
- * 在Chrome中使用extends关键字时，父类和子类没有先后顺序
- * 但在IE和EDGE中，使用extends关键字时，父类要在子类的上面，否则运行时会出错。
- * 所以在文件名前加了个“1”，这样保证Transaction类在编译成JS后会在子类前面。
- */
-namespace AntShares.Core
+﻿namespace AntShares.Core
 {
     export abstract class Transaction implements Signable, Serializable
     {
-        public txid: string;
-        public hex: string;
-        public type: TransactionType;
-        public attributes: Array<TransactionAttribute>;
-        public vin: Array<TransactionInput>;
-        public vout: Array<TransactionOutput>;
-        public scripts: Array<Script>;
+        public transactionId: string;
+        public transactionType: TransactionType;
+        public transactionAttribute: Array<TransactionAttribute>;
+        public transactionInput: Array<TransactionInput>;
+        public transactionOutput: Array<TransactionOutput>;
+        public script: Array<Script>;
 
         public systemFee = Fixed8.zero;
 
         public constructor(type: TransactionType)
         {
-            this.type = type;
+            this.transactionType = type;
         }
 
         public sign(account: Wallets.AccountItem, callback: (signed: Uint8Array) => any)
@@ -39,28 +33,25 @@ namespace AntShares.Core
                     if (callback)
                         callback(signed as Uint8Array);
                 })
-            
         }
 
         public serialize(): Uint8Array
         {
             let array = new Array<Uint8Array>();
-            array.push(new Uint8Array[this.type]);
+            array.push(new Uint8Array[this.transactionType]);
             array.push(this.serializeExclusiveData());
-            for (let i of this.attributes)
+            for (let i of this.transactionAttribute)
             {
-                array.push(new Uint8Array[i.usage]);
-                array.push(i.data);
+                array.push(i.serialize());
             }
-            for (let i of this.vin)
+            for (let i of this.transactionInput)
             {
-                array.push(i.txid.hexToBytes());
-                array.push(i.vout.serialize(2)); 
+                array.push(i.serialize());
             }
-
             return ToUint8Array(array);
         }
 
         abstract serializeExclusiveData(): Uint8Array
     }
 }
+

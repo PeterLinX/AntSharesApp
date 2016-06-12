@@ -37,7 +37,7 @@ namespace AntShares.Core
         public serializeExclusiveData(): Uint8Array
         {
             let array = new Array<Uint8Array>();
-            array.push(new Uint8Array([this.type]));
+            array.push(new Uint8Array([this.transactionType]));
             let name = this.name;
             array.push(name.serialize()); 
             array.push(this.amount.serialize());

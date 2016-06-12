@@ -87,9 +87,9 @@
                         {
                             //根据指定的散列值，返回对应的区块信息
                             rpc.call("getblock", [hash],
-                                (block: Core.Block) =>
+                                (block: Core.BlockJson) =>
                                 {
-                                    if (block.transactions.length <= 1)
+                                    if (block.tx.length <= 1)
                                     {
                                         if (height.Value as any < $("#remote_height").text())
                                         {
@@ -135,16 +135,16 @@
         /**
          * 参考项目中的 Wallet.cs 中的 ProcessNewBlock()
          */
-        private processNewBlock = (blockjson, callback) =>
+        private processNewBlock = (blockjson: Core.BlockJson, callback) =>
         {
-            let block = Core.Block.deserialize(blockjson);
+            let block = blockjson.deserialize();
             let wallet = GlobalWallet.getCurrentWallet();
             for (let tx of block.transactions) //547
             {
-                for (let index = 0; index < tx.vout.length; index++) //549
+                for (let index = 0; index < tx.transactionOutput.length; index++) //549
                 {
-                    let out = tx.vout[index];
-                    let input = new Core.TransactionInput(tx.txid, index);
+                    let out = tx.transactionOutput[index];
+                    let input = new Core.TransactionInput(tx.transactionId, index);
                     let contains = false;
                     for (let c of wallet.contracts) //552
                     {
@@ -175,7 +175,7 @@
             let allInputs = new Array<Core.TransactionInput>(); //573
             for (let i = 0; i < block.transactions.length; i++)
             {
-                allInputs = allInputs.concat(block.transactions[i].vin);
+                allInputs = allInputs.concat(block.transactions[i].transactionInput);
             }
             for (let input of allInputs)
             {
@@ -199,8 +199,8 @@
             let claims = new Array<Core.TransactionInput>(); //583
             for (let i = 0; i < block.transactions.length; i++)
             {
-                if (block.transactions[i].type == Core.TransactionType.ClaimTransaction)
-                    claims = claims.concat(block.transactions[i].vin);
+                if (block.transactions[i].transactionType == Core.TransactionType.ClaimTransaction)
+                    claims = claims.concat(block.transactions[i].transactionInput);
             }
             for (let claim of claims)
             {

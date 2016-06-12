@@ -3,7 +3,7 @@
 
 function InputEqueal(x: AntShares.Core.TransactionInput, y: AntShares.Core.TransactionInput)
 {
-    return x.txid == y.txid && x.vout == y.vout;
+    return x.prevHash == y.prevHash && x.prevIndex == y.prevIndex;
 }
 
 function CoinsIndexof(coins: AntShares.Wallets.CoinItem[], input: AntShares.Core.TransactionInput): number

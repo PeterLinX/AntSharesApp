@@ -691,12 +691,12 @@ namespace AntShares.Wallets
 
         public makeTransaction(tx: Core.Transaction, fee: Fixed8): Core.Transaction
         {
-            if (tx.vout == null)
+            if (tx.transactionOutput == null)
                 throw new Error();
-            if (tx.attributes == null) tx.attributes = new Core.TransactionAttribute[0];
+            if (tx.transactionAttribute == null) tx.transactionAttribute = new Core.TransactionAttribute[0];
             fee.add(tx.systemFee);
             //481
-            let pay_total = (tx.type == Core.TransactionType.IssueTransaction ? new Core.TransactionOutput[0] : tx.vout) as Core.TransactionOutput[];
+            let pay_total = (tx.transactionType == Core.TransactionType.IssueTransaction ? new Core.TransactionOutput[0] : tx.transactionType) as Core.TransactionOutput[];
 
             let group = new Array<AssetItem>();
             for (let i = 0; i < pay_total.length; i++)

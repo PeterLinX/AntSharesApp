@@ -10,7 +10,7 @@ namespace AntShares.Wallets
             public State: AntShares.Core.CoinState)
         {
             super();
-            this.Name = Input.txid + Input.vout;
+            this.Name = Input.prevHash + Input.prevIndex;
         }
     }
 }
