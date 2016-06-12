@@ -2,12 +2,35 @@
 {
     export class SignatureContext
     {
-        public scriptHashes: Uint8Array[];
+        //要签名的数据
         public signable: Signable;
+        //要验证的脚本散列值
+        public scriptHashes: Uint8Array[]; //UInt160
         private redeemScripts: Uint8Array[];
         private signatures: Dictionary[];
+        //判断签名是否完成
         private completed: boolean[];
 
+        //public SignatureContext(signable: ISignable)
+        //{
+        //    this.signable = signable;
+        //    this.scriptHashes = signable.GetScriptHashesForVerifying();
+        //    this.redeemScripts = new Array<Uint8Array>();
+        //    this.redeemScripts.length = this.scriptHashes.length;
+        //    //TODO:this.signatures的初始化(this.signatures = new Dictionary<AntShares.Cryptography.ECPoint, Uint8Array>[scriptHashes.length];)
+        //    this.signatures = new Dictionary(this.scriptHashes.length);
+
+        //    this.completed = new Array<boolean>();
+        //    this.completed.length = this.scriptHashes.length;
+        //}
+
+        /**
+         * 添加一个签名
+         * @param contract 该签名所对应的合约
+         * @param publicECPoint 该签名所对应的公钥
+         * @param signature 签名
+         * @return 返回签名是否已成功添加
+         */
         public Add(contract: Wallets.Contract, publicECPoint: Cryptography.ECPoint, signature: Uint8Array): boolean
         {
             for (let i = 0; i < this.scriptHashes.length; i++)
