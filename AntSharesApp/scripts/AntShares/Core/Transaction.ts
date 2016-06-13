@@ -7,7 +7,7 @@
         public transactionAttribute: Array<TransactionAttribute>;
         public transactionInput: Array<TransactionInput>;
         public transactionOutput: Array<TransactionOutput>;
-        public script: Array<Script>;
+        public scripts: Array<Script>;
 
         public systemFee = Fixed8.zero;
 
