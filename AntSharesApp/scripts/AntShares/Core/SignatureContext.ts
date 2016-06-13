@@ -11,18 +11,18 @@
         //判断签名是否完成
         private completed: boolean[];
 
-        //public SignatureContext(signable: ISignable)
-        //{
-        //    this.signable = signable;
-        //    this.scriptHashes = signable.GetScriptHashesForVerifying();
-        //    this.redeemScripts = new Array<Uint8Array>();
-        //    this.redeemScripts.length = this.scriptHashes.length;
-        //    //TODO:this.signatures的初始化(this.signatures = new Dictionary<AntShares.Cryptography.ECPoint, Uint8Array>[scriptHashes.length];)
-        //    this.signatures = new Dictionary(this.scriptHashes.length);
-
-        //    this.completed = new Array<boolean>();
-        //    this.completed.length = this.scriptHashes.length;
-        //}
+        public SignatureContext(signable: Signable)
+        {
+            //实际使用时需要边界检查
+            this.signable = signable;
+            this.scriptHashes = signable.GetScriptHashesForVerifying();
+            this.redeemScripts = new Array<Uint8Array>();
+            this.redeemScripts.length = this.scriptHashes.length;
+            this.signatures = new Array<Dictionary>();
+            this.signatures.length = this.scriptHashes.length;
+            this.completed = new Array<boolean>();
+            this.completed.length = this.scriptHashes.length;
+        }
 
         /**
          * 添加一个签名
@@ -64,7 +64,11 @@
             }
         }
 
-
+        /**
+         * 从指定的json对象中解析出签名上下文
+         * @param json json对象
+         * @return 返回上下文
+         */
         //public static FromJson(json: Object): SignatureContext
         //{
             

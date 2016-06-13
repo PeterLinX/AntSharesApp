@@ -2,13 +2,26 @@
 {
     export class Dictionary
     {
-        private length: number;
-        public array: any[];
+        private lengthLimit: number;
+        private array: any[];
 
+        private _count: number;
+        get count(): number
+        {
+            if (this.lengthLimit == null)
+            {
+                this._count = this.array.length;
+            } else
+            {
+                this._count = this.lengthLimit;
+            }
+            return this._count;
+        }
+        
         constructor(_length: number = null)
         {
             this.array = new Array();
-            this.length = _length;
+            this.lengthLimit = _length;
         }
 
         public containsKey(key): boolean
@@ -37,11 +50,9 @@
 
         public addItem(index, key, value)
         {
-            if (this.length == null || (0 <= index && index < this.length))
+            if (this.lengthLimit == null || (0 <= index && index < this.lengthLimit))
             {
                 this.array[index] = new DictionaryItem(key, value);
-                if (this.length == null) this.length = 0;
-                this.length++;
             }
             else
             {
