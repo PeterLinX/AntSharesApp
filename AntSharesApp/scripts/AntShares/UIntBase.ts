@@ -22,7 +22,12 @@
 
         public toString(): string
         {
-            return this._bytes.reverse().toHexString();
+            let temp: Uint8Array = new Uint8Array(this._bytes.length);
+            for (let i = 0; i < this._bytes.length;i++)
+            {
+                temp[i] = this._bytes[i];
+            }
+            return temp.reverse().toHexString();
         }
 
         public serialize(): Uint8Array
