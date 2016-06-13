@@ -185,24 +185,24 @@
                     </div>
                 </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
-                    <fieldset>
+                    <form id="form_sign_data" autocomplete="off">
                         <h2 class="page-header">交易签名</h2>
                         <div class="row">
                             <div class="col-sm-10">
-                                <textarea rows="5" class="form-control" placeholder="要签名的交易"></textarea>
+                                <textarea id="sign_data" rows="5" class="form-control" placeholder="要签名的交易"></textarea>
                             </div>
                         </div>
                         <br />
-                        <button class="btn btn-raised btn-primary" type="button">签名</button>
-                        <button class="btn btn-raised btn-primary" type="button">321</button>
-                    </fieldset>
+                        <button id="sign" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名</button>
+                        <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();" style="display:none;">广播</button>
+                    </form>
                     <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
+                            <a class="alert-link" href="javascript:">了解更多</a>
+                        </div>
                 </div>
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <form id="form_relay_data" autocomplete="off">

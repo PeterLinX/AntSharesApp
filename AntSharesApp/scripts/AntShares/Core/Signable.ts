@@ -10,19 +10,19 @@
         scripts: Script[];
 
         //获得需要校验的脚本Hash值
-        GetScriptHashesForVerifying(): Uint8Array[];//UInt160
+        //GetScriptHashesForVerifying(): Uint8Array[];//UInt160
 
         /**
          * 反序列化未签名的数据
          * @param reader 数据来源
          */
-        DeserializeUnsigned(reader:string): void;
+        //DeserializeUnsigned(reader:string): void;
 
 
         /**
          * 序列化未签名的数据
          * @param writer 存放序列化后的结果
          */
-        SerializeUnsigned(writer:string): void;
+        //SerializeUnsigned(writer:string): void;
     }
 }

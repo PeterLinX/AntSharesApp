@@ -15,7 +15,7 @@
         {
             //实际使用时需要边界检查
             this.signable = signable;
-            this.scriptHashes = signable.GetScriptHashesForVerifying();
+            //this.scriptHashes = signable.GetScriptHashesForVerifying();
             this.redeemScripts = new Array<Uint8Array>();
             this.redeemScripts.length = this.scriptHashes.length;
             this.signatures = new Array<Dictionary>();
