@@ -6,7 +6,7 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#btn_add_publickey").click(this.OnAddPublicKeyButtonClick); 
+            $(this.target).find("#btn_add_publickey").click(this.OnAddPublicKeyButtonClick);
             $(this.target).find("#create_contract_multisig_action").click(this.OnCreateButtonClick);
         }
 
@@ -26,53 +26,35 @@
         private OnCreateButtonClick = () =>
         {
             let x = $(".publickeyitem");
-            let m:number = x.length;
+            let m: number = x.length;
             for (let i = 0; i < x.length; i++)
             {
                 CreateMultiSig.add(x[i].innerHTML);
             }
 
-            let wallet = GlobalWallet.getCurrentWallet();
-            let contract: AntShares.Wallets.MultiSigContract = this.getContract(wallet, 0, m, (contract: AntShares.Wallets.MultiSigContract) =>
+            let promises = new Array<PromiseLike<Uint160>>();
+            for (let i = 0; i < CreateMultiSig.publicKeys.length; i++)
             {
-                if (contract == null)
-                {
-                    alert("无法添加智能合约，因为当前钱包中不包含签署该合约的私钥。");
-                    return;
-                }
-                ToScriptHash(contract.RedeemScript, (pScriptHash: Uint8Array) =>
-                {
-                    let contractStore = new Wallets.ContractStore(pScriptHash, contract, contract.PublicKeyHash, contract.Type);
-                    wallet.addContract(contractStore);
-                    wallet.loadSomething(() =>
-                    {
-                        alert("智能合约创建成功");
-                        //创建成功后跳转到合约管理页面
-                        TabBase.showTab("#Tab_Contract_Index");
-                    });
-                })
-            });
-        }
-
-        private getContract(wallet: AntShares.Wallets.Wallet, i: number, m: number, callback): AntShares.Wallets.MultiSigContract
-        {
-            if (i >= CreateMultiSig.publicKeys.length)
-            {
-                callback();
-                return;
+                promises.push(CreateMultiSig.publicKeys[i].encodePoint(true).toScriptHash());
             }
-            ToScriptHash(CreateMultiSig.publicKeys[i].encodePoint(true),
-                (publicKeyHash: Uint8Array) =>
-                {
-                    for (let account of wallet.accounts)
-                    {
-                        if (publicKeyHash.toString() == account.PublicKeyHash.toString())
-                        {
-                            return callback(AntShares.Wallets.MultiSigContract.Create(account.PublicKeyHash, m, CreateMultiSig.publicKeys));
-                        }
-                    }
-                    this.getContract(wallet, ++i, m, callback);
-                });
+            Promise.all(promises).then(results =>
+            {
+                for (let i = 0; i < results.length; i++)
+                    if (Global.Wallet.containsAccount(results[i]))
+                        return results[i];
+                throw new Error("无法添加智能合约，因为当前钱包中不包含签署该合约的私钥。");
+            }).then(result =>
+            {
+                return Wallets.Contract.createMultiSigContract(result, m, CreateMultiSig.publicKeys);
+            }).then(result =>
+            {
+                return Global.Wallet.addContract(result);
+            }).then(() =>
+            {
+                alert("智能合约创建成功");
+                //创建成功后跳转到合约管理页面
+                TabBase.showTab("#Tab_Contract_Index");
+            }, reason => alert(reason));
         }
 
         private OnAddPublicKeyButtonClick = () =>

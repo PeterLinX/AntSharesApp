@@ -8,23 +8,23 @@
 
         protected onload(): void
         {
-            let wallet = GlobalWallet.getCurrentWallet();
-            $("#contract_list_wallet").text(wallet.walletName);
-            if (wallet.accounts.length <= 0)
+            if (Global.Wallet == null)
             {
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            $("#contract_list_wallet").text(Global.Wallet.dbPath);
             let ul = $("#form_contract_list").find("ul:eq(1)");
             ul.find("li:visible").remove();
-            for (let i = 0; i < wallet.contracts.length; i++)
+            let contracts = Global.Wallet.getContracts();
+            for (let i = 0; i < contracts.length; i++)
             {
-                this.addContractList(i);
+                this.addContractList(contracts[i]);
             }
             
         }
 
-        private addContractList(i: number)
+        private addContractList(contract: Wallets.Contract)
         {
             let ul = $("#form_contract_list").find("ul:eq(1)");
             let liTemplet = ul.find("li:eq(0)");
@@ -35,11 +35,14 @@
             let a = li.find("a");
             a.click(() =>
             {
-                TabBase.showTab("#Tab_Contract_Details", i);
+                TabBase.showTab("#Tab_Contract_Details", contract);
             });
-            spanAddress.text(GlobalWallet.getCurrentWallet().contracts[i].Address);
-            spanType.text(GlobalWallet.getCurrentWallet().contracts[i].Type);
-            ul.append(li);
+            contract.getAddress().then(result =>
+            {
+                spanAddress.text(result);
+                spanType.text("AntShares.Wallets.Contract");
+                ul.append(li);
+            });
         }
 
     }

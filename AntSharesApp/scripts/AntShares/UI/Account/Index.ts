@@ -8,23 +8,25 @@
         
         protected onload(): void
         {
-            let wallet = GlobalWallet.getCurrentWallet();
-            $("#account_list_wallet").text(wallet.walletName);
-            if (wallet.accounts.length <= 0)
+            if (Global.Wallet == null)
             {
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            $("#account_list_wallet").text(Global.Wallet.dbPath);
             let ul = $("#form_account_list").find("ul:eq(0)");
             ul.find("li :visible").remove();
-            for (let i = 0; i < wallet.accounts.length; i++)
+            let accounts = Global.Wallet.getAccounts();
+            for (let i = 0; i < accounts.length; i++)
             {
-                addAccountList(i)
+                addAccountList(accounts[i]);
             }
 
             let rpc = new AntShares.Network.RPC.RpcClient("http://seed1.antshares.org:20332/");
-            rpc.call("getblockcount", [], (height) => { this.CurrentHeight = height - 1; });
-
+            rpc.call("getblockcount", []).then(result =>
+            {
+                this.CurrentHeight = result - 1;
+            });
         }
 
         private OnCreateButtonClick()
@@ -33,7 +35,7 @@
         }
     }
 
-    function addAccountList(i: number)
+    function addAccountList(account: Wallets.Account)
     {
         let ul = $("#form_account_list").find("ul:eq(0)");
         let liTemplet = ul.find("li:eq(0)");
@@ -42,19 +44,18 @@
         let span = li.find("span");//账户
         let a = li.find("a");//详情
         let btn = li.find("button:eq(0)");//导出
-        let wallet = GlobalWallet.getCurrentWallet();
         btn.click(() =>
         {
-            Export(wallet.accounts[i].PrivateKey, (wif) =>
+            account.export().then(result =>
             {
-                alert("WIF格式的私钥为：" + wif);
+                alert("WIF格式的私钥为：" + result);
             });
         })
         a.click(() =>
         {
-            TabBase.showTab("#Tab_Account_Details", i);
+            TabBase.showTab("#Tab_Account_Details", account);
         });
-        span.text(wallet.accounts[i].Name + "-" + wallet.accounts[i].PublicKeyHash.base58Encode().substr(0, 8));
+        span.text(account.publicKeyHash.toString());
         ul.append(li);
     }
 

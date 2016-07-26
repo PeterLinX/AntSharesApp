@@ -18,27 +18,13 @@
             if (formIsValid("form_create_account"))
             {
                 let accountName = $("#account_name").val().trim();
-                let account = new Wallets.Account();
-                let wallet = GlobalWallet.getCurrentWallet();
-                wallet.createECDSAKey(accountName, account, (pAccount) =>
+                Global.Wallet.createAccount().then(result =>
                 {
-                    wallet.createContract(pAccount.PublicKeyHash, pAccount.publicECPoint, (pWallet) =>
-                    {
-                        wallet.loadAccounts(() =>
-                        {
-                            wallet.loadContracts(() =>
-                            {
-                                wallet.loadCoins(() =>
-                                {
-                                    alert("创建账户成功");
-                                    this.clear();
-                                    //新建账户成功后跳转至账户管理页面
-                                    TabBase.showTab("#Tab_Account_Index");
-                                });
-                            });
-                        });
-                    });
-                });//createECDSAKey
+                    alert("创建账户成功");
+                    this.clear();
+                    //新建账户成功后跳转至账户管理页面
+                    TabBase.showTab("#Tab_Account_Index");
+                });
             }
         }
 

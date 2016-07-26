@@ -5,48 +5,34 @@
         protected oncreate(): void
         {
             $(this.target).find("button").click(this.OnChangePasswordButtonClick);
-            $(this.target).find("#old_password").change(() => { this.vertifyPassword() });
-        }
-
-        private vertifyPassword()
-        {
-            verifyPassword(
-                GlobalWallet.getCurrentWallet().walletName,
-                "old_password",
-                "change_error")
         }
 
         protected onload(): void
         {
-            let wallet = GlobalWallet.getCurrentWallet();
-            if (wallet.accounts.length <= 0)
+            if (Global.Wallet == null)
             {
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-            $("#change_wallet_name").text(wallet.walletName);
+            $("#change_wallet_name").text(Global.Wallet.dbPath);
         }
 
         private OnChangePasswordButtonClick()
         {
-            let wallet = GlobalWallet.getCurrentWallet();
             if (formIsValid("form_change_password"))
             {
-                wallet.verifyPassword($("#old_password").val().toUint8Array(),
-                    () =>
+                Global.Wallet.changePassword($("#old_password").val(), $("#new_password").val()).then(result =>
+                {
+                    if (result)
                     {
                         $("#change_error").hide();
-                        wallet.changePassword(
-                            $("#old_password").val().toUint8Array(),
-                            $("#new_password").val().toUint8Array(),
-                            () => { alert("修改钱包密码成功"); }
-                        );
-                    },
-                    () =>
+                        alert("修改钱包密码成功");
+                    }
+                    else
                     {
                         $("#change_error").show();
                     }
-                );
+                });
             }
         }
     }

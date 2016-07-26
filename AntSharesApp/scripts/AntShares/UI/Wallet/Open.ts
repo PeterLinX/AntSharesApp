@@ -5,27 +5,14 @@
         protected oncreate(): void
         {
             $(this.target).find("button").click(this.OnOpenButtonClick);
-            $(this.target).find("#open_password").change(() => { this.vertifyPassword() });
-            $(this.target).find("#list_wallet_name input[name='wallet']").change(() => { this.vertifyPassword() }); //没有触发
-        }
-
-        private vertifyPassword()
-        {
-            verifyPassword(
-                $('#list_wallet_name input[name="wallet"]:checked').val(),
-                "open_password",
-                "open_error")
         }
 
         protected onload(): void
         {
-            let master = AntShares.Wallets.Master.GetInstance();
-            master.OpenDB(
-                () =>
-                {
-                    master.GetWalletNameList(listWallet)
-                }
-            );
+            AntShares.Wallets.Master.instance().then(result =>
+            {
+                return result.get();
+            }).then(Open.listWallet);
             $("#open_password").focus();
             console.clear();
         }
@@ -34,55 +21,43 @@
         {
             if (formIsValid("form_open_wallet"))
             {
-                let wallet = GlobalWallet.newWallet();
-                let walletName = $('#list_wallet_name input[name="wallet"]:checked ').val();
-                wallet.openDB(walletName, () =>
+                let name = $('#list_wallet_name input[name="wallet"]:checked ').val();
+                Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
-                    wallet.verifyPassword($("#open_password").val().toUint8Array(), () =>
-                    {
-                        wallet.loadSomething(() =>
-                        {
-                            alert("打开钱包成功");
-                            $("#open_error").hide();
-                            //打开成功后跳转账户管理页面
-                            TabBase.showTab("#Tab_Account_Index");
-                            let sync = new AntShares.UI.Sync();
-                            sync.startSyncWallet();
-                        });
-                    }, () =>
-                        {
-                            $("#open_error").show();
-                        }
-                    );
-                })
+                    Global.Wallet = result;
+                    alert("打开钱包成功");
+                    $("#open_error").hide();
+                    //打开成功后跳转账户管理页面
+                    TabBase.showTab("#Tab_Account_Index");
+                }, reason => $("#open_error").show());
             }
         }
-    }
 
-    function listWallet(walletNameList: Array<string>)
-    {
-        if (walletNameList.length == 0)
+        private static listWallet(walletNameList: Array<string>): void
         {
-            TabBase.showTab("#Tab_Wallet_Create");
-        }
-        else
-        {
-            $("#input_wallet_name").hide();
-            $("#list_wallet_name").show();
-            let ul = $("#list_wallet_name");
-            ul.find("li:visible").remove();
-            for (let i = 0; i < walletNameList.length; i++)
+            if (walletNameList.length == 0)
             {
-                let liTemplet = ul.find("li:eq(0)");
-                let li = liTemplet.clone();
-                li.removeAttr("style");
-                li.find("input").val(walletNameList[i]);
-                li.find("span").text(walletNameList[i]);
-                if (i == 0) //第一个默认选中
+                TabBase.showTab("#Tab_Wallet_Create");
+            }
+            else
+            {
+                $("#input_wallet_name").hide();
+                $("#list_wallet_name").show();
+                let ul = $("#list_wallet_name");
+                ul.find("li:visible").remove();
+                for (let i = 0; i < walletNameList.length; i++)
                 {
-                    li.find("input").attr("checked", 'checked');
+                    let liTemplet = ul.find("li:eq(0)");
+                    let li = liTemplet.clone();
+                    li.removeAttr("style");
+                    li.find("input").val(walletNameList[i]);
+                    li.find("span").text(walletNameList[i]);
+                    if (i == 0) //第一个默认选中
+                    {
+                        li.find("input").attr("checked", 'checked');
+                    }
+                    ul.append(li);
                 }
-                ul.append(li);
             }
         }
     }

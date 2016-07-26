@@ -13,8 +13,10 @@
 
         protected onload(): void
         {
-            let rpc = new AntShares.Network.RPC.RpcClient("http://seed1.antshares.org:20332/");
-            rpc.call("getblockcount", [], (height) => { this.CurrentHeight = height - 1; })
+            Core.Blockchain.Default.getBlockCount().then(result =>
+            {
+                this.CurrentHeight = result - 1;
+            });
             $("#wallet_name").focus();
         }
 
@@ -22,11 +24,26 @@
         {
             if (formIsValid("form_create_wallet"))
             {
-                let master = Wallets.Master.GetInstance();
-                master.OpenDB(() =>
+                let master: Wallets.Master;
+                Wallets.Master.instance().then(result =>
                 {
-                    master.GetWalletNameList(this.createWallet);
-                });
+                    master = result;
+                    return master.get();
+                }).then(result =>
+                {
+                    let name = $("#wallet_name").val().trim();
+                    if (result.indexOf(name) >= 0)
+                        throw new Error("已经存在重名的钱包文件，你可以打开钱包或者创建新的钱包。");
+                    return Promise.all<any>([
+                        master.add(name),
+                        Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val())
+                    ]);
+                }).then(results =>
+                {
+                    Global.Wallet = results[1];
+                    this.clear();
+                    TabBase.showTab("#Tab_Account_Index");
+                }, reason => alert(reason));
             }
         }
 
@@ -34,87 +51,28 @@
         private OnDeleteButtonClick = () =>
         {
             console.clear();
-            let sync = new AntShares.UI.Sync();
-            sync.stopSyncWallet();
-            let master = Wallets.Master.GetInstance();
-            master.OpenDB(() =>
+            let master: Wallets.Master;
+            Wallets.Master.instance().then(result =>
             {
-                master.GetWalletNameList(
-                    (walletNameList: Array<string>) =>
-                    {
-                        if (walletNameList.length == 0)
-                        {
-                            alert("当前没有钱包数据库");
-                        }
-                        else
-                        {
-                            let wallet = GlobalWallet.getCurrentWallet();
-                            if (wallet.database)
-                                wallet.database.closeDB();
-                            for (let i = 0; i < walletNameList.length; i++)
-                            {
-                                this.deleteWallet(walletNameList[i]);
-                                master.DeleteWalletName(walletNameList[i]);
-
-                                alert("delete current wallet success.");
-                            }
-                        }
-                    })
-            });
-        }
-
-        private deleteWallet(waletName: string)
-        {
-            let wallet = new Wallets.Wallet();
-            wallet.openDB(waletName, () =>
+                master = result;
+                if (Global.Wallet != null)
+                    return Global.Wallet.close();
+            }).then(() =>
             {
-                wallet.database.clearObjectStore(StoreName.Key);
-                wallet.database.clearObjectStore(StoreName.Contract);
-                wallet.database.clearObjectStore(StoreName.Account);
-                wallet.database.clearObjectStore(StoreName.Coin);
-                wallet.database.deleteIndexdDB();
-                wallet.database.closeDB();
-            });
-        }
-
-        private createWallet = (walletNameList: Array<string>) =>
-        {
-            if (walletNameList.indexOf($("#wallet_name").val().trim()) >= 0)
+                Global.Wallet = null;
+                return master.get();
+            }).then(result =>
             {
-                alert("已经存在重名的钱包文件，你可以打开钱包或者创建新的钱包。");
-            }
-            else
-            {
-                let wallet = GlobalWallet.getCurrentWallet();
-                let walletName = $("#wallet_name").val().trim();
-                Wallets.Master.GetInstance().AddWalletName(new Wallets.WalletStore(walletName));
-                wallet.openDB(walletName, () =>
+                let promises = new Array<PromiseLike<void>>();
+                for (let i = 0; i < result.length; i++)
                 {
-                    ToPasswordKey($("#create_password").val().toUint8Array(), (passwordKey) =>
-                        {
-                            Wallets.Key.PasswordKey = passwordKey;
-                            wallet.createWallet(passwordKey, () =>
-                            {
-                                wallet.createECDSAKey("我的账户", new Wallets.Account(), (pAccount) =>
-                                {
-                                    wallet.createContract(pAccount.PublicKeyHash, pAccount.publicECPoint, (pWallet) =>
-                                    {
-                                        wallet.addKey(new Wallets.KeyStore("Height", this.CurrentHeight));
-                                        pWallet.loadSomething(() =>
-                                        {
-                                            alert("打开钱包成功");
-                                            this.clear();
-                                            //打开成功后跳转账户管理页面
-                                            TabBase.showTab("#Tab_Account_Index");
-                                            let sync = new AntShares.UI.Sync();
-                                            sync.startSyncWallet();
-                                        });
-                                    });
-                                });//createECDSAKey
-                            });
-                        });//ToPasswordKey
-                });//openDB
-            }
+                    promises.push(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[i]));
+                }
+                return Promise.all(promises);
+            }).then(() =>
+            {
+                return master.clear();
+            });
         }
 
         private clear()

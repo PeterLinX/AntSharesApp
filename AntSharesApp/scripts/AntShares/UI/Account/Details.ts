@@ -9,14 +9,13 @@
 
         protected onload(args: any[]): void
         {
-            let wallet = GlobalWallet.getCurrentWallet();
-            let i = args[0] as number;
-            $("#public_key").text(wallet.accounts[i].PublicKeyPoint.encodePoint(true).toHexString());
-            Export(wallet.accounts[i].PrivateKey, (wif) =>
+            let account = args[0] as Wallets.Account;
+            $("#public_key").text(account.publicKey.encodePoint(true).toHexString());
+            account.export().then(result =>
             {
-                $("#privatekey_export").text(wif);
+                $("#privatekey_export").text(result);
             });
-            $("#privatekey_hex").text(wallet.accounts[i].PrivateKey.toHexString());
+            $("#privatekey_hex").text(new Uint8Array(account.privateKey).toHexString());
         }
     }
 }

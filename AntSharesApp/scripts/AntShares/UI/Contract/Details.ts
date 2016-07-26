@@ -9,12 +9,14 @@
 
         protected onload(args: any[]): void
         {
-            let wallet = GlobalWallet.getCurrentWallet();
-            let i = args[0] as number;
-            $("#contract_type").text(wallet.contracts[i].Type);
-            $("#contract_content").text(wallet.contracts[i].RedeemScript.toHexString());
-            $("#contract_scripthash").text(wallet.contracts[i].ScriptHash.toHexString());
-            $("#contract_address").text(wallet.contracts[i].Address);
+            let contract = args[0] as Wallets.Contract;
+            $("#contract_type").text("AntShares.Wallets.Contract");
+            $("#contract_content").text(new Uint8Array(contract.redeemScript).toHexString());
+            $("#contract_scripthash").text(contract.scriptHash.toString());
+            contract.getAddress().then(result =>
+            {
+                $("#contract_address").text(result);
+            });
         }
     }
 }
