@@ -16,7 +16,11 @@ namespace AntShares
         public static parse(str: string): Uint256
         {
             if (str.length != 64) throw new RangeError();
-            return new Uint256(str.hexToBytes().buffer);
+            let x = str.hexToBytes();
+            let y = new Uint8Array(x.length);
+            for (let i = 0; i < y.length; i++)
+                y[i] = x[x.length - i - 1];
+            return new Uint256(y.buffer);
         }
     }
 }

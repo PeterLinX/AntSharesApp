@@ -23,10 +23,21 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             });
         }
 
+        public close(): PromiseLike<void>
+        {
+            return super.close().then(() =>
+            {
+                this.db.close();
+            });
+        }
+
         public static create(name: string, password: string): PromiseLike<IndexedDBWallet>
         {
             let wallet = new IndexedDBWallet(name);
-            return wallet.init(name, password, true).then(() =>
+            return wallet.db.open().then(() =>
+            {
+                return wallet.init(name, password, true);
+            }).then(() =>
             {
                 return wallet.createAccount();
             }).then(() =>
@@ -182,7 +193,10 @@ namespace AntShares.Implementations.Wallets.IndexedDB
 
         protected loadStoredData(name: string): PromiseLike<ArrayBuffer>
         {
-            return DbContext.promise<ArrayBuffer>(this.db.transaction("Key", "readonly").store("Key").get(name));
+            return DbContext.promise<any>(this.db.transaction("Key", "readonly").store("Key").get(name)).then(result =>
+            {
+                return result.value.hexToBytes().buffer;
+            });
         }
 
         private onCoinsChanged(transaction: DbTransaction, added: AntShares.Wallets.Coin[], changed: AntShares.Wallets.Coin[], deleted: AntShares.Wallets.Coin[]): void
@@ -279,7 +293,10 @@ namespace AntShares.Implementations.Wallets.IndexedDB
         public static open(name: string, password: string): PromiseLike<IndexedDBWallet>
         {
             let wallet = new IndexedDBWallet(name);
-            return wallet.init(name, password, false).then(() =>
+            return wallet.db.open().then(result =>
+            {
+                return wallet.init(name, password, false);
+            }).then(() =>
             {
                 return wallet;
             });

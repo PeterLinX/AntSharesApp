@@ -395,11 +395,14 @@
                             if (passwordHash[i] != passwordKeyHash[i])
                                 throw new Error();
                         this.iv = new Uint8Array(results[1]);
-                        return Promise.all([
-                            this.loadStoredData("MasterKey").then(result =>
-                            {
-                                return window.crypto.subtle.decrypt({ name: "AES-CBC", iv: this.iv }, aesKey, <any>result);
-                            }),
+                        return this.loadStoredData("MasterKey");
+                    }).then(result =>
+                    {
+                        return window.crypto.subtle.decrypt({ name: "AES-CBC", iv: this.iv }, aesKey, <any>result);
+                    }).then(result =>
+                    {
+                        this.masterKey = new Uint8Array(result);
+                        return Promise.all<any>([
                             this.loadAccounts(),
                             this.loadContracts(),
                             this.loadCoins(),
@@ -407,13 +410,12 @@
                         ]);
                     }).then(results =>
                     {
-                        this.masterKey = new Uint8Array(results[0]);
+                        for (let i = 0; i < results[0].length; i++)
+                            this.accounts.set(results[0][i].publicKeyHash.toString(), results[0][i]);
                         for (let i = 0; i < results[1].length; i++)
-                            this.accounts.set(results[1][i].publicKeyHash.toString(), results[1][i]);
-                        for (let i = 0; i < results[2].length; i++)
-                            this.contracts.set(results[2][i].scriptHash.toString(), results[2][i]);
-                        this.coins = new IO.Caching.TrackableCollection<string, Coin>(results[3]);
-                        this.current_height = (new Uint32Array(results[4]))[0];
+                            this.contracts.set(results[1][i].scriptHash.toString(), results[1][i]);
+                        this.coins = new IO.Caching.TrackableCollection<string, Coin>(results[2]);
+                        this.current_height = (new Uint32Array(results[3]))[0];
                     });
                 }
             }).then(() =>

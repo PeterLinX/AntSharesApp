@@ -6,6 +6,11 @@
 
         constructor(private name: string) { }
 
+        public close(): void
+        {
+            this.db.close();
+        }
+
         public static delete(name: string): PromiseLike<void>
         {
             let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -19,6 +24,10 @@
                 request.onerror = () =>
                 {
                     reject(request.error);
+                };
+                request.onblocked = () =>
+                {
+                    reject("blocked");
                 };
             });
         }
@@ -44,6 +53,10 @@
                 request.onerror = () =>
                 {
                     reject(request.error);
+                };
+                request.onblocked = () =>
+                {
+                    reject("blocked");
                 };
             });
         }

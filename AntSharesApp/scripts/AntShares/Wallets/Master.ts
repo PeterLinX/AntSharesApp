@@ -61,7 +61,7 @@
 
         protected onModelCreating(db: IDBDatabase): void
         {
-            db.createObjectStore("Wallet", "name");
+            db.createObjectStore("Wallet", { keyPath: "name" });
         }
     }
 }

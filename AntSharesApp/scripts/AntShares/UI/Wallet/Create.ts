@@ -71,7 +71,8 @@
                 return Promise.all(promises);
             }).then(() =>
             {
-                return master.clear();
+                master.close();
+                return Implementations.Wallets.IndexedDB.DbContext.delete("master");
             });
         }
 
