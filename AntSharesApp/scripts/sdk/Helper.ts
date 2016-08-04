@@ -1,4 +1,7 @@
-﻿interface Array<T>
+﻿type Func<T, TResult> = (arg: T) => TResult;
+type Action<T> = Func<T, void>;
+
+interface Array<T>
 {
     fill(value: T, start?: number, end?: number);
 }
@@ -7,7 +10,6 @@ interface ArrayConstructor
 {
     copy<T>(src: ArrayLike<T>, srcOffset: number, dst: ArrayLike<T>, dstOffset: number, count: number): void;
     from<T>(arr: ArrayLike<T>): Array<T>;
-    repeat<T>(value: T, count: number): Array<T>;
 }
 
 interface String
@@ -36,13 +38,6 @@ Array.from = Array.from || function <T>(arr: ArrayLike<T>): Array<T>
     let array = new Array<T>(arr.length);
     for (let i = 0; i < array.length; i++)
         array[i] = arr[i];
-    return array;
-}
-
-Array.repeat = function <T>(value: T, count: number): Array<T>
-{
-    let array = new Array<T>(count);
-    array.fill(value);
     return array;
 }
 

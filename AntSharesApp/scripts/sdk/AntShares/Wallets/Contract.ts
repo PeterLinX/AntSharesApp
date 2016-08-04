@@ -23,7 +23,7 @@ namespace AntShares.Wallets
         public static createMultiSigContract(publicKeyHash: Uint160, m: number, publicKeys: Cryptography.ECPoint[]): PromiseLike<Contract>
         {
             let redeemScript = Contract.createMultiSigRedeemScript(m, publicKeys);
-            let parameterList = Array.repeat(ContractParameterType.Signature, m);
+            let parameterList = AntShares.Linq.Enumerator.repeat(ContractParameterType.Signature, m).toArray();
             return Contract.create(publicKeyHash, parameterList, redeemScript);
         }
 

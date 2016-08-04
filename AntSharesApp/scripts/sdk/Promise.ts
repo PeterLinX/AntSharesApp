@@ -1,9 +1,7 @@
-﻿if (window.Promise == null) window.Promise = (function ()
-{
-    type Func<TResult, T> = (T) => TResult;
-    type Action<T> = Func<void, T>;
-    type PromiseExecutor<T> = (resolve: Action<T>, reject: Action<any>) => void;
+﻿type PromiseExecutor<T> = (resolve: Action<T | PromiseLike<T>>, reject: Action<any>) => void;
 
+if (window.Promise == null) window.Promise = (function ()
+{
     enum PromiseState
     {
         pending,
@@ -17,8 +15,8 @@
         private _callback_attached = false;
         private _value: T;
         private _reason: any;
-        private _onFulfilled: Func<any | PromiseLike<any>, T>;
-        private _onRejected: Func<any | PromiseLike<any>, T>;
+        private _onFulfilled: Func<T, any | PromiseLike<any>>;
+        private _onRejected: Func<T, any | PromiseLike<any>>;
         private _next_promise: Promise<any>;
         private _tag: any;
 
@@ -63,7 +61,7 @@
             });
         }
 
-        public catch<TResult>(onRejected: Func<TResult | PromiseLike<TResult>, any>): PromiseLike<TResult>
+        public catch<TResult>(onRejected: Func<any, TResult | PromiseLike<TResult>>): PromiseLike<TResult>
         {
             return this.then(null, onRejected);
         }
@@ -129,7 +127,7 @@
             return new Promise<T>((resolve, reject) => resolve(value));
         }
 
-        public then<TResult>(onFulfilled?: Func<TResult | PromiseLike<TResult>, T>, onRejected?: Func<TResult | PromiseLike<TResult>, any>): PromiseLike<TResult>
+        public then<TResult>(onFulfilled?: Func<T, TResult | PromiseLike<TResult>>, onRejected?: Func<any, TResult | PromiseLike<TResult>>): PromiseLike<TResult>
         {
             this._onFulfilled = onFulfilled;
             this._onRejected = onRejected;

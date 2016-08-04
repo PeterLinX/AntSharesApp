@@ -1,11 +1,14 @@
-﻿namespace AntShares.UI.Account {
-    export class Index extends TabBase {
+﻿namespace AntShares.UI.Account
+{
+    export class Index extends TabBase
+    {
         private CurrentHeight: number;
 
-        protected oncreate(): void {
+        protected oncreate(): void
+        {
             $(this.target).find("#create_account").click(this.OnCreateButtonClick);
         }
-        
+
         protected onload(): void
         {
             if (Global.Wallet == null)
@@ -16,11 +19,10 @@
             $("#account_list_wallet").text(Global.Wallet.dbPath);
             let ul = $("#form_account_list").find("ul:eq(0)");
             ul.find("li :visible").remove();
-            let accounts = Global.Wallet.getAccounts();
-            for (let i = 0; i < accounts.length; i++)
-            {
-                addAccountList(accounts[i]);
-            }
+            let contracts = Global.Wallet.getContracts();
+            for (let i = 0; i < contracts.length; i++)
+                if (contracts[i].isStandard())
+                    addAccountList(contracts[i]);
 
             let rpc = new AntShares.Network.RPC.RpcClient("http://seed1.antshares.org:20332/");
             rpc.call("getblockcount", []).then(result =>
@@ -31,11 +33,16 @@
 
         private OnCreateButtonClick()
         {
-            TabBase.showTab("#Tab_Account_Create");
+            //TabBase.showTab("#Tab_Account_Create");
+            Global.Wallet.createAccount().then(result =>
+            {
+                addAccountList(Global.Wallet.getContracts(result.publicKeyHash)[0]);
+                alert("创建账户成功");
+            });
         }
     }
 
-    function addAccountList(account: Wallets.Account)
+    function addAccountList(contract: Wallets.Contract)
     {
         let ul = $("#form_account_list").find("ul:eq(0)");
         let liTemplet = ul.find("li:eq(0)");
@@ -44,6 +51,7 @@
         let span = li.find("span");//账户
         let a = li.find("a");//详情
         let btn = li.find("button:eq(0)");//导出
+        let account = Global.Wallet.getAccount(contract.publicKeyHash);
         btn.click(() =>
         {
             account.export().then(result =>
@@ -53,10 +61,12 @@
         })
         a.click(() =>
         {
-            TabBase.showTab("#Tab_Account_Details", account);
+            TabBase.showTab("#Tab_Account_Details", account, contract);
         });
-        span.text(account.publicKeyHash.toString());
+        contract.getAddress().then(result =>
+        {
+            span.text(result);
+        });
         ul.append(li);
     }
-
 }

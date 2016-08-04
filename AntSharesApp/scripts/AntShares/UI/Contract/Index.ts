@@ -18,10 +18,8 @@
             ul.find("li:visible").remove();
             let contracts = Global.Wallet.getContracts();
             for (let i = 0; i < contracts.length; i++)
-            {
-                this.addContractList(contracts[i]);
-            }
-            
+                if (!contracts[i].isStandard())
+                    this.addContractList(contracts[i]);
         }
 
         private addContractList(contract: Wallets.Contract)
@@ -31,7 +29,6 @@
             let li = liTemplet.clone(true);
             li.removeAttr("style");
             let spanAddress = li.find("span:eq(0)");
-            let spanType = li.find("span:eq(1)");
             let a = li.find("a");
             a.click(() =>
             {
@@ -40,13 +37,8 @@
             contract.getAddress().then(result =>
             {
                 spanAddress.text(result);
-                spanType.text("AntShares.Wallets.Contract");
                 ul.append(li);
             });
         }
-
     }
-
-    
-
 }
