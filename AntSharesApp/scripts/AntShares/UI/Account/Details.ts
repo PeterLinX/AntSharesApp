@@ -10,12 +10,12 @@
         protected onload(args: any[]): void
         {
             let account = args[0] as Wallets.Account;
+            (<any>$("#seckey")).collapse('hide');
             $("#public_key").text(account.publicKey.encodePoint(true).toHexString());
             account.export().then(result =>
             {
                 $("#privatekey_export").text(result);
             });
-            $("#privatekey_hex").text(new Uint8Array(account.privateKey).toHexString());
         }
     }
 }

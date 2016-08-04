@@ -605,7 +605,6 @@
                 }
                 this.current_height++;
                 let changeset = this.coins.getChangeSet();
-                if (changeset.length == 0) return;
                 let transactions = new Array<Core.Transaction>();
                 map.forEach(tx => transactions.push(tx));
                 let added = new Array<Coin>(), changed = new Array<Coin>(), deleted = new Array<Coin>();

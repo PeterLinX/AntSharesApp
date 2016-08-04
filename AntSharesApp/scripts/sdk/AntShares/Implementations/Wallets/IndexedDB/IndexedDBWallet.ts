@@ -204,6 +204,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             for (let i = 0; i < added.length; i++)
             {
                 transaction.store("Coin").add({
+                    "txid,index": added[i].input.prevHash.toString() + "_" + added[i].input.prevIndex, //IE bug
                     txid: added[i].input.prevHash.toString(),
                     index: added[i].input.prevIndex,
                     assetId: added[i].assetId.toString(),
@@ -215,6 +216,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             for (let i = 0; i < changed.length; i++)
             {
                 transaction.store("Coin").put({
+                    "txid,index": changed[i].input.prevHash.toString() + "_" + changed[i].input.prevIndex, //IE bug
                     txid: changed[i].input.prevHash.toString(),
                     index: changed[i].input.prevIndex,
                     assetId: changed[i].assetId.toString(),
@@ -225,7 +227,10 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             }
             for (let i = 0; i < deleted.length; i++)
             {
-                transaction.store("Coin").delete([deleted[i].input.prevHash.toString(), deleted[i].input.prevIndex]);
+                if (transaction.store("Coin").keyPath == "txid,index") //IE bug
+                    transaction.store("Coin").delete(deleted[i].input.prevHash.toString() + "_" + deleted[i].input.prevIndex);
+                else
+                    transaction.store("Coin").delete([deleted[i].input.prevHash.toString(), deleted[i].input.prevIndex]);
             }
         }
 
@@ -246,7 +251,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
         protected onProcessNewBlock(block: Core.Block, transactions: Core.Transaction[], added: AntShares.Wallets.Coin[], changed: AntShares.Wallets.Coin[], deleted: AntShares.Wallets.Coin[]): PromiseLike<void>
         {
             let transaction = this.db.transaction(["Coin", "Key", "Transaction"], "readwrite");
-            transaction.store("Transaction").index("height").openCursor(IDBKeyRange.only(null)).onsuccess = e =>
+            transaction.store("Transaction").index("height").openCursor(IDBKeyRange.only(-1)).onsuccess = e =>
             {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
                 if (cursor)
@@ -283,7 +288,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
                 hash: tx.hash.toString(),
                 type: tx.type,
                 rawData: Uint8Array.fromSerializable(tx).toHexString(),
-                height: null,
+                height: -1,
                 time: Date.now() / 1000
             });
             this.onCoinsChanged(transaction, added, changed, []);

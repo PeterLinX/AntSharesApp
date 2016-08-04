@@ -58,7 +58,8 @@ nav:not(.mm-menu) { display: none; }
 .account-list li .btn { margin-left: 5px; padding: 5px 12px; }
 .list_wallet_ul { margin-top: 5px; }
 ul, ol { padding-left: 0 !important; list-style: none !important; }
-pre { white-space: pre-line; }
+pre { white-space: pre-line; user-select: text; -ms-user-select: text; -moz-user-select: text; -webkit-user-select: text; }
+.select { user-select: text; -ms-user-select: text; -moz-user-select: text; -webkit-user-select: text; }
 /*修复Chrome浏览器pre标签不换行的Bug*/
 .change-wallet-name { padding-top: 7px; color: #337ab7; }
 footer span { font-family: "sourceCodePro"; }

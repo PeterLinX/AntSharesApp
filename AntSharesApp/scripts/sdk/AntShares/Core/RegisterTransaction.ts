@@ -30,14 +30,23 @@ namespace AntShares.Core
 
         public getName(lang = navigator.language || navigator.browserLanguage): string
         {
-            let _names = <Object>JSON.parse(this.name);
-            if (_names.hasOwnProperty(lang))
-                return _names[lang];
-            else if (_names.hasOwnProperty("en"))
-                return _names["en"];
+            let _names = <string | Array<{ lang: string, name: string }>>JSON.parse(this.name.replace(/'/g, '"'));
+            if (typeof _names === "string")
+            {
+                return _names;
+            }
             else
-                for (let lang in _names)
-                    return _names[lang];
+            {
+                let map = new Map<string, string>();
+                for (let i = 0; i < _names.length; i++)
+                    map.set(_names[i].lang, _names[i].name);
+                if (map.has(lang))
+                    return map.get(lang);
+                else if (map.has("en"))
+                    return map.get("en");
+                else
+                    return _names[0].name;
+            }
         }
 
         public getScriptHashesForVerifying(): PromiseLike<Uint160[]>

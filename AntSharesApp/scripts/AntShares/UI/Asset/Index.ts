@@ -53,8 +53,9 @@
             li.find(".asset_value").text(item.amount.toString());
             Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
-                li.find(".asset_name").text((<Core.RegisterTransaction>result).getName());
-                li.find(".asset_issuer").text("发行人"); //TODO:发行人
+                let asset = <Core.RegisterTransaction>result;
+                li.find(".asset_name").text(asset.getName());
+                li.find(".asset_issuer").text(asset.issuer.toString());
                 ul.append(li);
             });
         }

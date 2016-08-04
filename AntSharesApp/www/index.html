@@ -44,16 +44,15 @@
                 </div>
                 <div id="Tab_Account_Details" class="tab-pane">
                     <h2 class="page-header">账户详情</h2>
-                    <div class="account-name" style="font-weight: bold;">我常用的账户</div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <span title="未压缩的公钥的16进制编码">公钥</span><br />
-                            <textarea class="pre" readonly="readonly" id="public_key"></textarea>
+                            <span>公钥</span><br />
+                            <pre id="public_key"></pre>
                         </div>
                         <div class="col-xs-12">
                             <a href="#seckey" data-toggle="collapse" aria-expanded="false">显示/隐藏私钥</a>
                             <div id="seckey" class="collapse">
-                                <pre><span>HEX:</span><span id="privatekey_hex"></span><br /><span>WIF:</span><span id="privatekey_export"></span></pre>
+                                <pre><span id="privatekey_export"></span></pre>
                             </div>
                         </div>
                     </div>
@@ -99,7 +98,7 @@
                             </div>
                             <ul class="col-sm-12 account-list">
                                 <li style="display:none">
-                                    <span></span>
+                                    <span class="select"></span>
                                     <a class="btn btn-primary">详情</a>
                                     <button class="btn btn-primary" type="button">导出</button>
                                     <button class="btn btn-primary" type="button">认证</button>
@@ -351,13 +350,13 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a id="create_contract_multisig" href="#Tab_Contract_Index" >多方签名合约</a></li>
+                                        <li><a class="tab-trigger" href="#Tab_Contract_CreateMultiSig">多方签名合约</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <ul class="col-sm-12 account-list">
                                 <li style="display:none">
-                                    <span ></span>
+                                    <span class="select"></span>
                                     <a class="btn btn-primary">详情</a>
                                 </li>
                             </ul>
