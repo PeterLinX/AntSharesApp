@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_account_action" type="submit" class="btn btn-primary"  onclick="event.preventDefault();">创建账户</button>
+                                <button id="create_account_action" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建账户</button>
                             </div>
                         </div>
                     </form>
@@ -196,12 +196,12 @@
                         <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();" style="display:none;">广播</button>
                     </form>
                     <div class="alert alert-info bottom" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
-                            <a class="alert-link" href="javascript:">了解更多</a>
-                        </div>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
+                        <a class="alert-link" href="javascript:">了解更多</a>
+                    </div>
                 </div>
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <form id="form_relay_data" autocomplete="off">
@@ -240,36 +240,20 @@
                         <h2 class="page-header">资产转让</h2>
                         <div class="row">
                             <div class="col-md-6">
-                                <h5>选择资产类型</h5>
-                                <select class="form-control">
-                                    <option value="1">小蚁股</option>
-                                    <option value="2">小蚁币</option>
-                                    <option value="3">股权</option>
-                                    <option value="4">货币</option>
-                                    <option value="5">其它</option>
-                                </select>
+                                <h5>选择资产</h5>
+                                <select class="form-control"></select>
+                            </div>
+                        </div>
+                        <div>最大可转让<span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
+                        <h5>接收方</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input class="form-control pay_address" type="text" placeholder="地址" />
                             </div>
                             <div class="col-md-6">
-                                <h5>选择资产</h5>
-                                <select class="form-control">
-                                    <option value="1">A资产</option>
-                                    <option value="2">B资产</option>
-                                    <option value="2">C资产</option>
-                                </select>
+                                <input class="form-control pay_value" type="text" placeholder="金额" />
                             </div>
                         </div>
-                        <div>最大可转让<span style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">1234.23</span></div>
-                        <h5>添加接收方</h5>
-                        <div style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
-                            <div class="row" style="padding: 5px 20px;">
-                                <div class="col-xs-7"><input class="form-control" type="text" placeholder="地址" /></div>
-                                <div class="col-xs-3"><input class="form-control" onkeyup="convert(this)" type="text" placeholder="金额" /></div>
-                                <div class="col-xs-2" style="display: none;">
-                                    <button class="btn circle" type="button" style="background: #e51c23; color: white; font-size: 14px;">&times;</button>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn circle" type="button" title="添加输出" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
                         <br /><br />
                         <button class="btn btn-primary" type="button">确认并广播</button>
                     </fieldset>

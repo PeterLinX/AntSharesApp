@@ -40,6 +40,11 @@ interface PromiseConstructor
     prototype: PromiseLike<any>;
 }
 
+interface PromiseLike<T>
+{
+    catch<TResult>(onRejected: Func<any, TResult | PromiseLike<TResult>>): PromiseLike<TResult>;
+}
+
 interface SubtleCrypto
 {
     digest(algorithm: string | Algorithm, data: ArrayBuffer): any;
