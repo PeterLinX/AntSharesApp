@@ -179,30 +179,20 @@
 
         protected static findUnspentCoins(unspents: Coin[], asset_id: Uint256, amount: Fixed8): Coin[]
         {
-            let array = new Array<Coin>();
-            for (let i = 0; i < unspents.length; i++)
-                if (unspents[i].assetId.equals(asset_id))
-                    array.push(unspents[i]);
-            unspents = array;
-            for (let i = 0; i < unspents.length; i++)
-                if (unspents[i].value.equals(amount))
-                    return [unspents[i]];
-            unspents.sort((a, b) => a.value.compareTo(b.value));
-            for (let i = 0; i < unspents.length; i++)
-                if (unspents[i].value.compareTo(amount) > 0)
-                    return [unspents[i]];
+            let unspents_asset = linq(unspents).where(p => p.assetId.equals(asset_id)).toArray();
             let sum = Fixed8.Zero;
-            for (let i = 0; i < unspents.length; i++)
-                sum = sum.add(unspents[i].value);
+            for (let i = 0; i < unspents_asset.length; i++)
+                sum = sum.add(unspents_asset[i].value);
             if (sum.compareTo(amount) < 0) return null;
-            if (sum.equals(amount)) return unspents;
-            array = new Array<Coin>();
-            for (let i = unspents.length - 1; i >= 0; i--)
-            {
-                if (amount.equals(Fixed8.Zero)) break;
-                amount = amount.subtract(Fixed8.min(amount, unspents[i].value));
-            }
-            return array;
+            if (sum.equals(amount)) return unspents_asset;
+            let unspents_ordered = linq(unspents_asset).orderByDescending(p => p.value).toArray();
+            let i = 0;
+            while (unspents_ordered[i].value.compareTo(amount) <= 0)
+                amount = amount.subtract(unspents_ordered[i++].value);
+            if (amount.equals(Fixed8.Zero))
+                return linq(unspents_ordered).take(i).toArray();
+            else
+                return linq(unspents_ordered).take(i).concat(linq([linq(unspents_ordered).last(p => p.value.compareTo(amount) >= 0)])).toArray();
         }
 
         public getAccount(publicKey: Cryptography.ECPoint): PromiseLike<Account>;
@@ -713,15 +703,12 @@
             let d = new Uint8Array(account.privateKey).base64UrlEncode();
             let x = pubkey.subarray(1, 33).base64UrlEncode();
             let y = pubkey.subarray(33, 65).base64UrlEncode();
-            let ms = new IO.MemoryStream();
-            let writer = new IO.BinaryWriter(ms);
-            signable.serializeUnsigned(writer);
-            return Promise.all<any>([
-                window.crypto.subtle.importKey("jwk", <any>{ kty: "EC", crv: "P-256", d: d, x: x, y: y, ext: true }, { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]),
-                window.crypto.subtle.digest("SHA-256", ms.toArray())
-            ]).then(results =>
+            return window.crypto.subtle.importKey("jwk", <any>{ kty: "EC", crv: "P-256", d: d, x: x, y: y, ext: true }, { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]).then(result =>
             {
-                return window.crypto.subtle.sign({ name: "ECDSA", hash: { name: "SHA-256" } }, results[0], results[1]);
+                let ms = new IO.MemoryStream();
+                let writer = new IO.BinaryWriter(ms);
+                signable.serializeUnsigned(writer);
+                return window.crypto.subtle.sign({ name: "ECDSA", hash: { name: "SHA-256" } }, result, <any>ms.toArray());
             });
         }
 
