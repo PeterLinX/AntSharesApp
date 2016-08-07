@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div id="Tab_Advanced_Register" class="form-horizontal tab-pane">
-                    <fieldset>
+                    <form id="form_register_asset" autocomplete="off">
                         <h2 class="page-header">注册资产</h2>
                         <h5>选择资产类型</h5>
                         <select class="form-control">
@@ -173,16 +173,16 @@
                             <option value="3">ANTiGwJG34ifXREByGufja75DF3b8Hzcdm</option>
                         </select>
                         <div class="alert alert-danger" style="padding: 5px 10px; margin: 10px 0;">注册资产将消耗您10000小蚁币</div>
-                        <button class="btn btn-raised btn-primary">确认注册</button>
-                    </fieldset>
-                    <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        注册资产用作注册一种新的用户分发资产。用户可以自己定义资产的类型、名称、总量等，并指定资产的管理员账户。创设资产需要消耗一定数量的小蚁币作为附加服务费。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>
-                </div>
+                        <button id="register" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确认注册</button>
+                    </form>
+                        <div class="alert alert-info bottom" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            注册资产用作注册一种新的用户分发资产。用户可以自己定义资产的类型、名称、总量等，并指定资产的管理员账户。创设资产需要消耗一定数量的小蚁币作为附加服务费。
+                            <a class="alert-link" href="javascript:">了解更多</a>
+                        </div>
+</div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
                         <h2 class="page-header">交易签名</h2>
