@@ -2,11 +2,12 @@ namespace AntShares
 {
     const D = 100000000;
 
-    let _max: Fixed8, _min: Fixed8, _one: Fixed8, _satoshi: Fixed8;
+    let _max: Fixed8, _minus: Fixed8, _min: Fixed8, _one: Fixed8, _satoshi: Fixed8;
 
     export class Fixed8
     {
-        public static get MaxValue() { return _max || (_max = new Fixed8(Uint64.MaxValue)); }
+        public static get MaxValue() { return _max || (_max = new Fixed8(new Uint64(0xffffffff, 0x7fffffff))); }
+        public static get MinusOne() { return _minus || (_minus = new Fixed8(new Uint64(0xffffffff, 0xffffffff))); }
         public static get MinValue() { return _min || (_min = new Fixed8(Uint64.MinValue)); }
         public static get One() { return _one || (_one = Fixed8.fromNumber(1)); }
         public static get Satoshi() { return _satoshi || (_satoshi = new Fixed8(new Uint64(1))); }
@@ -14,7 +15,7 @@ namespace AntShares
 
         constructor(private data: Uint64)
         {
-            if (data.bits[1] >= 0x80000000)
+            if (data.bits[1] >= 0x80000000 && (data.bits[0] != 0xffffffff || data.bits[1] != 0xffffffff))
                 throw new RangeError();
         }
 
