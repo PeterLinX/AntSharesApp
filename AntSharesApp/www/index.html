@@ -116,27 +116,23 @@
                 </div>
                 <div id="Tab_Advanced_Issue" class="form-horizontal tab-pane">
                     <form method="post" class="form-horizontal" autocomplete="off">
-                        <fieldset>
                             <h2 class="page-header">分发资产</h2>
                             <h5 id="asset_title" class="slect2">选择资产</h5>
-                            <select class="form-control">
-                                <option value="1">星球大战电影票</option>
-                                <option value="2">可口可乐代金券</option>
+                            <select class="form-control" id="select_issue_asset">
                             </select>
                             <h5>添加接收方</h5>
-                            <div style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
-                                <div class="row" style="padding: 5px 20px;">
+                            <div id="div_inputs" style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
+                                <div id="div_input" class="row" style="padding: 5px 20px;">
                                     <div class="col-xs-7"><input class="form-control" type="text" placeholder="地址" /></div>
                                     <div class="col-xs-3"><input class="form-control" onkeyup="convert(this)" type="text" placeholder="金额" /></div>
-                                    <div class="col-xs-2" style="display:none">
-                                        <button class="btn circle" style="background: #e51c23; color: white; font-size: 14px;">&times;</button>
+                                    <div id="delete_div" class="col-xs-2" style="display:none">
+                                        <button  onclick="event.preventDefault();" id="delete" class="btn circle" style="background: #e51c23; color: white; font-size: 14px;">&times;</button>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn circle" type="button" title="添加输出" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
+                            <button id="add_input" class="btn circle"  type="button" title="添加输出" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
                             <br /><br />
-                            <button class="btn btn-primary" type="button">确认并广播</button>
-                        </fieldset>
+                            <button id="issue" class="btn btn-primary" type="button">确认并广播</button>
                     </form>
                     <div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
