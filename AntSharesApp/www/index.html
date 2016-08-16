@@ -150,27 +150,27 @@
                     <form id="form_register_asset" autocomplete="off">
                         <h2 class="page-header">注册资产</h2>
                         <h5>选择资产类型</h5>
-                        <select class="form-control">
-                            <option value="1">股权</option>
+                        <select class="form-control" id="select_register_asset">
+                            <!--<option value="1">股权</option>
                             <option value="2">货币</option>
-                            <option value="3">其它</option>
+                            <option value="3">其它</option>-->
                         </select>
                         <h5>资产名称</h5>
-                        <input class="form-control" placeholder="输入资产名称" />
+                        <input class="form-control" placeholder="输入资产名称" id="input_asset_name"/>
                         <h5>总量限制</h5>
                         <div class="row">
                             <div class="col-sm-4">
-                                <label style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" />总量有限</label>
+                                <label style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit"/>总量有限</label>
                             </div>
                             <div class="col-sm-8">
-                                <input class="form-control" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="输入总量" />
+                                <input id="input_amount" class="form-control" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="输入总量" />
                             </div>
                         </div>
-                        <h5>选择管理员地址</h5>
-                        <select class="form-control">
-                            <option value="1">AbcdXweW6trsVwcBSUYrK69u4cBhDg4ZJF</option>
-                            <option value="2">ANttyFkVZxGh93TmjgkiFe1TgS3csGfhJD</option>
-                            <option value="3">ANTiGwJG34ifXREByGufja75DF3b8Hzcdm</option>
+                        <h5>选择发行者</h5>
+                        <select class="form-control" id="select_issuer">
+                        </select>
+                        <h5>选择管理员</h5>
+                        <select class="form-control" id="select_admin">
                         </select>
                         <div class="alert alert-danger" style="padding: 5px 10px; margin: 10px 0;">注册资产将消耗您10000小蚁币</div>
                         <button id="register" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确认注册</button>
