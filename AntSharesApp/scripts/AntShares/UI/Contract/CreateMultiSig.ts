@@ -7,7 +7,7 @@
         protected oncreate(): void
         {
             $(this.target).find("#btn_add_publickey").click(this.OnAddPublicKeyButtonClick);
-            $(this.target).find("#create_contract_multisig_action").click(this.OnCreateButtonClick);
+            $(this.target).find("#create_multisig_contract").click(this.OnCreateButtonClick);
         }
 
         protected onload(args: any[]): void
@@ -25,11 +25,17 @@
 
         private OnCreateButtonClick = () =>
         {
-            let x = $(".publickeyitem");
-            let m: number = x.length;
-            for (let i = 0; i < x.length; i++)
+            let _m = $("#input_m").val();
+            let m: number = Number(_m.split(",").join(""));
+
+            //TODO:需要添加对输入（公钥）的校验
+            let publicItems = $(".publickeyitem");
+            for (let i = 0; i < publicItems.length; i++)
             {
-                CreateMultiSig.add(x[i].innerHTML);
+                if ($(publicItems[i]).val()!="")
+                {
+                    CreateMultiSig.add($(publicItems[i]).val());
+                }
             }
 
             let promises = new Array<PromiseLike<Uint160>>();
@@ -57,22 +63,25 @@
             }, reason => alert(reason));
         }
 
+        private removeInput(parent, divId) {
+            parent.find("#" + divId).remove();
+        }
+
         private OnAddPublicKeyButtonClick = () =>
         {
-            //if (inputIsValid("#input_publickey"))
+            let parent = $("#div_publickeys");
+            let x = Math.round(Math.random() * 10000);
+            let divId = "div_publickey" + x.toString();
+            let div = $("<div id=\"" + divId + "\"/>");
 
-            let publicKeyList = document.getElementById("publicKeyList");
+            let inputElement = $("#div_publickey").clone(true);
+            inputElement.find("#delete_publickey").removeAttr("style");
+            inputElement.find("#delete").click(() => {
+                this.removeInput(parent, divId);
+            });
 
-            //TODO:需要添加对此输入（公钥）的校验
-            let publicKeyValue = $("#input_publickey").val();
-
-            if (publicKeyValue != null)
-            {
-                var html = "<div class='row' style= 'padding: 5px 20px; '><div class='col-xs-7'><label class='col-sm-4 control-label publickeyitem'>" + publicKeyValue + "</label>&nbsp;&nbsp;&nbsp;";
-                html += "<div class='col-xs-3'><button class='btn circle' type= 'button' style= 'background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;' onclick='deletePublicKey()'>-</button></div><br/>";
-
-                publicKeyList.innerHTML += html;
-            }
+            div.append(inputElement);
+            parent.append(div); 
         }
 
         private clear()
@@ -80,21 +89,4 @@
             $("#contract_multisig_name").val("");
         }
     }
-}
-
-function deletePublicKey()
-{
-    let temp = document.getElementById("publicKeyList").innerHTML;
-
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-    temp = temp.substring(0, temp.lastIndexOf("<"));
-
-    document.getElementById("publicKeyList").innerHTML = temp;
 }
