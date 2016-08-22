@@ -333,5 +333,21 @@ namespace AntShares.Implementations.Wallets.IndexedDB
                 value: new Uint8Array(value).toHexString()
             });
         }
+
+        public getAssets(type: Core.TransactionType): PromiseLike<Core.RegisterTransaction[]> {
+            let promises = new Array<PromiseLike<Core.RegisterTransaction>>();
+            let transaction = this.db.transaction("Transaction", "readonly");
+            transaction.store("Transaction").index("type").openCursor(IDBKeyRange.only(type)).onsuccess = e => {
+                let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
+                if (cursor) {
+                    promises.push(cursor.value);
+                    cursor.continue();
+                }
+            };
+            return transaction.commit().then(() => {
+                return Promise.all(promises);
+            });
+        }
+
     }
 }

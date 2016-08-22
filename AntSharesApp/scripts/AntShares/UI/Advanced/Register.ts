@@ -58,7 +58,7 @@
             let _assetTotalAmount = $("#input_amount").val();
             let assetTotalAmount: number = Number(_assetTotalAmount.split(",").join(""));
             let _assetName = $("#input_asset_name").val();
-            let assetName = "[{ 'lang': 'zh-CN', 'name': '" + _assetName + "' }]";
+            let assetName = '[{ "lang": "zh-CN", "name": " ' + _assetName + ' "}]';
             let assetType = $("#select_register_asset").find("option:selected").text();
             let issuer = $("#select_issuer").find("option:selected").text();
             let admin = $("#select_admin").find("option:selected").text();
