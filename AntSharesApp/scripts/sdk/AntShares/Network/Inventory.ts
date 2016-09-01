@@ -4,6 +4,8 @@ namespace AntShares.Network
     {
         public hash: Uint256;
 
+        public scripts: Core.Scripts.Script[];
+
         public ensureHash(): PromiseLike<Uint256>
         {
             if (this.hash != null) return Promise.resolve(this.hash);

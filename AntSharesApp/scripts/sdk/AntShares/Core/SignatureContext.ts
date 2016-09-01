@@ -73,5 +73,82 @@ namespace AntShares.Core
                     return false;
             return true;
         }
+
+        public static Parse(json : JSON): PromiseLike<SignatureContext>
+        {
+            let type = json["type"];
+            let hex: string = <string>json["hex"];
+            let scripts = json["scripts"];
+
+            let signable: Core.ISignable = new AntShares.Core.ContractTransaction;
+            let ms = new IO.MemoryStream(hex.hexToBytes(), false);
+            let reader = new IO.BinaryReader(ms);
+            signable.deserializeUnsigned(reader);
+
+            return Core.SignatureContext.create(signable).then(result => {
+                for (let i = 0; i < scripts.length; i++)
+                {
+                    if (scripts[i] != null) {
+                        result.redeemScripts[i] = (<string>scripts[i]["redeem_script"]).hexToBytes();
+                        result.signatures[i] = new Map<string, ArrayBuffer>();
+                        let sigs = scripts[i]["signatures"];
+                        for (let j = 0; j < sigs.length; j++)
+                        {
+                            let pubkey = Cryptography.ECPoint.decodePoint((<string>sigs[j]["pubkey"]).hexToBytes(), Cryptography.ECCurve.secp256r1);
+                            let signature = (<string>sigs[j]["signature"]).hexToBytes();
+                            result.signatures[i].set(pubkey.toString(), signature);
+                        }
+                        result.completed[i] = <boolean>scripts[i]["completed"];
+                    }
+                }
+                return result;
+            });
+        }
+
+
+        public toJson(): JSON
+        {
+            let jsonObject = new Object();
+            jsonObject["type"] = typeof (this.signable);
+            let ms = new IO.MemoryStream();
+            let writer = new IO.BinaryWriter(ms);
+            this.signable.serializeUnsigned(writer);
+            let tempMs: Uint8Array = new Uint8Array(ms.toArray(), 0);
+            jsonObject["hex"] = tempMs.toHexString();
+
+            let scripts = new Array();
+            for (let i = 0; i < this.signatures.length; i++)
+            {
+                if (this.signatures[i] == null) {
+                    scripts.push(null);
+                } else {
+                    scripts.push(new Object());
+                    let tempRedeemScripts: Uint8Array = new Uint8Array(this.redeemScripts[i], 0);
+                    scripts[i]["redeem_script"] = tempRedeemScripts.toHexString();
+                    let sigs = new Array();
+                    this.signatures[i].forEach((value, key) => {
+                        let signature = new Object();
+                        signature["pubkey"] = key;
+                        let tempSignature = new Uint8Array(value, 0);
+                        signature["signature"] = tempSignature.toHexString();
+                        sigs.push(signature);
+                    });
+                    scripts[i]["signatures"] = sigs;
+                    scripts[i]["completed"] = this.completed[i];
+                }
+            }
+            jsonObject["scripts"] = scripts;
+
+            let strJson = JSON.stringify(jsonObject);
+            let json = JSON.parse(strJson);
+            return json;
+        }
+
+        public toString(): string {
+            let strJson = JSON.stringify(this.toJson());
+            return strJson;
+        }
+
+
     }
 }

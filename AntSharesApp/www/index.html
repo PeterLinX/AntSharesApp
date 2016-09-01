@@ -181,15 +181,22 @@
 </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
-                        <h2 class="page-header">交易签名</h2>
+                        <h1 class="page-header">交易签名</h1>
                         <div class="row">
+                            <div>输入</div>
                             <div class="col-sm-10">
-                                <textarea id="sign_data" rows="5" class="form-control" placeholder="要签名的交易"></textarea>
+                                <textarea id="input_data" rows="5" class="form-control" placeholder="要签名的交易" style="padding: 5px 10px; margin: 10px 0;"></textarea>
                             </div>
                         </div>
                         <br />
+                        <div class="row">
+                            <div>输出</div>
+                            <div class="col-sm-10">
+                                <pre id="output_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
+                            </div>
+                        </div>
                         <button id="sign" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名</button>
-                        <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();" style="display:none;">广播</button>
+                        <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名并广播</button>
                     </form>
                     <div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
