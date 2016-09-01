@@ -189,7 +189,7 @@
                             </div>
                         </div>
                         <br />
-                        <div class="row">
+                        <div id="output_section" class="row" style="display:none">
                             <div>输出</div>
                             <div class="col-sm-10">
                                 <pre id="output_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
@@ -215,6 +215,12 @@
                             </div>
                         </div>
                         <br />
+                        <div id="convert_section" class="row" style="display:none">
+                            <div>输出</div>
+                            <div class="col-sm-10">
+                                <pre id="convert_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
+                            </div>
+                        </div>
                         <button id="convert" type="submit" class="btn btn-primary" onclick="event.preventDefault();">转换</button>
                         <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
                     </form>

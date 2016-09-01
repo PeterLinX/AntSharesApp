@@ -28,6 +28,7 @@
             {
                 if (success) {
                     console.log(context);
+                    $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                     $("#Tab_Advanced_Sign #output_data").text(context.toString());
                     alert("完成签名！");
                 }
@@ -50,7 +51,8 @@
                 return Global.Wallet.sign(result);
             }).then(success => {
                 if (success) {
-                    $("#Tab_Advanced_Sign #output_data").text(JSON.stringify(context));
+                    $("#Tab_Advanced_Sign #output_section").removeAttr("style");
+                    $("#Tab_Advanced_Sign #output_data").text(context.toString());
                     context.signable.scripts = context.getScripts();
                     inventory = <Network.Inventory>context.signable;
                     return Global.Node.relay(inventory);
@@ -59,7 +61,6 @@
                     alert("没有足够的私钥对数据进行签名！");
                 }
             }).then(result => {
-                TabBase.showTab("#Tab_Asset_Index");
                 alert("数据广播成功！");
             }).catch(reason => {
                 alert(reason);

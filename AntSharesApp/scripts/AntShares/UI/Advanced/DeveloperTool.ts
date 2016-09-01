@@ -16,7 +16,21 @@
 
         private OnConvertButtonClick = () =>
         {
-            console.log(123);
+            //SignatureContext context = SignatureContext.Parse(textBox1.Text);
+            //context.Signable.Scripts = context.GetScripts();
+            //InformationBox.Show(context.Signable.ToArray().ToHexString(), "原始数据：");
+
+            let strRelayData: string = $("#relay_data").val();
+            let objRelayData = JSON.parse(strRelayData); //由字符串转换为JSON对象
+            Core.SignatureContext.Parse(objRelayData).then(context => {
+                context.signable.scripts = context.getScripts();
+                let ms = new IO.MemoryStream();
+                let writer = new IO.BinaryWriter(ms);
+                context.signable.serialize(writer);
+                let output: Uint8Array = new Uint8Array(ms.toArray(), 0);
+                $("#Tab_Advanced_DeveloperTool #convert_section").removeAttr("style");
+                $("#Tab_Advanced_DeveloperTool #convert_data").text(output.toHexString());
+            });
         }
 
         private OnRelayButtonClick = () =>
