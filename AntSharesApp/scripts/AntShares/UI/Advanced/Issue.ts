@@ -14,36 +14,36 @@
                 return;
             }
 
-            $(".issue_info").hide();
-            $("#select_issue_assets").empty();
+            $("#Tab_Advanced_Issue .issue_info").hide();
+            $("#Tab_Advanced_Issue #select_issue_assets").empty();
 
+            $("#Tab_Advanced_Issue #select_issue_assets").change(this.OnIssueAssetChanged);
             Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
                 for (let i = 0; i < issueAssets.length; i++) {
                     Global.Blockchain.getTransaction(issueAssets[i].hash).then(result => {
                         let tx = <Core.RegisterTransaction>result;
-                        $("#select_issue_assets").append("<option value=" + i + ">" + tx.getName() + "</option>");
+                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + i + ">" + tx.getName() + "</option>");
                     });
                 }
             }).then(() => {
-                this.OnIssueAssetChanged();
+                return this.OnIssueAssetChanged();
             });
 
-            $("#select_issue_assets").change(this.OnIssueAssetChanged);
         }
 
 
         private OnIssueAssetChanged = () => {
-            let assetName = $("#select_issue_assets").find("option[value=0]").text();
+            let assetName = $("#Tab_Advanced_Issue #select_issue_assets").find("option[value=0]").text();
             Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
-                let assetName = $("#select_issue_assets").find("option:selected").text();
+                let assetName = $("#Tab_Advanced_Issue #select_issue_assets").find("option:selected").text();
                 issueAssets.forEach(p => {
                     let i = 0;
                     Global.Blockchain.getTransaction(p.hash).then(result => {
                         let tx = <Core.RegisterTransaction>result;
                         if (assetName == tx.getName()) {
                             this.rtx = tx;
-                            $(".issue_info").show();
-                            let parent = $("#issue_infos");
+                            $("#Tab_Advanced_Issue .issue_info").show();
+                            let parent = $("#Tab_Advanced_Issue #issue_infos");
                             parent.empty();
                             let div = new Array();
                             div.push($("<div>发行者：" + tx.issuer + "</div>"));
@@ -62,14 +62,14 @@
         }
 
         private OnAddInputClick = () => {
-            let parent = $("#issue_outputs");
+            let parent = $("#Tab_Advanced_Issue #issue_outputs");
             let x = Math.round(Math.random() * 10000);
             let divId = "issue_output" + x.toString();
             let div = $("<div id=\"" + divId + "\"/>");
 
-            let inputElement = $("#issue_output").clone(true);
-            inputElement.find("#div_output_delete").removeAttr("style");
-            inputElement.find("#output_delete").click(() => {
+            let inputElement = $("#Tab_Advanced_Issue #issue_output").clone(true);
+            inputElement.find("#Tab_Advanced_Issue #div_output_delete").removeAttr("style");
+            inputElement.find("#Tab_Advanced_Issue #output_delete").click(() => {
                 this.removeInput(parent, divId);
             });
 

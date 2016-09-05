@@ -16,12 +16,12 @@
             let coins = Global.Wallet.findCoins();
             if (coins.length <= 0)
             {
-                $("h5").show();
+                $("#Tab_Asset_Index h5").show();
                 return;
             }
             else
             {
-                $("h5").hide();
+                $("#Tab_Asset_Index h5").hide();
             }
 
             let map = new Map<string, { assetId: Uint256, amount: Fixed8 }>();

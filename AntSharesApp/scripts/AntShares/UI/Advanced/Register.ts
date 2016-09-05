@@ -11,57 +11,57 @@
                 return;
             }
 
-            $("#select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] +"</option>"); 
-            $("#select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
-            $("#select_register_asset").change(this.OnRegisterAssetChanged);
-            $("#check_limit").change(this.OnCheckLimitChanged);
-            $("#select_register_asset").find("option[value=1]").prop('selected', true);
-            $("#input_asset_name").prop('disabled', true);
-            $("#check_limit").prop('checked', true);
-            $("#check_limit").prop('disabled', true);
+            $("#Tab_Advanced_Register #select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] +"</option>"); 
+            $("#Tab_Advanced_Register #select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
+            $("#Tab_Advanced_Register #select_register_asset").change(this.OnRegisterAssetChanged);
+            $("#Tab_Advanced_Register #check_limit").change(this.OnCheckLimitChanged);
+            $("#Tab_Advanced_Register #select_register_asset").find("option[value=1]").prop('selected', true);
+            $("#Tab_Advanced_Register #input_asset_name").prop('disabled', true);
+            $("#Tab_Advanced_Register #check_limit").prop('checked', true);
+            $("#Tab_Advanced_Register #check_limit").prop('disabled', true);
 
             let issuerArray = linq(Global.Wallet.getAccounts()).select(p => p.publicKey).toArray();
             Promise.all(linq(Global.Wallet.getContracts()).select(p => p.getAddress()).toArray()).then(adminArray => {
                 for (let i = 0; i < issuerArray.length; i++) {
-                    $("#select_issuer").append("<option value=" + i + ">" + issuerArray[i] + "</option>");
+                    $("#Tab_Advanced_Register #select_issuer").append("<option value=" + i + ">" + issuerArray[i] + "</option>");
                 }
                 for (let i = 0; i < adminArray.length; i++) {
-                    $("#select_admin").append("<option value=" + i + ">" + adminArray[i] + "</option>");
+                    $("#Tab_Advanced_Register #select_admin").append("<option value=" + i + ">" + adminArray[i] + "</option>");
                 }
             });
         }
 
         private OnCheckLimitChanged = () => {
-            if ($("#check_limit").prop('checked') == true) {
-                $("#input_amount").prop('disabled', false);
+            if ($("#Tab_Advanced_Register #check_limit").prop('checked') == true) {
+                $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
             } else {
-                $("#input_amount").prop('disabled', true);
+                $("#Tab_Advanced_Register #input_amount").prop('disabled', true);
             }
         }
 
         private OnRegisterAssetChanged = () => {
-            let assetType = $("#select_register_asset").val();
+            let assetType = $("#Tab_Advanced_Register #select_register_asset").val();
             if (assetType == 1) {
                 //Share
-                $("#input_asset_name").prop('disabled', true);
-                $("#check_limit").prop('checked', true);
-                $("#check_limit").prop('disabled', true);
+                $("#Tab_Advanced_Register #input_asset_name").prop('disabled', true);
+                $("#Tab_Advanced_Register #check_limit").prop('checked', true);
+                $("#Tab_Advanced_Register #check_limit").prop('disabled', true);
             } else {
                 //Token
-                $("#input_asset_name").prop('disabled', false);
-                $("#check_limit").prop('checked', true);
-                $("#check_limit").prop('disabled', false);
+                $("#Tab_Advanced_Register #input_asset_name").prop('disabled', false);
+                $("#Tab_Advanced_Register #check_limit").prop('checked', true);
+                $("#Tab_Advanced_Register #check_limit").prop('disabled', false);
             }
         }
 
         private OnRegisterButtonClick = () => {
-            let _assetTotalAmount = $("#input_amount").val();
+            let _assetTotalAmount = $("#Tab_Advanced_Register #input_amount").val();
             let assetTotalAmount: number = Number(_assetTotalAmount.split(",").join(""));
-            let _assetName = $("#input_asset_name").val();
+            let _assetName = $("#Tab_Advanced_Register #input_asset_name").val();
             let assetName = '[{ "lang": "zh-CN", "name": " ' + _assetName + ' "}]';
-            let assetType = $("#select_register_asset").find("option:selected").text();
-            let issuer = $("#select_issuer").find("option:selected").text();
-            let admin = $("#select_admin").find("option:selected").text();
+            let assetType = $("#Tab_Advanced_Register #select_register_asset").find("option:selected").text();
+            let issuer = $("#Tab_Advanced_Register #select_issuer").find("option:selected").text();
+            let admin = $("#Tab_Advanced_Register #select_admin").find("option:selected").text();
 
             let tx: Core.RegisterTransaction = new Core.RegisterTransaction();
             tx.assetType = Core.AssetType[assetType];
