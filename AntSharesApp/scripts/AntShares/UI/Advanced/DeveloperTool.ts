@@ -11,6 +11,7 @@
 
         protected onload(args: any[]): void
         {
+            $("#Tab_Advanced_DeveloperTool #relay_data").val("");
             $("#Tab_Advanced_DeveloperTool #relay_data").focus();
         }
 

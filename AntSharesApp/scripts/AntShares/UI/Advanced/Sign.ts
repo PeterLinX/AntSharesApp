@@ -10,6 +10,7 @@
 
         protected onload(args: any[]): void
         {
+            $("#Tab_Advanced_Sign #input_data").val("");
             $("#Tab_Advanced_Sign #input_data").focus();
 
         }

@@ -19,10 +19,11 @@
 
             $("#Tab_Advanced_Issue #select_issue_assets").change(this.OnIssueAssetChanged);
             Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
+                $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=0>请选择</option>");
                 for (let i = 0; i < issueAssets.length; i++) {
                     Global.Blockchain.getTransaction(issueAssets[i].hash).then(result => {
                         let tx = <Core.RegisterTransaction>result;
-                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + i + ">" + tx.getName() + "</option>");
+                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i+1) + ">" + tx.getName() + "</option>");
                     });
                 }
             }).then(() => {
@@ -130,7 +131,7 @@
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert("注册资产交易已经发送，等待区块确认");
+                alert("分发资产交易已经发送，等待区块确认");
             }).catch(reason => {
                 alert(reason);
             });
