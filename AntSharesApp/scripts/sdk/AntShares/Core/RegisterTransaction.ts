@@ -7,6 +7,8 @@ namespace AntShares.Core
         public amount: Fixed8;
         public issuer: Cryptography.ECPoint;
         public admin: Uint160;
+        private shareName: string = '[{ "lang": "zh-CN", "name": "股权"},{ "lang": "en", "name": "Share"}]';
+        
 
         public get systemFee()
         {
@@ -30,7 +32,8 @@ namespace AntShares.Core
 
         public getName(lang = navigator.language || navigator.browserLanguage): string
         {
-            let _names = <string | Array<{ lang: string, name: string }>>JSON.parse(this.name.replace(/'/g, '"'));
+            let tName : string = this.assetType == AssetType.Share ? this.shareName : this.name;
+            let _names = <string | Array<{ lang: string, name: string }>>JSON.parse(tName.replace(/'/g, '"'));
             if (typeof _names === "string")
             {
                 return _names;

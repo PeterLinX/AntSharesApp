@@ -16,20 +16,17 @@
 
             $("#Tab_Advanced_Issue .issue_info").hide();
             $("#Tab_Advanced_Issue #select_issue_assets").empty();
-
             $("#Tab_Advanced_Issue #select_issue_assets").change(this.OnIssueAssetChanged);
+
             Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
                 $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=0>请选择</option>");
                 for (let i = 0; i < issueAssets.length; i++) {
                     Global.Blockchain.getTransaction(issueAssets[i].hash).then(result => {
                         let tx = <Core.RegisterTransaction>result;
-                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i+1) + ">" + tx.getName() + "</option>");
+                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i + 1) + ">" + tx.getName() + "</option>");
                     });
                 }
-            }).then(() => {
-                return this.OnIssueAssetChanged();
             });
-
         }
 
 
@@ -49,7 +46,8 @@
                             let div = new Array();
                             div.push($("<div>发行者：" + tx.issuer + "</div>"));
                             div.push($("<div>管理员：" + tx.admin + "</div>"));
-                            div.push($("<div>总量：" + tx.amount + "</div>"));
+                            let tAmount: string = tx.amount.equals(Fixed8.MaxValue)  ? "∞" : tx.amount.toString();
+                            div.push($("<div>总量：" + tAmount + "</div>"));
                             //div.push($("<div>已发行：" + Core.Blockchain + "</div>"));
                             div.forEach(() => { parent.append(div) });
                         }

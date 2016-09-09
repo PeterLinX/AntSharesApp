@@ -3,6 +3,11 @@
 
         protected oncreate(): void {
             $(this.target).find("#register").click(this.OnRegisterButtonClick);
+            $("#select_register_asset").append("<option value=0>请选择</option>");
+            $("#select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] + "</option>");
+            $("#select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
+            $("#select_register_asset").change(this.OnRegisterAssetChanged);
+            $("#check_limit").change(this.OnCheckLimitChanged);
         }
 
         protected onload(args: any[]): void {
@@ -10,15 +15,10 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-
-            $("#Tab_Advanced_Register #select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] +"</option>"); 
-            $("#Tab_Advanced_Register #select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
-            $("#Tab_Advanced_Register #select_register_asset").change(this.OnRegisterAssetChanged);
-            $("#Tab_Advanced_Register #check_limit").change(this.OnCheckLimitChanged);
-            $("#Tab_Advanced_Register #select_register_asset").find("option[value=1]").prop('selected', true);
-            $("#Tab_Advanced_Register #input_asset_name").prop('disabled', true);
-            $("#Tab_Advanced_Register #check_limit").prop('checked', true);
-            $("#Tab_Advanced_Register #check_limit").prop('disabled', true);
+            $("#Tab_Advanced_Register #select_issuer").empty();
+            $("#Tab_Advanced_Register #select_admin").empty();
+            $("#Tab_Advanced_Register #input_amount").val("");
+            $("#Tab_Advanced_Register #input_asset_name").val("");
 
             let issuerArray = linq(Global.Wallet.getAccounts()).select(p => p.publicKey).toArray();
             Promise.all(linq(Global.Wallet.getContracts()).select(p => p.getAddress()).toArray()).then(adminArray => {
@@ -46,6 +46,7 @@
                 $("#Tab_Advanced_Register #input_asset_name").prop('disabled', true);
                 $("#Tab_Advanced_Register #check_limit").prop('checked', true);
                 $("#Tab_Advanced_Register #check_limit").prop('disabled', true);
+                $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
             } else {
                 //Token
                 $("#Tab_Advanced_Register #input_asset_name").prop('disabled', false);
@@ -63,20 +64,31 @@
             let issuer = $("#Tab_Advanced_Register #select_issuer").find("option:selected").text();
             let admin = $("#Tab_Advanced_Register #select_admin").find("option:selected").text();
 
-            let tx: Core.RegisterTransaction = new Core.RegisterTransaction();
-            tx.assetType = Core.AssetType[assetType];
-            if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
-            tx.name = assetName;
-            tx.amount = Fixed8.fromNumber(assetTotalAmount);
-            tx.outputs = new Array<Core.TransactionOutput>(0);
-            Wallets.Wallet.toScriptHash(admin).then(result => {
-                tx.issuer = Cryptography.ECPoint.decodePoint(issuer.hexToBytes(), Cryptography.ECCurve.secp256r1);
-                tx.admin = result;
-                let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
-                return this.SignAndShowInformation(_tx);
-            }).catch(reason => {
-                alert(reason);
-            });
+            try
+            {
+                let tx: Core.RegisterTransaction = new Core.RegisterTransaction();
+                
+                tx.assetType = Core.AssetType[assetType];
+                if (tx.assetType == null)
+                {
+                    throw Error("请选择资产类型");
+                }
+                if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
+                tx.name = assetName;
+                tx.amount = $("#Tab_Advanced_Register #check_limit").prop('checked') == true ? Fixed8.fromNumber(assetTotalAmount) : Fixed8.MaxValue;
+                tx.outputs = new Array<Core.TransactionOutput>(0);
+                Wallets.Wallet.toScriptHash(admin).then(result => {
+                    tx.issuer = Cryptography.ECPoint.decodePoint(issuer.hexToBytes(), Cryptography.ECCurve.secp256r1);
+                    tx.admin = result;
+                    let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
+                    return this.SignAndShowInformation(_tx);
+                }).catch(reason => {
+                    alert(reason);
+                });
+            } catch (e) {
+                alert(e);
+            }
+            
         }
 
         private SignAndShowInformation = (tx: Core.Transaction) => {
