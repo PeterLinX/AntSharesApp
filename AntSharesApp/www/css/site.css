@@ -15,7 +15,7 @@ input[type="radio"] { vertical-align: -3px; }
 .mm-navbar { height: 50px; }
 .nomargin { margin: 0 !important; }
 .nopadding { padding: 0 !important; }
-.circle { border-radius: 50%; box-shadow: #777 0px 1px 5px; }
+.circle, .circle:focus, .circle:active { color:#e51c23; font-size:28px; cursor:pointer; outline:none }
 
 /* 改进的 jquery.mmenu.widescreen.css */
 @media only screen and (min-width:768px) {
