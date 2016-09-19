@@ -60,20 +60,14 @@
             parent.find("#" + divId).remove();
         }
 
-        private OnAddInputClick = () => {
+        private OnAddInputClick() {
             let parent = $("#Tab_Advanced_Issue #issue_outputs");
-            let x = Math.round(Math.random() * 10000);
-            let divId = "issue_output" + x.toString();
-            let div = $("<div id=\"" + divId + "\"/>");
 
-            let inputElement = $("#Tab_Advanced_Issue #issue_output").clone(true);
-            inputElement.find("#Tab_Advanced_Issue #div_output_delete").removeAttr("style");
-            inputElement.find("#Tab_Advanced_Issue #output_delete").click(() => {
-                this.removeInput(parent, divId);
-            });
-
-            div.append(inputElement);
-            parent.append(div); 
+            let inputElement = $("#Tab_Advanced_Issue #issue_tpl").clone(true);
+            inputElement.show();
+            inputElement.removeAttr("id");
+            
+            parent.append(inputElement); 
         }
 
         private OnIssueButtonClick = () => {
