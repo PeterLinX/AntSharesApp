@@ -3,11 +3,13 @@ namespace AntShares.Implementations.Wallets.IndexedDB
     export class IndexedDBWallet extends AntShares.Wallets.Wallet
     {
         private db: WalletDataContext;
+        public dbName: string;
 
         constructor(name: string)
         {
             super();
             this.db = new WalletDataContext(name);
+            this.dbName = name;
         }
 
         public addContract(contract: AntShares.Wallets.Contract): PromiseLike<void>

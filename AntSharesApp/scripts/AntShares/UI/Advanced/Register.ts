@@ -110,7 +110,7 @@
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert("注册资产交易已经发送，等待区块确认");
+                alert("注册资产交易已经发送，等待区块确认，txid:"+tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
             });
