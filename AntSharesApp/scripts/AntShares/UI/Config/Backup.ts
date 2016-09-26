@@ -9,11 +9,13 @@
             $(this.target).find("#files").change(this.Restore);
         }
 
-        protected onload(args: any[]): void {
-            if (Global.Wallet == null) {
-                TabBase.showTab("#Tab_Wallet_Open");
-                return;
-            }
+        protected onload(args: any[]): void
+        {
+            var back = $("#Tab_Config_Backup #back_div");
+            if (Global.Wallet == null)
+                back.hide();
+            else
+                back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbName);
             this.db.open();
         }

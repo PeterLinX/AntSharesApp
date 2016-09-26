@@ -6,7 +6,7 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#btn_add_publickey").click(this.OnAddPublicKeyButtonClick);
+            $(this.target).find("#add_public").click(this.OnAddPublicKeyButtonClick);
             $(this.target).find("#create_multisig_contract").click(this.OnCreateButtonClick);
         }
 
@@ -69,19 +69,13 @@
 
         private OnAddPublicKeyButtonClick = () =>
         {
-            let parent = $("#div_publickeys");
-            let x = Math.round(Math.random() * 10000);
-            let divId = "div_publickey" + x.toString();
-            let div = $("<div id=\"" + divId + "\"/>");
+            let parent = $("#Tab_Contract_CreateMultiSig #div_publickeys");
 
-            let inputElement = $("#div_publickey").clone(true);
-            inputElement.find("#delete_publickey").removeAttr("style");
-            inputElement.find("#delete").click(() => {
-                this.removeInput(parent, divId);
-            });
+            let inputElement = $("#Tab_Contract_CreateMultiSig #public_tpl").clone(true);
+            inputElement.show();
+            inputElement.removeAttr("id");
 
-            div.append(inputElement);
-            parent.append(div); 
+            parent.append(inputElement); 
         }
 
         private clear()
