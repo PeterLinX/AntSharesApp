@@ -478,7 +478,7 @@
                     <button id="test" class="btn btn-primary">test</button>
                 </div>
             </div>
-            <footer>
+            <footer title="钱包已同步到的区块高度/小蚁区块链实际区块高度">
                 高度：<span id="local_height">0</span><span>/</span><span id="remote_height">0</span>
                 <button class="btn btn-sm" style="display:none" id="testbutton1">reset local height</button>
             </footer>
@@ -582,7 +582,6 @@
             }]
         });
 
-        AntShares.Sync.getblockcount();
         setTimeout(1000, () => { console.clear(); });
         function alert(message)
         {
