@@ -24,13 +24,10 @@
                 let db = [strDb];
 
                 let blob = new Blob(db, { "type": "application/octet-binary" });
-                let url = URL.createObjectURL(blob);
-                console.log(url);
-                $('#Tab_Config_Backup #blob').attr('href', url);
-                let ev = document.createEvent('MouseEvents');
-                ev.initEvent('click', false, true);
-                document.getElementById('blob').dispatchEvent(ev);
-
+                let url = URL.createObjectURL(blob) + ".txt";
+                var a = $('#Tab_Config_Backup #blob');
+                a.attr('href', url);
+                a[0].click();
             });
             
         }
@@ -160,11 +157,21 @@
 
             let reader = new FileReader();
             reader.readAsText(file);
-            let objDb: PromiseLike<JSON>;
+            let json;
             reader.onload = function () {
                 console.log(this.result);
-                objDb = Promise.resolve(JSON.parse(this.result));
-                objDb.then((json) => {
+                
+                Promise.resolve(1).then(() =>
+                {
+                    try
+                    {
+                        return JSON.parse(this.result);
+                    } catch (e)
+                    {
+                        throw new Error("钱包格式有误，不正确的JSON格式！");
+                    }
+                }).then( (json) =>
+                {
                     let count = 0;
                     for (let obj in json) {
                         switch (json[count]["table"]) {

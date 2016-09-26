@@ -482,9 +482,7 @@
                     </div>
                     <h2 class="page-header">恢复</h2>
                     <div class="form-group">
-                        <!--<input type="file" id="ftest" class="file"/>-->
-                        <input type="file" id="files" style="display:none" />
-                        <input type="button" id="import" class="btn btn-primary" value="恢复" />
+                        <input type="file" id="files" class="file" data-show-upload="false"/>
                     </div>
                 </div>
                 <div id="Tab_Test" class="form-horizontal tab-pane">
@@ -603,12 +601,11 @@
         //初始化fileinput控件
         //http://plugins.krajee.com/file-input
         //http://www.cnblogs.com/wuhuacong/p/4774396.html
-        //$("input[type=file]").fileinput({
-        //    language: 'zh',
-        //    allowedFileExtensions: ['txt'],
-        //    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        //    uploadUrl: "~/Wallet/Upload"
-        //});
+        $("#files").fileinput({
+            language: 'zh',
+            allowedFileExtensions: ['txt'],
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        });
 
         AntShares.Sync.getblockcount();
         setTimeout(1000, () => { console.clear(); });
