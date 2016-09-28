@@ -5,7 +5,7 @@
 header a.iconfont, header a.iconfont:hover, header a.iconfont:focus { position: absolute; top: 0; left: 0; padding: 0 20px 0 15px; color: #fff; font-size: 25px; line-height: 50px; text-decoration: none; }
 html { height: 100%; }
 body { height: 100%; font-family: "微软雅黑 light" !important; color: #666; overflow-x: hidden; }
-header, footer { position: absolute; background: gray; font-size: 18px; text-align: center; color: #fff; line-height: 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px; padding: 0 50px; }
+header, footer { position:fixed; z-index:100; background: gray; font-size: 18px; text-align: center; color: #fff; line-height: 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px; padding:0 50px }
 header { top: 0; font-weight: bold; }
 footer { bottom: 0; }
 fieldset { overflow-x: hidden; }
@@ -19,10 +19,15 @@ input[type="radio"] { vertical-align: -3px; }
 
 /* 改进的 jquery.mmenu.widescreen.css */
 @media only screen and (min-width:768px) {
+    header, footer { padding:0 300px 0 0 }
     .mm-menu.mm-offcanvas { display: block; }
     header a { display: none; }
     .mm-menu.mm-offcanvas:not(.mm-opened) + .mm-page { margin-left: 300px; }
     header, footer { border-left: 1px solid white; }
+}
+
+@media only screen and (max-width:767px) {
+    header, footer { padding:0 }
 }
 
 @media only screen and (min-width:375px) {
@@ -47,7 +52,7 @@ input[type="radio"] { vertical-align: -3px; }
 header.mm-slideout { position: fixed; top: 0; left: 0; }
 .mm-panels, .mm-panels > .mm-panel { background: none; }
 nav:not(.mm-menu) { display: none; }
-.content { background: white; height: 100%; padding: 0; }
+.content { background: white; min-height: 100%; padding: 0; }
 .content > .tab-content > .tab-pane { position: relative; height: 100%; }
 .page-header { border-bottom: 1px solid #eee; padding: 50px 0 9px; margin: 0 0 20px; cursor: default; }
 .mm-menu .buttonbar-item:after { content: none !important; display: none !important; }
@@ -66,3 +71,4 @@ footer span { font-family: "sourceCodePro"; }
 .issuer { margin-bottom: 10px; }
 .all-coin { height: 150px; margin-top: 10px; line-height: 1.5; display: none; }
 textarea.pre { display: block; outline:none; font-weight:bold; width:100%; padding: 9.5px; margin: 0 0 10px; font-size: 13px; line-height: 1.42857143; color: #333; word-break: break-all; word-wrap: break-word; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 4px; }
+.alert-info.bottom { position:fixed; bottom:50px; margin: 0 50px 20px 0 }
