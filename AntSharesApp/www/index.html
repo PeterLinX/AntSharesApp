@@ -115,6 +115,49 @@
                         </div>
                     </form>
                 </div>
+
+                <div id="Tab_Advanced_Register" class="form-horizontal tab-pane">
+                    <form id="form_register_asset" autocomplete="off">
+                        <h2 class="page-header">注册资产</h2>
+                        <h5>选择资产类型</h5>
+                        <select class="form-control" id="select_register_asset"></select>
+                        <h5>资产名称</h5>
+                        <input class="form-control" placeholder="输入资产名称" id="input_asset_name" />
+                        <h5>总量限制</h5>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit" />总量有限</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input id="input_amount" class="form-control" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="输入总量" />
+                            </div>
+                        </div>
+                        <h5>选择发行者</h5>
+                        <select class="form-control" id="select_issuer"></select>
+                        <h5>选择管理员</h5>
+                        <select class="form-control" id="select_admin"></select>
+                        <div class="alert alert-danger" style="padding: 5px 10px; margin: 10px 0;">注册资产将消耗您10000小蚁币</div>
+                        <button id="register" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确认注册</button>
+                    </form>
+                    <div class="alert alert-info bottom" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        注册资产用作注册一种新的用户分发资产。用户可以自己定义资产的类型、名称、总量等，并指定资产的管理员账户。创设资产需要消耗一定数量的小蚁币作为附加服务费。
+                        <a class="alert-link" href="javascript:">了解更多</a>
+                    </div>
+                </div>
+                <div id="Tab_Advanced_RegisterAssetList" class="form-horizontal tab-pane">
+                    <h2 class="page-header">我注册的资产</h2>
+                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有注册的资产</h5>
+                    <ul>
+                        <li style="display:none">
+                            <div>
+                                资产：<span class="text-success assetlist">资产</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div id="Tab_Advanced_Issue" class="form-horizontal tab-pane">
                     <form method="post" class="form-horizontal" autocomplete="off">
                         <h2 class="page-header">分发资产</h2>
@@ -149,37 +192,6 @@
                         <a class="alert-link" href="javascript:">了解更多</a>
                     </div>
                 </div>
-                <div id="Tab_Advanced_Register" class="form-horizontal tab-pane">
-                    <form id="form_register_asset" autocomplete="off">
-                        <h2 class="page-header">注册资产</h2>
-                        <h5>选择资产类型</h5>
-                        <select class="form-control" id="select_register_asset"></select>
-                        <h5>资产名称</h5>
-                        <input class="form-control" placeholder="输入资产名称" id="input_asset_name" />
-                        <h5>总量限制</h5>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit" />总量有限</label>
-                            </div>
-                            <div class="col-sm-8">
-                                <input id="input_amount" class="form-control" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="输入总量" />
-                            </div>
-                        </div>
-                        <h5>选择发行者</h5>
-                        <select class="form-control" id="select_issuer"></select>
-                        <h5>选择管理员</h5>
-                        <select class="form-control" id="select_admin"></select>
-                        <div class="alert alert-danger" style="padding: 5px 10px; margin: 10px 0;">注册资产将消耗您10000小蚁币</div>
-                        <button id="register" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确认注册</button>
-                    </form>
-                    <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        注册资产用作注册一种新的用户分发资产。用户可以自己定义资产的类型、名称、总量等，并指定资产的管理员账户。创设资产需要消耗一定数量的小蚁币作为附加服务费。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>
-                </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
                         <h1 class="page-header">交易签名</h1>
@@ -207,32 +219,13 @@
                         <a class="alert-link" href="javascript:">了解更多</a>
                     </div>
                 </div>
-                <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
-                    <form id="form_relay_data" autocomplete="off">
-                        <h2 class="page-header">广播</h2>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <textarea id="relay_data" rows="10" class="form-control" placeholder="要广播的数据包"></textarea>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="convert_section" class="row" style="display:none">
-                            <div>输出</div>
-                            <div class="col-sm-10">
-                                <pre id="convert_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
-                            </div>
-                        </div>
-                        <button id="convert" type="submit" class="btn btn-primary" onclick="event.preventDefault();">转换</button>
-                        <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
-                    </form>
-                </div>
                 <div id="Tab_Advanced_Elect" class="form-horizontal tab-pane">
                     <h2 class="page-header">选举</h2>
                     <form id="form_register_asset" autocomplete="off">
                         <h5>记账人</h5>
                         <select class="form-control" id="select_validator"></select>
                         <h5>抵押小蚁币</h5>
-                        <input class="form-control" placeholder="输入抵押的小蚁币数量" id="input_antcoin" style="padding: 5px 10px; margin: 10px 0;"/>
+                        <input class="form-control" placeholder="输入抵押的小蚁币数量" id="input_antcoin" style="padding: 5px 10px; margin: 10px 0;" />
                         <button id="elect" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确定</button>
                     </form>
                 </div>
@@ -251,6 +244,25 @@
                         <button id="add_input" class="btn circle" type="button" title="添加输出" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
                         <br /><br />
                         <button id="vote" class="btn btn-primary" type="button">确定</button>
+                    </form>
+                </div>
+                <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
+                    <form id="form_relay_data" autocomplete="off">
+                        <h2 class="page-header">广播</h2>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <textarea id="relay_data" rows="10" class="form-control" placeholder="要广播的数据包"></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="convert_section" class="row" style="display:none">
+                            <div>输出</div>
+                            <div class="col-sm-10">
+                                <pre id="convert_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
+                            </div>
+                        </div>
+                        <button id="convert" type="submit" class="btn btn-primary" onclick="event.preventDefault();">转换</button>
+                        <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
                     </form>
                 </div>
                 <div id="Tab_Asset_Index" class="tab-pane">
@@ -296,6 +308,17 @@
                         指定所有参与方的交易，并可以根据参与交易的资产类型判断是否要求对方确认接受。对方可以选择确认接受（签名）或拒绝（忽略）。目前只有转让股权需要对方签名。
                         <a class="alert-link" href="javascript:">了解更多</a>
                     </div>
+                </div>
+                <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
+                    <h2 class="page-header">我的交易</h2>
+                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有交易</h5>
+                    <ul>
+                        <li style="display:none">
+                            <div>
+                                交易：<span class="text-success txlist">发行人</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
                 <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
                     <form id="form_create_multisig" autocomplete="off">
@@ -543,6 +566,7 @@
                     <ul>
                         <li><a class="tab-trigger" href="#Tab_Asset_Index">我的资产</a></li>
                         <li><a class="tab-trigger" href="#Tab_Asset_Transfer">资产转让</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Asset_TransactionList">交易列表</a></li>
                     </ul>
                 </li>
                 <li>
@@ -554,12 +578,13 @@
                 <li>
                     <span><i class="iconfont">&#xe609;</i>高级功能</span>
                     <ul>
-                        <li><a class="tab-trigger" href="#Tab_Advanced_Sign">签名</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_Register">注册资产</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Advanced_RegisterAssetList">注册资产列表</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_Issue">分发资产</a></li>
-                        <li><a class="tab-trigger" href="#Tab_Advanced_DeveloperTool">开发人员工具</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Advanced_Sign">签名</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_Elect">选举</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_Vote">投票</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Advanced_DeveloperTool">开发人员工具</a></li>
                     </ul>
                 </li>
                 <li>

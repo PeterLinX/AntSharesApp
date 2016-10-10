@@ -109,7 +109,7 @@
                 if (!result) throw new Error("钱包金额已发生变化，交易无法完成");
                 return Global.Node.relay(tx);
             }).then(result => {
-                TabBase.showTab("#Tab_Asset_Index");
+                TabBase.showTab("#Tab_Advanced_RegisterAssetList");
                 alert("注册资产交易已经发送，等待区块确认，txid:"+tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
