@@ -16,6 +16,7 @@ input[type="radio"] { vertical-align: -3px; }
 .nomargin { margin: 0 !important; }
 .nopadding { padding: 0 !important; }
 .circle, .circle:focus, .circle:active { color:#e51c23; font-size:28px; cursor:pointer; outline:none }
+.btn.btn-disable, .btn.btn-disable:hover, .btn.btn-disable:active, .btn.btn-disable:focus { cursor:default; color:lightgray; box-shadow:none; background-color:white; outline:none; border:1px solid #f0f0f0 }
 
 /* 改进的 jquery.mmenu.widescreen.css */
 @media only screen and (min-width:768px) {
@@ -53,19 +54,28 @@ header.mm-slideout { position: fixed; top: 0; left: 0; }
 .mm-panels, .mm-panels > .mm-panel { background: none; }
 nav:not(.mm-menu) { display: none; }
 .content { background: white; min-height: 100%; padding: 0; }
+.tab-content { width: 100%; height: 100%; padding: 40px 50px; transition:padding .5s }
+.issue-tempate > div { padding-top:5px; padding-bottom:5px }
+@media only screen and (max-width: 480px) {
+    .tab-content { width: 100%; height: 100%; padding: 30px 35px; }
+    .alert-info { display:none }
+}
+@media only screen and (max-height: 560px) {
+    .alert-info { display:none }
+}
 .content > .tab-content > .tab-pane { position: relative; height: 100%; }
 .page-header { border-bottom: 1px solid #eee; padding: 50px 0 9px; margin: 0 0 20px; cursor: default; }
 .mm-menu .buttonbar-item:after { content: none !important; display: none !important; }
 .alert.bottom { position: absolute; bottom: 0; }
 .x { position: absolute; top: 0; right: 8px; font-size: 16px; }
 .account-list li { margin-bottom: 10px; }
-.account-list li span { background-color: #f0f0f0; border-radius: 4px; padding: 6px 10px; letter-spacing: 1px; width: 50%; word-break: break-all; vertical-align: middle; display: inline-block; }
-.account-list li .btn { margin-left: 5px; padding: 5px 12px; }
+.account-list li span { background-color: #f0f0f0; border-radius: 4px; padding: 6px 10px; letter-spacing: 1px; word-break: break-all; vertical-align: middle; display: inline-block; }
+.account-list li .btn { padding: 5px 12px; }
+.account-list .col-lg-6 { padding-top:5px; padding-bottom:5px }
 .list_wallet_ul { margin-top: 5px; }
 ul, ol { padding-left: 0 !important; list-style: none !important; }
 pre { white-space: pre-line; user-select: text; -ms-user-select: text; -moz-user-select: text; -webkit-user-select: text; }
 .select { user-select: text; -ms-user-select: text; -moz-user-select: text; -webkit-user-select: text; }
-/*修复Chrome浏览器pre标签不换行的Bug*/
 .change-wallet-name { padding-top: 7px; color: #337ab7; }
 footer span { font-family: "sourceCodePro"; }
 .issuer { margin-bottom: 10px; }
