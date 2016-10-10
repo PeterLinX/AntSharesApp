@@ -10,7 +10,7 @@
                 $("#remote_height").text(remoteHeight);
                 if (Global.Wallet)
                 {
-                    let localHeight = (Global.Wallet as any).walletHeight;
+                    let localHeight = (Global.Wallet as any).walletHeight - 1;
                     console.log(localHeight);
                     $("#local_height").text(localHeight);
                 }

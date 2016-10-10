@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no" />
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
-    <title>小蚁客户端</title>
+    <title>小蚁客户端 beta</title>
 
     <!-- AntSharesApp 引用 -->
     <link href="lib/jQuery.mmenu/dist/core/css/jquery.mmenu.all.css" rel="stylesheet" />
@@ -20,9 +20,9 @@
         <div class="content">
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
-                小蚁-AntShares
+                AntsharesApp beta
             </header>
-            <div class="tab-content" style="width: 100%; height: 100%; padding: 40px 50px;">
+            <div class="tab-content">
                 <div id="Tab_Account_Create" class="form-horizontal tab-pane">
                     <form id="form_create_account" autocomplete="off">
                         <h2 class="page-header">创建账户</h2>
@@ -91,21 +91,23 @@
                 <div id="Tab_Account_Index" class="tab-pane">
                     <form id="form_account_list">
                         <h2 class="page-header">账户列表</h2>
-                        <div class="row nomargin">
-                            <div class="col-sm-12 wallet-name" style="padding: 0; margin-bottom: 10px;">
-                                <div>钱包名称：<span id="account_list_wallet"></span></div><br />
-                                <a class="btn tab-trigger btn-default" id="create_account" href="#Tab_Account_Index">创建账户</a>
-                                <!--<a class="btn tab-trigger btn-default" href="#Tab_Account_Import">导入私钥</a>-->
-                            </div>
-                            <ul class="col-sm-12 account-list">
-                                <li style="display:none">
+                        <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
+                            <div>钱包名称：<span id="account_list_wallet"></span></div><br />
+                            <a class="btn tab-trigger btn-default" id="create_account" href="#Tab_Account_Index">创建账户</a>
+                            <!--<a class="btn tab-trigger btn-default" href="#Tab_Account_Import">导入私钥</a>-->
+                        </div>
+                        <ul class="account-list">
+                            <li style="display:none" class="row">
+                                <div class="col-lg-6">
                                     <span class="select"></span>
+                                </div>
+                                <div class="col-lg-6">
                                     <a class="btn btn-primary">详情</a>
                                     <button class="btn btn-primary" type="button">导出</button>
-                                    <button class="btn btn-primary" type="button">认证</button>
-                                </li>
-                            </ul>
-                        </div>
+                                    <button class="btn btn-disable" type="button">认证</button>
+                                </div>
+                            </li>
+                        </ul>
                         <div class="alert alert-info bottom" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -125,16 +127,16 @@
                         </div>
                         <h5>添加接收方</h5>
                         <div id="issue_outputs">
-                            <div id="issue_tpl" class="row" style="padding: 5px 0; display:none">
-                                <div class="col-xs-7"><input class="form-control issue_output" type="text" placeholder="地址" /></div>
-                                <div class="col-xs-3"><input class="form-control issue_output" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="金额" /></div>
-                                <div class="col-xs-2">
+                            <div id="issue_tpl" class="row issue-tempate" style="padding: 5px 0; display:none">
+                                <div class="col-sm-7"><input class="form-control issue_output" type="text" placeholder="地址" /></div>
+                                <div class="col-sm-3 col-xs-9"><input class="form-control issue_output" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="金额" /></div>
+                                <div class="col-sm-2 col-xs-3">
                                     <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
                                 </div>
                             </div>
-                            <div id="issue_output" class="row" style="padding: 5px 0">
-                                <div class="col-xs-7"><input class="form-control issue_output" type="text" placeholder="地址" /></div>
-                                <div class="col-xs-3"><input class="form-control issue_output" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="金额" /></div>
+                            <div id="issue_output" class="row issue-tempate" style="padding: 5px 0">
+                                <div class="col-sm-7"><input class="form-control issue_output" type="text" placeholder="地址" /></div>
+                                <div class="col-sm-3 col-xs-9"><input class="form-control issue_output" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" placeholder="金额" /></div>
                             </div>
                         </div>
                         <i id="add_input" class="iconfont circle" type="button" title="添加输出">&#xe60d;</i>
@@ -235,10 +237,10 @@
                                 发行人：<span class="text-success asset_issuer">发行人</span>
                             </div>
                             <div class="row">
-                                <div class="col-xs-9">
+                                <div class="col-md-9">
                                     <pre class="asset_address">地址</pre>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-md-3">
                                     <pre class="asset_value">数量</pre>
                                 </div>
                             </div>
@@ -428,7 +430,7 @@
                         <div class="form-group">
                             <label class="col-sm-4"></label>
                             <div class="col-sm-6">
-                                <button id="delete_wallet" type="button" class="btn btn-sm">delete current wallet</button>
+                                <button id="delete_wallet" style="display:none" type="button" class="btn btn-sm">delete current wallet</button>
                             </div>
                         </div>
                     </form>
@@ -536,9 +538,7 @@
                 <li>
                     <span><i class="iconfont">&#xe60a;</i>小蚁区块链</span>
                     <ul>
-                        <li><a href="javascript:void(0)">区块查询</a></li>
-                        <li><a href="javascript:void(0)">交易查询</a></li>
-                        <li><a href="javascript:void(0)">地址查询</a></li>
+                        <li><a href="http://antcha.in/" target="_blank">antcha.in</a></li>
                     </ul>
                 </li>
                 <li>
@@ -553,10 +553,8 @@
                     <span><i class="iconfont">&#xe607;</i>帮助</span>
                     <ul>
                         <li><a href="javascript:void(0)">帮助</a></li>
-                        <li><a target="_blank" href="https://www.antshares.com/">官网</a></li>
+                        <li><a target="_blank" href="https://www.antshares.org/">官网</a></li>
                         <li><a href="javascript:void(0)">关于</a></li>
-                        <li><a class="tab-trigger" href="#Tab_Test">测试</a></li>
-
                     </ul>
                 </li>
             </ul>
@@ -593,7 +591,7 @@
                 content: ['title']
             }, {
                 position: 'bottom',
-                content: ['<a target="blank" href="https://www.antshares.com/">www.antshares.com</a>']
+                content: ['<a target="blank" href="https://www.antshares.org/">www.antshares.org</a>']
             }]
         });
 
@@ -607,7 +605,7 @@
         });
 
         AntShares.Sync.getblockcount();
-        setTimeout(1000, () => { console.clear(); });
+        setTimeout(1000, function () { console.clear(); });
         function alert(message)
         {
             $('.modal-body').text(message);
