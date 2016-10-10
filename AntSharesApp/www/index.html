@@ -8,8 +8,8 @@
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
     <title>小蚁客户端 beta</title>
-
     <!-- AntSharesApp 引用 -->
+    <link id="lang" href="" rel="stylesheet" />
     <link href="lib/jQuery.mmenu/dist/core/css/jquery.mmenu.all.css" rel="stylesheet" />
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
@@ -20,29 +20,9 @@
         <div class="content">
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
-                AntsharesApp beta
+                <span class="lang-title"></span>
             </header>
             <div class="tab-content">
-                <div id="Tab_Account_Create" class="form-horizontal tab-pane">
-                    <form id="form_create_account" autocomplete="off">
-                        <h2 class="page-header">创建账户</h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">输入账户名称</label>
-                            <div class="col-sm-6">
-                                <input id="account_name" name="account_name" class="form-control" type="text" placeholder="如：个人账户" data-val="true" data-val-required="账户名称不能为空！" />
-                                <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_account_action" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建账户</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div>
-                        <a class="tab-trigger" href="#Tab_Account_Index">返回账户列表</a>
-                    </div>
-                </div>
                 <div id="Tab_Account_Details" class="tab-pane">
                     <h2 class="page-header">账户详情</h2>
                     <div class="row">
@@ -528,7 +508,7 @@
                 <li>
                     <span><i class="iconfont">&#xe602;</i>钱包</span>
                     <ul>
-                        <li><a class="tab-trigger" href="#Tab_Wallet_Create">创建钱包</a></li>
+                        <li><a class="tab-trigger lang-menu-create-wallet" href="#Tab_Wallet_Create"></a></li>
                         <li><a class="tab-trigger" href="#Tab_Wallet_Open">打开钱包</a></li>
                         <li><a class="tab-trigger" href="#Tab_Wallet_ChangePassword">修改密码</a></li>
                     </ul>
@@ -603,6 +583,15 @@
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/appBundle.js"></script>
+
+    <script>
+        setCookie('lang', 'zh', 1000)
+        if (getCookie('lang') == 'en')
+        { document.getElementById('lang').href = 'css/en.css'; }
+        else
+        { document.getElementById('lang').href = 'css/zh.css'; }
+    </script>
+
     <script type="text/javascript">
         //初始化侧边栏
         $('nav#menu').mmenu({
@@ -634,7 +623,6 @@
         });
 
         AntShares.Sync.getblockcount();
-        setTimeout(1000, function () { console.clear(); });
         function alert(message)
         {
             $('.modal-body').text(message);
