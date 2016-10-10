@@ -17,7 +17,7 @@
             {
                 Global.Wallet.import($("#import_prikey_input").val()).then(result =>
                 {
-                    alert("账户导入成功");
+                    alert(Resources.globel.importAccountAlert);
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#import_error").text(reason));
             }

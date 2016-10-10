@@ -37,7 +37,7 @@
             Global.Wallet.createAccount().then(result =>
             {
                 addAccountList(Global.Wallet.getContracts(result.publicKeyHash)[0]);
-                alert("创建账户成功");
+                alert(Resources.globel.createAccountAlert);
             });
         }
     }
@@ -56,7 +56,7 @@
         {
             account.export().then(result =>
             {
-                alert("WIF格式的私钥为：" + result);
+                alert(Resources.globel.WIFis + result);
             });
         })
         a.click(() =>

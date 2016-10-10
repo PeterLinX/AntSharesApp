@@ -21,7 +21,7 @@
                     tx.outputs[0].scriptHash = result;
                     tx.outputs[0].value = Fixed8.parse($("#Tab_Asset_Transfer .pay_value").val());
                     if (Global.Wallet.makeTransaction(tx, Fixed8.Zero) == null)
-                        throw new Error("余额不足");
+                        throw new Error(Resources.globel.insufficientFunds);
                     return Core.SignatureContext.create(tx);
                 }).then(result =>
                 {
@@ -29,19 +29,19 @@
                     return Global.Wallet.sign(context);
                 }).then(result =>
                 {
-                    if (!result) throw new Error("无法签名");
+                    if (!result) throw new Error(Resources.globel.canNotSign);
                     if (!context.isCompleted())
-                        throw new Error("当前版本APP不支持多方签名或接收方签名的交易");
+                        throw new Error(Resources.globel.thisVersion1);
                     tx.scripts = context.getScripts();
                     return Global.Wallet.sendTransaction(tx);
                 }).then(result =>
                 {
-                    if (!result) throw new Error("钱包金额已发生变化，交易无法完成");
+                    if (!result) throw new Error(Resources.globel.txError1);
                     return Global.Node.relay(tx);
                 }).then(result =>
                 {
                     TabBase.showTab("#Tab_Asset_Index");
-                    alert("交易已经发送，等待区块确认");
+                    alert(Resources.globel.contractInfo);
                 }).catch(reason =>
                 {
                     alert(reason);

@@ -26,7 +26,7 @@
                     if (result)
                     {
                         $("#change_error").hide();
-                        alert("修改钱包密码成功");
+                        alert(Resources.globel.changePwdSuccess);
                     }
                     else
                     {

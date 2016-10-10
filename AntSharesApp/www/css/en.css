@@ -1,2 +1,3 @@
-﻿.lang-title::before { content:'Antshares App beta' }
+﻿title::before { content:'Antshares App beta' }
+.lang-title::before { content:'Antshares App beta' }
 .lang-menu-create-wallet::before { content:'create wallet' }

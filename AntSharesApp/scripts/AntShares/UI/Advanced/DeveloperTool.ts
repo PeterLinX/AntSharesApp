@@ -19,8 +19,9 @@
         {
             let strRelayData: string = $("#Tab_Advanced_DeveloperTool #relay_data").val();
             try {
-                if (strRelayData == "") {
-                    alert("请输入数据！");
+                if (strRelayData == "")
+                {
+                    alert(Resources.globel.pleaseInputData);
                 } else {
                     let objRelayData = JSON.parse(strRelayData); //由字符串转换为JSON对象
                     Core.SignatureContext.Parse(objRelayData).then(context => {
@@ -37,7 +38,7 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert("数据格式有误！");
+                    alert(Resources.globel.dataFormatError);
                 }
                 else{
                     alert(e);
@@ -50,7 +51,7 @@
             let strRelayData: string = $("#Tab_Advanced_DeveloperTool #relay_data").val();
             try {
                 if (strRelayData == "") {
-                    alert("请输入数据！");
+                    alert(Resources.globel.pleaseInputData);
                 } else {
                     let objRelayData = JSON.parse(strRelayData); //由字符串转换为JSON对象
 
@@ -61,10 +62,12 @@
                         inventory = <Network.Inventory>context.signable;
                         return Global.Node.relay(inventory);
                     }).then(success => {
-                        if (success) {
-                            alert("数据广播成功！");
-                        } else {
-                            alert("数据广播失败！");
+                        if (success)
+                        {
+                            alert(Resources.globel.relaySuccess);
+                        } else
+                        {
+                            alert(Resources.globel.relayFaild);
                         }
                     }).catch(reason => {
                         alert(reason);
@@ -72,17 +75,12 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert("数据格式有误！");
+                    alert(Resources.globel.dataFormatError);
                 }
                 else {
                     alert(e);
                 }
             }
-
-
-
-
-            
 
         }
 

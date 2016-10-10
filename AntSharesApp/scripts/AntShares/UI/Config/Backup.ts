@@ -170,7 +170,7 @@
                         return JSON.parse(this.result);
                     } catch (e)
                     {
-                        throw new Error("钱包格式有误，不正确的JSON格式！");
+                        throw new Error(Resources.globel.walletJsonError);
                     }
                 }).then( (json) =>
                 {
@@ -190,7 +190,7 @@
                             case "Transaction": Transaction = json[count]["content"];
                                 break;
                             default:
-                                throw new Error("钱包格式有误！");
+                                throw new Error(Resources.globel.walletJsonError);
                         }
                         count++;
                     }
@@ -202,7 +202,7 @@
                     return master.get();
                 }).then(result => {
                     if (result.indexOf(Wallet["name"]) >= 0)
-                        throw new Error("已经存在重名的钱包文件！");
+                        throw new Error(Resources.globel.sameWalletName1);
                     master.add(Wallet["name"]);
                     db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Wallet["name"]);
                     return db.open();

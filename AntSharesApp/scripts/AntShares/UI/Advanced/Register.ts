@@ -3,7 +3,7 @@
 
         protected oncreate(): void {
             $(this.target).find("#register").click(this.OnRegisterButtonClick);
-            $("#select_register_asset").append("<option value=0>请选择</option>");
+            $("#select_register_asset").append("<option value=0>" + Resources.globel.pleaseChoose + "</option>");
             $("#select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] + "</option>");
             $("#select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
             $("#select_register_asset").change(this.OnRegisterAssetChanged);
@@ -71,7 +71,7 @@
                 tx.assetType = Core.AssetType[assetType];
                 if (tx.assetType == null)
                 {
-                    throw Error("请选择资产类型");
+                    throw Error(Resources.globel.selectAssetType);
                 }
                 if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
                 tx.name = assetName;
@@ -94,23 +94,23 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error("余额不足");
+                throw new Error(Resources.globel.insufficientFunds);
             }
             return Core.SignatureContext.create(tx).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error("无法签名");
+                if (!result) throw new Error(Resources.globel.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error("当前版本APP不支持多方签名或接收方签名的交易");
+                    throw new Error(Resources.globel.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.sendTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error("钱包金额已发生变化，交易无法完成");
+                if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Advanced_RegisterAssetList");
-                alert("注册资产交易已经发送，等待区块确认，txid:"+tx.hash.toString());
+                alert(Resources.globel.registInfo + "，txid:"+ tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
             });

@@ -20,7 +20,7 @@
             let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
             try {
                 if (inputData == ""){
-                    alert("请输入数据！");
+                    alert(Resources.globel.pleaseInputData);
                 } else {
                     let context: Core.SignatureContext;
                     Core.SignatureContext.Parse(JSON.parse(inputData)).then(result => {
@@ -32,10 +32,10 @@
                             console.log(context);
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
-                            alert("完成签名！");
+                            alert(Resources.globel.signFinish);
                         }
                         else {
-                            alert("没有足够的私钥对数据进行签名！");
+                            alert(Resources.globel.signError1);
                         }
                     }).catch(reason => {
                         alert(reason);
@@ -43,7 +43,7 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert("数据格式有误！");
+                    alert(Resources.globel.dataFormatError);
                 }
                 else {
                     alert(e);
@@ -56,8 +56,9 @@
         {
             let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
             try {
-                if (inputData == "") {
-                    alert("请输入数据！");
+                if (inputData == "")
+                {
+                    alert(Resources.globel.pleaseInputData);
                 } else {
                     let inventory: Network.Inventory;
                     let context: Core.SignatureContext;
@@ -73,17 +74,18 @@
                             return Global.Node.relay(inventory);
                         }
                         else {
-                            alert("没有足够的私钥对数据进行签名！");
+                            alert(Resources.globel.signError1);
                         }
-                    }).then(result => {
-                        alert("数据广播成功！");
+                        }).then(result =>
+                        {
+                            alert(Resources.globel.relaySuccess);
                     }).catch(reason => {
                         alert(reason);
                     });
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert("数据格式有误！");
+                    alert(Resources.globel.dataFormatError);
                 }
                 else {
                     alert(e);

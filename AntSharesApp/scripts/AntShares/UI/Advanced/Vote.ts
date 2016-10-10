@@ -54,7 +54,7 @@
                 return this.SignAndShowInformation(_tx);
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert("数据格式有误！");
+                    alert(Resources.globel.dataFormatError);
                 }
                 else {
                     alert(e);
@@ -65,23 +65,23 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error("余额不足");
+                throw new Error(Resources.globel.insufficientFunds);
             }
             return Core.SignatureContext.create(tx).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error("无法签名");
+                if (!result) throw new Error(Resources.globel.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error("当前版本APP不支持多方签名或接收方签名的交易");
+                    throw new Error(Resources.globel.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.sendTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error("钱包金额已发生变化，交易无法完成");
+                if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert("投票信息已经发送，等待区块确认");
+                alert(Resources.globel.voteInfo);
             }).catch(reason => {
                 alert(reason);
             });

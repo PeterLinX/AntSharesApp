@@ -33,7 +33,7 @@
                 {
                     let name = $("#wallet_name").val().trim();
                     if (result.indexOf(name) >= 0)
-                        throw new Error("已经存在重名的钱包文件，你可以打开钱包或者创建新的钱包。");
+                        throw new Error(Resources.globel.sameWalletName);
                     return Promise.all<any>([
                         master.add(name),
                         Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val())

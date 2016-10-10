@@ -7,7 +7,7 @@
     <meta name="format-detection" content="telephone=no" />
 
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
-    <title>小蚁客户端 beta</title>
+    <title></title>
     <!-- AntSharesApp 引用 -->
     <link id="lang" href="" rel="stylesheet" />
     <link href="lib/jQuery.mmenu/dist/core/css/jquery.mmenu.all.css" rel="stylesheet" />
@@ -23,6 +23,149 @@
                 <span class="lang-title"></span>
             </header>
             <div class="tab-content">
+                <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
+                    <form id="form_create_wallet" autocomplete="off">
+                        <h2 class="page-header">创建钱包</h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">输入钱包名称</label>
+                            <div class="col-sm-6">
+                                <input id="wallet_name" name="wallet_name" class="form-control" type="text" placeholder="钱包名称" data-val="true" data-val-required="钱包名称不能为空！" />
+                                <span class="text-danger" data-valmsg-for="wallet_name" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">输入钱包密码</label>
+                            <div class="col-sm-6">
+                                <input id="create_password" name="create_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" data-val-length-min="6" data-val-length="密码必须至少包含 6 个字符。" />
+                                <span class="text-danger" data-valmsg-for="create_password" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">输入钱包确认密码</label>
+                            <div class="col-sm-6">
+                                <input id="create_password_confirm" name="create_password_confirm" class="form-control" type="password" placeholder="确认密码" data-val="true" data-val-required="确认密码不能为空！" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="create_password" />
+                                <span class="text-danger" data-valmsg-for="create_password_confirm" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button id="create_wallet" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建钱包</button> <!--如果不加preventDefault会跳转空白页面-->
+                            </div>
+                        </div>
+                        <br /><br /><br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-4"></label>
+                            <div class="col-sm-6">
+                                <button id="delete_wallet" style="display:none" type="button" class="btn btn-sm">delete current wallet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
+                    <form id="form_open_wallet" autocomplete="off">
+                        <fieldset>
+                            <h2 class="page-header">打开钱包</h2>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">选择钱包文件</label>
+                                <div class="col-sm-6">
+                                    <input id="input_wallet_name" class="form-control" type="text" placeholder="钱包名称" />
+                                    <span class="text-danger"></span>
+                                    <ul class="list_wallet_ul" id="list_wallet_name">
+                                        <li style="display:none">
+                                            <label>
+                                                <input type="radio" name="wallet" />
+                                                <span>钱包名称1</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">输入钱包密码</label>
+                                <div class="col-sm-6">
+                                    <input id="open_password" name="open_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" />
+                                    <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
+                                    <span id="open_error" class="text-danger" style="display:none">钱包密码错误</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault();">打开钱包</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
+                    <form id="form_change_password" autocomplete="off">
+                        <fieldset>
+                            <h2 class="page-header">修改钱包密码</h2>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">钱包名称</label>
+                                <div class="col-sm-6">
+                                    <label class="change-wallet-name" id="change_wallet_name">钱包名称</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">验证旧密码</label>
+                                <div class="col-sm-6">
+                                    <input id="old_password" name="old_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" />
+                                    <span class="text-danger" data-valmsg-for="old_password" data-valmsg-replace="true"></span>
+                                    <span id="change_error" class="text-danger" style="display:none">钱包密码错误</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">输入新密码</label>
+                                <div class="col-sm-6">
+                                    <input id="new_password" name="new_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" data-val-length-min="6" data-val-length="密码必须至少包含 6 个字符。" />
+                                    <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">确认新密码</label>
+                                <div class="col-sm-6">
+                                    <input id="new_password_confirm" name="new_password_confirm" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="确认密码不能为空！" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="new_password" />
+                                    <span class="text-danger" data-valmsg-for="new_password_confirm" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault();">修改密码</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="Tab_Account_Index" class="tab-pane">
+                    <form id="form_account_list">
+                        <h2 class="page-header">账户列表</h2>
+                        <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
+                            <div>钱包名称：<span id="account_list_wallet"></span></div><br />
+                            <a class="btn tab-trigger btn-default" id="create_account" href="#Tab_Account_Index">创建账户</a>
+                            <!--<a class="btn tab-trigger btn-default" href="#Tab_Account_Import">导入私钥</a>-->
+                        </div>
+                        <ul class="account-list">
+                            <li style="display:none" class="row">
+                                <div class="col-lg-6">
+                                    <span class="select"></span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a class="btn btn-primary">详情</a>
+                                    <button class="btn btn-primary" type="button">导出</button>
+                                    <button class="btn btn-disable" type="button">认证</button>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="alert alert-info bottom" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            账户是指一个公私钥对。最基本的账户由一个公私钥组成，其账户地址就是其 1-of-1 多重签名地址。更高级的设计中，账户可以由两个公钥组成，这两个公钥所生成的 2-of-2 多重签名的地址为账户地址。
+                            <a class="alert-link" href="javascript:">了解更多</a>
+                        </div>
+                    </form>
+                </div>
                 <div id="Tab_Account_Details" class="tab-pane">
                     <h2 class="page-header">账户详情</h2>
                     <div class="row">
@@ -68,36 +211,153 @@
                         <a class="tab-trigger" href="#Tab_Account_Index">返回账户列表</a>
                     </div>
                 </div>
-                <div id="Tab_Account_Index" class="tab-pane">
-                    <form id="form_account_list">
-                        <h2 class="page-header">账户列表</h2>
-                        <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
-                            <div>钱包名称：<span id="account_list_wallet"></span></div><br />
-                            <a class="btn tab-trigger btn-default" id="create_account" href="#Tab_Account_Index">创建账户</a>
-                            <!--<a class="btn tab-trigger btn-default" href="#Tab_Account_Import">导入私钥</a>-->
-                        </div>
-                        <ul class="account-list">
-                            <li style="display:none" class="row">
-                                <div class="col-lg-6">
+                <div id="Tab_Contract_Index" class="tab-pane">
+                    <form id="form_contract_list">
+                        <h2 class="page-header">合约账户</h2>
+                        <div class="row nomargin">
+                            <div class="col-md-12" style="padding: 0; margin-bottom: 10px;">
+                                <div>钱包名称：<span id="contract_list_wallet"></span></div><br />
+                                <div class="btn-group">
+                                    <a class="tab-trigger btn btn-primary" href="#Tab_Contract_CreateMultiSig">创建多方签名账户</a>
+                                </div>
+                            </div>
+                            <ul class="col-sm-12 account-list">
+                                <li style="display:none">
                                     <span class="select"></span>
-                                </div>
-                                <div class="col-lg-6">
                                     <a class="btn btn-primary">详情</a>
-                                    <button class="btn btn-primary" type="button">导出</button>
-                                    <button class="btn btn-disable" type="button">认证</button>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="alert alert-info bottom" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            账户是指一个公私钥对。最基本的账户由一个公私钥组成，其账户地址就是其 1-of-1 多重签名地址。更高级的设计中，账户可以由两个公钥组成，这两个公钥所生成的 2-of-2 多重签名的地址为账户地址。
-                            <a class="alert-link" href="javascript:">了解更多</a>
+                            合约是一段规定某一笔钱如何支付的脚本，A可以约定必须由收款人B和担保人C同时签名才能支配某笔比特币（担保交易），
+                            也可以约定B、C、D中任意两人签名就能支配（联名账户）；
+                            A可以约定B必须在一年后才能动用某笔比特币（延时支付），
+                            也可以约定任何人都能支配（撒钱）或者都不能支配（烧钱）。
+                            通过这套内置的脚本编程语言，你可以灵活地编写出各种各样的约定从而实现智能合约。
                         </div>
                     </form>
                 </div>
+                <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
+                    <form id="form_create_multisig" autocomplete="off">
+                        <h2 class="page-header">创建多方签名合约</h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">最小签名数量</label>
+                            <div class="col-sm-6">
+                                <input id="input_m" name="account_name" class="form-control" type="text" placeholder="最小为1" data-val="true" data-val-required="最小签名数量不能为空！" />
+                                <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
 
+                        <h5>添加公钥</h5>
+                        <div id="div_publickeys">
+                            <div id="public_tpl" class="row" style="padding: 5px 0; display:none">
+                                <div class="col-xs-10">
+                                    <input class="form-control publickeyitem" type="text" placeholder="公钥" />
+                                </div>
+                                <div class="col-xs-2">
+                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 5px 0">
+                                <div class="col-xs-10">
+                                    <input class="form-control publickeyitem" type="text" placeholder="公钥" />
+                                </div>
+                            </div>
+                        </div>
+                        <i id="add_public" class="iconfont circle" type="button" title="添加公钥">&#xe60d;</i>
+                        <br /><br />
+                        <button id="create_multisig_contract" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建</button>
+                    </form>
+                    <br />
+                    <div>
+                        <a class="tab-trigger" href="#Tab_Contract_Index">返回合约列表</a>
+                    </div>
+                </div>
+                <div id="Tab_Asset_Index" class="tab-pane">
+                    <h2 class="page-header">我的资产</h2>
+                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有资产</h5>
+                    <ul>
+                        <li style="display:none">
+                            <div class="issuer">
+                                发行人：<span class="text-success asset_issuer">发行人</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <pre class="asset_address">地址</pre>
+                                </div>
+                                <div class="col-md-3">
+                                    <pre class="asset_value">数量</pre>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
+                    <fieldset>
+                        <h2 class="page-header">资产转让</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>选择资产</h5>
+                                <select class="form-control"></select>
+                            </div>
+                        </div>
+                        <div>最大可转让<span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
+                        <h5>接收方</h5>
+                        <input class="form-control pay_address" type="text" placeholder="地址" />
+                        <br />
+                        <input class="form-control pay_value" type="text" placeholder="金额" />
+                        <br />
+                        <button class="btn btn-primary" type="button">确认并广播</button>
+                    </fieldset>
+                    <div class="alert alert-info bottom" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        指定所有参与方的交易，并可以根据参与交易的资产类型判断是否要求对方确认接受。对方可以选择确认接受（签名）或拒绝（忽略）。目前只有转让股权需要对方签名。
+                        <a class="alert-link" href="javascript:">了解更多</a>
+                    </div>
+                </div>
+                <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
+                    <h2 class="page-header">我的交易</h2>
+                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有交易</h5>
+                    <ul>
+                        <li style="display:none">
+                            <div>
+                                交易：<span class="text-success txlist">发行人</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
+                    <form id="form_sign_data" autocomplete="off">
+                        <h1 class="page-header">交易签名</h1>
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <label>输入</label>
+                                <textarea id="input_data" rows="5" class="form-control" placeholder="要签名的交易" style="padding: 5px 10px; margin: 10px 0;"></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div id="output_section" class="row" style="display:none">
+                            <div>输出</div>
+                            <div class="col-sm-10">
+                                <pre id="output_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
+                            </div>
+                        </div>
+                        <button id="sign" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名</button>
+                        <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名并广播</button>
+                    </form>
+                    <div class="alert alert-info bottom" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
+                        <a class="alert-link" href="javascript:">了解更多</a>
+                    </div>
+                </div>
                 <div id="Tab_Advanced_Register" class="form-horizontal tab-pane">
                     <form id="form_register_asset" autocomplete="off">
                         <h2 class="page-header">注册资产</h2>
@@ -174,33 +434,7 @@
                         <a class="alert-link" href="javascript:">了解更多</a>
                     </div>
                 </div>
-                <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
-                    <form id="form_sign_data" autocomplete="off">
-                        <h1 class="page-header">交易签名</h1>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <label>输入</label>
-                                <textarea id="input_data" rows="5" class="form-control" placeholder="要签名的交易" style="padding: 5px 10px; margin: 10px 0;"></textarea>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="output_section" class="row" style="display:none">
-                            <div>输出</div>
-                            <div class="col-sm-10">
-                                <pre id="output_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
-                            </div>
-                        </div>
-                        <button id="sign" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名</button>
-                        <button id="sign_relay" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">签名并广播</button>
-                    </form>
-                    <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>
-                </div>
+                
                 <div id="Tab_Advanced_Elect" class="form-horizontal tab-pane">
                     <h2 class="page-header">选举</h2>
                     <form id="form_register_asset" autocomplete="off">
@@ -247,97 +481,8 @@
                         <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
                     </form>
                 </div>
-                <div id="Tab_Asset_Index" class="tab-pane">
-                    <h2 class="page-header">我的资产</h2>
-                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有资产</h5>
-                    <ul>
-                        <li style="display:none">
-                            <div class="issuer">
-                                发行人：<span class="text-success asset_issuer">发行人</span>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <pre class="asset_address">地址</pre>
-                                </div>
-                                <div class="col-md-3">
-                                    <pre class="asset_value">数量</pre>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
-                    <fieldset>
-                        <h2 class="page-header">资产转让</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>选择资产</h5>
-                                <select class="form-control"></select>
-                            </div>
-                        </div>
-                        <div>最大可转让<span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
-                        <h5>接收方</h5>
-                        <input class="form-control pay_address" type="text" placeholder="地址" />
-                        <br />
-                        <input class="form-control pay_value" type="text" placeholder="金额" />
-                        <br />
-                        <button class="btn btn-primary" type="button">确认并广播</button>
-                    </fieldset>
-                    <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        指定所有参与方的交易，并可以根据参与交易的资产类型判断是否要求对方确认接受。对方可以选择确认接受（签名）或拒绝（忽略）。目前只有转让股权需要对方签名。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>
-                </div>
-                <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
-                    <h2 class="page-header">我的交易</h2>
-                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有交易</h5>
-                    <ul>
-                        <li style="display:none">
-                            <div>
-                                交易：<span class="text-success txlist">发行人</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
-                    <form id="form_create_multisig" autocomplete="off">
-                        <h2 class="page-header">创建多方签名合约</h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">最小签名数量</label>
-                            <div class="col-sm-6">
-                                <input id="input_m" name="account_name" class="form-control" type="text" placeholder="最小为1" data-val="true" data-val-required="最小签名数量不能为空！" />
-                                <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
-                        <h5>添加公钥</h5>
-                        <div id="div_publickeys">
-                            <div id="public_tpl" class="row" style="padding: 5px 0; display:none">
-                                <div class="col-xs-10">
-                                    <input class="form-control publickeyitem" type="text" placeholder="公钥" />
-                                </div>
-                                <div class="col-xs-2">
-                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
-                                </div>
-                            </div>
-                            <div class="row" style="padding: 5px 0">
-                                <div class="col-xs-10">
-                                <input class="form-control publickeyitem" type="text" placeholder="公钥" />
-                                </div>
-                            </div>
-                        </div>
-                        <i id="add_public" class="iconfont circle" type="button" title="添加公钥">&#xe60d;</i>
-                        <br /><br />
-                        <button id="create_multisig_contract" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建</button>
-                    </form>
-                    <br />
-                    <div>
-                        <a class="tab-trigger" href="#Tab_Contract_Index">返回合约列表</a>
-                    </div>
-                </div>
+                
+                
                 <div id="Tab_Contract_Details" class="tab-pane">
                     <h2 class="page-header">合约账户详情</h2>
                     <div>合约类型</div>
@@ -357,149 +502,9 @@
                         这里显示的是您的一组公私钥对，您的私钥可以操纵您的资产，请妥善保管，如果您放弃该账户中的所有资产，您可以 <a class="alert-link" href="javascript:">删除账户</a>
                     </div>
                 </div>
-                <div id="Tab_Contract_Index" class="tab-pane">
-                    <form id="form_contract_list">
-                        <h2 class="page-header">合约账户</h2>
-                        <div class="row nomargin">
-                            <div class="col-md-12" style="padding: 0; margin-bottom: 10px;">
-                                <div>钱包名称：<span id="contract_list_wallet"></span></div><br />
-                                <div class="btn-group">
-                                    <a class="tab-trigger btn btn-primary" href="#Tab_Contract_CreateMultiSig">创建多方签名账户</a>
-                                </div>
-                            </div>
-                            <ul class="col-sm-12 account-list">
-                                <li style="display:none">
-                                    <span class="select"></span>
-                                    <a class="btn btn-primary">详情</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="alert alert-info bottom" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            合约是一段规定某一笔钱如何支付的脚本，A可以约定必须由收款人B和担保人C同时签名才能支配某笔比特币（担保交易），
-                            也可以约定B、C、D中任意两人签名就能支配（联名账户）；
-                            A可以约定B必须在一年后才能动用某笔比特币（延时支付），
-                            也可以约定任何人都能支配（撒钱）或者都不能支配（烧钱）。
-                            通过这套内置的脚本编程语言，你可以灵活地编写出各种各样的约定从而实现智能合约。
-                        </div>
-                    </form>
-                </div>
-                <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
-                    <form id="form_change_password" autocomplete="off">
-                        <fieldset>
-                            <h2 class="page-header">修改钱包密码</h2>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">钱包名称</label>
-                                <div class="col-sm-6">
-                                    <label class="change-wallet-name" id="change_wallet_name">钱包名称</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">验证旧密码</label>
-                                <div class="col-sm-6">
-                                    <input id="old_password" name="old_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" />
-                                    <span class="text-danger" data-valmsg-for="old_password" data-valmsg-replace="true"></span>
-                                    <span id="change_error" class="text-danger" style="display:none">钱包密码错误</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">输入新密码</label>
-                                <div class="col-sm-6">
-                                    <input id="new_password" name="new_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" data-val-length-min="6" data-val-length="密码必须至少包含 6 个字符。" />
-                                    <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">确认新密码</label>
-                                <div class="col-sm-6">
-                                    <input id="new_password_confirm" name="new_password_confirm" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="确认密码不能为空！" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="new_password" />
-                                    <span class="text-danger" data-valmsg-for="new_password_confirm" data-valmsg-replace="true"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault();">修改密码</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
-                    <form id="form_create_wallet" autocomplete="off">
-                        <h2 class="page-header">创建钱包</h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">输入钱包名称</label>
-                            <div class="col-sm-6">
-                                <input id="wallet_name" name="wallet_name" class="form-control" type="text" placeholder="钱包名称" data-val="true" data-val-required="钱包名称不能为空！" />
-                                <span class="text-danger" data-valmsg-for="wallet_name" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">输入钱包密码</label>
-                            <div class="col-sm-6">
-                                <input id="create_password" name="create_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" data-val-length-min="6" data-val-length="密码必须至少包含 6 个字符。" />
-                                <span class="text-danger" data-valmsg-for="create_password" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">输入钱包确认密码</label>
-                            <div class="col-sm-6">
-                                <input id="create_password_confirm" name="create_password_confirm" class="form-control" type="password" placeholder="确认密码" data-val="true" data-val-required="确认密码不能为空！" data-val-equalto="密码和确认密码不匹配。" data-val-equalto-other="create_password" />
-                                <span class="text-danger" data-valmsg-for="create_password_confirm" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_wallet" type="submit" class="btn btn-primary" onclick="event.preventDefault();">创建钱包</button> <!--如果不加preventDefault会跳转空白页面-->
-                            </div>
-                        </div>
-                        <br /><br /><br /><br />
-                        <div class="form-group">
-                            <label class="col-sm-4"></label>
-                            <div class="col-sm-6">
-                                <button id="delete_wallet" style="display:none" type="button" class="btn btn-sm">delete current wallet</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
-                    <form id="form_open_wallet" autocomplete="off">
-                        <fieldset>
-                            <h2 class="page-header">打开钱包</h2>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">选择钱包文件</label>
-                                <div class="col-sm-6">
-                                    <input id="input_wallet_name" class="form-control" type="text" placeholder="钱包名称" />
-                                    <span class="text-danger"></span>
-                                    <ul class="list_wallet_ul" id="list_wallet_name">
-                                        <li style="display:none">
-                                            <label>
-                                                <input type="radio" name="wallet" />
-                                                <span>钱包名称1</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label">输入钱包密码</label>
-                                <div class="col-sm-6">
-                                    <input id="open_password" name="open_password" class="form-control" type="password" placeholder="钱包密码" data-val="true" data-val-required="钱包密码不能为空！" />
-                                    <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
-                                    <span id="open_error" class="text-danger" style="display:none">钱包密码错误</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                    <button type="submit" class="btn btn-primary" onclick="event.preventDefault();">打开钱包</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+                
+                
+                
                 <div id="Tab_Config_Backup" class="form-horizontal tab-pane">
                     <form>
                         <div id="back_div">

@@ -48,7 +48,7 @@
                 for (let i = 0; i < results.length; i++)
                     if (Global.Wallet.containsAccount(results[i]))
                         return results[i];
-                throw new Error("无法添加智能合约，因为当前钱包中不包含签署该合约的私钥。");
+                throw new Error();
             }).then(result =>
             {
                 return Wallets.Contract.createMultiSigContract(result, m, CreateMultiSig.publicKeys);
@@ -57,7 +57,7 @@
                 return Global.Wallet.addContract(result);
             }).then(() =>
             {
-                alert("智能合约创建成功");
+                alert(Resources.globel.createMultiContractSuccess);
                 //创建成功后跳转到合约管理页面
                 TabBase.showTab("#Tab_Contract_Index");
             }, reason => alert(reason));

@@ -44,10 +44,10 @@
                             let parent = $("#Tab_Advanced_Issue #issue_infos");
                             parent.empty();
                             let div = new Array();
-                            div.push($("<div>发行者：" + tx.issuer + "</div>"));
-                            div.push($("<div>管理员：" + tx.admin + "</div>"));
-                            let tAmount: string = tx.amount.equals(Fixed8.MaxValue)  ? "∞" : tx.amount.toString();
-                            div.push($("<div>总量：" + tAmount + "</div>"));
+                            div.push($("<div>" + Resources.globel.publisher + "：" + tx.issuer + "</div>"));
+                            div.push($("<div>" + Resources.globel.admin + "：" + tx.admin + "</div>"));
+                            let tAmount: string = tx.amount.equals(Fixed8.MaxValue) ? "∞" : tx.amount.toString();
+                            div.push($("<div>" + Resources.globel.amount + "：" + tAmount + "</div>"));
                             //div.push($("<div>已发行：" + Core.Blockchain + "</div>"));
                             div.forEach(() => { parent.append(div) });
                         }
@@ -107,23 +107,23 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error("余额不足");
+                throw new Error(Resources.globel.insufficientFunds);
             }
             return Core.SignatureContext.create(tx).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error("无法签名");
+                if (!result) throw new Error(Resources.globel.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error("当前版本APP不支持多方签名或接收方签名的交易");
+                    throw new Error(Resources.globel.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.sendTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error("钱包金额已发生变化，交易无法完成");
+                if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert("分发资产交易已经发送，等待区块确认");
+                alert(Resources.globel.issueInfo);
             }).catch(reason => {
                 alert(reason);
             });
