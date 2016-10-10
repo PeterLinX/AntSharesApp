@@ -228,6 +228,33 @@
                         <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
                     </form>
                 </div>
+                <div id="Tab_Advanced_Elect" class="form-horizontal tab-pane">
+                    <h2 class="page-header">选举</h2>
+                    <form id="form_register_asset" autocomplete="off">
+                        <h5>记账人</h5>
+                        <select class="form-control" id="select_validator"></select>
+                        <h5>抵押小蚁币</h5>
+                        <input class="form-control" placeholder="输入抵押的小蚁币数量" id="input_antcoin" style="padding: 5px 10px; margin: 10px 0;"/>
+                        <button id="elect" type="submit" class="btn btn-raised btn-primary" onclick="event.preventDefault();">确定</button>
+                    </form>
+                </div>
+                <div id="Tab_Advanced_Vote" class="form-horizontal tab-pane">
+                    <form method="post" class="form-horizontal" autocomplete="off">
+                        <h2 class="page-header">投票</h2>
+                        <h5>候选人</h5>
+                        <div id="candidates" style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
+                            <div id="candidate" class="row" style="padding: 5px 20px;">
+                                <div class="col-xs-7"><input class="form-control candidate" type="text" placeholder="候选人私钥" /></div>
+                                <div id="div_candidate_delete" class="col-xs-2" style="display:none">
+                                    <button onclick="event.preventDefault();" id="candidate_delete" class="btn circle" style="background: #e51c23; color: white; font-size: 14px;">&times;</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="add_input" class="btn circle" type="button" title="添加输出" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
+                        <br /><br />
+                        <button id="vote" class="btn btn-primary" type="button">确定</button>
+                    </form>
+                </div>
                 <div id="Tab_Asset_Index" class="tab-pane">
                     <h2 class="page-header">我的资产</h2>
                     <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有资产</h5>
@@ -533,6 +560,8 @@
                         <li><a class="tab-trigger" href="#Tab_Advanced_Register">注册资产</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_Issue">分发资产</a></li>
                         <li><a class="tab-trigger" href="#Tab_Advanced_DeveloperTool">开发人员工具</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Advanced_Elect">选举</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Advanced_Vote">投票</a></li>
                     </ul>
                 </li>
                 <li>
