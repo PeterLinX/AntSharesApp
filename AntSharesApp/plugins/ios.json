@@ -8,7 +8,7 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.antshares.app"
+            "PACKAGE_NAME": "org.antshares.app"
         }
     },
     "dependent_plugins": {}
