@@ -24,12 +24,12 @@
             this.loadFile().then((array) => {
                 let strDb: string = JSON.stringify(array);
                 let db = [strDb];
-
                 let blob = new Blob(db, { "type": "application/octet-binary" });
-                let url = URL.createObjectURL(blob) + ".txt";
-                var a = $('#Tab_Config_Backup #blob');
-                a.attr('href', url);
-                a[0].click();
+                let url = URL.createObjectURL(blob);
+                $('#Tab_Config_Backup #blob').attr('href', url);
+                let ev = document.createEvent('MouseEvents');
+                ev.initEvent('click', false, true);
+                document.getElementById('blob').dispatchEvent(ev);
             });
             
         }
