@@ -31,23 +31,62 @@
             };
             return _transaction.commit().then(() => {
                 if (arrayTransaction.length <= 0) {
-                    $("#Tab_Asset_TransactionList h5").show();
+                    $("#Tab_Asset_TransactionList > h5").show();
+                    $("#Tab_Asset_TransactionList > button").hide();
                     return;
                 }
                 else {
-                    $("#Tab_Asset_TransactionList h5").hide();
+                    $("#Tab_Asset_TransactionList > h5").hide();
                     arrayTransaction.forEach(result => {
                         let ul = $("#Tab_Asset_TransactionList").find("ul:eq(0)");
                         let liTemplet = ul.find("li:eq(0)");
                         let li = liTemplet.clone(true);
                         li.removeAttr("style");
-                        li.find(".txlist").text(result.rawData);
-                        ul.append(li);
+                        
 
                         let tx = Core.Transaction.deserializeFrom(result.rawData.hexToBytes().buffer);
                         return tx.ensureHash().then(result => {
-                            console.log(tx);
-                            //return tx;
+                            li.find(".tx-id").text(tx.hash.toString());
+                            tx.inputs.forEach(input =>
+                            {
+                                Global.Blockchain.getTransaction(input.prevHash).then((tx) =>
+                                {
+                                    var inputScriptHash = tx.outputs[input.prevIndex].scriptHash;
+                                    Wallets.Wallet.toAddress(inputScriptHash).then(
+                                        (inputAddress) =>
+                                        {
+                                            var inputDiv = document.createElement("div");
+                                            inputDiv.innerText = inputAddress;
+                                            li.find(".tx-input").append(inputDiv);
+                                        })
+                                    
+                                })
+                            })
+                            tx.outputs.forEach(output =>
+                            {
+                                Wallets.Wallet.toAddress(output.scriptHash).then(
+                                    (address) =>
+                                    {
+                                        var outputDiv = document.createElement("div");
+                                        outputDiv.innerText = address;
+                                        li.find(".tx-output").append(outputDiv);
+                                    })
+                                
+
+                                var valueDiv = document.createElement("div");
+                                valueDiv.innerText = output.value.toString();
+                                li.find(".tx-value").append(valueDiv);
+
+                                Global.Blockchain.getTransaction(output.assetId).then((tx) =>
+                                {
+                                    var asset = tx as Core.RegisterTransaction;
+                                    var assetDiv = document.createElement("div");
+                                    assetDiv.innerText = asset.getName();
+                                    li.find(".tx-asset").append(assetDiv);
+                                });
+                                
+                            })
+                            ul.append(li);
                         });
                     });
                 }

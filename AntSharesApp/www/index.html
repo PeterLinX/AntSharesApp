@@ -14,6 +14,10 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/jquery-collapse/jquery.collapse.js"></script>
+
 </head>
 <body>
     <div id="page">
@@ -321,15 +325,51 @@
                     </div>
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
+
                     <h2 class="page-header">我的交易</h2>
                     <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有交易</h5>
+                    <button class="btn btn-default" onclick="setCollapse()">全部收起</button>
                     <ul>
-                        <li style="display:none">
-                            <div>
-                                交易：<span class="text-success txlist">发行人</span>
+                        <li class="txlist-item" style="display:none">
+                            <h5>交易：<span class="text-success tx-id">23454323454345</span></h5>
+                            <div class="row expand">
+                                <div class="col-md-4 col-sm-12 tx-input">
+                                    <div>交易输入</div>
+                                </div>
+                                <div class="col-md-4 col-sm-7 tx-output">
+                                    <div>交易输出</div>
+                                </div>
+                                <div class="col-md-1 col-sm-2 tx-value">
+                                    <div>金额</div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 tx-asset">
+                                    <div>资产</div>
+                                </div>
                             </div>
                         </li>
                     </ul>
+                    <script>
+                        var first = true;
+                        function setCollapse()
+                        {
+                            if (first) {
+                                new jQueryCollapse($(".txlist-item"), {
+                                    open: function ()
+                                    {
+                                        this.slideDown(150);
+                                    },
+                                    close: function ()
+                                    {
+                                        this.slideUp(150);
+                                    }
+                                });
+                                first = false;
+                            }
+                            else {
+                                $("#Tab_Asset_TransactionList .expand").hide();
+                            }
+                        }
+                    </script>
                 </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
@@ -599,9 +639,7 @@
             </ul>
         </nav>
     </div>
-
     <script src="lib/jQuery.mmenu/dist/core/js/hammer.js"></script>
-    <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="lib/jQuery.mmenu/dist/core/js/jquery.mmenu.min.all.js"></script>
@@ -613,7 +651,6 @@
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/appBundle.js"></script>
-
     <script>
         setCookie('lang', 'zh', 1000)
         if (getCookie('lang') == 'en')
@@ -658,6 +695,7 @@
             $('.modal-body').text(message);
             $('#myModal').modal();
         }
+
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
