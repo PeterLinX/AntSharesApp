@@ -17,7 +17,9 @@ input[type="radio"] { vertical-align: -3px; }
 .nopadding { padding: 0 !important; }
 .circle, .circle:focus, .circle:active { color:#e51c23; font-size:28px; cursor:pointer; outline:none }
 .btn.btn-disable, .btn.btn-disable:hover, .btn.btn-disable:active, .btn.btn-disable:focus { cursor:default; color:lightgray; box-shadow:none; background-color:white; outline:none; border:1px solid #f0f0f0 }
-
+.tx-id { word-break:break-all; display:inline-block }
+.expand .tx-input, .expand .tx-output { word-break:break-all; }
+.expand > div { margin-top:5px }
 /* 改进的 jquery.mmenu.widescreen.css */
 @media only screen and (min-width:768px) {
     header, footer { padding:0 300px 0 0 }
