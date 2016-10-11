@@ -7,7 +7,7 @@ Square71x71Logo.scale-240	wp8.1磁贴-小
 Square150x150Logo.scale-100	电脑、win10m磁贴-中
 Square150x150Logo.scale-240	wp8.1磁贴-中
 Square310x310Logo.scale-100	电脑、win10m磁贴-大
-StoreLogo.scale-100			应用商店未知图标
+StoreLogo.scale-100			应用商店小图标、旁加载应用的安装图标
 StoreLogo.scale-240			应用商店大图片
 Wide310x150Logo.scale-100	电脑、win10m磁贴-宽
 Wide310x150Logo.scale-240	wp8.1磁贴-宽
