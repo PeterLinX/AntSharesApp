@@ -33,6 +33,8 @@
 
         public changePassword(password_old: string, password_new: string): PromiseLike<boolean>
         {
+            let passwordKey: Uint8Array;
+            let passwordKeyHash: Uint8Array;
             return Promise.all([
                 this.loadStoredData("PasswordHash"),
                 password_old.toAesKey().then(result =>
@@ -50,13 +52,20 @@
                 return password_new.toAesKey();
             }).then(result =>
             {
-                return window.crypto.subtle.importKey("jwk", <any>{ kty: "oct", k: (new Uint8Array(result)).base64UrlEncode(), alg: "A256CBC", ext: true }, "AES-CBC", false, ["encrypt"]);
+                passwordKey = new Uint8Array(result);
+                return Promise.all<any>([
+                    window.crypto.subtle.digest("SHA-256", passwordKey),
+                    window.crypto.subtle.importKey("jwk", <any>{ kty: "oct", k: (passwordKey).base64UrlEncode(), alg: "A256CBC", ext: true }, "AES-CBC", false, ["encrypt"])
+                ]);
             }).then(result =>
             {
-                return window.crypto.subtle.encrypt({ name: "AES-CBC", iv: this.iv }, result, this.masterKey);
+                passwordKeyHash = result[0];
+                return window.crypto.subtle.encrypt({ name: "AES-CBC", iv: this.iv }, result[1], this.masterKey);
             }).then(result =>
             {
-                return this.saveStoredData("MasterKey", result);
+                return Promise.all([
+                    this.saveStoredData("MasterKey", result),
+                    this.saveStoredData("PasswordHash", passwordKeyHash)]);
             }).then(() => true, () => false);
         }
 
@@ -332,6 +341,7 @@
 
         protected init(path: string, password: string | ArrayBuffer, create: boolean): PromiseLike<void>
         {
+            console.log(password);
             this.path = path;
             let passwordKey: Uint8Array, passwordKeyHash: Uint8Array, aesKey: any;
             let current_version = new Uint8Array([0, 7, 0, 0]);

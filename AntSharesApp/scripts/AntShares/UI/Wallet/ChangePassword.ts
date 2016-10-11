@@ -27,6 +27,7 @@
                     {
                         $("#change_error").hide();
                         alert(Resources.globel.changePwdSuccess);
+                        TabBase.showTab("#Tab_Wallet_Open");
                     }
                     else
                     {
