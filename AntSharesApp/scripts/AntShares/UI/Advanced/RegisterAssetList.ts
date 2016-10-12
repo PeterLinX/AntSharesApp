@@ -12,7 +12,6 @@
                 return;
             }
             let ul = $("#Tab_Advanced_RegisterAssetList").find("ul:eq(0)");
-            ul.find("li :visible").remove();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbName);
             this.db.open().then(() => {
                 this.loadRegisterAssetList();
@@ -33,22 +32,26 @@
             };
             return _transaction.commit().then(() => {
                 if (arrayRegisterAsset.length <= 0) {
-                    $("#Tab_Advanced_RegisterAssetList h5").show();
+                    $("#Tab_Advanced_RegisterAssetList .no_asset").show();
                     return;
                 }
-                else {
-                    $("#Tab_Advanced_RegisterAssetList h5").hide();
+                else
+                {
+                    $("#Tab_Advanced_RegisterAssetList .no_asset").hide();
                     arrayRegisterAsset.forEach(result => {
-                        let ul = $("#Tab_Advanced_RegisterAssetList").find("ul:eq(0)");
-                        let liTemplet = ul.find("li:eq(0)");
-                        let li = liTemplet.clone(true);
-                        li.removeAttr("style");
-                        li.find(".assetlist").text(result.rawData);
-                        ul.append(li);
-
+                        let tbody = $("#Tab_Advanced_RegisterAssetList").find("tbody");
+                        let trTemplet = tbody.find("tr:eq(0)");
+                        let tr = trTemplet.clone(true);
+                        tr.removeAttr("style");
+                        
                         let tx = Core.Transaction.deserializeFrom(result.rawData.hexToBytes().buffer);
-                        return tx.ensureHash().then(result => {
-                            console.log(tx);
+                        return tx.ensureHash().then(result =>
+                        {
+                            var asset = tx as Core.RegisterTransaction;
+                            tr.find(".asset_name").text(asset.getName());
+                            tr.find(".asset_amount").text(asset.amount.toString());
+                            tr.find(".asset_issuer").text(asset.issuer.toString());
+                            tbody.append(tr);
                         });
 
 

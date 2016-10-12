@@ -18,7 +18,8 @@
             }
             $("#account_list_wallet").text(Global.Wallet.dbPath);
             let ul = $("#form_account_list").find("ul:eq(0)");
-            ul.find("li :visible").remove();
+            let lis = ul.find("li:visible");
+            lis.remove();
             let contracts = Global.Wallet.getContracts();
             for (let i = 0; i < contracts.length; i++)
                 if (contracts[i].isStandard())
