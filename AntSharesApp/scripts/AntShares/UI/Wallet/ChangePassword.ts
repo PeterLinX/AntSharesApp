@@ -17,7 +17,7 @@
             $("#change_wallet_name").text(Global.Wallet.dbPath);
         }
 
-        private OnChangePasswordButtonClick()
+        private OnChangePasswordButtonClick = () =>
         {
             if (formIsValid("form_change_password"))
             {
@@ -26,8 +26,9 @@
                     if (result)
                     {
                         $("#change_error").hide();
+                        this.clear();
                         alert(Resources.globel.changePwdSuccess);
-                        TabBase.showTab("#Tab_Wallet_Open");
+                        TabBase.showTab("#Tab_Account_Index");
                     }
                     else
                     {
@@ -35,6 +36,13 @@
                     }
                 });
             }
+        }
+
+        private clear()
+        {
+            $("#old_password").val("");
+            $("#new_password").val("");
+            $("#new_password_confirm").val("");
         }
     }
 }

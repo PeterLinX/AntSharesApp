@@ -17,7 +17,7 @@
             console.clear();
         }
 
-        private OnOpenButtonClick()
+        private OnOpenButtonClick = () =>
         {
             if (formIsValid("form_open_wallet"))
             {
@@ -25,12 +25,18 @@
                 Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
                     Global.Wallet = result;
+                    this.clear();
                     alert(Resources.globel.openWalletAlert);
                     $("#open_error").hide();
                     //打开成功后跳转账户管理页面
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#open_error").show());
             }
+        }
+
+        private clear()
+        {
+            $("#open_password").val("");
         }
 
         private static listWallet(walletNameList: Array<string>): void

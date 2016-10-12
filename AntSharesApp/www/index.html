@@ -24,7 +24,8 @@
         <div class="content">
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
-                <span class="lang-title"></span>
+                <img src="img/logo-line.png" />
+                <span class="lang-title"> <small>beta</small></span>
             </header>
             <div class="tab-content">
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
@@ -147,6 +148,7 @@
                         <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
                             <div>钱包名称：<span id="account_list_wallet"></span></div><br />
                             <a class="btn tab-trigger btn-default" id="create_account" href="#Tab_Account_Index">创建账户</a>
+                            <a class="btn tab-trigger btn-disable" href="javascript:">导入私钥</a>
                             <!--<a class="btn tab-trigger btn-default" href="#Tab_Account_Import">导入私钥</a>-->
                         </div>
                         <ul class="account-list">
@@ -326,26 +328,30 @@
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
 
-                    <h2 class="page-header">我的交易</h2>
+                    <h2 class="page-header">我的交易列表</h2>
                     <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有交易</h5>
                     <button class="btn btn-default" onclick="setCollapse()">全部收起</button>
                     <ul>
                         <li class="txlist-item" style="display:none">
                             <h5>交易：<span class="text-success tx-id">23454323454345</span></h5>
-                            <div class="row expand">
-                                <div class="col-md-4 col-sm-12 tx-input">
-                                    <div>交易输入</div>
-                                </div>
-                                <div class="col-md-4 col-sm-7 tx-output">
-                                    <div>交易输出</div>
-                                </div>
-                                <div class="col-md-1 col-sm-2 tx-value">
-                                    <div>金额</div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 tx-asset">
-                                    <div>资产</div>
-                                </div>
-                            </div>
+                            <table class="table expand table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>交易输入</th>
+                                        <th>交易输出</th>
+                                        <th>金额</th>
+                                        <th>资产</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tx-input"></td>
+                                        <td class="tx-output"></td>
+                                        <td class="tx-value"></td>
+                                        <td class="tx-asset"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </li>
                     </ul>
                     <script>
@@ -549,6 +555,7 @@
                     <form>
                         <div id="back_div">
                             <h2 class="page-header">备份</h2>
+                            <p style="color:lightgray">备份功能目前仅适用于Android和Chrome</p>
                             <div>
                                 <button id="backup" class="btn btn-primary">备份当前钱包</button>
                                 <a id="blob" href="" style="display:none">blob</a>
@@ -560,6 +567,20 @@
                             <input type="file" id="files" class="file" data-show-upload="false" />
                         </div>
                     </form>
+                </div>
+                <div id="Tab_Help_Help" class="tab-pane">
+                    <h2 class="page-header">帮助</h2>
+                    <div>
+                        QQ群：573816801
+                    </div>
+
+                </div>
+                <div id="Tab_Help_About" class="tab-pane">
+                    <h2 class="page-header">关于</h2>
+                    <div>
+                        更新日期：2016/10/10
+                    </div>
+
                 </div>
                 <div id="Tab_Test" class="form-horizontal tab-pane">
                     <div id="contentssss"></div>
@@ -617,7 +638,7 @@
                 <li>
                     <span><i class="iconfont">&#xe60a;</i>小蚁区块链</span>
                     <ul>
-                        <li><a href="http://antcha.in/" target="_blank">antcha.in</a></li>
+                        <li><a href="http://antcha.in/" target="_blank">antcha.in<i class="iconfont link">&#xe60b;</i></a></li>
                     </ul>
                 </li>
                 <li>
@@ -631,9 +652,9 @@
                 <li>
                     <span><i class="iconfont">&#xe607;</i>帮助</span>
                     <ul>
-                        <li><a href="javascript:void(0)">帮助</a></li>
-                        <li><a target="_blank" href="https://www.antshares.org/">官网</a></li>
-                        <li><a href="javascript:void(0)">关于</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Help_Help">帮助</a></li>
+                        <li><a target="_blank" href="https://www.antshares.org/">官网<i class="iconfont link">&#xe60b;</i></a></li>
+                        <li><a class="tab-trigger" href="#Tab_Help_About">关于</a></li>
                     </ul>
                 </li>
             </ul>
