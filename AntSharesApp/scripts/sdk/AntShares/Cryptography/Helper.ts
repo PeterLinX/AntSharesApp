@@ -183,14 +183,16 @@ namespace AntShares.Cryptography
             }),
             importKey: (format, keyData, algorithm, extractable, keyUsages) => new Promise((resolve, reject) =>
             {
-                if (format != "jwk" || getAlgorithmName(algorithm) != "AES-CBC")
+                if ((format != "raw" && format != "jwk") || getAlgorithmName(algorithm) != "AES-CBC")
                 {
                     reject(new RangeError());
                     return;
                 }
                 try
                 {
-                    resolve(AesCryptoKey.import((keyData as any).k.base64UrlDecode()));
+                    if (format == "jwk")
+                        keyData = (keyData as any).k.base64UrlDecode();
+                    resolve(AesCryptoKey.import(keyData));
                 }
                 catch (e)
                 {

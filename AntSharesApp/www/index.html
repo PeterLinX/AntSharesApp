@@ -437,14 +437,26 @@
                 </div>
                 <div id="Tab_Advanced_RegisterAssetList" class="form-horizontal tab-pane">
                     <h2 class="page-header">我注册的资产</h2>
-                    <h5 style="display:none; padding-top:50px; text-align:center">您目前还没有注册的资产</h5>
-                    <ul>
-                        <li style="display:none">
-                            <div>
-                                资产：<span class="text-success assetlist">资产</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <h5 style="display:none; padding-top:50px; text-align:center"></h5>
+                    <table class="table expand table-bordered">
+                        <thead>
+                            <tr>
+                                <th>资产名称</th>
+                                <th>总量</th>
+                                <th>发行人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="display:none">
+                                <td class="asset_name">资产名称</td>
+                                <td class="asset_amount">100,000,000</td>
+                                <td class="asset_issuer">02a2d6adf934fe7f7e860ed48117e7590fd19db1ad018d15d5425fc5b3d6f11e74</td>
+                            </tr>
+                            <tr class="no_asset">
+                                <td colspan="3" style="text-align:center">您目前还没有注册的资产</td>
+                            </tr>                    
+                        </tbody>
+                    </table>
                 </div>
                 <div id="Tab_Advanced_Issue" class="form-horizontal tab-pane">
                     <form method="post" class="form-horizontal" autocomplete="off">
