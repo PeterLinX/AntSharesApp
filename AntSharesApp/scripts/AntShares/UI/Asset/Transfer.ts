@@ -11,41 +11,46 @@
             $("#Tab_Asset_Transfer .btn-primary").click(() =>
             {
                 let address = $("#Tab_Asset_Transfer .pay_address").val();
+                let value = $("#Tab_Asset_Transfer .pay_value").val();
+                if (address == "" || value=="")
+                {
+                    alert("请输入完整信息");
+                    return;
+                }
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
-                Wallets.Wallet.toScriptHash(address).then(result =>
-                {
+                
+                Promise.resolve(1).then(() => {
+                    return Wallets.Wallet.toScriptHash(address);
+                }).then((result) => {
                     tx = new Core.ContractTransaction();
                     tx.outputs = [new Core.TransactionOutput()];
                     tx.outputs[0].assetId = Uint256.parse($("#Tab_Asset_Transfer select>:selected").val());
                     tx.outputs[0].scriptHash = result;
-                    tx.outputs[0].value = Fixed8.parse($("#Tab_Asset_Transfer .pay_value").val());
+                    tx.outputs[0].value = Fixed8.parse(value);
                     if (Global.Wallet.makeTransaction(tx, Fixed8.Zero) == null)
                         throw new Error(Resources.globel.insufficientFunds);
                     return Core.SignatureContext.create(tx);
-                }).then(result =>
-                {
-                    context = result;
-                    return Global.Wallet.sign(context);
-                }).then(result =>
-                {
-                    if (!result) throw new Error(Resources.globel.canNotSign);
-                    if (!context.isCompleted())
-                        throw new Error(Resources.globel.thisVersion1);
-                    tx.scripts = context.getScripts();
-                    return Global.Wallet.sendTransaction(tx);
-                }).then(result =>
-                {
-                    if (!result) throw new Error(Resources.globel.txError1);
-                    return Global.Node.relay(tx);
-                }).then(result =>
-                {
-                    TabBase.showTab("#Tab_Asset_Index");
-                    alert(Resources.globel.contractInfo);
-                }).catch(reason =>
-                {
-                    alert(reason);
-                });
+                    }, onrejected => {
+                        throw new Error("地址信息有误");
+                    }).then(result => {
+                        context = result;
+                        return Global.Wallet.sign(context);
+                    }).then(result => {
+                        if (!result) throw new Error(Resources.globel.canNotSign);
+                        if (!context.isCompleted())
+                            throw new Error(Resources.globel.thisVersion1);
+                        tx.scripts = context.getScripts();
+                        return Global.Wallet.sendTransaction(tx);
+                    }).then(result => {
+                        if (!result) throw new Error(Resources.globel.txError1);
+                        return Global.Node.relay(tx);
+                    }).then(result => {
+                        TabBase.showTab("#Tab_Asset_Index");
+                        alert("交易已经发送，等待区块确认，txid:" + tx.hash.toString());
+                    }).catch(reason => {
+                        alert(reason);
+                    });
             });
         }
 

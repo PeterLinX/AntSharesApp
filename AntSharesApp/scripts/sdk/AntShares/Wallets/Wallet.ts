@@ -341,7 +341,6 @@
 
         protected init(path: string, password: string | ArrayBuffer, create: boolean): PromiseLike<void>
         {
-            console.log(password);
             this.path = path;
             let passwordKey: Uint8Array, passwordKeyHash: Uint8Array, aesKey: any;
             let current_version = new Uint8Array([0, 7, 0, 0]);

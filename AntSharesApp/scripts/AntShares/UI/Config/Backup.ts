@@ -161,18 +161,10 @@
             reader.readAsText(file);
             let json;
             reader.onload = function () {
-                console.log(this.result);
-                
                 Promise.resolve(1).then(() =>
                 {
-                    try
-                    {
-                        return JSON.parse(this.result);
-                    } catch (e)
-                    {
-                        throw new Error(Resources.globel.walletJsonError);
-                    }
-                }).then( (json) =>
+                    return JSON.parse(this.result);
+                }).then((json) =>
                 {
                     let count = 0;
                     for (let obj in json) {
@@ -194,9 +186,10 @@
                         }
                         count++;
                     }
+                    }, onreject => {
+                        throw new Error(Resources.globel.walletJsonError);
                 }).then(() => {
                     return Wallets.Master.instance();
-
                 }).then(result => {
                     master = result;
                     return master.get();
