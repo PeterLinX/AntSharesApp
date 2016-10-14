@@ -12,6 +12,7 @@
         {
             $("#Tab_Advanced_Sign #input_data").val("");
             $("#Tab_Advanced_Sign #input_data").focus();
+            $("#Tab_Advanced_Sign #output_section")[0].style.display = 'none';
 
         }
 
@@ -25,7 +26,6 @@
                     let context: Core.SignatureContext;
                     Core.SignatureContext.Parse(JSON.parse(inputData)).then(result => {
                         context = result;
-                        console.log(context);
                         return Global.Wallet.sign(result);
                     }).then(success => {
                         if (success) {
