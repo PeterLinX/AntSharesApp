@@ -2,7 +2,7 @@
 {
     export class CreateMultiSig extends TabBase
     {
-        private static publicKeys = new Array<AntShares.Cryptography.ECPoint>();
+        private publicKeys = new Array<AntShares.Cryptography.ECPoint>();
 
         protected oncreate(): void
         {
@@ -12,14 +12,13 @@
 
         protected onload(args: any[]): void
         {
-            $("#contract_multisig_name").focus();
         }
 
-        public static add(publickey: string)
+        private add(publickey: string)
         {
             if (typeof publickey === "string")
             {
-                CreateMultiSig.publicKeys.push(AntShares.Cryptography.ECPoint.decodePoint(publickey.hexToBytes(), AntShares.Cryptography.ECCurve.secp256r1));
+                this.publicKeys.push(AntShares.Cryptography.ECPoint.decodePoint(publickey.hexToBytes(), AntShares.Cryptography.ECCurve.secp256r1));
             }
         }
 
@@ -27,22 +26,21 @@
         {
             let _m = $("#input_m").val();
             let m: number = Number(_m.split(",").join(""));
-
-            //TODO:需要添加对输入（公钥）的校验
-            let publicItems = $(".publickeyitem");
-            for (let i = 0; i < publicItems.length; i++)
-            {
-                if ($(publicItems[i]).val()!="")
-                {
-                    CreateMultiSig.add($(publicItems[i]).val());
-                }
-            }
-
             let promises = new Array<PromiseLike<Uint160>>();
-            for (let i = 0; i < CreateMultiSig.publicKeys.length; i++)
-            {
-                promises.push(CreateMultiSig.publicKeys[i].encodePoint(true).toScriptHash());
+            try {
+                let publicItems = $(".publickeyitem");
+                for (let i = 0; i < publicItems.length; i++) {
+                    if ($(publicItems[i]).val() != "") {
+                        this.add($(publicItems[i]).val());
+                    }
+                }
+                for (let i = 0; i < this.publicKeys.length; i++) {
+                    promises.push(this.publicKeys[i].encodePoint(true).toScriptHash());
+                }
+            } catch(e){
+                alert(e);
             }
+
             Promise.all(promises).then(results =>
             {
                 for (let i = 0; i < results.length; i++)
@@ -51,16 +49,23 @@
                 throw new Error();
             }).then(result =>
             {
-                return Wallets.Contract.createMultiSigContract(result, m, CreateMultiSig.publicKeys);
+                return Wallets.Contract.createMultiSigContract(result, m, this.publicKeys);
             }).then(result =>
             {
                 return Global.Wallet.addContract(result);
             }).then(() =>
             {
+                $("#Tab_Contract_CreateMultiSig .add_new").remove();
+                $("#Tab_Contract_CreateMultiSig #publickeyitem").val("");
+                $("#input_m").val("");
+                this.publicKeys.length = 0;
+
                 alert(Resources.globel.createMultiContractSuccess);
                 //创建成功后跳转到合约管理页面
                 TabBase.showTab("#Tab_Contract_Index");
-            }, reason => alert(reason));
+            }, reason => alert(reason)).catch(reason => {
+                    alert(reason);
+            });
         }
 
         private removeInput(parent, divId) {
@@ -73,14 +78,11 @@
 
             let inputElement = $("#Tab_Contract_CreateMultiSig #public_tpl").clone(true);
             inputElement.show();
+            inputElement.addClass("add_new");
             inputElement.removeAttr("id");
 
             parent.append(inputElement); 
         }
 
-        private clear()
-        {
-            $("#contract_multisig_name").val("");
-        }
     }
 }

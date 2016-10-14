@@ -14,7 +14,7 @@
                 return;
             }
             $("#contract_list_wallet").text(Global.Wallet.dbPath);
-            let ul = $("#form_contract_list").find("ul:eq(1)");
+            let ul = $("#Tab_Contract_Index #form_contract_list").find("ul:eq(0)");
             ul.find("li:visible").remove();
             let contracts = Global.Wallet.getContracts();
             for (let i = 0; i < contracts.length; i++)
@@ -24,10 +24,11 @@
 
         private addContractList(contract: Wallets.Contract)
         {
-            let ul = $("#form_contract_list").find("ul:eq(1)");
+            let ul = $("#form_contract_list").find("ul:eq(0)");
             let liTemplet = ul.find("li:eq(0)");
             let li = liTemplet.clone(true);
             li.removeAttr("style");
+
             let spanAddress = li.find("span:eq(0)");
             let a = li.find("a");
             a.click(() =>

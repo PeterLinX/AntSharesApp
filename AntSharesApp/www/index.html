@@ -219,21 +219,23 @@
                 </div>
                 <div id="Tab_Contract_Index" class="tab-pane">
                     <form id="form_contract_list">
-                        <h2 class="page-header">合约账户</h2>
-                        <div class="row nomargin">
-                            <div class="col-md-12" style="padding: 0; margin-bottom: 10px;">
-                                <div>钱包名称：<span id="contract_list_wallet"></span></div><br />
-                                <div class="btn-group">
-                                    <a class="tab-trigger btn btn-primary" href="#Tab_Contract_CreateMultiSig">创建多方签名账户</a>
-                                </div>
+                        <h2 class="page-header">合约列表</h2>
+                        <div class="col-md-12" style="padding: 0; margin-bottom: 10px;">
+                            <div>钱包名称：<span id="contract_list_wallet"></span></div><br />
+                            <div class="btn-group">
+                                <a class="tab-trigger btn btn-default" href="#Tab_Contract_CreateMultiSig">创建多方签名账户</a>
                             </div>
-                            <ul class="col-sm-12 account-list">
-                                <li style="display:none">
-                                    <span class="select"></span>
-                                    <a class="btn btn-primary">详情</a>
-                                </li>
-                            </ul>
                         </div>
+                        <ul class="col-sm-12 account-list">
+                            <li style="display:none" class="row">
+                                <div class="col-lg-6">
+                                    <span class="select"></span>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a class="btn btn-primary">详情</a>
+                                </div>
+                            </li>
+                        </ul>
                         <div class="alert alert-info bottom" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -245,6 +247,25 @@
                             通过这套内置的脚本编程语言，你可以灵活地编写出各种各样的约定从而实现智能合约。
                         </div>
                     </form>
+                </div>
+                <div id="Tab_Contract_Details" class="tab-pane">
+                    <h2 class="page-header">合约详情</h2>
+                    <div>合约类型</div>
+                    <pre id="contract_type"></pre>
+                    <div>合约内容</div>
+                    <pre id="contract_content"></pre>
+                    <div>合约散列</div>
+                    <pre id="contract_scripthash"></pre>
+                    <div>合约地址</div>
+                    <pre id="contract_address"></pre>
+                    <br />
+                    <a class="tab-trigger" href="#Tab_Contract_Index">返回列表</a>
+                    <div class="alert alert-info bottom" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        这里显示的是您的一组公私钥对，您的私钥可以操纵您的资产，请妥善保管，如果您放弃该账户中的所有资产，您可以 <a class="alert-link" href="javascript:">删除账户</a>
+                    </div>
                 </div>
                 <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
                     <form id="form_create_multisig" autocomplete="off">
@@ -269,7 +290,7 @@
                             </div>
                             <div class="row" style="padding: 5px 0">
                                 <div class="col-xs-10">
-                                    <input class="form-control publickeyitem" type="text" placeholder="公钥" />
+                                    <input id="publickeyitem" class="form-control publickeyitem" type="text" placeholder="公钥" />
                                 </div>
                             </div>
                         </div>
@@ -539,30 +560,6 @@
                         <button id="relay" type="submit" class="btn btn-primary" onclick="event.preventDefault();">广播</button>
                     </form>
                 </div>
-                
-                
-                <div id="Tab_Contract_Details" class="tab-pane">
-                    <h2 class="page-header">合约账户详情</h2>
-                    <div>合约类型</div>
-                    <pre id="contract_type"></pre>
-                    <div>合约内容</div>
-                    <pre id="contract_content"></pre>
-                    <div>合约散列</div>
-                    <pre id="contract_scripthash"></pre>
-                    <div>合约地址</div>
-                    <pre id="contract_address"></pre>
-                    <br />
-                    <a class="tab-trigger" href="#Tab_Contract_Index">返回列表</a>
-                    <div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        这里显示的是您的一组公私钥对，您的私钥可以操纵您的资产，请妥善保管，如果您放弃该账户中的所有资产，您可以 <a class="alert-link" href="javascript:">删除账户</a>
-                    </div>
-                </div>
-                
-                
-                
                 <div id="Tab_Config_Backup" class="form-horizontal tab-pane">
                     <form>
                         <div id="back_div">
@@ -617,8 +614,8 @@
                 <li>
                     <span><i class="iconfont">&#xe600;</i>个人中心</span>
                     <ul>
-                        <li><a class="tab-trigger" href="#Tab_Account_Index">简单账户</a></li>
-                        <li><a class="tab-trigger" href="#Tab_Contract_Index">合约账户</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Account_Index">账户列表</a></li>
+                        <li><a class="tab-trigger" href="#Tab_Contract_Index">合约列表</a></li>
                     </ul>
                 </li>
                 <li>
