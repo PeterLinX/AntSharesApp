@@ -15,6 +15,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            $("#select_register_asset").val(0);
             $("#Tab_Advanced_Register #select_issuer").empty();
             $("#Tab_Advanced_Register #select_admin").empty();
             $("#Tab_Advanced_Register #input_amount").val("");
@@ -109,7 +110,8 @@
                 if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
-                TabBase.showTab("#Tab_Advanced_RegisterAssetList");
+                //TabBase.showTab("#Tab_Advanced_RegisterAssetList");
+                TabBase.showTab("#Tab_Asset_Index");
                 alert(Resources.globel.registInfo + "，txid:"+ tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
