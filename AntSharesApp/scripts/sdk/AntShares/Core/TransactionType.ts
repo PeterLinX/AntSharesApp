@@ -9,6 +9,7 @@
         VotingTransaction = 0x24,
         RegisterTransaction = 0x40,
         ContractTransaction = 0x80,
-        AgencyTransaction = 0xb0
+        AgencyTransaction = 0xb0,
+        PublishTransaction = 0xd0
     }
 }

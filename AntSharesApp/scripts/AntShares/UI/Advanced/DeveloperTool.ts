@@ -23,9 +23,9 @@
                 {
                     alert(Resources.globel.pleaseInputData);
                 } else {
-                    let objRelayData = JSON.parse(strRelayData); //由字符串转换为JSON对象
-                    Core.SignatureContext.Parse(objRelayData).then(context => {
-                        context.signable.scripts = context.getScripts();
+                    Core.SignatureContext.parse(strRelayData).then(context =>
+                    {
+                        context.signable.setScripts(context.getScripts());
                         let ms = new IO.MemoryStream();
                         let writer = new IO.BinaryWriter(ms);
                         context.signable.serialize(writer);
@@ -53,12 +53,10 @@
                 if (strRelayData == "") {
                     alert(Resources.globel.pleaseInputData);
                 } else {
-                    let objRelayData = JSON.parse(strRelayData); //由字符串转换为JSON对象
-
                     let inventory: Network.Inventory;
-                    Core.SignatureContext.Parse(objRelayData).then(context => {
-                        context.signable.scripts = context.getScripts();
-                        //inventory = new Network.Inventory();
+                    Core.SignatureContext.parse(strRelayData).then(context =>
+                    {
+                        context.signable.setScripts(context.getScripts());
                         inventory = <Network.Inventory>context.signable;
                         return Global.Node.relay(inventory);
                     }).then(success => {

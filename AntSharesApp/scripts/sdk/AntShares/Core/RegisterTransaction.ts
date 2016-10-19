@@ -5,15 +5,13 @@ namespace AntShares.Core
         public assetType: AssetType;
         public name: string;
         public amount: Fixed8;
+        public precision: number;
         public issuer: Cryptography.ECPoint;
         public admin: Uint160;
-        private shareName: string = '[{ "lang": "zh-CN", "name": "股权"},{ "lang": "en", "name": "Share"}]';
-        
 
         public get systemFee()
         {
-            return this.assetType == AssetType.AntShare || this.assetType == AssetType.AntCoin ? Fixed8.Zero :
-                TESTNET ? Fixed8.fromNumber(100) : Fixed8.fromNumber(10000);
+            return this.assetType == AssetType.AntShare || this.assetType == AssetType.AntCoin ? Fixed8.Zero : Fixed8.fromNumber(10000);
         }
 
         constructor()
@@ -26,14 +24,22 @@ namespace AntShares.Core
             this.assetType = reader.readByte();
             this.name = reader.readVarString();
             this.amount = reader.readFixed8();
+            this.precision = reader.readByte();
             this.issuer = Cryptography.ECPoint.deserializeFrom(reader, Cryptography.ECCurve.secp256r1);
             this.admin = reader.readUint160();
         }
 
         public getName(lang = navigator.language || navigator.browserLanguage): string
         {
-            let tName : string = this.assetType == AssetType.Share ? this.shareName : this.name;
-            let _names = <string | Array<{ lang: string, name: string }>>JSON.parse(tName.replace(/'/g, '"'));
+            let _names: string | Array<{ lang: string, name: string }>;
+            try
+            {
+                _names = <string | Array<{ lang: string, name: string }>>JSON.parse(this.name);
+            }
+            catch (ex)
+            {
+                _names = this.name;
+            }
             if (typeof _names === "string")
             {
                 return _names;
@@ -78,6 +84,7 @@ namespace AntShares.Core
             writer.writeByte(this.assetType);
             writer.writeVarString(this.name);
             writer.writeFixed8(this.amount);
+            writer.writeByte(this.precision);
             writer.write(this.issuer.encodePoint(true).buffer);
             writer.writeUintVariable(this.admin);
         }

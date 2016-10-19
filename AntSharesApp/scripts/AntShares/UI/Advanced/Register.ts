@@ -97,7 +97,7 @@
             if (tx == null) {
                 throw new Error(Resources.globel.insufficientFunds);
             }
-            return Core.SignatureContext.create(tx).then(ct => {
+            return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
@@ -105,7 +105,7 @@
                 if (!context.isCompleted())
                     throw new Error(Resources.globel.thisVersion1);
                 tx.scripts = context.getScripts();
-                return Global.Wallet.sendTransaction(tx);
+                return Global.Wallet.saveTransaction(tx);
             }).then(result => {
                 if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);

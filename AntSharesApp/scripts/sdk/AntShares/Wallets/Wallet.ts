@@ -320,6 +320,8 @@
             });
         }
 
+        public abstract getTransactions(type: Core.TransactionType): PromiseLike<Core.Transaction[]>;
+
         public getUnclaimedCoins(): Coin[]
         {
             let array = new Array<Coin>();
@@ -501,7 +503,7 @@
 
         protected abstract onProcessNewBlock(block: Core.Block, transactions: Core.Transaction[], added: Coin[], changed: Coin[], deleted: Coin[]): PromiseLike<void>;
 
-        protected abstract onSendTransaction(tx: Core.Transaction, added: Coin[], changed: Coin[]): PromiseLike<void>;
+        protected abstract onSaveTransaction(tx: Core.Transaction, added: Coin[], changed: Coin[]): PromiseLike<void>;
 
         private processBlocks(): void
         {
@@ -634,7 +636,7 @@
 
         protected abstract saveStoredData(name: string, value: ArrayBuffer): PromiseLike<void>;
 
-        public sendTransaction(tx: Core.Transaction): PromiseLike<boolean>
+        public saveTransaction(tx: Core.Transaction): PromiseLike<boolean>
         {
             let inputs = tx.getAllInputs();
             for (let i = 0; i < inputs.length; i++)
@@ -672,7 +674,7 @@
                     else if (changeset[i].trackState == IO.Caching.TrackState.Changed)
                         changed.push(changeset[i]);
                 }
-                return this.onSendTransaction(tx, added, changed).then(() =>
+                return this.onSaveTransaction(tx, added, changed).then(() =>
                 {
                     this.coins.commit();
                     this.balanceChanged.dispatchEvent(null);

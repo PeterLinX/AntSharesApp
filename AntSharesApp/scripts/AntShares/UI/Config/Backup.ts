@@ -16,7 +16,7 @@
                 back.hide();
             else
                 back.show();
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbName);
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
         }
 
@@ -66,7 +66,7 @@
                     content: []
                 };
 
-            wallet.content = { name: Global.Wallet.dbName };
+            wallet.content = { name: Global.Wallet.dbPath };
 
             let _transaction = this.db.transaction(["Key", "Contract", "Coin", "Account","Transaction"], "readonly");
 

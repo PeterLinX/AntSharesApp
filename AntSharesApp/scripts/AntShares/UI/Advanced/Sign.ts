@@ -24,7 +24,7 @@
                     alert(Resources.globel.pleaseInputData);
                 } else {
                     let context: Core.SignatureContext;
-                    Core.SignatureContext.Parse(JSON.parse(inputData)).then(result => {
+                    Core.SignatureContext.parse(inputData).then(result => {
                         context = result;
                         return Global.Wallet.sign(result);
                     }).then(success => {
@@ -62,14 +62,14 @@
                 } else {
                     let inventory: Network.Inventory;
                     let context: Core.SignatureContext;
-                    Core.SignatureContext.Parse(JSON.parse(inputData)).then(result => {
+                    Core.SignatureContext.parse(inputData).then(result => {
                         context = result;
                         return Global.Wallet.sign(result);
                     }).then(success => {
                         if (success) {
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
-                            context.signable.scripts = context.getScripts();
+                            context.signable.setScripts(context.getScripts());
                             inventory = <Network.Inventory>context.signable;
                             return Global.Node.relay(inventory);
                         }

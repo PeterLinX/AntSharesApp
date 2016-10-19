@@ -4,8 +4,6 @@ namespace AntShares.Network
     {
         public hash: Uint256;
 
-        public scripts: Core.Scripts.Script[];
-
         public ensureHash(): PromiseLike<Uint256>
         {
             if (this.hash != null) return Promise.resolve(this.hash);
@@ -35,5 +33,7 @@ namespace AntShares.Network
         public abstract serialize(writer: IO.BinaryWriter): void;
 
         public abstract serializeUnsigned(writer: IO.BinaryWriter): void;
+
+        public abstract setScripts(scripts: Core.Scripts.Script[]): void;
     }
 }

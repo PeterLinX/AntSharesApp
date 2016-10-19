@@ -13,7 +13,7 @@
             }
             let ul = $("#Tab_Asset_TransactionList").find("ul:eq(0)");
             ul.find("li :visible").remove();
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbName);
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open().then(() => {
                 this.loadTransactionList();
             });

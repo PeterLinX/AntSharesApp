@@ -18,13 +18,11 @@
             $("#Tab_Advanced_Issue #select_issue_assets").empty();
             $("#Tab_Advanced_Issue #select_issue_assets").change(this.OnIssueAssetChanged);
 
-            Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
+            Global.Wallet.getTransactions(Core.TransactionType.RegisterTransaction).then(issueAssets => {
                 $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=0>请选择</option>");
                 for (let i = 0; i < issueAssets.length; i++) {
-                    Global.Blockchain.getTransaction(issueAssets[i].hash).then(result => {
-                        let tx = <Core.RegisterTransaction>result;
-                        $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i + 1) + ">" + tx.getName() + "</option>");
-                    });
+                    let tx = <Core.RegisterTransaction>issueAssets[i];
+                    $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i + 1) + ">" + tx.getName() + "</option>");
                 }
             });
         }
@@ -32,27 +30,24 @@
 
         private OnIssueAssetChanged = () => {
             let assetName = $("#Tab_Advanced_Issue #select_issue_assets").find("option[value=0]").text();
-            Global.Wallet.getAssets(Core.TransactionType.RegisterTransaction).then(issueAssets => {
+            Global.Wallet.getTransactions(Core.TransactionType.RegisterTransaction).then(issueAssets => {
                 let assetName = $("#Tab_Advanced_Issue #select_issue_assets").find("option:selected").text();
-                issueAssets.forEach(p => {
-                    let i = 0;
-                    Global.Blockchain.getTransaction(p.hash).then(result => {
-                        let tx = <Core.RegisterTransaction>result;
-                        if (assetName == tx.getName()) {
-                            this.rtx = tx;
-                            $("#Tab_Advanced_Issue .issue_info").show();
-                            let parent = $("#Tab_Advanced_Issue #issue_infos");
-                            parent.empty();
-                            let div = new Array();
-                            div.push($("<div>" + Resources.globel.publisher + "：" + tx.issuer + "</div>"));
-                            div.push($("<div>" + Resources.globel.admin + "：" + tx.admin + "</div>"));
-                            let tAmount: string = tx.amount.equals(Fixed8.MaxValue) ? "∞" : tx.amount.toString();
-                            div.push($("<div>" + Resources.globel.amount + "：" + tAmount + "</div>"));
-                            //div.push($("<div>已发行：" + Core.Blockchain + "</div>"));
-                            div.forEach(() => { parent.append(div) });
-                        }
-                    });
-                })
+                for (let i = 0; i < issueAssets.length; i++) {
+                    let tx = <Core.RegisterTransaction>issueAssets[i];
+                    if (assetName == tx.getName()) {
+                        this.rtx = tx;
+                        $("#Tab_Advanced_Issue .issue_info").show();
+                        let parent = $("#Tab_Advanced_Issue #issue_infos");
+                        parent.empty();
+                        let div = new Array();
+                        div.push($("<div>" + Resources.globel.publisher + "：" + tx.issuer + "</div>"));
+                        div.push($("<div>" + Resources.globel.admin + "：" + tx.admin + "</div>"));
+                        let tAmount: string = tx.amount.equals(Fixed8.MaxValue) ? "∞" : tx.amount.toString();
+                        div.push($("<div>" + Resources.globel.amount + "：" + tAmount + "</div>"));
+                        //div.push($("<div>已发行：" + Core.Blockchain + "</div>"));
+                        div.forEach(() => { parent.append(div) });
+                    }
+                }
             });
         }
 
@@ -66,14 +61,12 @@
             let inputElement = $("#Tab_Advanced_Issue #issue_tpl").clone(true);
             inputElement.show();
             inputElement.removeAttr("id");
-            
-            parent.append(inputElement); 
+
+            parent.append(inputElement);
         }
 
         private OnIssueButtonClick = () => {
             let itx: Core.IssueTransaction = new Core.IssueTransaction();
-            let n = Math.random() * 99999999 + 1;
-            itx.nonce = parseInt(n.toString(), 10);
 
             //TODO:需要对地址校验
             let outputs = new Array<Core.TransactionOutput>();
@@ -101,7 +94,7 @@
                 return this.SignAndShowInformation(_tx);
             }).catch(reason => {
                 alert(reason);
-            });   
+            });
         }
 
         private SignAndShowInformation = (tx: Core.Transaction) => {
@@ -109,7 +102,7 @@
             if (tx == null) {
                 throw new Error(Resources.globel.insufficientFunds);
             }
-            return Core.SignatureContext.create(tx).then(ct => {
+            return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
@@ -117,7 +110,7 @@
                 if (!context.isCompleted())
                     throw new Error(Resources.globel.thisVersion1);
                 tx.scripts = context.getScripts();
-                return Global.Wallet.sendTransaction(tx);
+                return Global.Wallet.saveTransaction(tx);
             }).then(result => {
                 if (!result) throw new Error(Resources.globel.txError1);
                 return Global.Node.relay(tx);

@@ -3,13 +3,11 @@ namespace AntShares.Implementations.Wallets.IndexedDB
     export class IndexedDBWallet extends AntShares.Wallets.Wallet
     {
         private db: WalletDataContext;
-        public dbName: string;
 
         constructor(name: string)
         {
             super();
             this.db = new WalletDataContext(name);
-            this.dbName = name;
         }
 
         public addContract(contract: AntShares.Wallets.Contract): PromiseLike<void>
@@ -117,6 +115,26 @@ namespace AntShares.Implementations.Wallets.IndexedDB
                 };
                 transaction.store("Contract").delete(scriptHash.toString());
                 return transaction.commit().then(() => true);
+            });
+        }
+
+        public getTransactions(type?: Core.TransactionType): PromiseLike<Core.Transaction[]>
+        {
+            let array = new Array<Core.Transaction>();
+            let keyRange = type == null ? null : IDBKeyRange.only(type);
+            let transaction = this.db.transaction("Transaction", "readonly");
+            transaction.store("Transaction").index("type").openCursor(keyRange).onsuccess = e =>
+            {
+                let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
+                if (cursor)
+                {
+                    array.push(Core.Transaction.deserializeFrom(cursor.value.rawData.hexToBytes().buffer));
+                    cursor.continue();
+                }
+            };
+            return transaction.commit().then(() =>
+            {
+                return array;
             });
         }
 
@@ -283,7 +301,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             return transaction.commit();
         }
 
-        protected onSendTransaction(tx: Core.Transaction, added: AntShares.Wallets.Coin[], changed: AntShares.Wallets.Coin[]): PromiseLike<void>
+        protected onSaveTransaction(tx: Core.Transaction, added: AntShares.Wallets.Coin[], changed: AntShares.Wallets.Coin[]): PromiseLike<void>
         {
             let transaction = this.db.transaction(["Coin", "Transaction"], "readwrite");
             transaction.store("Transaction").add({
@@ -335,21 +353,5 @@ namespace AntShares.Implementations.Wallets.IndexedDB
                 value: new Uint8Array(value).toHexString()
             });
         }
-
-        public getAssets(type: Core.TransactionType): PromiseLike<Core.RegisterTransaction[]> {
-            let promises = new Array<PromiseLike<Core.RegisterTransaction>>();
-            let transaction = this.db.transaction("Transaction", "readonly");
-            transaction.store("Transaction").index("type").openCursor(IDBKeyRange.only(type)).onsuccess = e => {
-                let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
-                    promises.push(cursor.value);
-                    cursor.continue();
-                }
-            };
-            return transaction.commit().then(() => {
-                return Promise.all(promises);
-            });
-        }
-
     }
 }

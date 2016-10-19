@@ -4,9 +4,9 @@
     {
         constructor(private rpc: RPC.RpcClient) { }
 
-        public relay(iv: Network.Inventory): PromiseLike<boolean>
+        public relay(inventory: Inventory): PromiseLike<boolean>
         {
-            return this.rpc.call("sendrawtransaction", [Uint8Array.fromSerializable(iv).toHexString()]);
+            return this.rpc.call("sendrawtransaction", [Uint8Array.fromSerializable(inventory).toHexString()]);
         }
     }
 }

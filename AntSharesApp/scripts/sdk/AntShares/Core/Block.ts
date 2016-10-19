@@ -87,5 +87,11 @@ namespace AntShares.Core
             writer.writeUintVariable(this.nonce);
             writer.writeUintVariable(this.nextMiner);
         }
+
+        public setScripts(scripts: Core.Scripts.Script[]): void
+        {
+            if (scripts.length != 1) throw new RangeError();
+            this.script = scripts[0];
+        }
     }
 }

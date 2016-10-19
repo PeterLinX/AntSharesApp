@@ -3,6 +3,7 @@ namespace AntShares.Core
     export abstract class Transaction extends Network.Inventory
     {
         public type: TransactionType;
+        public version: number;
         public attributes: TransactionAttribute[];
         public inputs: TransactionInput[];
         public outputs: TransactionOutput[];
@@ -59,6 +60,7 @@ namespace AntShares.Core
 
         private deserializeUnsignedWithoutType(reader: IO.BinaryReader): void
         {
+            this.version = reader.readByte();
             this.deserializeExclusiveData(reader);
             this.attributes = <TransactionAttribute[]>reader.readSerializableArray(TransactionAttribute);
             this.inputs = <TransactionInput[]>reader.readSerializableArray(TransactionInput);
@@ -134,10 +136,16 @@ namespace AntShares.Core
         public serializeUnsigned(writer: IO.BinaryWriter): void
         {
             writer.writeByte(this.type);
+            writer.writeByte(this.version);
             this.serializeExclusiveData(writer);
             writer.writeSerializableArray(this.attributes);
             writer.writeSerializableArray(this.inputs);
             writer.writeSerializableArray(this.outputs);
+        }
+
+        public setScripts(scripts: Core.Scripts.Script[]): void
+        {
+            this.scripts = scripts;
         }
     }
 }

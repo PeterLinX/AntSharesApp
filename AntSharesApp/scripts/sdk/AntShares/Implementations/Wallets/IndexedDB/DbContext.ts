@@ -72,7 +72,7 @@
             });
         }
 
-        public transaction = (storeNames: string | string[], mode = "readonly"): DbTransaction =>
+        public transaction(storeNames: string | string[], mode = "readonly"): DbTransaction
         {
             return new DbTransaction(this.db.transaction(storeNames, mode));
         }

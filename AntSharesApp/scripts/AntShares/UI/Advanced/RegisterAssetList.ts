@@ -12,7 +12,7 @@
                 return;
             }
             let ul = $("#Tab_Advanced_RegisterAssetList").find("ul:eq(0)");
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbName);
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open().then(() => {
                 this.loadRegisterAssetList();
             });

@@ -25,8 +25,7 @@
                 if (contracts[i].isStandard())
                     addAccountList(contracts[i]);
 
-            let rpc = new AntShares.Network.RPC.RpcClient("http://seed1.antshares.org:20332/");
-            rpc.call("getblockcount", []).then(result =>
+            Global.RpcClient.call("getblockcount", []).then(result =>
             {
                 this.CurrentHeight = result - 1;
             });
