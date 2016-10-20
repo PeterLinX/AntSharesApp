@@ -13,7 +13,10 @@
         {
             var back = $("#Tab_Config_Backup #back_div");
             if (Global.Wallet == null)
+            {
                 back.hide();
+                return;
+            }
             else
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
