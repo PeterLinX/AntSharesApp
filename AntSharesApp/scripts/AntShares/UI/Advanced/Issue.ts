@@ -40,10 +40,10 @@
                         let parent = $("#Tab_Advanced_Issue #issue_infos");
                         parent.empty();
                         let div = new Array();
-                        div.push($("<div>" + Resources.globel.publisher + "：" + tx.issuer + "</div>"));
-                        div.push($("<div>" + Resources.globel.admin + "：" + tx.admin + "</div>"));
+                        div.push($("<div>" + Resources.global.publisher + "：" + tx.issuer + "</div>"));
+                        div.push($("<div>" + Resources.global.admin + "：" + tx.admin + "</div>"));
                         let tAmount: string = tx.amount.equals(Fixed8.MaxValue) ? "∞" : tx.amount.toString();
-                        div.push($("<div>" + Resources.globel.amount + "：" + tAmount + "</div>"));
+                        div.push($("<div>" + Resources.global.amount + "：" + tAmount + "</div>"));
                         //div.push($("<div>已发行：" + Core.Blockchain + "</div>"));
                         div.forEach(() => { parent.append(div) });
                     }
@@ -100,23 +100,23 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error(Resources.globel.insufficientFunds);
+                throw new Error(Resources.global.insufficientFunds);
             }
             return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.canNotSign);
+                if (!result) throw new Error(Resources.global.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error(Resources.globel.thisVersion1);
+                    throw new Error(Resources.global.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.saveTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.txError1);
+                if (!result) throw new Error(Resources.global.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert(Resources.globel.issueInfo);
+                alert(Resources.global.issueInfo);
             }).catch(reason => {
                 alert(reason);
             });

@@ -60,7 +60,7 @@
                 $("#input_m").val("");
                 this.publicKeys.length = 0;
 
-                alert(Resources.globel.createMultiContractSuccess);
+                alert(Resources.global.createMultiContractSuccess);
                 //创建成功后跳转到合约管理页面
                 TabBase.showTab("#Tab_Contract_Index");
             }, reason => alert(reason)).catch(reason => {

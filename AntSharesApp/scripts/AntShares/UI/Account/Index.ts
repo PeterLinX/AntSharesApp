@@ -37,7 +37,7 @@
             Global.Wallet.createAccount().then(result =>
             {
                 addAccountList(Global.Wallet.getContracts(result.publicKeyHash)[0]);
-                alert(Resources.globel.createAccountAlert);
+                alert(Resources.global.createAccountAlert);
             });
         }
     }
@@ -56,7 +56,7 @@
         {
             account.export().then(result =>
             {
-                alert(Resources.globel.WIFis + result);
+                alert(Resources.global.WIFis + result);
             });
         })
         a.click(() =>

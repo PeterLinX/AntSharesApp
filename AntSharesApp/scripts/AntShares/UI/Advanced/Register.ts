@@ -3,7 +3,7 @@
 
         protected oncreate(): void {
             $(this.target).find("#register").click(this.OnRegisterButtonClick);
-            $("#select_register_asset").append("<option value=0>" + Resources.globel.pleaseChoose + "</option>");
+            $("#select_register_asset").append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
             $("#select_register_asset").append("<option value=1>" + Core.AssetType[Core.AssetType.Share] + "</option>");
             $("#select_register_asset").append("<option value=2>" + Core.AssetType[Core.AssetType.Token] + "</option>");
             $("#select_register_asset").change(this.OnRegisterAssetChanged);
@@ -72,7 +72,7 @@
                 tx.assetType = Core.AssetType[assetType];
                 if (tx.assetType == null)
                 {
-                    throw Error(Resources.globel.selectAssetType);
+                    throw Error(Resources.global.selectAssetType);
                 }
                 if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
                 tx.name = assetName;
@@ -95,24 +95,24 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error(Resources.globel.insufficientFunds);
+                throw new Error(Resources.global.insufficientFunds);
             }
             return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.canNotSign);
+                if (!result) throw new Error(Resources.global.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error(Resources.globel.thisVersion1);
+                    throw new Error(Resources.global.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.saveTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.txError1);
+                if (!result) throw new Error(Resources.global.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 //TabBase.showTab("#Tab_Advanced_RegisterAssetList");
                 TabBase.showTab("#Tab_Asset_Index");
-                alert(Resources.globel.registInfo + "，txid:"+ tx.hash.toString());
+                alert(Resources.global.registInfo + "，txid:"+ tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
             });

@@ -26,7 +26,7 @@
                 {
                     Global.Wallet = result;
                     this.clear();
-                    alert(Resources.globel.openWalletAlert);
+                    alert(UI.Resources.global.openWalletAlert);
                     $("#open_error").hide();
                     //打开成功后跳转账户管理页面
                     TabBase.showTab("#Tab_Account_Index");

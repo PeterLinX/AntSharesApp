@@ -21,7 +21,7 @@
             try {
                 if (strRelayData == "")
                 {
-                    alert(Resources.globel.pleaseInputData);
+                    alert(Resources.global.pleaseInputData);
                 } else {
                     Core.SignatureContext.parse(strRelayData).then(context =>
                     {
@@ -38,7 +38,7 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert(Resources.globel.dataFormatError);
+                    alert(Resources.global.dataFormatError);
                 }
                 else{
                     alert(e);
@@ -51,7 +51,7 @@
             let strRelayData: string = $("#Tab_Advanced_DeveloperTool #relay_data").val();
             try {
                 if (strRelayData == "") {
-                    alert(Resources.globel.pleaseInputData);
+                    alert(Resources.global.pleaseInputData);
                 } else {
                     let inventory: Network.Inventory;
                     Core.SignatureContext.parse(strRelayData).then(context =>
@@ -62,10 +62,10 @@
                     }).then(success => {
                         if (success)
                         {
-                            alert(Resources.globel.relaySuccess);
+                            alert(Resources.global.relaySuccess);
                         } else
                         {
-                            alert(Resources.globel.relayFaild);
+                            alert(Resources.global.relayFaild);
                         }
                     }).catch(reason => {
                         alert(reason);
@@ -73,7 +73,7 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert(Resources.globel.dataFormatError);
+                    alert(Resources.global.dataFormatError);
                 }
                 else {
                     alert(e);

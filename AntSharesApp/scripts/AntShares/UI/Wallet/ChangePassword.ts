@@ -27,7 +27,7 @@
                     {
                         $("#change_error").hide();
                         this.clear();
-                        alert(Resources.globel.changePwdSuccess);
+                        alert(Resources.global.changePwdSuccess);
                         TabBase.showTab("#Tab_Account_Index");
                     }
                     else

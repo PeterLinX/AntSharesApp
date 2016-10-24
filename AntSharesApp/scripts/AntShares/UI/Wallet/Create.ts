@@ -33,7 +33,7 @@
                 {
                     let name = $("#wallet_name").val().trim();
                     if (result.indexOf(name) >= 0)
-                        throw new Error(Resources.globel.sameWalletName);
+                        throw new Error(Resources.global.sameWalletName);
                     return Promise.all<any>([
                         master.add(name),
                         Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val())

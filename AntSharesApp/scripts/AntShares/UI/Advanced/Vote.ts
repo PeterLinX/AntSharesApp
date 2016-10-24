@@ -54,7 +54,7 @@
                 return this.SignAndShowInformation(_tx);
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert(Resources.globel.dataFormatError);
+                    alert(Resources.global.dataFormatError);
                 }
                 else {
                     alert(e);
@@ -65,23 +65,23 @@
         private SignAndShowInformation = (tx: Core.Transaction) => {
             let context: Core.SignatureContext;
             if (tx == null) {
-                throw new Error(Resources.globel.insufficientFunds);
+                throw new Error(Resources.global.insufficientFunds);
             }
             return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]).then(ct => {
                 context = ct;
                 return Global.Wallet.sign(ct);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.canNotSign);
+                if (!result) throw new Error(Resources.global.canNotSign);
                 if (!context.isCompleted())
-                    throw new Error(Resources.globel.thisVersion1);
+                    throw new Error(Resources.global.thisVersion1);
                 tx.scripts = context.getScripts();
                 return Global.Wallet.saveTransaction(tx);
             }).then(result => {
-                if (!result) throw new Error(Resources.globel.txError1);
+                if (!result) throw new Error(Resources.global.txError1);
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
-                alert(Resources.globel.voteInfo);
+                alert(Resources.global.voteInfo);
             }).catch(reason => {
                 alert(reason);
             });

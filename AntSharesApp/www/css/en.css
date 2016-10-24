@@ -1,3 +1,109 @@
-﻿title::before { content:'Antshares App beta' }
+﻿title::before { content:'Antshares App' }
 .lang-title::before { content:'Antshares App' }
-.lang-menu-create-wallet::before { content:'create wallet' }
+.lang-create-wallet::before { content:'create wallet' }
+.lang-input-wallet-name::before { content:'input wallet name' }
+
+
+.lang-input-wallet-password::before { content:'输入钱包密码' }
+.lang-input-wallet-confirm-password::before { content:'输入钱包确认密码' }
+.lang-open-wallet::before { content:'打开钱包' }
+.lang-select-wallet-file::before { content:'选择钱包文件' }
+.lang-wallet-password-error::before { content:'钱包密码错误' }
+.lang-change-wallet-password::before { content:'修改钱包密码' }
+.lang-wallet-name::before { content:'钱包名称' }
+.lang-validate-old-password::before { content:'验证旧密码' }
+.lang-input-new-password::before { content:'输入新密码' }
+.lang-confirm-new-password::before { content:'确认新密码' }
+.lang-account-list::before { content:'账户列表' }
+.lang-wallet-name::before { content:'钱包名称：' }
+.lang-create-account::before { content:'创建账户' }
+.lang-import-private-key::before { content:'导入私钥' }
+.lang-details::before { content:'详情' }
+.lang-export::before { content:'导出' }
+.lang-certification::before { content:'认证' }
+.lang-account-details::before { content:'账户详情' }
+.lang-public-key::before { content:'公钥' }
+.lang-show-hide-private-key::before { content:'显示/隐藏私钥' }
+.lang-back-to-account-list::before { content:'返回账户列表' }
+.lang-import-account::before { content:'导入账户' }
+.lang-input-private-key::before { content:'输入私钥' }
+.lang-contract-list::before { content:'合约列表' }
+.lang-create-muntisig::before { content:'创建多方签名账户' }
+.lang-contract-details::before { content:'合约详情' }
+.lang-contract-type::before { content:'合约类型' }
+.lang-contract-content::before { content:'合约内容' }
+.lang-contract-hash::before { content:'合约散列' }
+.lang-contract-address::before { content:'合约地址' }
+.lang-min-sign-count::before { content:'最小签名数量' }
+.lang-add-public-key::before { content:'添加公钥' }
+.lang-create::before { content:'创建' }
+.lang-back-to-contract-list::before { content:'返回合约列表' }
+.lang-back-to-list::before { content:'返回列表' }
+.lang-my-asset::before { content:'我的资产' }
+.lang-no-asset::before { content:'您目前还没有资产' }
+.lang-issuer::before { content:'发行人：' }
+.lang-asset-transfer::before { content:'资产转让' }
+.lang-select-asset::before { content:'选择资产' }
+.lang-max-to-transfer::before { content:'最大可转让' }
+.lang-receiver::before { content:'接收方' }
+.lang-confirm-transfer::before { content:'确认转账' }
+.lang-my-tx-list::before { content:'我的交易列表' }
+.lang-no-tx::before { content:'您目前还没有交易' }
+.lang-collapse-all::before { content:'全部收起' }
+.lang-tx::before { content:'交易：' }
+.lang-tx-input::before { content:'交易输入' }
+.lang-tx-output::before { content:'交易输出' }
+.lang-tx-value::before { content:'金额' }
+.lang-tx-asset::before { content:'资产' }
+.lang-tx-sign::before { content:'交易签名' }
+.lang-input::before { content:'输入' }
+.lang-output::before { content:'输出' }
+.lang-sign::before { content:'签名' }
+.lang-sian-and-relay::before { content:'签名并广播' }
+.lang-regist-tx::before { content:'注册资产' }
+.lang-select-asset-type::before { content:'选择资产类型' }
+.lang-asset-name::before { content:'资产名称' }
+.lang-amount-limited::before { content:'总量限制' }
+.lang-amount-limited2::before { content:'总量有限' }
+.lang-select-issuer::before { content:'选择发行者' }
+.lang-select-admin::before { content:'选择管理员' }
+.long-need-10000anc::before { content:'注册资产将消耗您10000小蚁币' }
+.lang-confirm-regist::before { content:'确认注册' }
+.lang-my-register::before { content:'我注册的资产' }
+.lang-amount::before { content:'总量' }
+.lang-no-regist::before { content:'您目前还没有注册的资产' }
+.lang-issue-asset::before { content:'分发资产' }
+.lang-select-asset::before { content:'选择资产' }
+.lang-asset-type::before { content:'资产详情' }
+.lang-add-reveiver::before { content:'添加接收方' }
+.lang-confirm-issue::before { content:'确认分发' }
+.lang-elect::before { content:'选举' }
+.lang-miner::before { content:'记账人' }
+.lang-pawn-anc::before { content:'抵押小蚁币' }
+.lang-ok::before { content:'确定' }
+.lang-vote::before { content:'投票' }
+.lang-candidate::before { content:'候选人' }
+.lang-relay::before { content:'广播' }
+.lang-convert::before { content:'转换' }
+.lang-backup::before { content:'备份' }
+.lang-backup-note::before { content:'备份功能目前仅适用于Android和Chrome' }
+.lang-backup-current-wallet::before { content:'备份当前钱包' }
+.lang-import-wallet-file::before { content:'导入钱包文件' }
+
+.lang-height::before { content:'Synchronization progress:' }
+
+.lang-wallet::after { content:'钱包' }
+.lang-change-password::after { content:'修改密码' }
+.lang-user-center::after { content:'个人中心' }
+.lang-asset::after { content:'资产' }
+.lang-adv-function::after { content:'高级功能' }
+.lang-regist-asset::after { content:'注册资产' }
+.lang-developer-tool::after { content:'开发人员工具' }
+.lang-antshares-blockchain::after { content:'小蚁区块链' }
+.lang-system-setup::after { content:'系统设置' }
+.lang-normal-setup::after { content:'常规设置' }
+.lang-website::after { content:'官网' }
+.lang-help::after { content:'帮助' }
+.lang-about::after { content:'关于' }
+.lang-website::after { content:'官网' }
+.lang-backup-restore::after { content:'备份/恢复' }

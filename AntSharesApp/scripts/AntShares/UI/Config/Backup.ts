@@ -185,12 +185,12 @@
                             case "Transaction": Transaction = json[count]["content"];
                                 break;
                             default:
-                                throw new Error(Resources.globel.walletJsonError);
+                                throw new Error(Resources.global.walletJsonError);
                         }
                         count++;
                     }
                     }, onreject => {
-                        throw new Error(Resources.globel.walletJsonError);
+                        throw new Error(Resources.global.walletJsonError);
                 }).then(() => {
                     return Wallets.Master.instance();
                 }).then(result => {
@@ -198,7 +198,7 @@
                     return master.get();
                 }).then(result => {
                     if (result.indexOf(Wallet["name"]) >= 0)
-                        throw new Error(Resources.globel.sameWalletName1);
+                        throw new Error(Resources.global.sameWalletName1);
                     master.add(Wallet["name"]);
                     db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Wallet["name"]);
                     return db.open();

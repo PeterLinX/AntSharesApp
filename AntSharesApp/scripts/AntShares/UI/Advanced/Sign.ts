@@ -21,7 +21,7 @@
             let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
             try {
                 if (inputData == ""){
-                    alert(Resources.globel.pleaseInputData);
+                    alert(Resources.global.pleaseInputData);
                 } else {
                     let context: Core.SignatureContext;
                     Core.SignatureContext.parse(inputData).then(result => {
@@ -32,10 +32,10 @@
                             console.log(context);
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
-                            alert(Resources.globel.signFinish);
+                            alert(Resources.global.signFinish);
                         }
                         else {
-                            alert(Resources.globel.signError1);
+                            alert(Resources.global.signError1);
                         }
                     }).catch(reason => {
                         alert(reason);
@@ -43,7 +43,7 @@
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert(Resources.globel.dataFormatError);
+                    alert(Resources.global.dataFormatError);
                 }
                 else {
                     alert(e);
@@ -58,7 +58,7 @@
             try {
                 if (inputData == "")
                 {
-                    alert(Resources.globel.pleaseInputData);
+                    alert(Resources.global.pleaseInputData);
                 } else {
                     let inventory: Network.Inventory;
                     let context: Core.SignatureContext;
@@ -74,18 +74,18 @@
                             return Global.Node.relay(inventory);
                         }
                         else {
-                            alert(Resources.globel.signError1);
+                            alert(Resources.global.signError1);
                         }
                         }).then(result =>
                         {
-                            alert(Resources.globel.relaySuccess);
+                            alert(Resources.global.relaySuccess);
                     }).catch(reason => {
                         alert(reason);
                     });
                 }
             } catch (e) {
                 if (e instanceof SyntaxError) {
-                    alert(Resources.globel.dataFormatError);
+                    alert(Resources.global.dataFormatError);
                 }
                 else {
                     alert(e);
