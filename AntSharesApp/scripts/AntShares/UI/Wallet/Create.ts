@@ -3,7 +3,6 @@
     export class Create extends TabBase
     {
         private account: Wallets.Account;
-        private CurrentHeight: number;
 
         protected oncreate(): void
         {
@@ -13,10 +12,6 @@
 
         protected onload(): void
         {
-            Core.Blockchain.Default.getBlockCount().then(result =>
-            {
-                this.CurrentHeight = result - 1;
-            });
             $("#wallet_name").focus();
         }
 
