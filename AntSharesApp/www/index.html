@@ -436,7 +436,7 @@
                         <h5 class="lang-amount-limited"></h5>
                         <div class="row">
                             <div class="col-sm-4">
-                                <label style="line-height: 2.3;"><input class="form-control lang-amount-limited2" type="checkbox" checked="checked" id="check_limit" /></label>
+                                <label class="lang-amount-limited2" style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit" /></label>
                             </div>
                             <div class="col-sm-8">
                                 <input id="input_amount" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" />
@@ -580,25 +580,46 @@
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
                     <h2 class="page-header lang-help"></h2>
-                    <div>
+                    <div id="zh_help">
                         QQ群：573816801
                     </div>
-
+                    <div id="en_help">
+                        Slack:<a href="https://antshares-slack.herokuapp.com/">antshares-slack</a>
+                        <br />
+                        Twiter:<a href="https://twitter.com/antshares">antshares</a>
+                        <br />
+                        Wechat Group: contact wechat num. DavidthePangwaer with message "Antshares"
+                    </div>
                 </div>
                 <div id="Tab_Help_About" class="tab-pane">
                     <h2 class="page-header lang-about"></h2>
-                    <div class="lang-description">
-                        小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。
+                    <div id="zh_about">
+                        <div>
+                            小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。
+                        </div>
+                        <br />
+                        <div>版本</div>
+                        <div>1.0</div>
+                        <br />
+                        <div>开发团队</div>
+                        <div>dev@antshares.org</div>
+                        <br />
+                        <div>Copyright</div>
+                        <div>2016 Antshares Team</div>
                     </div>
-                    <br />
-                    <div>版本</div>
-                    <div>1.0</div>
-                    <br />
-                    <div>开发团队</div>
-                    <div>dev@antshares.org</div>
-                    <br />
-                    <div>Copyright</div>
-                    <div>2016 Antshares Team</div>
+                    <div id="en_about">
+                        <div>
+                            Antshares is a decentralized and distributed network protocol which is based on blockchain technology. People can use it to digitalize assets or shares, and accomplish some financial business through peer-to-peer network such as registration and issuing, make transactions, settlement and payment.</div>
+                        <br />
+                        <div>Version</div>
+                        <div>1.0</div>
+                        <br />
+                        <div>Development Team</div>
+                        <div>dev@antshares.org</div>
+                        <br />
+                        <div>Copyright</div>
+                        <div>2016 Antshares Team</div>
+                    </div>
                 </div>
                 <div id="Tab_Test" class="form-horizontal tab-pane">
                     <div id="contentssss"></div>
@@ -656,7 +677,7 @@
                 <li>
                     <span class="lang-antshares-blockchain"><i class="iconfont">&#xe60a;</i></span>
                     <ul>
-                        <li><a href="http://antcha.in/" target="_blank">antcha.in<i class="iconfont link">&#xe60b;</i></a></li>
+                        <li><a href="http://antcha.in/" target="_blank">AntCha.in<i class="iconfont link">&#xe60b;</i></a></li>
                     </ul>
                 </li>
                 <li>
@@ -703,7 +724,7 @@
             counters: true,
             slidingSubmenus: false,
             navbar: {
-                title: '菜单'
+                title: AntShares.UI.Resources.global.menu
             },
             dragOpen: { open: true },
             dragClose: { close: true },

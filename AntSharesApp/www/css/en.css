@@ -1,20 +1,20 @@
 ﻿title::before { content:'Antshares App' }
 .lang-title::before { content:'Antshares App' }
-.lang-create-wallet::before { content:'create wallet' }
+.lang-create-wallet::before { content:'Create wallet' }
+.lang-open-wallet::before { content:'Open wallet' }
 .lang-input-wallet-name::before { content:'input wallet name' }
 
 
 .lang-input-wallet-password::before { content:'input wallet password' }
 .lang-input-wallet-confirm-password::before { content:'input confirm password' }
-.lang-open-wallet::before { content:'open wallet' }
 .lang-select-wallet-file::before { content:'select wallet file' }
 .lang-wallet-password-error::before { content:'Wallet password error' }
-.lang-change-wallet-password::before { content:'change wallet password' }
+.lang-change-wallet-password::before { content:'Change wallet password' }
 .lang-wallet-name::before { content:'wallet name' }
 .lang-validate-old-password::before { content:'validate old password' }
 .lang-input-new-password::before { content:'input new password' }
 .lang-confirm-new-password::before { content:'confirm new password' }
-.lang-account-list::before { content:'account list' }
+.lang-account-list::before { content:'Account list' }
 .lang-wallet-name::before { content:'wallet name：' }
 .lang-create-account::before { content:'create account' }
 .lang-import-private-key::before { content:'import private key' }
@@ -27,7 +27,7 @@
 .lang-back-to-account-list::before { content:'back to account list' }
 .lang-import-account::before { content:'import account' }
 .lang-input-private-key::before { content:'input private key' }
-.lang-contract-list::before { content:'contract list' }
+.lang-contract-list::before { content:'Contract list' }
 .lang-create-muntisig::before { content:'create multiple signature account' }
 .lang-contract-details::before { content:'contract details' }
 .lang-contract-type::before { content:'contract type' }
@@ -39,32 +39,32 @@
 .lang-create::before { content:'create' }
 .lang-back-to-contract-list::before { content:'back to contract-list' }
 .lang-back-to-list::before { content:'back to list' }
-.lang-my-asset::before { content:'my asset' }
+.lang-my-asset::before { content:'My asset' }
 .lang-no-asset::before { content:'You currently have no assets' }
 .lang-issuer::before { content:'issuer：' }
-.lang-asset-transfer::before { content:'asset transfer' }
+.lang-asset-transfer::before { content:'Asset transfer' }
 .lang-select-asset::before { content:'select asset' }
 .lang-max-to-transfer::before { content:'the maximum transfer' }
 .lang-receiver::before { content:'receiver' }
 .lang-confirm-transfer::before { content:'confirm transfer' }
 .lang-my-tx-list::before { content:'my transaction list' }
-.lang-no-tx::before { content:"You haven't transaction" }
+.lang-no-tx::before { content:"Your transaction list is empty" }
 .lang-collapse-all::before { content:'collapse all' }
 .lang-tx::before { content:'transaction：' }
 .lang-tx-input::before { content:'transaction input' }
 .lang-tx-output::before { content:'Transaction output' }
 .lang-tx-value::before { content:'value' }
 .lang-tx-asset::before { content:'asset' }
-.lang-tx-sign::before { content:'transaction signature' }
+.lang-tx-sign::before { content:'Transaction signature' }
 .lang-input::before { content:'input' }
 .lang-output::before { content:'output' }
-.lang-sign::before { content:'signature' }
-.lang-sian-and-relay::before { content:'signature and relay' }
-.lang-regist-tx::before { content:'registered assets ' }
+.lang-sign::before { content:'Signature' }
+.lang-sian-and-relay::before { content:'signature and broadcast' }
+.lang-regist-tx::before { content:'Regist asset' }
 .lang-select-asset-type::before { content:'select asset type' }
 .lang-asset-name::before { content:'asset name' }
 .lang-amount-limited::before { content:'limited amount' }
-.lang-amount-limited2::before { content:'limited amount ' }
+.lang-amount-limited2::after { content:'limited amount ' }
 .lang-select-issuer::before { content:'select issuer' }
 .lang-select-admin::before { content:'select admin' }
 .long-need-10000anc::before { content:'Registered assets will consume your 10000 ANC' }
@@ -72,37 +72,37 @@
 .lang-my-register::before { content:'I registered assets' }
 .lang-amount::before { content:'amount' }
 .lang-no-regist::before { content:"You haven't registered assets" }
-.lang-issue-asset::before { content:'issue asset' }
+.lang-issue-asset::before { content:'Issue asset' }
 .lang-select-asset::before { content:'select asset' }
 .lang-asset-type::before { content:'asset type' }
 .lang-add-reveiver::before { content:'add reveiver' }
-.lang-confirm-issue::before { content:'confirm issue' }
-.lang-elect::before { content:'elect' }
+.lang-confirm-issue::before { content:'confirm issuance' }
+.lang-elect::before { content:'Election' }
 .lang-miner::before { content:'miner' }
-.lang-pawn-anc::before { content:'pawn ANC' }
-.lang-ok::before { content:'ok' }
-.lang-vote::before { content:'vote' }
+.lang-pawn-anc::before { content:'place ANC guarantee' }
+.lang-ok::before { content:'OK' }
+.lang-vote::before { content:'Vote' }
 .lang-candidate::before { content:'candidate' }
-.lang-relay::before { content:'relay' }
-.lang-convert::before { content:'convert' }
-.lang-backup::before { content:'backup' }
+.lang-relay::before { content:'Broadcast' }
+.lang-convert::before { content:'Convert' }
+.lang-backup::before { content:'Backup' }
 .lang-backup-note::before { content:'Backup function is currently only available for Android and Chrome' }
-.lang-backup-current-wallet::before { content:'备份当前钱包' }
-.lang-import-wallet-file::before { content:'import wallet file' }
+.lang-backup-current-wallet::before { content:'Backup your current wallet' }
+.lang-import-wallet-file::before { content:'Import wallet file' }
 
-.lang-height::before { content:'Synchronization progress:' }
+.lang-height::before { content:'synchronization progress: ' }
 
-.lang-wallet::after { content:'wallet' }
-.lang-change-password::after { content:'change password' }
-.lang-user-center::after { content:'user center' }
-.lang-asset::after { content:'asset' }
-.lang-adv-function::after { content:'advanced' }
-.lang-regist-asset::after { content:'regist asset' }
-.lang-developer-tool::after { content:'developer tool' }
-.lang-antshares-blockchain::after { content:'antshares blockchain' }
-.lang-system-setup::after { content:'system setup' }
-.lang-normal-setup::after { content:'normal setup' }
-.lang-help::after { content:'help' }
-.lang-about::after { content:'about' }
-.lang-website::after { content:'official website' }
-.lang-backup-restore::after { content:'backup/restore' }
+.lang-wallet::after { content:'Wallet' }
+.lang-change-password::after { content:'Change password' }
+.lang-user-center::after { content:'User center' }
+.lang-asset::after { content:'Asset' }
+.lang-adv-function::after { content:'Advanced' }
+.lang-regist-asset::after { content:'Register asset' }
+.lang-developer-tool::after { content:'Developer tool' }
+.lang-antshares-blockchain::after { content:'Antshares blockchain' }
+.lang-system-setup::after { content:'System setup' }
+.lang-normal-setup::after { content:'Normal setup' }
+.lang-help::after { content:'Help' }
+.lang-about::after { content:'About' }
+.lang-website::after { content:'Official website' }
+.lang-backup-restore::after { content:'Backup / Restore' }

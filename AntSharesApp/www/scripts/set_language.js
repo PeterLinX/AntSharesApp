@@ -7,6 +7,10 @@ if (currentLanguage.split('-')[0] == 'zh') {
         allowedFileExtensions: ['txt'],
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
     });
+    $("#en_help").hide();
+    $("#zh_help").show();
+    $("#en_about").hide();
+    $("#zh_about").show();
 }
 else {
     document.getElementById('lang').href = 'css/en.css';
@@ -14,6 +18,10 @@ else {
         allowedFileExtensions: ['txt'],
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
     });
+    $("#en_help").show();
+    $("#zh_help").hide();
+    $("#en_about").show();
+    $("#zh_about").hide();
 }
 
 var global = AntShares.UI.Resources.global;

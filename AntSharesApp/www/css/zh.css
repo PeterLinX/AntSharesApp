@@ -1,13 +1,13 @@
 ﻿title::before { content:'antshares APP' }
 .lang-title::before { content:'antshares APP' }
 .lang-create-wallet::before { content:'创建钱包' }
+.lang-open-wallet::before { content:'打开钱包' }
 .lang-input-wallet-name::before { content:'输入钱包名称' }
 
 
 
 .lang-input-wallet-password::before { content:'输入钱包密码' }
 .lang-input-wallet-confirm-password::before { content:'输入钱包确认密码' }
-.lang-open-wallet::before { content:'打开钱包' }
 .lang-select-wallet-file::before { content:'选择钱包文件' }
 .lang-wallet-password-error::before { content:'钱包密码错误' }
 .lang-change-wallet-password::before { content:'修改钱包密码' }
@@ -25,7 +25,7 @@
 .lang-account-details::before { content:'账户详情' }
 .lang-public-key::before { content:'公钥' }
 .lang-show-hide-private-key::before { content:'显示/隐藏私钥' }
-.lang-back-to-account-list::before { content:'返回账户列表' }
+.lang-back-to-account-list::before { content:'返回账户列' }
 .lang-import-account::before { content:'导入账户' }
 .lang-input-private-key::before { content:'输入私钥' }
 .lang-contract-list::before { content:'合约列表' }
@@ -65,7 +65,7 @@
 .lang-select-asset-type::before { content:'选择资产类型' }
 .lang-asset-name::before { content:'资产名称' }
 .lang-amount-limited::before { content:'总量限制' }
-.lang-amount-limited2::before { content:'总量有限' }
+.lang-amount-limited2::after { content:'总量有限' }
 .lang-select-issuer::before { content:'选择发行者' }
 .lang-select-admin::before { content:'选择管理员' }
 .long-need-10000anc::before { content:'注册资产将消耗您10000小蚁币' }

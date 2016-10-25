@@ -126,7 +126,7 @@
         static walletNameRequired = "Wallet name is required";
         static createPasswordPlaceholder = "wallet password";
         static createPasswordRequired = "Wallet password is required";
-        static createPasswordLength = "The password must contain at least 6 characters";
+        static createPasswordLength = "The password must be at least 6 bits long";
         static createPasswordConfirmPlaceholder = "wallet password";
         static createPasswordConfirmRequired = "Password confirm is required";
         static createPasswordConfirmEqualtoOther = "Password and confirm password do not match";
@@ -137,11 +137,11 @@
         static oldPasswordRequired = "Wallet password is required";
         static newPasswordPlaceholder = "wallet password";
         static newPasswordRequired = "Wallet password is required";
-        static newPasswordLength = "The password must contain at least 6 characters";
+        static newPasswordLength = "The password must be at least 6 bits long";
         static newPasswordConfirmPlaceholder = "wallet password";
         static newPasswordConfirmRequired = "Password confirm is required";
         static newPasswordConfirmEqualto = "Password and confirm password do not match";
-        static importPrikeyInputPlaceholder = "Enter the private key requires WIF format";
+        static importPrikeyInputPlaceholder = "Private key entered must be in WIF format";
         static importPrikeyInputRequired = "Private key is required";
         static importPrikeyInputLength = "Private key must be a 52-bit Base58 encoding";
         static inputMPlaceholder = "Minimum is 1";
@@ -156,7 +156,7 @@
         static inputAmountPlaceholder = "Enter the total assets";
         static issueOutputAddrPlaceholder = "address";
         static issueOutputValuePlaceholder = "value";
-        static inputAntcoinPlaceholder = "Enter number of ANC mortgage";
+        static inputAntcoinPlaceholder = "Enter number of ANC guarantee";
         static relayDataPlaceholder = "Broadcast packets";
         static addInputTitle = "add input";
     }
