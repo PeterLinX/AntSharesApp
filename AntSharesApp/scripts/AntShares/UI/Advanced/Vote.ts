@@ -2,6 +2,7 @@
     export class Vote extends TabBase {
         protected oncreate(): void {
             $(this.target).find("#vote").click(this.OnVoteButtonClick);
+            $(this.target).find("#add_candidates").click(this.OnAddCandidatesButtonClick);
         }
 
         protected onload(args: any[]): void {
@@ -15,20 +16,15 @@
             parent.find("#" + divId).remove();
         }
 
-        private OnAddInputClick = () => {
-            let parent = $("#Tab_Advanced_Vote #candidates");
-            let x = Math.round(Math.random() * 10000);
-            let divId = "candidate" + x.toString();
-            let div = $("<div id=\"" + divId + "\"/>");
+        private OnAddCandidatesButtonClick = () => {
+            let parent = $("#Tab_Advanced_Vote #div_candidates");
 
-            let inputElement = $("#Tab_Advanced_Vote #candidate").clone(true);
-            inputElement.find("#Tab_Advanced_Vote #div_candidate_delete").removeAttr("style");
-            inputElement.find("#Tab_Advanced_Vote #candidate_delete").click(() => {
-                this.removeInput(parent, divId);
-            });
+            let inputElement = $("#Tab_Advanced_Vote #candidates_tpl").clone(true);
+            inputElement.show();
+            inputElement.addClass("add_new");
+            inputElement.removeAttr("id");
 
-            div.append(inputElement);
-            parent.append(div);
+            parent.append(inputElement); 
         }
 
         private OnVoteButtonClick = () => {
@@ -81,6 +77,7 @@
                 return Global.Node.relay(tx);
             }).then(result => {
                 TabBase.showTab("#Tab_Asset_Index");
+                $("#Tab_Advanced_Vote .add_new").remove();
                 alert(Resources.global.voteInfo);
             }).catch(reason => {
                 alert(reason);

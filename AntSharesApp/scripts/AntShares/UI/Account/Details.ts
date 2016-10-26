@@ -10,7 +10,9 @@
         protected onload(args: any[]): void
         {
             let account = args[0] as Wallets.Account;
-            (<any>$("#seckey")).collapse('hide');
+            $("#seckey").css("height", "0");
+            $("#seckey").attr("aria-expanded", "false");
+            $("#seckey").attr("class", "collapse");
             $("#public_key").text(account.publicKey.encodePoint(true).toHexString());
             account.export().then(result =>
             {

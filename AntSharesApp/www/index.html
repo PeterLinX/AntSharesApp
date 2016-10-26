@@ -271,14 +271,9 @@
                 <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
                     <form id="form_create_multisig" autocomplete="off">
                         <h2 class="page-header lang-create-muntisig"></h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label lang-min-sign-count"></label>
-                            <div class="col-sm-6">
-                                <input id="input_m" name="account_name" type="text" data-val="true" />
-                                <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-
+                        <h5 class="lang-min-sign-count"></h5>
+                        <input id="input_m" name="account_name" type="text" data-val="true" style="max-width:200px" />
+                        <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
                         <h5 class="lang-add-public-key"></h5>
                         <div id="div_publickeys">
                             <div id="public_tpl" class="row" style="padding: 5px 0; display:none">
@@ -297,7 +292,7 @@
                         </div>
                         <i id="add_public" class="iconfont circle" type="button">&#xe60d;</i>
                         <br /><br />
-                        <button id="create_multisig_contract lang-create" type="button" class="btn btn-primary"></button>
+                        <button id="create_multisig_contract" type="button" class="btn btn-primary lang-create"></button>
                     </form>
                     <br />
                     <div>
@@ -529,15 +524,23 @@
                     <form method="post" class="form-horizontal" autocomplete="off">
                         <h2 class="page-header lang-vote"></h2>
                         <h5 class="lang-candidate"></h5>
-                        <div id="candidates" style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
-                            <div id="candidate" class="row" style="padding: 5px 20px;">
-                                <div class="col-xs-7"><input class="candidate" type="text" /></div>
-                                <div id="div_candidate_delete" class="col-xs-2" style="display:none">
-                                    <button id="candidate_delete" type="button" class="btn circle" style="background: #e51c23; color: white; font-size: 14px;">&times;</button>
+
+                        <div id="div_candidates">
+                            <div id="candidates_tpl" class="row" style="padding: 5px 0; display:none">
+                                <div class="col-xs-10">
+                                    <input id="public_input_tpl" class="candidate" type="text" />
+                                </div>
+                                <div class="col-xs-2">
+                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
+                                </div>
+                            </div>
+                            <div class="row" style="padding: 5px 0">
+                                <div class="col-xs-10">
+                                    <input id="publickeyitem" class="form-control publickeyitem" type="text" />
                                 </div>
                             </div>
                         </div>
-                        <button id="add_input" class="btn circle" type="button" style="background-color: #e91e63; color: white; font-size: 28px; padding: 0 10px; position: relative; left: 28px; top: -22px;">+</button>
+                        <i id="add_candidates" class="iconfont circle" type="button">&#xe60d;</i>
                         <br /><br />
                         <button id="vote" class="btn btn-primary lang-ok" type="button"></button>
                     </form>
@@ -749,7 +752,7 @@
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-body" style="word-break:break-all;">
+                <div class="modal-body wrap" style="word-break:break-all;">
                     ...
                 </div>
             </div>
