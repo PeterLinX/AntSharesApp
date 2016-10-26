@@ -143,7 +143,7 @@
         static newPasswordConfirmPlaceholder = "wallet password";
         static newPasswordConfirmRequired = "Password confirm is required";
         static newPasswordConfirmEqualto = "Password and confirm password do not match";
-        static importPrikeyInputPlaceholder = "Private key entered must be in WIF format";
+        static importPrikeyInputPlaceholder = "WIF Format";
         static importPrikeyInputRequired = "Private key is required";
         static importPrikeyInputLength = "Private key must be a 52-bit Base58 encoding";
         static inputMPlaceholder = "Minimum is 1";
