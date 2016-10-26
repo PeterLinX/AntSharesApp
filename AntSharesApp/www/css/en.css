@@ -90,8 +90,8 @@
 .lang-backup-current-wallet::before { content:'Backup your current wallet' }
 .lang-import-wallet-file::before { content:'Import wallet file' }
 
-.lang-height::before { content:'synchronization progress: ' }
-
+.lang-height::before { content:'sync progress: ' }
+.lang-height2::before { content:'height: ' }
 .lang-wallet::after { content:'Wallet' }
 .lang-change-password::after { content:'Change password' }
 .lang-user-center::after { content:'User center' }

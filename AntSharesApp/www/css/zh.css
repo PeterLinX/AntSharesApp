@@ -90,8 +90,8 @@
 .lang-backup-note::before { content:'备份功能目前仅适用于Android和Chrome' }
 .lang-backup-current-wallet::before { content:'备份当前钱包' }
 .lang-import-wallet-file::before { content:'导入钱包文件' }
-.lang-height::before { content:'Synchronization progress:' }
-
+.lang-height::before { content:'同步进步：' }
+.lang-height2::before { content:'高度：' }
 .lang-wallet::after { content:'钱包' }
 .lang-change-password::after { content:'修改密码' }
 .lang-user-center::after { content:'个人中心' }
