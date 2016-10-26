@@ -2,7 +2,6 @@
 {
     export class Index extends TabBase
     {
-        private CurrentHeight: number;
 
         protected oncreate(): void
         {
@@ -25,10 +24,6 @@
                 if (contracts[i].isStandard())
                     addAccountList(contracts[i]);
 
-            Global.RpcClient.call("getblockcount", []).then(result =>
-            {
-                this.CurrentHeight = result - 1;
-            });
         }
 
         private OnCreateButtonClick()

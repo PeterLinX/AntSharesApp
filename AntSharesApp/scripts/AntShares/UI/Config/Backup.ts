@@ -206,7 +206,6 @@
                     _transaction = db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readwrite");
                     let count = 0;
                     for (let key in Key) {
-                        console.log(Key[count]);
                         _transaction.store("Key").put({
                             name: Key[count]["name"],
                             value: Key[count]["value"]

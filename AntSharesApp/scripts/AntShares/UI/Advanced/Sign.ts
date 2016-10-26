@@ -29,7 +29,6 @@
                         return Global.Wallet.sign(result);
                     }).then(success => {
                         if (success) {
-                            console.log(context);
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
                             alert(Resources.global.signFinish);

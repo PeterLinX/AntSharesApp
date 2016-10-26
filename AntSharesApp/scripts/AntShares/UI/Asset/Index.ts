@@ -53,7 +53,7 @@
             Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
                 let asset = <Core.RegisterTransaction>result;
-                li.find(".asset_address").text(asset.getName());
+                li.find(".asset_name").text(asset.getName());
                 li.find(".asset_issuer").text(asset.issuer.toString());
                 ul.append(li);
             });
