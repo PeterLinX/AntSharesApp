@@ -84,6 +84,8 @@
         static inputAntcoinPlaceholder = "输入抵押的小蚁币数量";
         static relayDataPlaceholder = "要广播的数据包";
         static addInputTitle = "添加输出";
+        static accountAlreadyExits = "该账户已经存在";
+        static theAntsharesSystem = "小蚁系统";
 
     }
 
@@ -159,5 +161,7 @@
         static inputAntcoinPlaceholder = "Enter number of ANC guarantee";
         static relayDataPlaceholder = "Broadcast packets";
         static addInputTitle = "add input";
+        static accountAlreadyExits = "The Account had been imported";
+        static theAntsharesSystem = "The Antshares System";
     }
 }

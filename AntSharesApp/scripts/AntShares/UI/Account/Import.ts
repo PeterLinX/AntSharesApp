@@ -25,7 +25,7 @@
                     for (let i = 0; i < accounts.length; i++)
                     {
                         if (wifPublicKeyHash == accounts[i].publicKeyHash.toString()) {
-                            throw new Error("该账户已经存在！");
+                            throw new Error(Resources.global.accountAlreadyExits);
                         }
                     }
                     return Global.Wallet.import(wifPrivateKey);

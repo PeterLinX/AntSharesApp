@@ -53,8 +53,14 @@
             Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
                 let asset = <Core.RegisterTransaction>result;
+                if (asset.assetType == AntShares.Core.AssetType.AntShare || asset.assetType == AntShares.Core.AssetType.AntCoin) {
+                    li.find(".asset_issuer").text(Resources.global.theAntsharesSystem);
+                } else
+                {
+                    li.find(".asset_issuer").text(asset.issuer.toString());
+                    li.find(".asset_issuer").removeClass("text-success");
+                }
                 li.find(".asset_name").text(asset.getName());
-                li.find(".asset_issuer").text(asset.issuer.toString());
                 ul.append(li);
             });
         }
