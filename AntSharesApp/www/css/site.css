@@ -10,6 +10,8 @@ header { top: 0; font-weight: bold; }
 header span { vertical-align:-6px }
 header img { height:70% }
 footer { bottom: 0; }
+.footer-process { float:left; margin-left:30px }
+.footer-height { float:right; margin-right:30px; }
 fieldset { overflow-x: hidden; }
 a, a:hover, a:focus, a:active { outline: none !important; text-decoration: none; white-space: nowrap; }
 input[type=checkbox], input[type=checkbox]:focus { width: 22px; height: 22px; margin: 6px 12px 0 6px; outline: none; float: left; }
