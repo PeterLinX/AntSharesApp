@@ -84,6 +84,8 @@
         static inputAntcoinPlaceholder = "输入抵押的小蚁币数量";
         static relayDataPlaceholder = "要广播的数据包";
         static addInputTitle = "添加输出";
+        static accountAlreadyExits = "该账户已经存在";
+        static theAntsharesSystem = "小蚁系统";
 
     }
 
@@ -141,7 +143,7 @@
         static newPasswordConfirmPlaceholder = "wallet password";
         static newPasswordConfirmRequired = "Password confirm is required";
         static newPasswordConfirmEqualto = "Password and confirm password do not match";
-        static importPrikeyInputPlaceholder = "Private key entered must be in WIF format";
+        static importPrikeyInputPlaceholder = "WIF Format";
         static importPrikeyInputRequired = "Private key is required";
         static importPrikeyInputLength = "Private key must be a 52-bit Base58 encoding";
         static inputMPlaceholder = "Minimum is 1";
@@ -159,5 +161,7 @@
         static inputAntcoinPlaceholder = "Enter number of ANC guarantee";
         static relayDataPlaceholder = "Broadcast packets";
         static addInputTitle = "add input";
+        static accountAlreadyExits = "The Account had been imported";
+        static theAntsharesSystem = "The Antshares System";
     }
 }
