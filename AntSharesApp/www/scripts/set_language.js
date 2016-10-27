@@ -4,7 +4,6 @@ if (currentLanguage.split('-')[0] == 'zh') {
     //初始化fileinput控件 http://www.cnblogs.com/wuhuacong/p/4774396.html
     $("#files").fileinput({
         language: 'zh',
-        allowedFileExtensions: ['txt'],
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
     });
     $("#en_help").hide();
@@ -15,7 +14,6 @@ if (currentLanguage.split('-')[0] == 'zh') {
 else {
     document.getElementById('lang').href = 'css/en.css';
     $("#files").fileinput({
-        allowedFileExtensions: ['txt'],
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
     });
     $("#en_help").show();

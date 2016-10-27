@@ -630,7 +630,7 @@
         {
             this.coins.clear();
             this.coins.commit();
-            this.current_height = 0;
+            this.current_height = 1;
             return Promise.resolve(null);
         }
 
