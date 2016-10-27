@@ -23,17 +23,30 @@
             this.db.open();
         }
 
-        private OnBackupClick = () => {
-            this.loadFile().then((array) => {
-                let strDb: string = JSON.stringify(array);
-                let db = [strDb];
-                let blob = new Blob(db, { "type": "application/octet-binary" });
-                let url = URL.createObjectURL(blob);
-                $('#Tab_Config_Backup #blob').attr('href', url);
-                let ev = document.createEvent('MouseEvents');
-                ev.initEvent('click', false, true);
-                document.getElementById('blob').dispatchEvent(ev);
-            });
+        private OnBackupClick = () =>
+        {
+            try
+            {
+                this.loadFile().then((array) =>
+                {
+                    let strDb: string = JSON.stringify(array);
+                    let db = [strDb];
+                    let blob = new Blob(db, { "type": "application/octet-binary" });
+                    let url = URL.createObjectURL(blob);
+                    $('#Tab_Config_Backup #blob').attr('href', url);
+                    let ev = document.createEvent('MouseEvents');
+                    ev.initEvent('click', false, true);
+                    document.getElementById('blob').dispatchEvent(ev);
+                }).catch(e =>
+                {
+                    console.log(e)
+                });
+            }
+            catch (e)
+            {
+                console.log(e);
+                //alert(e);
+            }
             
         }
 

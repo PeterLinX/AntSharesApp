@@ -2,16 +2,13 @@
 
 function formIsValid(formId: string): boolean
 {
-    console.clear();
     let demo = $('#' + formId) as any;
     if (!demo.valid())
     {
-        console.log("表单验证未通过");
         return false;
     }
     else
     {
-        console.log("表单验证通过");
         return true;
     }
 }
