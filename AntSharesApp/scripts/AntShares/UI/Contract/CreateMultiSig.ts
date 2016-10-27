@@ -24,48 +24,57 @@
 
         private OnCreateButtonClick = () =>
         {
-            let _m = $("#input_m").val();
-            let m: number = Number(_m.split(",").join(""));
-            let promises = new Array<PromiseLike<Uint160>>();
-            try {
-                let publicItems = $(".publickeyitem");
-                for (let i = 0; i < publicItems.length; i++) {
-                    if ($(publicItems[i]).val() != "") {
-                        this.add($(publicItems[i]).val());
+            if (formIsValid("form_create_multisig"))
+            {
+                let _m = $("#input_m").val();
+                let m: number = Number(_m.split(",").join(""));
+                let promises = new Array<PromiseLike<Uint160>>();
+                try
+                {
+                    let publicItems = $(".publickeyitem");
+                    for (let i = 0; i < publicItems.length; i++)
+                    {
+                        if ($(publicItems[i]).val() != "")
+                        {
+                            this.add($(publicItems[i]).val());
+                        }
                     }
+                    for (let i = 0; i < this.publicKeys.length; i++)
+                    {
+                        promises.push(this.publicKeys[i].encodePoint(true).toScriptHash());
+                    }
+                } catch (e)
+                {
+                    alert(e);
                 }
-                for (let i = 0; i < this.publicKeys.length; i++) {
-                    promises.push(this.publicKeys[i].encodePoint(true).toScriptHash());
-                }
-            } catch(e){
-                alert(e);
-            }
 
-            Promise.all(promises).then(results =>
-            {
-                for (let i = 0; i < results.length; i++)
-                    if (Global.Wallet.containsAccount(results[i]))
-                        return results[i];
-                throw new Error();
-            }).then(result =>
-            {
-                return Wallets.Contract.createMultiSigContract(result, m, this.publicKeys);
-            }).then(result =>
-            {
-                return Global.Wallet.addContract(result);
-            }).then(() =>
-            {
-                $("#Tab_Contract_CreateMultiSig .add_new").remove();
-                $("#Tab_Contract_CreateMultiSig #publickeyitem").val("");
-                $("#input_m").val("");
-                this.publicKeys.length = 0;
+                Promise.all(promises).then(results =>
+                {
+                    for (let i = 0; i < results.length; i++)
+                        if (Global.Wallet.containsAccount(results[i]))
+                            return results[i];
+                    throw new Error();
+                }).then(result =>
+                {
+                    return Wallets.Contract.createMultiSigContract(result, m, this.publicKeys);
+                }).then(result =>
+                {
+                    return Global.Wallet.addContract(result);
+                }).then(() =>
+                {
+                    $("#Tab_Contract_CreateMultiSig .add_new").remove();
+                    $("#Tab_Contract_CreateMultiSig #publickeyitem").val("");
+                    $("#input_m").val("");
+                    this.publicKeys.length = 0;
 
-                alert(Resources.global.createMultiContractSuccess);
-                //创建成功后跳转到合约管理页面
-                TabBase.showTab("#Tab_Contract_Index");
-            }, reason => alert(reason)).catch(reason => {
+                    alert(Resources.global.createMultiContractSuccess);
+                    //创建成功后跳转到合约管理页面
+                    TabBase.showTab("#Tab_Contract_Index");
+                }, reason => alert(reason)).catch(reason =>
+                {
                     alert(reason);
-            });
+                });
+            }
         }
 
         private removeInput(parent, divId) {

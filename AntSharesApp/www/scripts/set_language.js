@@ -59,4 +59,13 @@ $(".issue_output_addr").attr("placeholder", global.issueOutputAddrPlaceholder);
 $(".issue_output_value").attr("placeholder", global.issueOutputValuePlaceholder);
 $("#input_antcoin").attr("placeholder", global.inputAntcoinPlaceholder);
 $("#relay_data").attr("placeholder", global.relayDataPlaceholder);
-$("#add_input").attr("title", global.addInputTitle);
+$("#transfer_txout").attr("data-val-required", global.transferTxoutRequired);
+$("#transfer_value").attr("data-val-required", global.transferValueRequired);
+$("#transfer_asset").attr("data-val-required", global.transferAssetRequired);
+$("#input_asset_name").attr("data-val-required", global.assetNameRequired);
+$("#input_amount").attr("data-val-required", global.assetAmountRequired);
+$("#select_issue_assets").attr("data-val-required", global.issueAssetsRequired);
+$("#relay_data").attr("data-val-required", global.relayDataRequired);
+$("#input_data").attr("data-val-required", global.inputDataRequired);
+
+

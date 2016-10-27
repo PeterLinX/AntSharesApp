@@ -18,8 +18,9 @@
             $("#Tab_Advanced_Issue #select_issue_assets").empty();
             $("#Tab_Advanced_Issue #select_issue_assets").change(this.OnIssueAssetChanged);
 
-            Global.Wallet.getTransactions(Core.TransactionType.RegisterTransaction).then(issueAssets => {
-                $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=0>请选择</option>");
+            Global.Wallet.getTransactions(Core.TransactionType.RegisterTransaction).then(issueAssets =>
+            {
+                $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
                 for (let i = 0; i < issueAssets.length; i++) {
                     let tx = <Core.RegisterTransaction>issueAssets[i];
                     $("#Tab_Advanced_Issue #select_issue_assets").append("<option value=" + (i + 1) + ">" + tx.getName() + "</option>");
@@ -65,36 +66,47 @@
             parent.append(inputElement);
         }
 
-        private OnIssueButtonClick = () => {
-            let itx: Core.IssueTransaction = new Core.IssueTransaction();
+        private OnIssueButtonClick = () =>
+        {
+            if (formIsValid("form_issue"))
+            {
+                let itx: Core.IssueTransaction = new Core.IssueTransaction();
 
-            //TODO:需要对地址校验
-            let outputs = new Array<Core.TransactionOutput>();
-            let promises = new Array<PromiseLike<{ address: Uint160, value: Fixed8, assetid: Uint256 }>>();
-            let issueOutputs = $("#Tab_Advanced_Issue .issue_output");
-            for (let i = 0; i < issueOutputs.length; i = i + 2) {
-                if ($(issueOutputs[i]).val() == "" || $(issueOutputs[i + 1]).val() == "") {
-                    continue;
-                } else {
-                    promises.push(Wallets.Wallet.toScriptHash($(issueOutputs[i]).val()).then(result => {
-                        return { address: result, value: Fixed8.fromNumber($(issueOutputs[i + 1]).val()), assetid: this.rtx.hash };
-                    }));
+                //TODO:需要对地址校验
+                let outputs = new Array<Core.TransactionOutput>();
+                let promises = new Array<PromiseLike<{ address: Uint160, value: Fixed8, assetid: Uint256 }>>();
+                let issueOutputs = $("#Tab_Advanced_Issue .issue_output");
+                for (let i = 0; i < issueOutputs.length; i = i + 2)
+                {
+                    if ($(issueOutputs[i]).val() == "" || $(issueOutputs[i + 1]).val() == "")
+                    {
+                        continue;
+                    } else
+                    {
+                        promises.push(Wallets.Wallet.toScriptHash($(issueOutputs[i]).val()).then(result =>
+                        {
+                            return { address: result, value: Fixed8.fromNumber($(issueOutputs[i + 1]).val()), assetid: this.rtx.hash };
+                        }));
+                    }
                 }
+                Promise.all(promises).then(results =>
+                {
+                    results.forEach(result =>
+                    {
+                        let _output = new Core.TransactionOutput();
+                        _output.assetId = result.assetid;
+                        _output.scriptHash = result.address;
+                        _output.value = result.value;
+                        outputs.push(_output);
+                    })
+                    itx.outputs = outputs;
+                    let _tx = Global.Wallet.makeTransaction(itx, Fixed8.Zero);
+                    return this.SignAndShowInformation(_tx);
+                }).catch(reason =>
+                {
+                    alert(reason);
+                });
             }
-            Promise.all(promises).then(results => {
-                results.forEach(result => {
-                    let _output = new Core.TransactionOutput();
-                    _output.assetId = result.assetid;
-                    _output.scriptHash = result.address;
-                    _output.value = result.value;
-                    outputs.push(_output);
-                })
-                itx.outputs = outputs;
-                let _tx = Global.Wallet.makeTransaction(itx, Fixed8.Zero);
-                return this.SignAndShowInformation(_tx);
-            }).catch(reason => {
-                alert(reason);
-            });
         }
 
         private SignAndShowInformation = (tx: Core.Transaction) => {

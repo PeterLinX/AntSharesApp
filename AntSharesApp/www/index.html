@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label lang-input-wallet-name"></label>
                                 <div class="col-sm-6">
-                                    <input id="open_password" name="open_password" type="password" />
+                                    <input id="open_password" name="open_password"  data-val="true" type="password" />
                                     <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
                                     <span id="open_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
                                 </div>
@@ -199,24 +199,26 @@
                     </div>-->
                 </div>
                 <div id="Tab_Account_Import" class="form-horizontal tab-pane">
-                    <fieldset>
-                        <h2 class="page-header lang-import-account"></h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label lang-input-private-key"></label>
-                            <div class="col-sm-6">
-                                <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
-                                <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
+                    <form id="form_account_import">
+                        <fieldset>
+                            <h2 class="page-header lang-import-account"></h2>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label lang-input-private-key"></label>
+                                <div class="col-sm-6">
+                                    <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
+                                    <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                    <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
+                                </div>
                             </div>
+                        </fieldset>
+                        <div>
+                            <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
                         </div>
-                    </fieldset>
-                    <div>
-                        <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
-                    </div>
+                    </form>
                 </div>
                 <div id="Tab_Contract_Index" class="tab-pane">
                     <form id="form_contract_list">
@@ -319,22 +321,31 @@
                     </ul>
                 </div>
                 <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
-                    <fieldset>
-                        <h2 class="page-header lang-asset-transfer"></h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="lang-select-asset"></h5>
-                                <select class="form-control"></select>
+                    <form id="form_asset_transfer">
+                        <fieldset>
+                            <h2 class="page-header lang-asset-transfer"></h2>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <h5 class="lang-select-asset"></h5>
+                                    <select id="transfer_asset" name="transfer_asset" class="form-control" data-val="true"></select>
+                                    <span class="text-danger" data-valmsg-for="transfer_asset" data-valmsg-replace="true"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="lang-max-to-transfer"><span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
-                        <h5 class="lang-receiver"></h5>
-                        <input id="transfer_txout" class="pay_address" type="text" />
-                        <br />
-                        <input id="transfer_value" class="pay_value" type="text" />
-                        <br />
-                        <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
-                    </fieldset>
+                            <div class="lang-max-to-transfer"><span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
+                            <h5 class="lang-receiver"></h5>
+                            <div class="form-group">
+                                <div class="col-sm-9" style="margin-bottom:10px">
+                                    <input id="transfer_txout" name="transfer_txout" data-val="true" class="pay_address" type="text" />
+                                    <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-sm-3" style="margin-bottom:10px">
+                                    <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" type="text" />
+                                    <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
+                        </fieldset>
+                    </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -396,11 +407,12 @@
                 </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
-                        <h1 class="page-header lang-tx-sign"></h1>
+                        <h2 class="page-header lang-tx-sign"></h2>
                         <div class="row">
                             <div class="col-sm-10">
                                 <label class="lang-input"></label>
-                                <textarea id="input_data" class="form-control" rows="5" style="padding: 5px 10px; margin: 10px 0;"></textarea>
+                                <textarea id="input_data" name="input_data" class="form-control" data-val="true" rows="5" style="padding: 5px 10px; margin: 10px 0;"></textarea>
+                                <span class="text-danger" data-valmsg-for="input_data" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <br />
@@ -426,15 +438,21 @@
                         <h2 class="page-header lang-regist-tx"></h2>
                         <h5 class="lang-select-asset-type"></h5>
                         <select class="form-control" id="select_register_asset"></select>
-                        <h5 class="lang-asset-name"></h5>
-                        <input id="input_asset_name" class="form-control" />
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <h5 class="lang-asset-name"></h5>
+                                <input id="input_asset_name" name="input_asset_name" class="form-control" data-val="true" />
+                                <span class="text-danger" data-valmsg-for="input_asset_name" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
                         <h5 class="lang-amount-limited"></h5>
                         <div class="row">
                             <div class="col-sm-4">
                                 <label class="lang-amount-limited2" style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit" /></label>
                             </div>
                             <div class="col-sm-8">
-                                <input id="input_amount" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" />
+                                <input id="input_amount" name="input_amount" data-val="true" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" />
+                                <span class="text-danger" data-valmsg-for="input_amount" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <h5 class="lang-select-issuer"></h5>
@@ -476,10 +494,15 @@
                     </table>
                 </div>
                 <div id="Tab_Advanced_Issue" class="form-horizontal tab-pane">
-                    <form method="post" class="form-horizontal" autocomplete="off">
+                    <form id="form_issue" class="form-horizontal" autocomplete="off">
                         <h2 class="page-header lang-issue-asset"></h2>
-                        <h5 id="asset_title" class="slect2 lang-select-asset"></h5>
-                        <select class="form-control" id="select_issue_assets"></select>
+                        <div class="form-group">
+                            <div class="col-md-7">
+                                <h5 class="lang-select-asset"></h5>
+                                <select id="select_issue_assets" name="select_issue_assets" class="form-control" data-val="true"></select>
+                                <span class="text-danger" data-valmsg-for="select_issue_assets" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
                         <h5 class="issue_info lang-asset-type"></h5>
                         <div class="issue_info" id="issue_infos" style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
                         </div>
@@ -521,7 +544,7 @@
                     </form>
                 </div>
                 <div id="Tab_Advanced_Vote" class="form-horizontal tab-pane">
-                    <form method="post" class="form-horizontal" autocomplete="off">
+                    <form id="form_vote" class="form-horizontal" autocomplete="off">
                         <h2 class="page-header lang-vote"></h2>
                         <h5 class="lang-candidate"></h5>
 
@@ -550,7 +573,8 @@
                         <h2 class="page-header lang-relay"></h2>
                         <div class="row">
                             <div class="col-sm-10">
-                                <textarea id="relay_data" rows="10" class="form-control"></textarea>
+                                <textarea id="relay_data" name="relay_data" data-val="true" rows="10" class="form-control"></textarea>
+                                <span class="text-danger" data-valmsg-for="relay_data" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <br />
@@ -675,7 +699,7 @@
                         <li><a class="tab-trigger lang-sign" href="#Tab_Advanced_Sign"></a></li>
                         <!--<li><a class="tab-trigger lang-elect" href="#Tab_Advanced_Elect"></a></li>
                         <li><a class="tab-trigger lang-vote" href="#Tab_Advanced_Vote"></a></li>-->
-                        <li><a class="tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"></a></li>
+                        <li><a class="tab-trigger lang-relay" href="#Tab_Advanced_DeveloperTool"></a></li>
                     </ul>
                 </li>
                 <li>

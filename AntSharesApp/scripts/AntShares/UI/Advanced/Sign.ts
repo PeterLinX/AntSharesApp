@@ -18,79 +18,92 @@
 
         private onSignButtonClick = () =>
         {
-            let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
-            try {
-                if (inputData == ""){
-                    alert(Resources.global.pleaseInputData);
-                } else {
+            if (formIsValid("form_sign_data"))
+            {
+                let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
+                try
+                {
                     let context: Core.SignatureContext;
-                    Core.SignatureContext.parse(inputData).then(result => {
+                    Core.SignatureContext.parse(inputData).then(result =>
+                    {
                         context = result;
                         return Global.Wallet.sign(result);
-                    }).then(success => {
-                        if (success) {
+                    }).then(success =>
+                    {
+                        if (success)
+                        {
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
                             alert(Resources.global.signFinish);
                         }
-                        else {
+                        else
+                        {
                             alert(Resources.global.signError1);
                         }
-                    }).catch(reason => {
+                    }).catch(reason =>
+                    {
                         alert(reason);
                     });
-                }
-            } catch (e) {
-                if (e instanceof SyntaxError) {
-                    alert(Resources.global.dataFormatError);
-                }
-                else {
-                    alert(e);
+                } catch (e)
+                {
+                    if (e instanceof SyntaxError)
+                    {
+                        alert(Resources.global.dataFormatError);
+                    }
+                    else
+                    {
+                        alert(e);
+                    }
                 }
             }
-            
         }
 
         private onSignRelayButtonClick = () =>
         {
-            let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
-            try {
-                if (inputData == "")
+            if (formIsValid("form_sign_data"))
+            {
+                let inputData: string = $("#Tab_Advanced_Sign #input_data").val();
+                try
                 {
-                    alert(Resources.global.pleaseInputData);
-                } else {
                     let inventory: Network.Inventory;
                     let context: Core.SignatureContext;
-                    Core.SignatureContext.parse(inputData).then(result => {
+                    Core.SignatureContext.parse(inputData).then(result =>
+                    {
                         context = result;
                         return Global.Wallet.sign(result);
-                    }).then(success => {
-                        if (success) {
+                    }).then(success =>
+                    {
+                        if (success)
+                        {
                             $("#Tab_Advanced_Sign #output_section").removeAttr("style");
                             $("#Tab_Advanced_Sign #output_data").text(context.toString());
                             context.signable.setScripts(context.getScripts());
                             inventory = <Network.Inventory>context.signable;
                             return Global.Node.relay(inventory);
                         }
-                        else {
+                        else
+                        {
                             alert(Resources.global.signError1);
                         }
-                        }).then(result =>
-                        {
-                            alert(Resources.global.relaySuccess);
-                    }).catch(reason => {
+                    }).then(result =>
+                    {
+                        alert(Resources.global.relaySuccess);
+                    }).catch(reason =>
+                    {
                         alert(reason);
                     });
-                }
-            } catch (e) {
-                if (e instanceof SyntaxError) {
-                    alert(Resources.global.dataFormatError);
-                }
-                else {
-                    alert(e);
+                } catch (e)
+                {
+                    if (e instanceof SyntaxError)
+                    {
+                        alert(Resources.global.dataFormatError);
+                    }
+                    else
+                    {
+                        alert(e);
+                    }
                 }
             }
-
         }
 
     }

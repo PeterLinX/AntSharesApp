@@ -86,7 +86,14 @@
         static addInputTitle = "添加输出";
         static accountAlreadyExits = "该账户已经存在";
         static theAntsharesSystem = "小蚁系统";
-
+        static transferTxoutRequired = "对方小蚁地址不能为空";
+        static transferValueRequired = "交易金额不能为空";
+        static transferAssetRequired = "交易资产不能为空";
+        static assetNameRequired = "资产名称不能为空";
+        static assetAmountRequired = "资产总量不能为空";
+        static issueAssetsRequired = "分发资产不能为空";
+        static relayDataRequired = "数据包不能为空";
+        static inputDataRequired = "待签名的交易不能为空"
     }
 
     class global_en
@@ -163,5 +170,13 @@
         static addInputTitle = "add input";
         static accountAlreadyExits = "The Account had been imported";
         static theAntsharesSystem = "The Antshares System";
+        static transferTxoutRequired = "Other antshares address is required";
+        static transferValueRequired = "Transfer value is required";
+        static transferAssetRequired = "Transfer asset is required";
+        static assetNameRequired = "Asset name is required";
+        static assetAmountRequired = "Asset amount is required";
+        static issueAssetsRequired = "Issue asset is required";
+        static relayDataRequired = "Broadcast packets is required";
+        static inputDataRequired = "Ready to sign Tx is required"
     }
 }

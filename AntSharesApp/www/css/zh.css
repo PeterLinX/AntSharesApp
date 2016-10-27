@@ -106,3 +106,4 @@
 .lang-help::after { content:'帮助' }
 .lang-about::after { content:'关于' }
 .lang-backup-restore::after { content:'备份/恢复' }
+.lang-please-choose::after { content:'请选择' }

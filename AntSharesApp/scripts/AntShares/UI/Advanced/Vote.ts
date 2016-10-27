@@ -27,33 +27,44 @@
             parent.append(inputElement); 
         }
 
-        private OnVoteButtonClick = () => {
-            let _candidates = $("#Tab_Advanced_Vote .candidate");
-            let candidates: Uint256[] = new Array<Uint256>();
-            try{
-                for (let i = 0; i < _candidates.length; i++) {
-                    if ($(_candidates[i]).val() == "") {
-                        continue;
-                    } else {
-                        candidates.push($(_candidates[i]).val());
+        private OnVoteButtonClick = () =>
+        {
+            if (formIsValid("form_vote"))
+            {
+                let _candidates = $("#Tab_Advanced_Vote .candidate");
+                let candidates: Uint256[] = new Array<Uint256>();
+                try
+                {
+                    for (let i = 0; i < _candidates.length; i++)
+                    {
+                        if ($(_candidates[i]).val() == "")
+                        {
+                            continue;
+                        } else
+                        {
+                            candidates.push($(_candidates[i]).val());
+                        }
                     }
-                }
 
-                let tx: Core.VotingTransaction = new Core.VotingTransaction();
-                tx.enrollments = candidates;
-                tx.outputs = [new Core.TransactionOutput()];
-                tx.outputs[0].assetId = Core.Blockchain.AntShare.hash;
-                tx.outputs[0].value = Global.Wallet.getAvailable(Core.Blockchain.AntShare.hash);
-                tx.outputs[0].scriptHash = Global.Wallet.getChangeAddress();
+                    let tx: Core.VotingTransaction = new Core.VotingTransaction();
+                    tx.enrollments = candidates;
+                    tx.outputs = [new Core.TransactionOutput()];
+                    tx.outputs[0].assetId = Core.Blockchain.AntShare.hash;
+                    tx.outputs[0].value = Global.Wallet.getAvailable(Core.Blockchain.AntShare.hash);
+                    tx.outputs[0].scriptHash = Global.Wallet.getChangeAddress();
 
-                let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
-                return this.SignAndShowInformation(_tx);
-            } catch (e) {
-                if (e instanceof SyntaxError) {
-                    alert(Resources.global.dataFormatError);
-                }
-                else {
-                    alert(e);
+                    let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
+                    return this.SignAndShowInformation(_tx);
+                } catch (e)
+                {
+                    if (e instanceof SyntaxError)
+                    {
+                        alert(Resources.global.dataFormatError);
+                    }
+                    else
+                    {
+                        alert(e);
+                    }
                 }
             }
         }

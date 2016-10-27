@@ -56,40 +56,46 @@
             }
         }
 
-        private OnRegisterButtonClick = () => {
-            let _assetTotalAmount = $("#Tab_Advanced_Register #input_amount").val();
-            let assetTotalAmount: number = Number(_assetTotalAmount.split(",").join(""));
-            let _assetName = $("#Tab_Advanced_Register #input_asset_name").val();
-            let assetName = '[{ "lang": "zh-CN", "name": " ' + _assetName + ' "}]';
-            let assetType = $("#Tab_Advanced_Register #select_register_asset").find("option:selected").text();
-            let issuer = $("#Tab_Advanced_Register #select_issuer").find("option:selected").text();
-            let admin = $("#Tab_Advanced_Register #select_admin").find("option:selected").text();
-
-            try
+        private OnRegisterButtonClick = () =>
+        {
+            if (formIsValid("form_register_asset"))
             {
-                let tx: Core.RegisterTransaction = new Core.RegisterTransaction();
-                
-                tx.assetType = Core.AssetType[assetType];
-                if (tx.assetType == null)
+                let _assetTotalAmount = $("#Tab_Advanced_Register #input_amount").val();
+                let assetTotalAmount: number = Number(_assetTotalAmount.split(",").join(""));
+                let _assetName = $("#Tab_Advanced_Register #input_asset_name").val();
+                let assetName = '[{ "lang": "zh-CN", "name": " ' + _assetName + ' "}]';
+                let assetType = $("#Tab_Advanced_Register #select_register_asset").find("option:selected").text();
+                let issuer = $("#Tab_Advanced_Register #select_issuer").find("option:selected").text();
+                let admin = $("#Tab_Advanced_Register #select_admin").find("option:selected").text();
+
+                try
                 {
-                    throw Error(Resources.global.selectAssetType);
+                    let tx: Core.RegisterTransaction = new Core.RegisterTransaction();
+
+                    tx.assetType = Core.AssetType[assetType];
+                    if (tx.assetType == null)
+                    {
+                        throw Error(Resources.global.selectAssetType);
+                    }
+                    if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
+                    tx.name = assetName;
+                    tx.amount = $("#Tab_Advanced_Register #check_limit").prop('checked') == true ? Fixed8.fromNumber(assetTotalAmount) : Fixed8.MaxValue;
+                    tx.outputs = new Array<Core.TransactionOutput>(0);
+                    Wallets.Wallet.toScriptHash(admin).then(result =>
+                    {
+                        tx.issuer = Cryptography.ECPoint.decodePoint(issuer.hexToBytes(), Cryptography.ECCurve.secp256r1);
+                        tx.admin = result;
+                        let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
+                        return this.SignAndShowInformation(_tx);
+                    }).catch(reason =>
+                    {
+                        alert(reason);
+                    });
+                } catch (e)
+                {
+                    alert(e);
                 }
-                if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
-                tx.name = assetName;
-                tx.amount = $("#Tab_Advanced_Register #check_limit").prop('checked') == true ? Fixed8.fromNumber(assetTotalAmount) : Fixed8.MaxValue;
-                tx.outputs = new Array<Core.TransactionOutput>(0);
-                Wallets.Wallet.toScriptHash(admin).then(result => {
-                    tx.issuer = Cryptography.ECPoint.decodePoint(issuer.hexToBytes(), Cryptography.ECCurve.secp256r1);
-                    tx.admin = result;
-                    let _tx = Global.Wallet.makeTransaction(tx, Fixed8.Zero);
-                    return this.SignAndShowInformation(_tx);
-                }).catch(reason => {
-                    alert(reason);
-                });
-            } catch (e) {
-                alert(e);
             }
-            
         }
 
         private SignAndShowInformation = (tx: Core.Transaction) => {

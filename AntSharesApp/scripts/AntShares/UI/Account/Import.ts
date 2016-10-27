@@ -14,7 +14,7 @@
 
         private OnImportButtonClick()
         {
-            if (formIsValid("form_create_wallet")) {
+            if (formIsValid("form_account_import")) {
                 let wifPrivateKey: string = $("#import_prikey_input").val();
                 let accounts: AntShares.Wallets.Account[];
                 AntShares.Wallets.Wallet.getPrivateKeyFromWIF(wifPrivateKey).then(result => {

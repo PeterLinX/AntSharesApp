@@ -8,21 +8,24 @@
             {
                 $("#Tab_Asset_Transfer .asset_amount").text($("#Tab_Asset_Transfer select>:selected").data("amount"));
             });
-            $("#Tab_Asset_Transfer .btn-primary").click(() =>
+            $("#Tab_Asset_Transfer .btn-primary").click(this.OnSendButtonClick);
+        }
+
+        private OnSendButtonClick = () =>
+        {
+            if (formIsValid("form_asset_transfer"))
             {
                 let address = $("#Tab_Asset_Transfer .pay_address").val();
                 let value = $("#Tab_Asset_Transfer .pay_value").val();
-                if (address == "" || value=="")
-                {
-                    alert("请输入完整信息");
-                    return;
-                }
+ 
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
-                
-                Promise.resolve(1).then(() => {
+
+                Promise.resolve(1).then(() =>
+                {
                     return Wallets.Wallet.toScriptHash(address);
-                }).then((result) => {
+                }).then((result) =>
+                {
                     tx = new Core.ContractTransaction();
                     tx.outputs = [new Core.TransactionOutput()];
                     tx.outputs[0].assetId = Uint256.parse($("#Tab_Asset_Transfer select>:selected").val());
@@ -31,27 +34,33 @@
                     if (Global.Wallet.makeTransaction(tx, Fixed8.Zero) == null)
                         throw new Error(Resources.global.insufficientFunds);
                     return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]);
-                    }, onrejected => {
+                }, onrejected =>
+                    {
                         throw new Error("地址信息有误");
-                    }).then(result => {
+                    }).then(result =>
+                    {
                         context = result;
                         return Global.Wallet.sign(context);
-                    }).then(result => {
+                    }).then(result =>
+                    {
                         if (!result) throw new Error(Resources.global.canNotSign);
                         if (!context.isCompleted())
                             throw new Error(Resources.global.thisVersion1);
                         tx.scripts = context.getScripts();
                         return Global.Wallet.saveTransaction(tx);
-                    }).then(result => {
+                    }).then(result =>
+                    {
                         if (!result) throw new Error(Resources.global.txError1);
                         return Global.Node.relay(tx);
-                    }).then(result => {
+                    }).then(result =>
+                    {
                         TabBase.showTab("#Tab_Asset_Index");
                         alert("交易已经发送，等待区块确认，txid:" + tx.hash.toString());
-                    }).catch(reason => {
+                    }).catch(reason =>
+                    {
                         alert(reason);
                     });
-            });
+            }
         }
 
         protected onload(): void
@@ -72,6 +81,7 @@
             {
                 let select = $("#Tab_Asset_Transfer select");
                 select.html("");
+                select.append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
                 for (let i = 0; i < results.length; i++)
                 {
                     let asset = <Core.RegisterTransaction>results[i];
