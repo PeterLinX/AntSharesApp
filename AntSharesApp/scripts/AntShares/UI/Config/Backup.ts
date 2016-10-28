@@ -270,7 +270,7 @@
                     }
                     return _transaction.commit();
                 }).then(() => {
-                    TabBase.showTab("#Tab_Account_Index");
+                    TabBase.showTab("#Tab_Wallet_Open");
                 }, reason => alert(reason));
             };
         }

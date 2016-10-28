@@ -28,12 +28,17 @@
             });
         }
 
+        private inputAmountTemp;
         private OnCheckLimitChanged = () => {
-            if ($("#Tab_Advanced_Register #check_limit").prop('checked') == true) {
-                $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
-            } else {
-                $("#Tab_Advanced_Register #input_amount").val("∞");
-                $("#Tab_Advanced_Register #input_amount").prop('disabled', true);
+            if ($("#check_limit").prop('checked') == true)
+            {
+                $("#input_amount").val(this.inputAmountTemp);
+                $("#input_amount").prop('disabled', false);
+            } else
+            {
+                this.inputAmountTemp = $("#input_amount").val();
+                $("#input_amount").val("∞");
+                $("#input_amount").prop('disabled', true);
             }
         }
 
