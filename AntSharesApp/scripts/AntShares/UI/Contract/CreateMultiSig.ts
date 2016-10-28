@@ -63,8 +63,7 @@
                 }).then(() =>
                 {
                     $("#Tab_Contract_CreateMultiSig .add_new").remove();
-                    $("#Tab_Contract_CreateMultiSig #publickeyitem").val("");
-                    $("#input_m").val("");
+                    $("#create_multisig_reset").trigger("click");
                     this.publicKeys.length = 0;
 
                     alert(Resources.global.createMultiContractSuccess);

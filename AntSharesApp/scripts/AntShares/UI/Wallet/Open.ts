@@ -13,7 +13,7 @@
             {
                 return result.get();
             }).then(Open.listWallet);
-            $("#open_password").focus();
+            $("#open_error").hide();
         }
 
         private OnOpenButtonClick = () =>
@@ -24,18 +24,13 @@
                 Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
                     Global.Wallet = result;
-                    this.clear();
+                    $("#open_wallet_reset").trigger("click");
                     alert(UI.Resources.global.openWalletAlert);
                     $("#open_error").hide();
                     //打开成功后跳转账户管理页面
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#open_error").show());
             }
-        }
-
-        private clear()
-        {
-            $("#open_password").val("");
         }
 
         private static listWallet(walletNameList: Array<string>): void

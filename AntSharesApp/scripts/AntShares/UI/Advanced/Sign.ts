@@ -10,10 +10,8 @@
 
         protected onload(args: any[]): void
         {
-            $("#Tab_Advanced_Sign #input_data").val("");
-            $("#Tab_Advanced_Sign #input_data").focus();
-            $("#Tab_Advanced_Sign #output_section")[0].style.display = 'none';
-
+            $("#sign_data_reset").trigger("click");
+            $("#output_section").hide();
         }
 
         private onSignButtonClick = () =>

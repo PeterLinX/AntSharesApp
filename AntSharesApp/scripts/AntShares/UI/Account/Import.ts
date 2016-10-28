@@ -9,7 +9,7 @@
 
         protected onload(): void
         {
-            $("#import_prikey_input").val("");
+            $("#account_import_reset").trigger("click");
         }
 
         private OnImportButtonClick()

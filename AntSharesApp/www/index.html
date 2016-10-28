@@ -58,89 +58,81 @@
                                 <button id="create_wallet" type="button" class="btn btn-primary lang-create-wallet"></button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
-                        <br /><br /><br /><br />
-                        <div class="form-group">
-                            <label class="col-sm-4"></label>
-                            <div class="col-sm-6">
-                                <!--<button id="delete_wallet" type="button" class="btn btn-sm">delete current wallet</button>-->
-                            </div>
-                        </div>
+                        <button type="reset" id="create_wallet_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
                     <form id="form_open_wallet" autocomplete="off">
-                        <fieldset>
-                            <h2 class="page-header lang-open-wallet"></h2>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-select-wallet-file"></label>
-                                <div class="col-sm-6">
-                                    <input id="input_wallet_name" type="text" />
-                                    <span class="text-danger"></span>
-                                    <ul class="list_wallet_ul" id="list_wallet_name">
-                                        <li style="display:none">
-                                            <label>
-                                                <input type="radio" name="wallet" />
-                                                <span>点位符：钱包名称</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <h2 class="page-header lang-open-wallet"></h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-select-wallet-file"></label>
+                            <div class="col-sm-6">
+                                <input id="input_wallet_name" type="text" />
+                                <span class="text-danger"></span>
+                                <ul class="list_wallet_ul" id="list_wallet_name">
+                                    <li style="display:none">
+                                        <label>
+                                            <input type="radio" name="wallet" />
+                                            <span>点位符：钱包名称</span>
+                                        </label>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-input-wallet-name"></label>
-                                <div class="col-sm-6">
-                                    <input id="open_password" name="open_password"  data-val="true" type="password" />
-                                    <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
-                                    <span id="open_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-wallet-name"></label>
+                            <div class="col-sm-6">
+                                <input id="open_password" name="open_password" data-val="true" type="password" />
+                                <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
+                                <span id="open_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                    <button type="button" class="btn btn-primary lang-open-wallet"></button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button type="button" class="btn btn-primary lang-open-wallet"></button>
                             </div>
-                        </fieldset>
+                        </div>
+                        <button type="reset" id="open_wallet_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
                     <form id="form_change_password" autocomplete="off">
-                        <fieldset>
-                            <h2 class="page-header lang-change-wallet-password"></h2>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-wallet-name"></label>
-                                <div class="col-sm-6">
-                                    <label class="change-wallet-name" id="change_wallet_name">点位符：钱包名称</label>
-                                </div>
+                        <h2 class="page-header lang-change-wallet-password"></h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-wallet-name"></label>
+                            <div class="col-sm-6">
+                                <label class="change-wallet-name" id="change_wallet_name">点位符：钱包名称</label>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-validate-old-password"></label>
-                                <div class="col-sm-6">
-                                    <input id="old_password" name="old_password" type="password" data-val="true" />
-                                    <span class="text-danger" data-valmsg-for="old_password" data-valmsg-replace="true"></span>
-                                    <span id="change_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-validate-old-password"></label>
+                            <div class="col-sm-6">
+                                <input id="old_password" name="old_password" type="password" data-val="true" />
+                                <span class="text-danger" data-valmsg-for="old_password" data-valmsg-replace="true"></span>
+                                <span id="change_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-input-new-password"></label>
-                                <div class="col-sm-6">
-                                    <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="6" />
-                                    <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-new-password"></label>
+                            <div class="col-sm-6">
+                                <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="6" />
+                                <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-confirm-new-password"></label>
-                                <div class="col-sm-6">
-                                    <input id="new_password_confirm" name="new_password_confirm" class="form-control" type="password" data-val="true" data-val-equalto-other="new_password" />
-                                    <span class="text-danger" data-valmsg-for="new_password_confirm" data-valmsg-replace="true"></span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-confirm-new-password"></label>
+                            <div class="col-sm-6">
+                                <input id="new_password_confirm" name="new_password_confirm" class="form-control" type="password" data-val="true" data-val-equalto-other="new_password" />
+                                <span class="text-danger" data-valmsg-for="new_password_confirm" data-valmsg-replace="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                    <button type="button" class="btn btn-primary lang-change-wallet-password"></button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button type="button" class="btn btn-primary lang-change-wallet-password"></button>
                             </div>
-                        </fieldset>
+                        </div>
+                        <button type="reset" id="change_password_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
@@ -200,24 +192,23 @@
                 </div>
                 <div id="Tab_Account_Import" class="form-horizontal tab-pane">
                     <form id="form_account_import">
-                        <fieldset>
-                            <h2 class="page-header lang-import-account"></h2>
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label lang-input-private-key"></label>
-                                <div class="col-sm-6">
-                                    <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
-                                    <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
-                                </div>
+                        <h2 class="page-header lang-import-account"></h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-private-key"></label>
+                            <div class="col-sm-6">
+                                <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
+                                <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                    <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
                             </div>
-                        </fieldset>
+                        </div>
                         <div>
                             <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
                         </div>
+                        <button type="reset" id="account_import_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Contract_Index" class="tab-pane">
@@ -295,6 +286,7 @@
                         <i id="add_public" class="iconfont circle" type="button">&#xe60d;</i>
                         <br /><br />
                         <button id="create_multisig_contract" type="button" class="btn btn-primary lang-create"></button>
+                        <button type="reset" id="create_multisig_reset" style="display:none">reset</button>
                     </form>
                     <br />
                     <div>
@@ -322,29 +314,27 @@
                 </div>
                 <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
                     <form id="form_asset_transfer">
-                        <fieldset>
-                            <h2 class="page-header lang-asset-transfer"></h2>
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <h5 class="lang-select-asset"></h5>
-                                    <select id="transfer_asset" name="transfer_asset" class="form-control" data-val="true"></select>
-                                    <span class="text-danger" data-valmsg-for="transfer_asset" data-valmsg-replace="true"></span>
-                                </div>
+                        <h2 class="page-header lang-asset-transfer"></h2>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <h5 class="lang-select-asset"></h5>
+                                <select id="transfer_asset" name="transfer_asset" class="form-control" data-val="true"></select>
+                                <span class="text-danger" data-valmsg-for="transfer_asset" data-valmsg-replace="true"></span>
                             </div>
-                            <div class="lang-max-to-transfer"><span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
-                            <h5 class="lang-receiver"></h5>
-                            <div class="form-group">
-                                <div class="col-sm-9" style="margin-bottom:10px">
-                                    <input id="transfer_txout" name="transfer_txout" data-val="true" class="pay_address" type="text" />
-                                    <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
-                                </div>
-                                <div class="col-sm-3" style="margin-bottom:10px">
-                                    <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" type="text" />
-                                    <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
-                                </div>
+                        </div>
+                        <div class="lang-max-to-transfer"><span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
+                        <h5 class="lang-receiver"></h5>
+                        <div class="form-group">
+                            <div class="col-sm-9" style="margin-bottom:10px">
+                                <input id="transfer_txout" name="transfer_txout" data-val="true" class="pay_address" type="text" />
+                                <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
                             </div>
-                            <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
-                        </fieldset>
+                            <div class="col-sm-3" style="margin-bottom:10px">
+                                <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" type="text" />
+                                <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
                     </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -424,6 +414,8 @@
                         </div>
                         <button id="sign" type="button" class="btn btn-raised btn-primary lang-sign"></button>
                         <button id="sign_relay" type="button" class="btn btn-raised btn-primary lang-sian-and-relay"></button>
+
+                        <button type="reset" id="sign_data_reset" style="display:none">reset</button>
                     </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -461,6 +453,8 @@
                         <select class="form-control" id="select_admin"></select>
                         <div class="alert alert-danger long-need-10000anc" style="padding: 5px 10px; margin: 10px 0;"></div>
                         <button id="register" type="button" class="btn btn-raised btn-primary lang-confirm-regist"></button>
+
+                        <button type="reset" id="register_asset_reset" style="display:none">reset</button>
                     </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -568,7 +562,7 @@
                         <button id="vote" class="btn btn-primary lang-ok" type="button"></button>
                     </form>
                 </div>
-                <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
+                <div id="Tab_Advanced_Relay" class="form-horizontal tab-pane">
                     <form id="form_relay_data" autocomplete="off">
                         <h2 class="page-header lang-relay"></h2>
                         <div class="row">
@@ -586,15 +580,24 @@
                         </div>
                         <button id="convert" type="button" class="btn btn-primary lang-convert"></button>
                         <button id="relay" type="button" class="btn btn-primary lang-relay"></button>
+
+                        <button type="reset" id="relay_data_reset" style="display:none">reset</button>
                     </form>
                 </div>
+
+                <!-- 测试用的开发人员工具 -->
+                <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
+                    <h2 class="page-header lang-developer-tool"></h2>
+                    <button id="delete_wallet" type="button" class="btn btn-default">删除所有钱包</button>
+                </div>
+
                 <div id="Tab_Config_Backup" class="form-horizontal tab-pane">
-                    <form>
+                    <form id="form_backup">
                         <div id="back_div">
                             <h2 class="page-header lang-backup"></h2>
                             <p style="color:lightgray" class="lang-backup-note"></p>
                             <div>
-                                <button id="backup" class="btn btn-primary lang-backup-current-wallet"></button>
+                                <button id="backup" class="btn btn-primary lang-backup-current-wallet" ></button>
                                 <a id="blob" href="" style="display:none">blob</a>
                             </div>
                         </div>
@@ -603,6 +606,7 @@
                         <div>
                             <input type="file" id="files" class="file" data-show-upload="false" />
                         </div>
+                        <button type="reset" id="backup_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
@@ -699,7 +703,9 @@
                         <li><a class="tab-trigger lang-sign" href="#Tab_Advanced_Sign"></a></li>
                         <!--<li><a class="tab-trigger lang-elect" href="#Tab_Advanced_Elect"></a></li>
                         <li><a class="tab-trigger lang-vote" href="#Tab_Advanced_Vote"></a></li>-->
-                        <li><a class="tab-trigger lang-relay" href="#Tab_Advanced_DeveloperTool"></a></li>
+                        <li><a class="tab-trigger lang-relay" href="#Tab_Advanced_Relay"></a></li>
+                        <!-- 正式发布前要把下面一行注释掉 -->
+                        <li><a class="tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"></a></li>
                     </ul>
                 </li>
                 <li>
@@ -711,7 +717,7 @@
                 <li>
                     <span class="lang-system-setup"><i class="iconfont">&#xe601;</i></span>
                     <ul>
-                        <li><a class="lang-normal-setup" href="javascript:void(0)"></a></li>
+                        <!--<li><a class="lang-normal-setup" href="javascript:void(0)"></a></li>-->
                         <li><a class="tab-trigger lang-backup-restore" href="#Tab_Config_Backup"></a></li>
                     </ul>
                 </li>

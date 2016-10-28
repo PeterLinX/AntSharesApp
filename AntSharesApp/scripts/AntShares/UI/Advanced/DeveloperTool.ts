@@ -5,101 +5,49 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#convert").click(this.OnConvertButtonClick);
-            $(this.target).find("#relay").click(this.OnRelayButtonClick);
+            $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
         }
 
         protected onload(args: any[]): void
         {
-            $("#Tab_Advanced_DeveloperTool #relay_data").val("");
-            $("#Tab_Advanced_DeveloperTool #relay_data").focus();
         }
 
-        private OnConvertButtonClick = () =>
+        //删除所有钱包，测试用
+        private OnDeleteButtonClick = () =>
         {
-            if (formIsValid("form_relay_data"))
+            let master: Wallets.Master;
+            Wallets.Master.instance().then(result =>
             {
-                let strRelayData: string = $("#Tab_Advanced_DeveloperTool #relay_data").val();
+                master = result;
+                if (Global.Wallet != null)
+                    return Global.Wallet.close();
+            }).then(() =>
+            {
+                Global.Wallet = null;
                 try
                 {
-                    if (strRelayData == "")
-                    {
-                        alert(Resources.global.pleaseInputData);
-                    } else
-                    {
-                        Core.SignatureContext.parse(strRelayData).then(context =>
-                        {
-                            context.signable.setScripts(context.getScripts());
-                            let ms = new IO.MemoryStream();
-                            let writer = new IO.BinaryWriter(ms);
-                            context.signable.serialize(writer);
-                            let output: Uint8Array = new Uint8Array(ms.toArray(), 0);
-                            $("#Tab_Advanced_DeveloperTool #convert_section").removeAttr("style");
-                            $("#Tab_Advanced_DeveloperTool #convert_data").text(output.toHexString());
-                        }).catch(reason =>
-                        {
-                            alert(reason);
-                        });
-                    }
-                } catch (e)
-                {
-                    if (e instanceof SyntaxError)
-                    {
-                        alert(Resources.global.dataFormatError);
-                    }
-                    else
-                    {
-                        alert(e);
-                    }
+                    return master.get();
                 }
-            }
-        }
-
-        private OnRelayButtonClick = () =>
-        {
-            if (formIsValid("form_relay_data"))
+                catch (e)
+                {
+                    alert("没有要删除的钱包文件（已经删光了）");
+                }
+            }).then(result =>
             {
-                let strRelayData: string = $("#Tab_Advanced_DeveloperTool #relay_data").val();
-                try
+                let promises = new Array<PromiseLike<void>>();
+                for (let i = 0; i < result.length; i++)
                 {
-                    if (strRelayData == "")
-                    {
-                        alert(Resources.global.pleaseInputData);
-                    } else
-                    {
-                        let inventory: Network.Inventory;
-                        Core.SignatureContext.parse(strRelayData).then(context =>
-                        {
-                            context.signable.setScripts(context.getScripts());
-                            inventory = <Network.Inventory>context.signable;
-                            return Global.Node.relay(inventory);
-                        }).then(success =>
-                        {
-                            if (success)
-                            {
-                                alert(Resources.global.relaySuccess);
-                            } else
-                            {
-                                alert(Resources.global.relayFaild);
-                            }
-                        }).catch(reason =>
-                        {
-                            alert(reason);
-                        });
-                    }
-                } catch (e)
-                {
-                    if (e instanceof SyntaxError)
-                    {
-                        alert(Resources.global.dataFormatError);
-                    }
-                    else
-                    {
-                        alert(e);
-                    }
+                    promises.push(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[i]));
                 }
-            }
-
+                return Promise.all(promises);
+            }).then(() =>
+            {
+                master.close();
+                return Implementations.Wallets.IndexedDB.DbContext.delete("master");
+            }).then(() =>
+            {
+                alert("已经删除所有钱包文件！");
+            })
         }
 
     }

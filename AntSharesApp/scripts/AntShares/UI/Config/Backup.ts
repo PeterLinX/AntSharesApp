@@ -11,6 +11,7 @@
 
         protected onload(args: any[]): void
         {
+            $("#backup_reset").trigger("click");
             var back = $("#Tab_Config_Backup #back_div");
             if (Global.Wallet == null)
             {

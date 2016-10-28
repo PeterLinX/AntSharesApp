@@ -1,11 +1,6 @@
 ﻿var currentLanguage = navigator.language || navigator.browserLanguage;
 if (currentLanguage.split('-')[0] == 'zh') {
     document.getElementById('lang').href = 'css/zh.css';
-    //初始化fileinput控件 http://www.cnblogs.com/wuhuacong/p/4774396.html
-    $("#files").fileinput({
-        language: 'zh',
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-    });
     $("#en_help").hide();
     $("#zh_help").show();
     $("#en_about").hide();
@@ -13,14 +8,29 @@ if (currentLanguage.split('-')[0] == 'zh') {
 }
 else {
     document.getElementById('lang').href = 'css/en.css';
-    $("#files").fileinput({
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-    });
     $("#en_help").show();
     $("#zh_help").hide();
     $("#en_about").show();
     $("#zh_about").hide();
 }
+//初始化fileinput控件 http://www.cnblogs.com/wuhuacong/p/4774396.html
+function resetFileinput()
+{
+    if (currentLanguage.split('-')[0] == 'zh') {
+        document.getElementById('lang').href = 'css/zh.css';
+        $("#files").fileinput({
+            language: 'zh',
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        });
+    }
+    else {
+        document.getElementById('lang').href = 'css/en.css';
+        $("#files").fileinput({
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        });
+    }
+}
+resetFileinput();
 
 var global = AntShares.UI.Resources.global;
 $("#wallet_name").attr("placeholder", global.walletName);

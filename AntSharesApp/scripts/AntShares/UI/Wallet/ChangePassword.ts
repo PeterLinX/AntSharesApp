@@ -26,7 +26,7 @@
                     if (result)
                     {
                         $("#change_error").hide();
-                        this.clear();
+                        $("#change_password_reset").trigger("click");
                         alert(Resources.global.changePwdSuccess);
                         TabBase.showTab("#Tab_Account_Index");
                     }
@@ -36,13 +36,6 @@
                     }
                 });
             }
-        }
-
-        private clear()
-        {
-            $("#old_password").val("");
-            $("#new_password").val("");
-            $("#new_password_confirm").val("");
         }
     }
 }

@@ -15,11 +15,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-            $("#select_register_asset").val(0);
-            $("#Tab_Advanced_Register #select_issuer").empty();
-            $("#Tab_Advanced_Register #select_admin").empty();
-            $("#Tab_Advanced_Register #input_amount").val("");
-            $("#Tab_Advanced_Register #input_asset_name").val("");
+            $("#register_asset_reset").trigger("click");
 
             let issuerArray = linq(Global.Wallet.getAccounts()).select(p => p.publicKey).toArray();
             Promise.all(linq(Global.Wallet.getContracts()).select(p => p.getAddress()).toArray()).then(adminArray => {
