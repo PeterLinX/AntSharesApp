@@ -11,6 +11,11 @@
 
         protected onload(args: any[]): void
         {
+            if (Global.Wallet == null)
+            {
+                TabBase.showTab("#Tab_Wallet_Open");
+                return;
+            }
             $("#relay_data_reset").trigger("click");
         }
 

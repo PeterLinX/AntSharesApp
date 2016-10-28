@@ -8,7 +8,6 @@
         protected oncreate(): void
         {
             $(this.target).find("#backup").click(this.OnBackupClick);
-            $(this.target).find("#import").click(this.OnRestoreClick);
             $(this.target).find("#files").change(this.Restore);
         }
 
@@ -164,11 +163,6 @@
                 arrayAll.push(transaction);
                 return arrayAll;
             });
-        }
-
-        private OnRestoreClick = () =>
-        {
-            $("#files").click();
         }
 
         private Restore = () =>

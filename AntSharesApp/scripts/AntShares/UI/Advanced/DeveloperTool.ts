@@ -20,18 +20,13 @@
             {
                 master = result;
                 if (Global.Wallet != null)
+                {
                     return Global.Wallet.close();
+                }
             }).then(() =>
             {
                 Global.Wallet = null;
-                try
-                {
-                    return master.get();
-                }
-                catch (e)
-                {
-                    alert("没有要删除的钱包文件（已经删光了）");
-                }
+                return master.get();
             }).then(result =>
             {
                 let promises = new Array<PromiseLike<void>>();
@@ -47,6 +42,7 @@
             }).then(() =>
             {
                 alert("已经删除所有钱包文件！");
+                setTimeout(() => { location.reload() }, 1000);
             })
         }
 
