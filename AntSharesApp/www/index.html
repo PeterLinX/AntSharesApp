@@ -29,6 +29,7 @@
                 <span class="lang-title"> </span>
             </header>
             <div class="tab-content">
+                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showdevtools()"></div>
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
                     <form id="form_create_wallet" autocomplete="off">
                         <h2 class="page-header lang-create-wallet"></h2>
@@ -727,8 +728,7 @@
                         <li><a class="tab-trigger lang-about" href="#Tab_Help_About"></a></li>
                     </ul>
                 </li>
-                <!-- 正式发布前要把下面一行注释掉 -->
-                <li>
+                <li id="develop_tool">
                     <a class="dev-tool tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
                 </li>
 
@@ -779,6 +779,16 @@
         {
             $('.modal-body').text(message);
             $('#myModal').modal();
+        }
+
+        var i = 1;
+        function showdevtools()
+        {
+            i++;
+            if (i % 4 == 0)
+                $("#develop_tool").show();
+            else
+                $("#develop_tool").hide();
         }
 
     </script>
