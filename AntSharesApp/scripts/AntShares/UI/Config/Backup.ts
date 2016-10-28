@@ -1,9 +1,12 @@
-﻿namespace AntShares.UI.Config {
-    export class Backup extends TabBase {
+﻿namespace AntShares.UI.Config
+{
+    export class Backup extends TabBase
+    {
 
         private db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
 
-        protected oncreate(): void {
+        protected oncreate(): void
+        {
             $(this.target).find("#backup").click(this.OnBackupClick);
             $(this.target).find("#import").click(this.OnRestoreClick);
             $(this.target).find("#files").change(this.Restore);
@@ -48,10 +51,11 @@
                 console.log(e);
                 //alert(e);
             }
-            
+
         }
 
-        private loadFile = (): PromiseLike<any> => {
+        private loadFile = (): PromiseLike<any> =>
+        {
             let wallet =
                 {
                     table: "Wallet",
@@ -85,54 +89,65 @@
 
             wallet.content = { name: Global.Wallet.dbPath };
 
-            let _transaction = this.db.transaction(["Key", "Contract", "Coin", "Account","Transaction"], "readonly");
+            let _transaction = this.db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readonly");
 
             let arrayKey = new Array<any>();
-            _transaction.store("Key").openCursor().onsuccess = e => {
+            _transaction.store("Key").openCursor().onsuccess = e =>
+            {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
+                if (cursor)
+                {
                     arrayKey.push(cursor.value);
                     cursor.continue();
                 }
             };
 
             let arrayContract = new Array<any>();
-            _transaction.store("Contract").openCursor().onsuccess = e => {
+            _transaction.store("Contract").openCursor().onsuccess = e =>
+            {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
+                if (cursor)
+                {
                     arrayContract.push(cursor.value);
                     cursor.continue();
                 }
             };
 
             let arrayCoin = new Array<any>();
-            _transaction.store("Coin").openCursor().onsuccess = e => {
+            _transaction.store("Coin").openCursor().onsuccess = e =>
+            {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
+                if (cursor)
+                {
                     arrayCoin.push(cursor.value);
                     cursor.continue();
                 }
             };
 
             let arrayAccount = new Array<any>();
-            _transaction.store("Account").openCursor().onsuccess = e => {
+            _transaction.store("Account").openCursor().onsuccess = e =>
+            {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
+                if (cursor)
+                {
                     arrayAccount.push(cursor.value);
                     cursor.continue();
                 }
             };
 
             let arrayTransaction = new Array<any>();
-            _transaction.store("Transaction").openCursor().onsuccess = e => {
+            _transaction.store("Transaction").openCursor().onsuccess = e =>
+            {
                 let cursor = <IDBCursorWithValue>(<IDBRequest>e.target).result;
-                if (cursor) {
+                if (cursor)
+                {
                     arrayTransaction.push(cursor.value);
                     cursor.continue();
                 }
             };
-            
-            return _transaction.commit().then(() => {
+
+            return _transaction.commit().then(() =>
+            {
 
                 key.content = arrayKey;
                 contract.content = arrayContract;
@@ -151,11 +166,13 @@
             });
         }
 
-        private OnRestoreClick = () => {
+        private OnRestoreClick = () =>
+        {
             $("#files").click();
         }
 
-        private Restore = () => {
+        private Restore = () =>
+        {
             let master: Wallets.Master;
             let db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
             let _transaction: AntShares.Implementations.Wallets.IndexedDB.DbTransaction;
@@ -177,15 +194,18 @@
             let reader = new FileReader();
             reader.readAsText(file);
             let json;
-            reader.onload = function () {
+            reader.onload = function ()
+            {
                 Promise.resolve(1).then(() =>
                 {
                     return JSON.parse(this.result);
                 }).then((json) =>
                 {
                     let count = 0;
-                    for (let obj in json) {
-                        switch (json[count]["table"]) {
+                    for (let obj in json)
+                    {
+                        switch (json[count]["table"])
+                        {
                             case "Wallet": Wallet = json[count]["content"];
                                 break;
                             case "Key": Key = json[count]["content"];
@@ -203,80 +223,96 @@
                         }
                         count++;
                     }
-                    }, onreject => {
+                }, onreject =>
+                    {
                         throw new Error(Resources.global.walletJsonError);
-                }).then(() => {
-                    return Wallets.Master.instance();
-                }).then(result => {
-                    master = result;
-                    return master.get();
-                }).then(result => {
-                    if (result.indexOf(Wallet["name"]) >= 0)
-                        throw new Error(Resources.global.sameWalletName1);
-                    master.add(Wallet["name"]);
-                    db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Wallet["name"]);
-                    return db.open();
-                }).then(() => {
-                    _transaction = db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readwrite");
-                    let count = 0;
-                    for (let key in Key) {
-                        _transaction.store("Key").put({
-                            name: Key[count]["name"],
-                            value: Key[count]["value"]
-                        });
-                        count++;
-                    }
-                    count = 0;
-                    for (let contract in Contract) {
-                        _transaction.store("Contract").put({
-                            parameterList: Contract[count]["parameterList"],
-                            publicKeyHash: Contract[count]["publicKeyHash"],
-                            redeemScript: Contract[count]["redeemScript"],
-                            scriptHash: Contract[count]["scriptHash"]
-                        });
-                        count++;
-                    }
-                    count = 0;
-                    for (let coin in Coin) {
-                        _transaction.store("Coin").put({
-                            assetId: Coin[count]["assetId"],
-                            index: Coin[count]["index"],
-                            scriptHash: Coin[count]["scriptHash"],
-                            state: Coin[count]["state"],
-                            txid: Coin[count]["txid"],
-                            "txid,index": Coin[count]["txid,index"],
-                            value: Coin[count]["value"]
-                        });
-                        count++;
-                    }
-                    count = 0;
-                    for (let account in Account) {
-                        _transaction.store("Account").put({
-                            privateKeyEncrypted: Account[count]["privateKeyEncrypted"],
-                            publicKeyHash: Account[count]["publicKeyHash"]
-                        });
-                        count++;
-                    }
-                    count = 0;
-                    for (let tx in Transaction) {
-                        _transaction.store("Transaction").put({
-                            hash: Transaction[count]["hash"],
-                            height: Transaction[count]["height"],
-                            rawData: Transaction[count]["rawData"],
-                            time: Transaction[count]["time"],
-                            type: Transaction[count]["type"]
-                        });
-                        count++;
-                    }
-                    return _transaction.commit();
-                }).then(() => {
-                    TabBase.showTab("#Tab_Wallet_Open");
-                }, reason => alert(reason));
+                    }).then(() =>
+                    {
+                        return Wallets.Master.instance();
+                    }).then(result =>
+                    {
+                        master = result;
+                        return master.get();
+                    }).then(result =>
+                    {
+                        if (result.indexOf(Wallet["name"]) >= 0)
+                            throw new Error(Resources.global.sameWalletName1);
+                        master.add(Wallet["name"]);
+                        db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Wallet["name"]);
+                        return db.open();
+                    }).then(() =>
+                    {
+                        _transaction = db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readwrite");
+                        let count = 0;
+                        for (let key in Key)
+                        {
+                            _transaction.store("Key").put({
+                                name: Key[count]["name"],
+                                value: Key[count]["value"]
+                            });
+                            count++;
+                        }
+                        count = 0;
+                        for (let contract in Contract)
+                        {
+                            _transaction.store("Contract").put({
+                                parameterList: Contract[count]["parameterList"],
+                                publicKeyHash: Contract[count]["publicKeyHash"],
+                                redeemScript: Contract[count]["redeemScript"],
+                                scriptHash: Contract[count]["scriptHash"]
+                            });
+                            count++;
+                        }
+                        count = 0;
+                        for (let coin in Coin)
+                        {
+                            _transaction.store("Coin").put({
+                                assetId: Coin[count]["assetId"],
+                                index: Coin[count]["index"],
+                                scriptHash: Coin[count]["scriptHash"],
+                                state: Coin[count]["state"],
+                                txid: Coin[count]["txid"],
+                                "txid,index": Coin[count]["txid,index"],
+                                value: Coin[count]["value"]
+                            });
+                            count++;
+                        }
+                        count = 0;
+                        for (let account in Account)
+                        {
+                            _transaction.store("Account").put({
+                                privateKeyEncrypted: Account[count]["privateKeyEncrypted"],
+                                publicKeyHash: Account[count]["publicKeyHash"]
+                            });
+                            count++;
+                        }
+                        count = 0;
+                        for (let tx in Transaction)
+                        {
+                            _transaction.store("Transaction").put({
+                                hash: Transaction[count]["hash"],
+                                height: Transaction[count]["height"],
+                                rawData: Transaction[count]["rawData"],
+                                time: Transaction[count]["time"],
+                                type: Transaction[count]["type"]
+                            });
+                            count++;
+                        }
+                        return _transaction.commit();
+                    }).then(() =>
+                    {
+                        $("#backup_reset").trigger("click");
+                        TabBase.showTab("#Tab_Wallet_Open");
+                    }, reason =>
+                    {
+                        $("#backup_reset").trigger("click");
+                        alert(reason)
+                    });
             };
         }
 
     }
 
-    
+
 
 }
