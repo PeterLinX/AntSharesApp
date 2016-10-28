@@ -36,24 +36,17 @@
             if ($("#Tab_Advanced_Register #check_limit").prop('checked') == true) {
                 $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
             } else {
+                $("#Tab_Advanced_Register #input_amount").val("∞");
                 $("#Tab_Advanced_Register #input_amount").prop('disabled', true);
             }
         }
 
         private OnRegisterAssetChanged = () => {
             let assetType = $("#Tab_Advanced_Register #select_register_asset").val();
-            if (assetType == 1) {
-                //Share
-                $("#Tab_Advanced_Register #input_asset_name").prop('disabled', true);
-                $("#Tab_Advanced_Register #check_limit").prop('checked', true);
-                $("#Tab_Advanced_Register #check_limit").prop('disabled', true);
-                $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
-            } else {
-                //Token
-                $("#Tab_Advanced_Register #input_asset_name").prop('disabled', false);
-                $("#Tab_Advanced_Register #check_limit").prop('checked', true);
-                $("#Tab_Advanced_Register #check_limit").prop('disabled', false);
-            }
+            $("#Tab_Advanced_Register #check_limit").prop('checked', true);
+            $("#Tab_Advanced_Register #check_limit").prop('disabled', false);
+            $("#Tab_Advanced_Register #input_amount").val("");
+            $("#Tab_Advanced_Register #input_amount").prop('disabled', false);
         }
 
         private OnRegisterButtonClick = () =>
@@ -77,10 +70,11 @@
                     {
                         throw Error(Resources.global.selectAssetType);
                     }
-                    if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
+                    //if (Core.AssetType[assetType] == Core.AssetType.Share) assetName = "";
                     tx.name = assetName;
                     tx.amount = $("#Tab_Advanced_Register #check_limit").prop('checked') == true ? Fixed8.fromNumber(assetTotalAmount) : Fixed8.MaxValue;
                     tx.outputs = new Array<Core.TransactionOutput>(0);
+                    tx.precision = 0;
                     Wallets.Wallet.toScriptHash(admin).then(result =>
                     {
                         tx.issuer = Cryptography.ECPoint.decodePoint(issuer.hexToBytes(), Cryptography.ECCurve.secp256r1);
