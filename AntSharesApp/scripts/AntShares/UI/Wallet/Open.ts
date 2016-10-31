@@ -24,7 +24,7 @@
                 Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
                     Global.Wallet = result;
-                    $("#open_wallet_reset").trigger("click");
+                    formReset("form_open_wallet");
                     alert(UI.Resources.global.openWalletAlert);
                     $("#open_error").hide();
                     //打开成功后跳转账户管理页面

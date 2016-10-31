@@ -15,7 +15,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-            $("#sign_data_reset").trigger("click");
+            formReset("form_sign_data");
             $("#output_section").hide();
         }
 

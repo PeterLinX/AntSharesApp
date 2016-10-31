@@ -34,7 +34,7 @@
                 }).then(results =>
                 {
                     Global.Wallet = results[1];
-                    $("#create_wallet_reset").trigger("click");
+                    formReset("form_create_wallet");
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => alert(reason));
             }

@@ -13,6 +13,11 @@ function formIsValid(formId: string): boolean
     }
 }
 
+function formReset(formId: string)
+{
+    (document.getElementById(formId) as any).reset();
+}
+
 function convert_keyup(obj)
 {
     let n = obj.value.replace(/,/g, "") as string;

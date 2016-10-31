@@ -26,7 +26,7 @@
                     if (result)
                     {
                         $("#change_error").hide();
-                        $("#change_password_reset").trigger("click");
+                        formReset("form_change_password");
                         alert(Resources.global.changePwdSuccess);
                         TabBase.showTab("#Tab_Account_Index");
                     }

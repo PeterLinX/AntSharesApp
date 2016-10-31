@@ -13,7 +13,7 @@
 
         protected onload(args: any[]): void
         {
-            $("#backup_reset").trigger("click");
+            formReset("form_backup");
             var back = $("#Tab_Config_Backup #back_div");
             if (Global.Wallet == null)
             {
@@ -295,11 +295,11 @@
                         return _transaction.commit();
                     }).then(() =>
                     {
-                        $("#backup_reset").trigger("click");
+                        formReset("form_backup");
                         TabBase.showTab("#Tab_Wallet_Open");
                     }, reason =>
                     {
-                        $("#backup_reset").trigger("click");
+                        formReset("form_backup");
                         alert(reason)
                     });
             };

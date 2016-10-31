@@ -16,7 +16,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-            $("#relay_data_reset").trigger("click");
+            formReset("form_relay_data");
         }
 
         private OnConvertButtonClick = () =>

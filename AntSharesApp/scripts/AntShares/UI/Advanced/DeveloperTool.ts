@@ -12,6 +12,7 @@
 
         protected onload(args: any[]): void
         {
+            formReset("form_dev_tool");
         }
 
         //删除所有钱包，测试用
@@ -50,7 +51,15 @@
 
         private OnSetHeightButtonClick = () =>
         {
-            Global.Wallet.setHeight($("#input_curent_height").val());
+            if (formIsValid("form_dev_tool"))
+            {
+                let height = $("#input_curent_height").val() as number;
+                Global.Wallet.setHeight(height + 1).then(
+                    () =>
+                    {
+                        alert("设置成功");
+                    });
+            }
         }
     }
 }

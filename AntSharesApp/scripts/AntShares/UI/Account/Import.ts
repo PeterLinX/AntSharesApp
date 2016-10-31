@@ -9,7 +9,7 @@
 
         protected onload(): void
         {
-            $("#account_import_reset").trigger("click");
+            formReset("form_account_import");
         }
 
         private OnImportButtonClick()

@@ -63,7 +63,7 @@
                 }).then(() =>
                 {
                     $("#Tab_Contract_CreateMultiSig .add_new").remove();
-                    $("#create_multisig_reset").trigger("click");
+                    formReset("form_create_multisig");
                     this.publicKeys.length = 0;
 
                     alert(Resources.global.createMultiContractSuccess);

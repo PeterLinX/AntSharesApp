@@ -59,7 +59,6 @@
                                 <button id="create_wallet" type="button" class="btn btn-primary lang-create-wallet"></button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
-                        <button type="reset" id="create_wallet_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
@@ -93,7 +92,6 @@
                                 <button type="button" class="btn btn-primary lang-open-wallet"></button>
                             </div>
                         </div>
-                        <button type="reset" id="open_wallet_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
@@ -133,11 +131,10 @@
                                 <button type="button" class="btn btn-primary lang-change-wallet-password"></button>
                             </div>
                         </div>
-                        <button type="reset" id="change_password_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
-                    <form id="form_account_list">
+                    <form id="form_account_list" autocomplete="off">
                         <h2 class="page-header lang-account-list"></h2>
                         <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
                             <div class="lang-wallet-name"><span id="account_list_wallet">点位符:钱包名称</span></div><br />
@@ -192,7 +189,7 @@
                     </div>-->
                 </div>
                 <div id="Tab_Account_Import" class="form-horizontal tab-pane">
-                    <form id="form_account_import">
+                    <form id="form_account_import" autocomplete="off">
                         <h2 class="page-header lang-import-account"></h2>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-private-key"></label>
@@ -209,7 +206,6 @@
                         <div>
                             <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
                         </div>
-                        <button type="reset" id="account_import_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Contract_Index" class="tab-pane">
@@ -287,7 +283,6 @@
                         <i id="add_public" class="iconfont circle" type="button">&#xe60d;</i>
                         <br /><br />
                         <button id="create_multisig_contract" type="button" class="btn btn-primary lang-create"></button>
-                        <button type="reset" id="create_multisig_reset" style="display:none">reset</button>
                     </form>
                     <br />
                     <div>
@@ -314,7 +309,7 @@
                     </ul>
                 </div>
                 <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
-                    <form id="form_asset_transfer">
+                    <form id="form_asset_transfer" autocomplete="off">
                         <h2 class="page-header lang-asset-transfer"></h2>
                         <div class="form-group">
                             <div class="col-md-6">
@@ -416,7 +411,6 @@
                         <button id="sign" type="button" class="btn btn-raised btn-primary lang-sign"></button>
                         <button id="sign_relay" type="button" class="btn btn-raised btn-primary lang-sian-and-relay"></button>
 
-                        <button type="reset" id="sign_data_reset" style="display:none">reset</button>
                     </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -455,7 +449,6 @@
                         <div class="alert alert-danger long-need-10000anc" style="padding: 5px 10px; margin: 10px 0;"></div>
                         <button id="register" type="button" class="btn btn-raised btn-primary lang-confirm-regist"></button>
 
-                        <button type="reset" id="register_asset_reset" style="display:none">reset</button>
                     </form>
                     <!--<div class="alert alert-info bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -581,28 +574,28 @@
                         </div>
                         <button id="convert" type="button" class="btn btn-primary lang-convert"></button>
                         <button id="relay" type="button" class="btn btn-primary lang-relay"></button>
-
-                        <button type="reset" id="relay_data_reset" style="display:none">reset</button>
                     </form>
                 </div>
 
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-developer-tool"></h2>
-                    <h5>删除所有钱包，请谨慎操作</h5>
-                    <button id="delete_wallet" type="button" class="btn btn-default">删除所有钱包</button>
-                    <br /><br />
-                    <h5>手动设置钱包同步高度</h5>
-                    <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
-                    <div class="form-group">
-                        <div class="col-xs-8">
-                            <input type="number" id="input_curent_height" name="input_curent_height" class="form-control" data-val="true" data-val-required="请指定一个高度，让钱包从此高度开始同步" placeholder="输入高度" />
-                            <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
+                    <form id="form_dev_tool" autocomplete="off">
+                        <h2 class="page-header lang-developer-tool"></h2>
+                        <h5>删除所有钱包，请谨慎操作</h5>
+                        <button id="delete_wallet" type="button" class="btn btn-default">删除所有钱包</button>
+                        <br /><br />
+                        <h5>手动设置钱包同步高度</h5>
+                        <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
+                        <div class="form-group">
+                            <div class="col-xs-8">
+                                <input type="text" id="input_curent_height" name="input_curent_height" class="form-control" data-val="true" data-val-required="请指定一个高度，让钱包从此高度开始同步" />
+                                <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="col-xs-4">
+                                <button id="set_height" type="button" class="btn btn-default">确定</button>
+                            </div>
                         </div>
-                        <div class="col-xs-4">
-                            <button id="set_height" type="button" class="btn btn-default">确定</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div id="Tab_Config_Backup" class="form-horizontal tab-pane">
@@ -615,12 +608,14 @@
                                 <a id="blob" href="" style="display:none">blob</a>
                             </div>
                         </div>
-
-                        <h2 class="page-header lang-import-wallet-file"></h2>
-                        <div>
-                            <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8">
+                                <h2 class="page-header lang-import-wallet-file"></h2>
+                                <div>
+                                    <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
+                                </div>
+                            </div>
                         </div>
-                        <button type="reset" id="backup_reset" style="display:none">reset</button>
                     </form>
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
@@ -665,10 +660,6 @@
                         <div>Copyright</div>
                         <div>2016 Antshares Team</div>
                     </div>
-                </div>
-                <div id="Tab_Test" class="form-horizontal tab-pane">
-                    <div id="contentssss"></div>
-                    <button id="test" class="btn btn-primary">test</button>
                 </div>
             </div>
             <footer>
