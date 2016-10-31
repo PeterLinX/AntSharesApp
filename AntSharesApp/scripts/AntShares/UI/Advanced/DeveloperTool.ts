@@ -5,7 +5,7 @@
 
         protected oncreate(): void {
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
-            $(this.target).find("#set_height").click(this.OnSetHeightClick);
+            $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
 
         }
 
@@ -41,8 +41,8 @@
             })
         }
 
-        private OnSetHeightClick = () => {
-            let height: number = $("#Tab_Advanced_DeveloperTool #height").val();
+        private OnSetHeightButtonClick = () => {
+            let height: number = $("#Tab_Advanced_DeveloperTool #input_curent_height").val();
             console.log(height);
             Global.Blockchain.getBlockCount().then(result => {
                 let currentHeight: number = result - 1;
@@ -61,8 +61,6 @@
             }).then(() => {
                 location.reload()
                 TabBase.showTab("#Tab_Account_Index");
-                //alert("高度设定完成");
-                //(Global.Wallet as any).current_height = height;
             }).catch(e => {
                 alert(e);
             });
