@@ -2,14 +2,18 @@
 {
     export class DeveloperTool extends TabBase
     {
+        private db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
 
         protected oncreate(): void
         {
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
+            $(this.target).find("#set_height").click(this.OnSetHeightClick);
         }
 
         protected onload(args: any[]): void
         {
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
+            this.db.open();
         }
 
         //删除所有钱包，测试用
@@ -46,5 +50,32 @@
             })
         }
 
+        private OnSetHeightClick = () =>
+        {
+            let height: number = $("#Tab_Advanced_DeveloperTool #height").val();
+            console.log(height);
+            Global.Blockchain.getBlockCount().then(result => {
+                let currentHeight: number = result - 1;
+                console.log(currentHeight);
+                let value = new Uint32Array([height]).buffer;
+                if (height < 0 || height > currentHeight) {
+                    alert("输入值有误！");
+                } else {
+                    let _transaction = this.db.transaction("Key", "readwrite");
+                    _transaction.store("Key").put({
+                        name: "Height",
+                        value: new Uint8Array(value).toHexString()
+                    });
+                    return _transaction.commit();
+                }
+            }).then(() =>{
+                TabBase.showTab("#Tab_Account_Index");
+                alert("高度设定完成");
+                }).catch(e => {
+                    alert(e);
+                });
+            
+            
+        }
     }
 }
