@@ -634,6 +634,12 @@
             return Promise.resolve(null);
         }
 
+        public setHeight(height): PromiseLike<void>
+        {
+            this.current_height = height;
+            return Promise.resolve(null);
+        }
+
         protected abstract saveStoredData(name: string, value: ArrayBuffer): PromiseLike<void>;
 
         public saveTransaction(tx: Core.Transaction): PromiseLike<boolean>

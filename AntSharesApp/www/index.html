@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label lang-input-wallet-name"></label>
+                            <label class="col-sm-4 control-label lang-input-wallet-password"></label>
                             <div class="col-sm-6">
                                 <input id="open_password" name="open_password" data-val="true" type="password" />
                                 <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
@@ -589,7 +589,20 @@
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-developer-tool"></h2>
+                    <h5>删除所有钱包，请谨慎操作</h5>
                     <button id="delete_wallet" type="button" class="btn btn-default">删除所有钱包</button>
+                    <br /><br />
+                    <h5>手动设置钱包同步高度</h5>
+                    <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
+                    <div class="form-group">
+                        <div class="col-xs-8">
+                            <input type="number" id="input_curent_height" name="input_curent_height" class="form-control" data-val="true" data-val-required="请指定一个高度，让钱包从此高度开始同步" placeholder="输入高度" />
+                            <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="col-xs-4">
+                            <button id="set_height" type="button" class="btn btn-default">确定</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="Tab_Config_Backup" class="form-horizontal tab-pane">

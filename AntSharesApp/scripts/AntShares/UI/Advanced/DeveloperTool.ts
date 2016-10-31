@@ -6,6 +6,8 @@
         protected oncreate(): void
         {
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
+            $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
+            
         }
 
         protected onload(args: any[]): void
@@ -46,5 +48,9 @@
             })
         }
 
+        private OnSetHeightButtonClick = () =>
+        {
+            Global.Wallet.setHeight($("#input_curent_height").val());
+        }
     }
 }
