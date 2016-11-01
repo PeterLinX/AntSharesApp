@@ -10,6 +10,10 @@
         }
 
         protected onload(args: any[]): void {
+            if (Global.Wallet == null) {
+                TabBase.showTab("#Tab_Wallet_Open");
+                return;
+            }
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
             formReset("form_dev_tool");
@@ -19,6 +23,7 @@
         private OnDeleteButtonClick = () => {
             let master: Wallets.Master;
             Wallets.Master.instance().then(result => {
+                console.log("删除中...");
                 master = result;
                 if (Global.Wallet != null) {
                     return Global.Wallet.close();
@@ -26,19 +31,22 @@
             }).then(() => {
                 Global.Wallet = null;
                 return master.get();
-            }).then(result => {
-                let promises = new Array<PromiseLike<void>>();
-                for (let i = 0; i < result.length; i++) {
-                    promises.push(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[i]));
-                }
-                return Promise.all(promises);
-            }).then(() => {
-                master.close();
-                return Implementations.Wallets.IndexedDB.DbContext.delete("master");
-            }).then(() => {
-                alert("已经删除所有钱包文件！");
-                setTimeout(() => { location.reload() }, 1000);
-            })
+                }).then(result => {
+                    let promises = new Array<PromiseLike<void>>();
+                    for (let i = 0; i < result.length; i++) {
+                        setTimeout(() => { promises.push(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[i])); }, 1500);
+                    }
+                    return Promise.all(promises);
+                }).then(() => {
+                    master.close();
+                    return Implementations.Wallets.IndexedDB.DbContext.delete("master");
+                }).then(() => {
+                    console.log("删除中，进度：100%");
+                    alert("已经删除所有钱包文件！");
+                    setTimeout(() => { location.reload(); }, 1000);
+                }).catch(reason => {
+                    alert(reason);
+                });
         }
 
         private OnSetHeightButtonClick = () => {
