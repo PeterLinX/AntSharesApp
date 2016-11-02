@@ -32,10 +32,11 @@
                 Global.Wallet = null;
                 return master.get();
                 }).then(result => {
-                    let promises = new Array<PromiseLike<void>>();
-                    for (let i = 0; i < result.length; i++) {
-                        setTimeout(() => { promises.push(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[i])); }, 1500);
-                    }
+                    let promises = [];
+                    promises[0] = Promise.resolve(1);
+                    for (let j = 0; j < result.length; j++) {
+                        promises[j + 1] = promises[j].then(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[j]));
+                    };
                     return Promise.all(promises);
                 }).then(() => {
                     master.close();
