@@ -46,7 +46,7 @@ input[type="radio"] { vertical-align: -3px; }
 
 /*设置侧边栏边框样式*/
 .mm-navbar > .mm-title { font-size: 18px; padding: 15px 0; }
-.mm-listview > li i.iconfont { margin-right: 18px; }
+.mm-listview > li i.iconfont { margin-right: 24px; }
 .mm-listview > li > a, .mm-listview > li > span { padding: 12px 10px 12px 20px; }
 .mm-listview > li:not(.mm-divider)::after { left: 0; }
 .mm-listview > li a:hover { border-left: 5px solid #0cf; }
@@ -65,6 +65,10 @@ nav:not(.mm-menu) { display: none; }
 .content { background: white; min-height: 100%; padding: 0; }
 .tab-content { width: 100%; height: 100%; padding: 50px 50px; transition:padding .5s }
 .issue-tempate > div { padding-top:5px; padding-bottom:5px }
+
+*::-webkit-scrollbar{width:0px}
+.mm-panel { width: calc(100% + 12px);  }
+.mm-panels > .mm-panel { padding-right:25px }
 @media only screen and (max-width: 480px) {
     .tab-content { width: 100%; height: 100%; padding: 50px 35px; }
     .alert-info { display:none }
