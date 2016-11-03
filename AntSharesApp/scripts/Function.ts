@@ -48,3 +48,35 @@ function convert_keydown(obj)
 {
     setTimeout(() => { convert_keyup(obj) }, 10);
 }
+
+function convertTxType(type: AntShares.Core.TransactionType): string
+{
+    let typeStr: string;
+    switch (type) {
+        case AntShares.Core.TransactionType.MinerTransaction:
+            typeStr = AntShares.UI.Resources.global.minerTx;
+            break;
+        case AntShares.Core.TransactionType.IssueTransaction:
+            typeStr = AntShares.UI.Resources.global.issueTx;
+            break;
+        case AntShares.Core.TransactionType.ClaimTransaction:
+            typeStr = AntShares.UI.Resources.global.claimTx;
+            break;
+        case AntShares.Core.TransactionType.EnrollmentTransaction:
+            typeStr = AntShares.UI.Resources.global.enrollmentTx;
+            break;
+        case AntShares.Core.TransactionType.RegisterTransaction:
+            typeStr = AntShares.UI.Resources.global.registerTx;
+            break;
+        case AntShares.Core.TransactionType.ContractTransaction:
+            typeStr = AntShares.UI.Resources.global.contractTx;
+            break;
+        case AntShares.Core.TransactionType.AgencyTransaction:
+            typeStr = AntShares.UI.Resources.global.agencyTx;
+            break;
+        case AntShares.Core.TransactionType.PublishTransaction:
+            typeStr = AntShares.UI.Resources.global.publishTx;
+            break;
+    }
+    return typeStr;
+}

@@ -61,7 +61,7 @@
                                     } else {
                                         tr.find(".tx-confirm").text(confirmations);
                                     }
-                                    tr.find(".tx-type").text(Core.TransactionType[tx.type]);
+                                    tr.find(".tx-type").text(convertTxType(tx.type));
                                     tbody.append(tr);
                                 });
                         }

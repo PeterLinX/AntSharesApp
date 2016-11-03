@@ -97,6 +97,14 @@
         static issuer = "发行人： "
         static issuerPubKey = "发行人公钥： "
         static unConfirmed = "未确认";
+        static minerTx = "矿工交易";
+        static issueTx = "资产发行";
+        static claimTx = "小蚁币提取";
+        static enrollmentTx = "记账报名";
+        static registerTx = "资产注册";
+        static contractTx = "合约交易";
+        static agencyTx = "代理交易";
+        static publishTx = "合约发布";
     }
 
     class global_en
@@ -184,5 +192,13 @@
         static issuer = "issuer: ";
         static issuerPubKey = "issuer public key: "
         static unConfirmed = "unconfirmed";
+        static minerTx = "Miner";
+        static issueTx = "Issue";
+        static claimTx = "Claim";
+        static enrollmentTx = "Enrollment";
+        static registerTx = "Registration";
+        static contractTx = "Contract";
+        static agencyTx = "Agency";
+        static publishTx = "Publish";
     }
 }

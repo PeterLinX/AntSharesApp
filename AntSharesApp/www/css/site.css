@@ -21,7 +21,8 @@ input[type="radio"] { vertical-align: -3px; }
 .nopadding { padding: 0 !important; }
 .circle, .circle:focus, .circle:active { color:#e51c23; font-size:28px; cursor:pointer; outline:none }
 .btn.btn-disable, .btn.btn-disable:hover, .btn.btn-disable:active, .btn.btn-disable:focus { cursor:default; color:lightgray; box-shadow:none; background-color:white; outline:none; border:1px solid #f0f0f0 }
-.tx-id, .tx-type { word-break:break-all; }
+.tx-id { word-break:break-all; }
+.tx-type { word-break:keep-all; }
 .expand .tx-input, .expand .tx-output, .expand .tx-value, .expand .tx-asset { word-break:break-all; }
 .expand > div { margin-top:5px }
 .iconfont.link { font-size:10px; float:right }

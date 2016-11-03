@@ -113,4 +113,4 @@
 .lang-tx-time::after { content:'时间' }
 .lang-tx-id::after { content:'交易编号' }
 .lang-tx-confirms::after { content:'确认' }
-.lang-tx-type::after { content:'交易类型' }
+.lang-tx-type::after { content:'类型' }
