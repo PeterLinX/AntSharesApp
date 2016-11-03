@@ -38,7 +38,6 @@
                 else {
                     $("#Tab_Asset_TransactionList > h5").hide();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
-                    console.log(txArray);
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void> {
                         for (let i = 0; i < txArray.length; i++) {
@@ -53,10 +52,15 @@
                             }).then(() => {
                                 return Global.Blockchain.getBlockCount();
                                 }).then(currentHeight => {
-                                    let txHeight: number = txArray[i].height;
+                                    let confirmations: number = currentHeight - txArray[i].height + 1;
                                     tr.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
                                     tr.find(".tx-id").text(tx.hash.toString());
-                                    tr.find(".tx-confirm").text(currentHeight - txHeight);
+                                    if (confirmations<=0)
+                                    {
+                                        tr.find(".tx-confirm").text(Resources.global.unConfirmed);
+                                    } else {
+                                        tr.find(".tx-confirm").text(confirmations);
+                                    }
                                     tr.find(".tx-type").text(Core.TransactionType[tx.type]);
                                     tbody.append(tr);
                                 });

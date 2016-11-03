@@ -343,14 +343,13 @@
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-my-tx-list"></h2>
                     <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
-                    <table class="table expand table-bordered table-responsive">
+                    <table class="table table-condensed table-bordered table-striped table-responsive">
                         <thead>
                             <tr>
-                                <!--<th class="lang-tx-input"></th>-->
-                                <th>时间</th>
-                                <th>交易编号</th>
-                                <th>确认</th>
-                                <th>交易类型</th>
+                                <th class="lang-tx-time"></th>
+                                <th class="lang-tx-id"></th>
+                                <th class="lang-tx-confirms"></th>
+                                <th class="lang-tx-type"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -663,7 +662,7 @@
                     <ul>
                         <li><a class="tab-trigger lang-my-asset" href="#Tab_Asset_Index"></a></li>
                         <li><a class="tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"></a></li>
-                        <li><a class="tab-trigger" href="#Tab_Asset_TransactionList">交易列表</a></li>
+                        <li><a class="tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"></a></li>
                     </ul>
                 </li>
                 <!--<li>

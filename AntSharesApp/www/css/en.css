@@ -107,3 +107,8 @@
 .lang-website::after { content:'Official website' }
 .lang-backup-restore::after { content:'Backup / Restore' }
 .lang-please-choose::after { content:'please choose' }
+.lang-tx-time::after { content:'Time' }
+.lang-tx-id::after { content:'Id' }
+.lang-tx-confirms::after { content:'Confirmations' }
+.lang-tx-type::after { content:'Type' }
+.lang-transaction-list::after { content:'Transaction list' }
