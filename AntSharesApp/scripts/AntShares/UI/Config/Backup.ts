@@ -13,6 +13,8 @@
 
         protected onload(args: any[]): void
         {
+            if (args[0])
+                $("#danger").show();
             formReset("form_backup");
             var back = $("#Tab_Config_Backup #back_div");
             if (Global.Wallet == null)

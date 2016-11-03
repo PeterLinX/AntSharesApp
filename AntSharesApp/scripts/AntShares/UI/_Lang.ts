@@ -94,6 +94,8 @@
         static issueAssetsRequired = "分发资产不能为空";
         static relayDataRequired = "数据包不能为空";
         static inputDataRequired = "待签名的交易不能为空";
+        static issuer = "发行人： "
+        static issuerPubKey = "发行人公钥： "
         static unConfirmed = "未确认";
     }
 
@@ -178,8 +180,9 @@
         static assetAmountRequired = "Asset amount is required";
         static issueAssetsRequired = "Issue asset is required";
         static relayDataRequired = "Broadcast packets is required";
-        static inputDataRequired = "Ready to sign Tx is required"
+        static inputDataRequired = "Ready to sign Tx is required";
+        static issuer = "issuer: ";
+        static issuerPubKey = "issuer public key: "
         static unConfirmed = "unconfirmed";
-
     }
 }

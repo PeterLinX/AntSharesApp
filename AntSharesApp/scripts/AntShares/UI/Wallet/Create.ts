@@ -35,7 +35,7 @@
                 {
                     Global.Wallet = results[1];
                     formReset("form_create_wallet");
-                    TabBase.showTab("#Tab_Account_Index");
+                    TabBase.showTab("#Tab_Config_Backup", true);
                 }, reason => alert(reason));
             }
         }
