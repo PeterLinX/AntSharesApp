@@ -154,13 +154,12 @@
                                 </div>
                             </li>
                         </ul>
-                        <!--<div class="alert alert-info bottom" role="alert">
+                        <div class="alert alert-warning bottom" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            账户是指一个公私钥对。最基本的账户由一个公私钥组成，其账户地址就是其 1-of-1 多重签名地址。更高级的设计中，账户可以由两个公钥组成，这两个公钥所生成的 2-of-2 多重签名的地址为账户地址。
-                            <a class="alert-link" href="javascript:">了解更多</a>
-                        </div>-->
+                            <div class="lang-account-list-info"></div>
+                        </div>
                     </form>
                 </div>
                 <div id="Tab_Account_Details" class="tab-pane">
@@ -294,14 +293,14 @@
                     <h5 class="lang-no-asset" style="display:none; padding-top:50px; text-align:center"></h5>
                     <ul>
                         <li style="display:none">
-                            <div class="issuer lang-issuer">
-                                <span class="text-success asset_issuer">点位符：发行人</span>
+                            <div class="row">
+                                <div class="issuer col-md-9 col-sm-8 asset_issuer"></div>
                             </div>
                             <div class="row">
-                                <div class="col-md-9">
+                                <div class="col-md-9 col-sm-8">
                                     <pre class="asset_name">点位符：资产名称</pre>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-sm-4">
                                     <pre class="asset_value">点位符：数量</pre>
                                 </div>
                             </div>
@@ -575,7 +574,7 @@
                     <form id="form_backup">
                         <div id="back_div">
                             <h2 class="page-header lang-backup"></h2>
-                            <p style="color:lightgray" class="lang-backup-note"></p>
+                            <p style="color:darkgray" class="lang-backup-note"></p>
                             <div>
                                 <button id="backup" class="btn btn-primary lang-backup-current-wallet" ></button>
                                 <a id="blob" href="" style="display:none">blob</a>
@@ -588,6 +587,12 @@
                                     <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
                                 </div>
                             </div>
+                        </div>
+                        <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="lang-backup-danger"> </div>
                         </div>
                     </form>
                 </div>

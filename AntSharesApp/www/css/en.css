@@ -15,7 +15,7 @@
 .lang-input-new-password::before { content:'input new password' }
 .lang-confirm-new-password::before { content:'confirm new password' }
 .lang-account-list::before { content:'Account list' }
-.lang-wallet-name::before { content:'wallet name：' }
+.lang-wallet-name::before { content:'wallet name: ' }
 .lang-create-account::before { content:'create account' }
 .lang-import-private-key::before { content:'import private key' }
 .lang-details::before { content:'details' }
@@ -41,7 +41,7 @@
 .lang-back-to-list::before { content:'back to list' }
 .lang-my-asset::before { content:'My asset' }
 .lang-no-asset::before { content:'You currently have no assets' }
-.lang-issuer::before { content:'issuer：' }
+.lang-issuer::before { content:'issuer: ' }
 .lang-asset-transfer::before { content:'Asset transfer' }
 .lang-select-asset::before { content:'select asset' }
 .lang-max-to-transfer::before { content:'the maximum transfer' }
@@ -50,7 +50,7 @@
 .lang-my-tx-list::before { content:'my transaction list' }
 .lang-no-tx::before { content:"Your transaction list is empty" }
 .lang-collapse-all::before { content:'collapse all' }
-.lang-tx::before { content:'transaction：' }
+.lang-tx::before { content:'transaction: ' }
 .lang-tx-input::before { content:'transaction input' }
 .lang-tx-output::before { content:'Transaction output' }
 .lang-tx-value::before { content:'value' }
@@ -107,3 +107,5 @@
 .lang-website::after { content:'Official website' }
 .lang-backup-restore::after { content:'Backup / Restore' }
 .lang-please-choose::after { content:'please choose' }
+.lang-backup-danger::after { content:'To ensure the safety of your funds, please back up the wallet and keep it safe.' }
+.lang-account-list-info { content:'To ensure the safety of your funds, please export each account and keep it safe.' }
