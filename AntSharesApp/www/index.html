@@ -341,55 +341,28 @@
                     </div>-->
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
-
                     <h2 class="page-header lang-my-tx-list"></h2>
                     <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
-                    <button class="btn btn-default lang-collapse-all" onclick="setCollapse()"></button>
-                    <ul>
-                        <li class="txlist-item" style="display:none">
-                            <h5 class="lang-tx"><span class="text-success tx-id">点位符：交易ID</span></h5>
-                            <table class="table expand table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="lang-tx-input"></th>
-                                        <th class="lang-tx-output"></th>
-                                        <th class="lang-tx-value"></th>
-                                        <th class="lang-tx-asset"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="tx-input"></td>
-                                        <td class="tx-output"></td>
-                                        <td class="tx-value"></td>
-                                        <td class="tx-asset"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </li>
-                    </ul>
-                    <script>
-                        var first = true;
-                        function setCollapse()
-                        {
-                            if (first) {
-                                new jQueryCollapse($(".txlist-item"), {
-                                    open: function ()
-                                    {
-                                        this.slideDown(150);
-                                    },
-                                    close: function ()
-                                    {
-                                        this.slideUp(150);
-                                    }
-                                });
-                                first = false;
-                            }
-                            else {
-                                $("#Tab_Asset_TransactionList .expand").hide();
-                            }
-                        }
-                    </script>
+                    <table class="table expand table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <!--<th class="lang-tx-input"></th>-->
+                                <th>时间</th>
+                                <th>交易编号</th>
+                                <th>确认</th>
+                                <th>交易类型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="display:none">
+                                <td class="tx-time">2016/11/2 16:41:52</td>
+                                <td class="tx-id select">cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940</td>
+                                <td class="tx-confirm">1</td>
+                                <td class="tx-type">ctTransaction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
                 </div>
                 <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
                     <form id="form_sign_data" autocomplete="off">
@@ -401,7 +374,7 @@
                                 <span class="text-danger" data-valmsg-for="input_data" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                        <br />
+                        <br/>
                         <div id="output_section" class="row" style="display:none">
                             <div class="lang-output"></div>
                             <div class="col-sm-10">
@@ -690,7 +663,7 @@
                     <ul>
                         <li><a class="tab-trigger lang-my-asset" href="#Tab_Asset_Index"></a></li>
                         <li><a class="tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"></a></li>
-                        <!--<li><a class="tab-trigger" href="#Tab_Asset_TransactionList">交易列表</a></li>-->
+                        <li><a class="tab-trigger" href="#Tab_Asset_TransactionList">交易列表</a></li>
                     </ul>
                 </li>
                 <!--<li>
