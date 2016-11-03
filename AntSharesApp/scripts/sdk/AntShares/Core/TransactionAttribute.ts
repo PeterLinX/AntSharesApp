@@ -8,7 +8,7 @@ namespace AntShares.Core
         public deserialize(reader: IO.BinaryReader): void
         {
             this.usage = reader.readByte();
-            if (this.usage == TransactionAttributeUsage.ContractHash || (this.usage >= TransactionAttributeUsage.Hash1 && this.usage <= TransactionAttributeUsage.Hash15))
+            if (this.usage == TransactionAttributeUsage.ContractHash || this.usage == TransactionAttributeUsage.Vote || (this.usage >= TransactionAttributeUsage.Hash1 && this.usage <= TransactionAttributeUsage.Hash15))
                 this.data = reader.readBytes(32);
             else if (this.usage == TransactionAttributeUsage.ECDH02 || this.usage == TransactionAttributeUsage.ECDH03)
             {
