@@ -103,7 +103,7 @@
         static createAccountAlert = "Account Creation Complete";
         static importAccountAlert = "Account Import Complete";
         static pleaseInputData = "Please input data";
-        static WIFis = 'Private Key in WIF format:';
+        static WIFis = 'Private Key in WIF format: ';
         static dataFormatError = "Incorrect Data Format";
         static relaySuccess = "Broadcast Successful";
         static relayFaild = "Broadcast Failed";

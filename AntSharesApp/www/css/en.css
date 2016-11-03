@@ -60,7 +60,7 @@
 .lang-output::before { content:'output' }
 .lang-sign::before { content:'Signature' }
 .lang-sian-and-relay::before { content:'signature and broadcast' }
-.lang-regist-tx::before { content:'Regist asset' }
+.lang-regist-tx::before { content:'Register asset' }
 .lang-select-asset-type::before { content:'select asset type' }
 .lang-asset-name::before { content:'asset name' }
 .lang-amount-limited::before { content:'limited amount' }
