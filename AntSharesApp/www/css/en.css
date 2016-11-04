@@ -48,7 +48,7 @@
 .lang-receiver::before { content:'receiver' }
 .lang-confirm-transfer::before { content:'confirm transfer' }
 .lang-my-tx-list::before { content:'My Transaction List' }
-.lang-no-tx::before { content:"Your transaction list is empty" }
+.lang-no-tx::before { content:"No transactions yet" }
 .lang-collapse-all::before { content:'collapse all' }
 .lang-tx::before { content:'transaction: ' }
 .lang-tx-input::before { content:'transaction input' }

@@ -105,6 +105,8 @@
         static contractTx = "合约交易";
         static agencyTx = "代理交易";
         static publishTx = "合约发布";
+        static noTxs = "您目前还没有交易";
+
     }
 
     class global_en
@@ -200,5 +202,6 @@
         static contractTx = "Contract";
         static agencyTx = "Agency";
         static publishTx = "Publish";
+        static noTxs = "You have no transactions yet";
     }
 }

@@ -33,10 +33,12 @@
             return _transaction.commit().then(() => {
                 if (arrayTransaction.length <= 0) {
                     $("#Tab_Asset_TransactionList > h5").show();
-                    return;
+                    $("#Tab_Asset_TransactionList > table").hide();
+                    throw new Error(Resources.global.noTxs);
                 }
                 else {
                     $("#Tab_Asset_TransactionList > h5").hide();
+                    $("#Tab_Asset_TransactionList > table").show();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void> {
@@ -70,7 +72,9 @@
                 }
             }).then(() => {
                 execute();
-            }).catch(e => {
+                }, onreject => {
+                    console.log(Resources.global.noTxs);
+                }).catch(e => {
                 alert(e);
             });
         }
