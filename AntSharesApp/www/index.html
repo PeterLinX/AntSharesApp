@@ -23,6 +23,9 @@
 <body>
     <div id="page">
         <div class="content">
+            <div class="hello">
+                <h1>Comming Soon</h1>
+            </div>
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
                 <img src="img/logo-line.png" />
@@ -611,9 +614,12 @@
                 <div id="Tab_Help_About" class="tab-pane">
                     <h2 class="page-header lang-about"></h2>
                     <div id="zh_about">
-                        <div>
+                        <p>
                             小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。
-                        </div>
+                        </p>
+                        <p>
+                            这是一个离线钱包，所有代码均在您的浏览器端执行，钱包文件、私钥均不会上传给服务器，因此小蚁团队不能帮您保存、恢复钱包文件，请务必将钱包文件和私钥导出并妥善保管。
+                        </p>
                         <br />
                         <div>版本</div>
                         <div>1.0</div>
@@ -625,9 +631,12 @@
                         <div>2016 Antshares Team</div>
                     </div>
                     <div id="en_about">
-                        <div>
-                            Antshares is a decentralized and distributed network protocol which is based on blockchain technology. People can use it to digitalize assets or shares, and accomplish some financial business through peer-to-peer network such as registration and issuing, make transactions, settlement and payment.</div>
+                        <p>
+                            Antshares is a decentralized and distributed network protocol which is based on blockchain technology. People can use it to digitalize assets or shares, and accomplish some financial business through peer-to-peer network such as registration and issuing, make transactions, settlement and payment.</p>
                         <br />
+                        <p>
+                            This is an offline wallets, all the code in your browser-side implementation, wallet file and the private key will not be uploaded to the server, so TAT(The Antshares Team) cannot help you save or recover the wallet file, please be sure to export your wallet file and private key and keep it safe.
+                        </p>
                         <div>Version</div>
                         <div>1.0</div>
                         <br />
@@ -771,7 +780,15 @@
             else
                 $("#develop_tool").hide();
         }
-
+        var commingSoon = true;
+        if (commingSoon)
+        {
+            var hello = $(".hello").clone();
+            hello.show();
+            $("body").append(hello);
+            $("#Tab_Wallet_Open").removeClass("active");
+            $("#Tab_Help_About").addClass("active");
+        }
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
