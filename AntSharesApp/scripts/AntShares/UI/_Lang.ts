@@ -106,7 +106,7 @@
         static agencyTx = "代理交易";
         static publishTx = "合约发布";
         static noTxs = "您目前还没有交易";
-
+        static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
     }
 
     class global_en
@@ -203,5 +203,7 @@
         static agencyTx = "Agency";
         static publishTx = "Publish";
         static noTxs = "You have no transactions yet";
+        static RPCError = "Sorry, we have some problems here, cannot create wallets now, please try again later.";
+
     }
 }
