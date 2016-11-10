@@ -55,7 +55,7 @@
                     }).then(result =>
                     {
                         TabBase.showTab("#Tab_Asset_Index");
-                        alert("交易已经发送，等待区块确认，txid:" + tx.hash.toString());
+                        alert(Resources.global.txId + tx.hash.toString());
                     }).catch(reason =>
                     {
                         alert(reason);

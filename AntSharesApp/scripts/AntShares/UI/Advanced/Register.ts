@@ -112,7 +112,7 @@
             }).then(result => {
                 //TabBase.showTab("#Tab_Advanced_RegisterAssetList");
                 TabBase.showTab("#Tab_Asset_Index");
-                alert(Resources.global.registInfo + "，txid:"+ tx.hash.toString());
+                alert(Resources.global.registInfo + tx.hash.toString());
             }).catch(reason => {
                 alert(reason);
             });

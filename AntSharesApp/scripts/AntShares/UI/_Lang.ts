@@ -30,7 +30,7 @@
         static electionInfo = "选举信息已经发送，等待区块确认";
         static voteInfo = "投票信息已经发送，等待区块确认";
         static issueInfo = "分发资产信息已经发送，等待区块确认";
-        static registInfo = "注册资产信息已经发送，等待区块确认";
+        static registInfo = "注册资产信息已经发送，等待区块确认，交易ID: ";
         static contractInfo = "交易信息已经发送，等待区块确认";
         static publisher = "发行者";
         static admin = "管理员";
@@ -107,6 +107,7 @@
         static publishTx = "合约发布";
         static noTxs = "您目前还没有交易";
         static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
+        static txId = "交易已经发送，等待区块确认，交易id: ";
     }
 
     class global_en
@@ -127,7 +128,7 @@
         static electionInfo = "Election Info. Transmitted, pending confirmation";
         static voteInfo = "Voting Info. Transmitted, pending confirmation";
         static issueInfo = "Asset Distribution Info. Transmitted, pending confirmation";
-        static registInfo = "Asset Registration Info. Transmitted, pending confirmation";
+        static registInfo = "Asset has been registered, please wait for confirmations, txid= ";
         static contractInfo = "Transaction Info. Transmitted, pending confirmation";
         static publisher = "Issuer";
         static admin = "Administrator";
@@ -204,6 +205,6 @@
         static publishTx = "Publish";
         static noTxs = "You have no transactions yet";
         static RPCError = "Sorry, we have some problems here, cannot create wallets now, please try again later.";
-
+        static txId = "Transaction has been made, please wait for confirmations, txid: ";
     }
 }
