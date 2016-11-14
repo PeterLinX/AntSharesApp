@@ -108,6 +108,7 @@
         static noTxs = "您目前还没有交易";
         static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
         static txId = "交易已经发送，等待区块确认，交易id: ";
+        static addressError = "地址信息有误";
     }
 
     class global_en
@@ -206,5 +207,6 @@
         static noTxs = "You have no transactions yet";
         static RPCError = "Sorry, we have some problems here, cannot create wallets now, please try again later.";
         static txId = "Transaction has been made, please wait for confirmations, txid: ";
+        static addressError = "Improper Address";
     }
 }

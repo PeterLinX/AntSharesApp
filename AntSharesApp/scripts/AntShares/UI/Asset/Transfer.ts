@@ -36,7 +36,7 @@
                     return Core.SignatureContext.create(tx, "AntShares.Core." + Core.TransactionType[tx.type]);
                 }, onrejected =>
                     {
-                        throw new Error("地址信息有误");
+                        throw new Error(Resources.global.addressError);
                     }).then(result =>
                     {
                         context = result;
