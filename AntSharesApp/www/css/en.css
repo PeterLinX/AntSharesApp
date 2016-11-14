@@ -114,3 +114,4 @@
 .lang-tx-id::after { content:'Id' }
 .lang-tx-confirms::after { content:'Confirmations' }
 .lang-tx-type::after { content:'Type' }
+.lang-privacy::after { content:'Privacy policy' }

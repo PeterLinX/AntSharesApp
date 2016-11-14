@@ -5,6 +5,8 @@ if (currentLanguage.split('-')[0] == 'zh') {
     $("#zh_help").show();
     $("#en_about").hide();
     $("#zh_about").show();
+    $("#en_privacy").hide();
+    $("#zh_privacy").show();
 }
 else {
     document.getElementById('lang').href = 'css/en.css';
@@ -12,6 +14,8 @@ else {
     $("#zh_help").hide();
     $("#en_about").show();
     $("#zh_about").hide();
+    $("#en_privacy").show();
+    $("#zh_privacy").hide();
 }
 //初始化fileinput控件 http://www.cnblogs.com/wuhuacong/p/4774396.html
 function resetFileinput()
