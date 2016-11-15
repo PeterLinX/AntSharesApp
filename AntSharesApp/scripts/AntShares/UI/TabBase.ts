@@ -32,7 +32,7 @@
         }
     }
 
-    $('.tab-trigger').click(function ()
+    $('.tab-trigger').click(function (event)
     {
         event.preventDefault();
         TabBase.showTab($(this).attr("href"), $(this).data("args"));
