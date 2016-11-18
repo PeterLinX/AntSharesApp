@@ -80,6 +80,24 @@ nav:not(.mm-menu) { display: none; }
 @media only screen and (max-height: 560px) {
     .alert-info { display:none }
 }
+@media only screen and (max-width: 360px) {
+    footer { font-size:14px }
+    .footer-process { float:left; margin-left:20px }
+    .footer-height { float:right; margin-right:20px; }
+    .page-header { padding:30px 0 9px; margin:0 0 15px }
+    h2 { font-size:24px }
+    .mm-vertical .mm-listview .mm-panel, .mm-listview .mm-vertical .mm-panel { padding:5px 0 5px 5px }
+    .mm-listview > li > a, .mm-listview > li > span { padding:10px 10px 10px 20px }
+
+    .mm-navbar { height:40px; }
+    header, footer { height:40px; line-height:40px }
+    .mm-navbar > .mm-title { padding:10px 0 }
+    .tab-content { padding:40px 30px }
+    .mm-navbar > * { padding:5px 0 }
+    header a.iconfont, header a.iconfont:hover, header a.iconfont:focus { line-height:40px }
+    header a.iconfont, header a.iconfont:hover, header a.iconfont:focus { font-size: 20px; }
+
+}
 .content > .tab-content > .tab-pane { position: relative; height: 100%; }
 .page-header { border-bottom: 1px solid #eee; padding: 50px 0 9px; margin: 0 0 20px; cursor: default; }
 .mm-menu .buttonbar-item:after { content: none !important; display: none !important; }
