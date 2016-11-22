@@ -2,12 +2,6 @@
 {
     export class Index extends TabBase
     {
-
-        protected oncreate(): void
-        {
-            $(this.target).find("#create_account").click(this.OnCreateButtonClick);
-        }
-
         protected onload(): void
         {
             if (Global.Wallet == null)
@@ -15,53 +9,62 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
-            $("#account_list_wallet").text(Global.Wallet.dbPath);
-            let ul = $("#form_account_list").find("ul:eq(0)");
-            let lis = ul.find("li:visible");
-            lis.remove();
-            let contracts = Global.Wallet.getContracts();
-            for (let i = 0; i < contracts.length; i++)
-                if (contracts[i].isStandard())
-                    addAccountList(contracts[i]);
+            Global.Wallet.getContracts()[0].getAddress().then(result => {
+                $("#receiver").text(result);
+            });
 
+            let ul = $("#Tab_Asset_Index").find("ul:eq(0)");
+            ul.find("li :visible").remove();
+
+            let coins = Global.Wallet.findCoins();
+            if (coins.length <= 0)
+            {
+                $("#Tab_Asset_Index h5").show();
+                return;
+            }
+            else
+            {
+                $("#Tab_Asset_Index h5").hide();
+            }
+
+            let map = new Map<string, { assetId: Uint256, amount: Fixed8 }>();
+            for (let i = 0; i < coins.length; i++)
+            {
+                if (coins[i].state != Wallets.CoinState.Unspent && coins[i].state != Wallets.CoinState.Unconfirmed)
+                    continue;
+                let key = coins[i].assetId.toString();
+                if (map.has(key))
+                {
+                    let item = map.get(key);
+                    item.amount = item.amount.add(coins[i].value);
+                }
+                else
+                {
+                    map.set(key, { assetId: coins[i].assetId, amount: coins[i].value });
+                }
+            }
+            map.forEach(Index.addCoinList);
         }
 
-        private OnCreateButtonClick()
+        private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })
         {
-            //TabBase.showTab("#Tab_Account_Create");
-            Global.Wallet.createAccount().then(result =>
+            let ul = $("#Tab_Asset_Index").find("ul:eq(0)");
+            let liTemplet = ul.find("li:eq(0)");
+            let li = liTemplet.clone(true);
+            li.removeAttr("style");
+            li.find(".asset_value").text(item.amount.toString());
+            Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
-                addAccountList(Global.Wallet.getContracts(result.publicKeyHash)[0]);
-                alert(Resources.global.createAccountAlert);
+                let asset = <Core.RegisterTransaction>result;
+                if (asset.assetType == AntShares.Core.AssetType.AntShare || asset.assetType == AntShares.Core.AssetType.AntCoin) {
+                    li.find(".asset_issuer").text(Resources.global.issuer + Resources.global.theAntsharesSystem);
+                } else
+                {
+                    li.find(".asset_issuer").text(Resources.global.issuerPubKey + asset.issuer.toString());
+                }
+                li.find(".asset_name").text(asset.getName());
+                ul.append(li);
             });
         }
-    }
-
-    function addAccountList(contract: Wallets.Contract)
-    {
-        let ul = $("#form_account_list").find("ul:eq(0)");
-        let liTemplet = ul.find("li:eq(0)");
-        let li = liTemplet.clone(true);
-        li.removeAttr("style");
-        let span = li.find("span");//账户
-        let a = li.find("a");//详情
-        let btn = li.find("button:eq(0)");//导出
-        let account = Global.Wallet.getAccount(contract.publicKeyHash);
-        btn.click(() =>
-        {
-            account.export().then(result =>
-            {
-                alert(Resources.global.WIFis + result);
-            });
-        })
-        a.click(() =>
-        {
-            TabBase.showTab("#Tab_Account_Details", account, contract);
-        });
-        contract.getAddress().then(result =>
-        {
-            span.text(result);
-        });
-        ul.append(li);
     }
 }

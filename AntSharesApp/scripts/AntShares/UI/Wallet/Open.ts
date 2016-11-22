@@ -37,7 +37,7 @@
         {
             if (walletNameList.length == 0)
             {
-                TabBase.showTab("#Tab_Wallet_Create");
+                TabBase.showTab("#Tab_Wallet_Start");
             }
             else
             {

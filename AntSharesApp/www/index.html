@@ -33,6 +33,17 @@
             </header>
             <div class="tab-content">
                 <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showdevtools()"></div>
+                <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
+                    <div class="start">
+                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                    </div>
+                    <div class="start">
+                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                    </div>
+                    <div class="start">
+                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                    </div>
+                </div>
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
                     <form id="form_create_wallet" autocomplete="off">
                         <h2 class="page-header lang-create-wallet"></h2>
@@ -64,6 +75,37 @@
                         </div>
                     </form>
                 </div>
+                <div id="Tab_Wallet_Restore" class="form-horizontal tab-pane">
+                    <form id="form_backup">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8">
+                                <h2 class="page-header lang-import-wallet-file"></h2>
+                                <div>
+                                    <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="Tab_Wallet_Import" class="form-horizontal tab-pane">
+                    <form id="form_account_import" autocomplete="off">
+                        <h2 class="page-header lang-import-account"></h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-private-key"></label>
+                            <div class="col-sm-6">
+                                <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
+                                <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
                     <form id="form_open_wallet" autocomplete="off">
                         <h2 class="page-header lang-open-wallet"></h2>
@@ -136,162 +178,23 @@
                         </div>
                     </form>
                 </div>
+                <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
+                    <h2 class="page-header lang-backup"></h2>
+                    <p style="color:darkgray" class="lang-backup-note"></p>
+                    <div>
+                        <button id="backup" class="btn btn-primary lang-backup-current-wallet"></button>
+                        <a id="blob" href="" style="display:none">blob</a>
+                    </div>
+                    <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="lang-backup-danger"> </div>
+                    </div>
+                </div>
                 <div id="Tab_Account_Index" class="tab-pane">
-                    <form id="form_account_list" autocomplete="off">
-                        <h2 class="page-header lang-account-list"></h2>
-                        <div class="wallet-name" style="padding: 0; margin-bottom: 10px;">
-                            <div class="lang-wallet-name"><span id="account_list_wallet">点位符:钱包名称</span></div><br />
-                            <a class="btn tab-trigger btn-default lang-create-account" id="create_account" href="#Tab_Account_Index"></a>
-                            <!--<a class="btn btn-disable lang-import-private-key" href="javascript:"></a>-->
-                            <a class="btn tab-trigger btn-default lang-import-private-key" href="#Tab_Account_Import"></a>
-                        </div>
-                        <ul class="account-list">
-                            <li style="display:none" class="row">
-                                <div class="col-lg-6">
-                                    <span class="select"></span>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a class="btn btn-primary lang-details"></a>
-                                    <button class="btn btn-primary lang-export" type="button"></button>
-                                    <button class="btn btn-disable lang-certification" type="button"></button>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="alert alert-warning bottom" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <div class="lang-account-list-info"></div>
-                        </div>
-                    </form>
-                </div>
-                <div id="Tab_Account_Details" class="tab-pane">
-                    <h2 class="page-header lang-account-details"></h2>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <span class="lang-public-key"></span><br />
-                            <pre id="public_key"></pre>
-                        </div>
-                        <div class="col-xs-12">
-                            <a class="lang-show-hide-private-key" href="#seckey" data-toggle="collapse" aria-expanded="false"></a>
-                            <div id="seckey" class="collapse">
-                                <pre><span id="privatekey_export"></span></pre>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
-                    <div>
-                        <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
-                    </div>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        这里显示的是您的一组公私钥对，您的私钥可以操纵您的资产，请妥善保管，如果您放弃该账户中的所有资产，您可以<a class="alert-link" href="javascript:">删除账户</a>
-                    </div>-->
-                </div>
-                <div id="Tab_Account_Import" class="form-horizontal tab-pane">
-                    <form id="form_account_import" autocomplete="off">
-                        <h2 class="page-header lang-import-account"></h2>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label lang-input-private-key"></label>
-                            <div class="col-sm-6">
-                                <input id="import_prikey_input" name="import_prikey_input" type="text" data-val="true" data-val-length-max="52" data-val-length-min="52" />
-                                <span class="text-danger" data-valmsg-for="import_prikey_input" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
-                            </div>
-                        </div>
-                        <div>
-                            <a class="tab-trigger lang-back-to-account-list" href="#Tab_Account_Index"></a>
-                        </div>
-                    </form>
-                </div>
-                <div id="Tab_Contract_Index" class="tab-pane">
-                    <form id="form_contract_list">
-                        <h2 class="page-header lang-contract-list"></h2>
-                        <div class="col-md-12" style="padding: 0; margin-bottom: 10px;">
-                            <div class="lang-wallet-name"><span id="contract_list_wallet">点位符:钱包名称</span></div><br />
-                            <div class="btn-group">
-                                <a class="tab-trigger btn btn-default lang-create-muntisig" href="#Tab_Contract_CreateMultiSig"></a>
-                            </div>
-                        </div>
-                        <ul class="col-sm-12 account-list">
-                            <li style="display:none" class="row">
-                                <div class="col-lg-6">
-                                    <span class="select"></span>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a class="btn btn-primary lang-details"></a>
-                                </div>
-                            </li>
-                        </ul>
-                        <!--<div class="alert alert-info bottom" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            合约是一段规定某一笔钱如何支付的脚本，A可以约定必须由收款人B和担保人C同时签名才能支配某笔比特币（担保交易），
-                            也可以约定B、C、D中任意两人签名就能支配（联名账户）；
-                            A可以约定B必须在一年后才能动用某笔比特币（延时支付），
-                            也可以约定任何人都能支配（撒钱）或者都不能支配（烧钱）。
-                            通过这套内置的脚本编程语言，你可以灵活地编写出各种各样的约定从而实现智能合约。
-                        </div>-->
-                    </form>
-                </div>
-                <div id="Tab_Contract_Details" class="tab-pane">
-                    <h2 class="page-header lang-contract-details"></h2>
-                    <div class="lang-contract-type"></div>
-                    <pre id="contract_type">点位符：合约类型</pre>
-                    <div class="lang-contract-content"></div>
-                    <pre id="contract_content">点位符：合约内容</pre>
-                    <div class="lang-contract-hash"></div>
-                    <pre id="contract_scripthash">点位符：合约散列</pre>
-                    <div class="lang-contract-address"></div>
-                    <pre id="contract_address">点位符：合约地址</pre>
-                    <br />
-                    <a class="tab-trigger lang-back-to-list" href="#Tab_Contract_Index"></a>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        这里显示的是您的一组公私钥对，您的私钥可以操纵您的资产，请妥善保管，如果您放弃该账户中的所有资产，您可以 <a class="alert-link" href="javascript:">删除账户</a>
-                    </div>-->
-                </div>
-                <div id="Tab_Contract_CreateMultiSig" class="form-horizontal tab-pane">
-                    <form id="form_create_multisig" autocomplete="off">
-                        <h2 class="page-header lang-create-muntisig"></h2>
-                        <h5 class="lang-min-sign-count"></h5>
-                        <input id="input_m" name="account_name" type="text" data-val="true" style="max-width:200px" />
-                        <span class="text-danger" data-valmsg-for="account_name" data-valmsg-replace="true"></span>
-                        <h5 class="lang-add-public-key"></h5>
-                        <div id="div_publickeys">
-                            <div id="public_tpl" class="row" style="padding: 5px 0; display:none">
-                                <div class="col-xs-10">
-                                    <input id="public_input_tpl" class="publickeyitem" type="text" />
-                                </div>
-                                <div class="col-xs-2">
-                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
-                                </div>
-                            </div>
-                            <div class="row" style="padding: 5px 0">
-                                <div class="col-xs-10">
-                                    <input id="publickeyitem" class="form-control publickeyitem" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <i id="add_public" class="iconfont circle" type="button">&#xe60d;</i>
-                        <br /><br />
-                        <button id="create_multisig_contract" type="button" class="btn btn-primary lang-create"></button>
-                    </form>
-                    <br />
-                    <div>
-                        <a class="tab-trigger lang-back-to-contract-list" href="#Tab_Contract_Index"></a>
-                    </div>
-                </div>
-                <div id="Tab_Asset_Index" class="tab-pane">
+                    <h2 class="page-header lang-receiver-address"></h2>
+                    <div id="receiver" class="select"></div>
                     <h2 class="page-header lang-my-asset"></h2>
                     <h5 class="lang-no-asset" style="display:none; padding-top:50px; text-align:center"></h5>
                     <ul>
@@ -334,13 +237,6 @@
                         </div>
                         <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
                     </form>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        指定所有参与方的交易，并可以根据参与交易的资产类型判断是否要求对方确认接受。对方可以选择确认接受（签名）或拒绝（忽略）。目前只有转让股权需要对方签名。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>-->
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-my-tx-list"></h2>
@@ -365,191 +261,6 @@
                     </table>
                     
                 </div>
-                <div id="Tab_Advanced_Sign" class="form-horizontal tab-pane">
-                    <form id="form_sign_data" autocomplete="off">
-                        <h2 class="page-header lang-tx-sign"></h2>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <label class="lang-input"></label>
-                                <textarea id="input_data" name="input_data" class="form-control" data-val="true" rows="5" style="padding: 5px 10px; margin: 10px 0;"></textarea>
-                                <span class="text-danger" data-valmsg-for="input_data" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <br/>
-                        <div id="output_section" class="row" style="display:none">
-                            <div class="lang-output"></div>
-                            <div class="col-sm-10">
-                                <pre id="output_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
-                            </div>
-                        </div>
-                        <button id="sign" type="button" class="btn btn-raised btn-primary lang-sign"></button>
-                        <button id="sign_relay" type="button" class="btn btn-raised btn-primary lang-sian-and-relay"></button>
-
-                    </form>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        交易签名的用处主要是确保交易双方同意该笔交易，如果对方给您转让一笔股权，则需要您对对方的交易签名，然后广播到网络中才能完成交易。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>-->
-                </div>
-                <div id="Tab_Advanced_Register" class="form-horizontal tab-pane">
-                    <form id="form_register_asset" autocomplete="off">
-                        <h2 class="page-header lang-regist-tx"></h2>
-                        <h5 class="lang-select-asset-type"></h5>
-                        <select class="form-control" id="select_register_asset"></select>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <h5 class="lang-asset-name"></h5>
-                                <input id="input_asset_name" name="input_asset_name" class="form-control" data-val="true" />
-                                <span class="text-danger" data-valmsg-for="input_asset_name" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <h5 class="lang-amount-limited"></h5>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label class="lang-amount-limited2" style="line-height: 2.3;"><input class="form-control" type="checkbox" checked="checked" id="check_limit" /></label>
-                            </div>
-                            <div class="col-sm-8">
-                                <input id="input_amount" name="input_amount" data-val="true" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" />
-                                <span class="text-danger" data-valmsg-for="input_amount" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <h5 class="lang-select-issuer"></h5>
-                        <select class="form-control" id="select_issuer"></select>
-                        <h5 class="lang-select-admin"></h5>
-                        <select class="form-control" id="select_admin"></select>
-                        <div class="alert alert-danger long-need-10000anc" style="padding: 5px 10px; margin: 10px 0;"></div>
-                        <button id="register" type="button" class="btn btn-raised btn-primary lang-confirm-regist"></button>
-
-                    </form>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        注册资产用作注册一种新的用户分发资产。用户可以自己定义资产的类型、名称、总量等，并指定资产的管理员账户。创设资产需要消耗一定数量的小蚁币作为附加服务费。
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>-->
-                </div>
-                <div id="Tab_Advanced_RegisterAssetList" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-my-register"></h2>
-                    <h5 style="display:none; padding-top:50px; text-align:center"></h5>
-                    <table class="table expand table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="lang-asset-name"></th>
-                                <th class="lang-amount"></th>
-                                <th class="lang-issuer"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display:none">
-                                <td class="asset_name">点位符：资产名称</td>
-                                <td class="asset_amount">点位符：100,000,000</td>
-                                <td class="asset_issuer">点位符：02a2d6adf934fe7f7e860ed48117e7590fd19db1ad018d15d5425fc5b3d6f11e74</td>
-                            </tr>
-                            <tr class="no_asset">
-                                <td class="lang-no-regist" colspan="3" style="text-align:center"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="Tab_Advanced_Issue" class="form-horizontal tab-pane">
-                    <form id="form_issue" class="form-horizontal" autocomplete="off">
-                        <h2 class="page-header lang-issue-asset"></h2>
-                        <div class="form-group">
-                            <div class="col-md-7">
-                                <h5 class="lang-select-asset"></h5>
-                                <select id="select_issue_assets" name="select_issue_assets" class="form-control" data-val="true"></select>
-                                <span class="text-danger" data-valmsg-for="select_issue_assets" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <h5 class="issue_info lang-asset-type"></h5>
-                        <div class="issue_info" id="issue_infos" style="padding: 10px 0 20px 0; margin: 0 3px; border-radius: 4px; box-shadow: #555 0px 0px 2px;">
-                        </div>
-                        <h5 class="lang-add-reveiver"></h5>
-                        <div id="issue_outputs">
-                            <div id="issue_tpl" class="row issue-tempate" style="padding: 5px 0; display:none">
-                                <div class="col-sm-7"><input class="issue_output issue_output_addr" type="text" /></div>
-                                <div class="col-sm-3 col-xs-9"><input class="issue_output issue_output_value" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" /></div>
-                                <div class="col-sm-2 col-xs-3">
-                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
-                                </div>
-                            </div>
-                            <div id="issue_output" class="row issue-tempate" style="padding: 5px 0">
-                                <div class="col-sm-7"><input class="form-control issue_output issue_output_addr" type="text" /></div>
-                                <div class="col-sm-3 col-xs-9"><input class="form-control issue_output issue_output_value" onkeydown="convert_keydown(this)" onkeyup="convert_keyup(this)" type="text" /></div>
-                            </div>
-                        </div>
-                        <i id="add_input" class="iconfont circle" type="button">&#xe60d;</i>
-                        <br /><br />
-                        <button id="issue" class="btn btn-primary lang-confirm-issue" type="button"></button>
-                    </form>
-                    <!--<div class="alert alert-info bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        在注册资产所设定的总量上限范围内，进行从无到有的分发，在任意发行人指定的地址中生成该资产。资产分发可以一次性完成，也可以在任意时间内分批完成。如果分发股权需要对方签名接收
-                        <a class="alert-link" href="javascript:">了解更多</a>
-                    </div>-->
-                </div>
-
-                <div id="Tab_Advanced_Elect" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-elect"></h2>
-                    <form id="form_register_asset" autocomplete="off">
-                        <h5 class="lang-miner"></h5>
-                        <select class="form-control" id="select_validator"></select>
-                        <h5 class="lang-pawn-anc"></h5>
-                        <input id="input_antcoin" class="form-control" style="padding: 5px 10px; margin: 10px 0;" />
-                        <button id="elect" type="button" class="btn btn-raised btn-primary lang-ok"></button>
-                    </form>
-                </div>
-                <div id="Tab_Advanced_Vote" class="form-horizontal tab-pane">
-                    <form id="form_vote" class="form-horizontal" autocomplete="off">
-                        <h2 class="page-header lang-vote"></h2>
-                        <h5 class="lang-candidate"></h5>
-
-                        <div id="div_candidates">
-                            <div id="candidates_tpl" class="row" style="padding: 5px 0; display:none">
-                                <div class="col-xs-10">
-                                    <input id="public_input_tpl" class="candidate" type="text" />
-                                </div>
-                                <div class="col-xs-2">
-                                    <i onclick="this.parentNode.parentNode.remove();" class="iconfont circle">&#xe60e;</i>
-                                </div>
-                            </div>
-                            <div class="row" style="padding: 5px 0">
-                                <div class="col-xs-10">
-                                    <input id="publickeyitem" class="form-control publickeyitem" type="text" />
-                                </div>
-                            </div>
-                        </div>
-                        <i id="add_candidates" class="iconfont circle" type="button">&#xe60d;</i>
-                        <br /><br />
-                        <button id="vote" class="btn btn-primary lang-ok" type="button"></button>
-                    </form>
-                </div>
-                <div id="Tab_Advanced_Relay" class="form-horizontal tab-pane">
-                    <form id="form_relay_data" autocomplete="off">
-                        <h2 class="page-header lang-relay"></h2>
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <textarea id="relay_data" name="relay_data" data-val="true" rows="10" class="form-control"></textarea>
-                                <span class="text-danger" data-valmsg-for="relay_data" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="convert_section" class="row" style="display:none">
-                            <div class="lang-output"></div>
-                            <div class="col-sm-10">
-                                <pre id="convert_data" class="select" style="padding: 5px 10px; margin: 10px 0;"></pre>
-                            </div>
-                        </div>
-                        <button id="convert" type="button" class="btn btn-primary lang-convert"></button>
-                        <button id="relay" type="button" class="btn btn-primary lang-relay"></button>
-                    </form>
-                </div>
 
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
@@ -572,32 +283,6 @@
                     </form>
                 </div>
 
-                <div id="Tab_Config_Backup" class="form-horizontal tab-pane">
-                    <form id="form_backup">
-                        <div id="back_div">
-                            <h2 class="page-header lang-backup"></h2>
-                            <p style="color:darkgray" class="lang-backup-note"></p>
-                            <div>
-                                <button id="backup" class="btn btn-primary lang-backup-current-wallet" ></button>
-                                <a id="blob" href="" style="display:none">blob</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-8">
-                                <h2 class="page-header lang-import-wallet-file"></h2>
-                                <div>
-                                    <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <div class="lang-backup-danger"> </div>
-                        </div>
-                    </form>
-                </div>
                 <div id="Tab_Help_Help" class="tab-pane">
                     <h2 class="page-header lang-help"></h2>
                     <div id="zh_help">
@@ -713,22 +398,16 @@
                 <li>
                     <span class="lang-wallet"><i class="iconfont">&#xe602;</i></span>
                     <ul>
-                        <li><a class="tab-trigger lang-create-wallet" href="#Tab_Wallet_Create"></a></li>
-                        <li><a class="tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"></a></li>
                         <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
+                        <li><a class="tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"></a></li>
                     </ul>
                 </li>
                 <li>
-                    <span class="lang-user-center"><i class="iconfont">&#xe600;</i></span>
-                    <ul>
-                        <li><a class="tab-trigger lang-account-list" href="#Tab_Account_Index"></a></li>
-                        <li><a class="tab-trigger lang-contract-list" href="#Tab_Contract_Index"></a></li>
-                    </ul>
+                    <a class="user-center tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
                 </li>
                 <li>
-                    <span class="lang-asset"><i class="iconfont">&#xe604;</i></span>
+                    <span class="lang-transaction"><i class="iconfont">&#xe604;</i></span>
                     <ul>
-                        <li><a class="tab-trigger lang-my-asset" href="#Tab_Asset_Index"></a></li>
                         <li><a class="tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"></a></li>
                         <li><a class="tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"></a></li>
                     </ul>
@@ -740,35 +419,14 @@
                     </ul>
                 </li>-->
                 <li>
-                    <span class="lang-adv-function"><i class="iconfont">&#xe609;</i></span>
-                    <ul>
-                        <li><a class="tab-trigger lang-regist-asset" href="#Tab_Advanced_Register"></a></li>
-                        <!--<li><a class="tab-trigger" href="#Tab_Advanced_RegisterAssetList">注册资产列表</a></li>-->
-                        <li><a class="tab-trigger lang-issue-asset" href="#Tab_Advanced_Issue"></a></li>
-                        <li><a class="tab-trigger lang-sign" href="#Tab_Advanced_Sign"></a></li>
-                        <!--<li><a class="tab-trigger lang-elect" href="#Tab_Advanced_Elect"></a></li>
-                        <li><a class="tab-trigger lang-vote" href="#Tab_Advanced_Vote"></a></li>-->
-                        <li><a class="tab-trigger lang-relay" href="#Tab_Advanced_Relay"></a></li>
-                    </ul>
-                </li>
-                <li>
                     <span class="lang-antshares-blockchain"><i class="iconfont">&#xe60a;</i></span>
                     <ul>
                         <li><a href="http://antcha.in/" target="_blank">AntCha.in<i class="iconfont link">&#xe60b;</i></a></li>
                     </ul>
                 </li>
                 <li>
-                    <span class="lang-system-setup"><i class="iconfont">&#xe601;</i></span>
-                    <ul>
-                        <!--<li><a class="lang-normal-setup" href="javascript:void(0)"></a></li>-->
-                        <li><a class="tab-trigger lang-backup-restore" href="#Tab_Config_Backup"></a></li>
-                    </ul>
-                </li>
-                <li>
                     <span class="lang-about"><i class="iconfont">&#xe685;</i></span>
                     <ul>
-                        <!--<li><a class="tab-trigger lang-help" href="#Tab_Help_Help"></a></li>-->
-                        <!--<li><a class="lang-website" target="_blank" href="https://www.antshares.org/"><i class="iconfont link">&#xe60b;</i></a></li>-->
                         <li><a class="tab-trigger lang-about" href="#Tab_Help_About"></a></li>
                         <li><a class="tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"></a></li>
                     </ul>

@@ -40,7 +40,7 @@
                 }).then(results =>
                 {
                     formReset("form_create_wallet");
-                    TabBase.showTab("#Tab_Config_Backup", true);
+                    TabBase.showTab("#Tab_Wallet_Backup", true);
                     }, reason => alert(reason));
             }
         }

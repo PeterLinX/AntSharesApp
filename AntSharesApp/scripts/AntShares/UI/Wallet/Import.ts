@@ -1,4 +1,4 @@
-﻿namespace AntShares.UI.Account
+﻿namespace AntShares.UI.Wallet
 {
     export class Import extends TabBase
     {
@@ -14,6 +14,7 @@
 
         private OnImportButtonClick()
         {
+            //TODO:要创建钱包，让用户输入钱包密码
             if (formIsValid("form_account_import")) {
                 let wifPrivateKey: string = $("#import_prikey_input").val();
                 let accounts: AntShares.Wallets.Account[];

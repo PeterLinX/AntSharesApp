@@ -10,10 +10,7 @@
         }
 
         protected onload(args: any[]): void {
-            if (Global.Wallet == null) {
-                TabBase.showTab("#Tab_Wallet_Open");
-                return;
-            }
+
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
             formReset("form_dev_tool");
@@ -31,23 +28,23 @@
             }).then(() => {
                 Global.Wallet = null;
                 return master.get();
-                }).then(result => {
-                    let promises = [];
-                    promises[0] = Promise.resolve(1);
-                    for (let j = 0; j < result.length; j++) {
-                        promises[j + 1] = promises[j].then(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[j]));
-                    };
-                    return Promise.all(promises);
-                }).then(() => {
-                    master.close();
-                    return Implementations.Wallets.IndexedDB.DbContext.delete("master");
-                }).then(() => {
-                    console.log("删除中，进度：100%");
-                    alert("已经删除所有钱包文件！");
-                    setTimeout(() => { location.reload(); }, 1000);
-                }).catch(reason => {
-                    alert(reason);
-                });
+            }).then(result => {
+                let promises = [];
+                promises[0] = Promise.resolve(1);
+                for (let j = 0; j < result.length; j++) {
+                    promises[j + 1] = promises[j].then(Implementations.Wallets.IndexedDB.IndexedDBWallet.delete(result[j]));
+                };
+                return Promise.all(promises);
+            }).then(() => {
+                master.close();
+                return Implementations.Wallets.IndexedDB.DbContext.delete("master");
+            }).then(() => {
+                console.log("删除中，进度：100%");
+                alert("已经删除所有钱包文件！");
+                setTimeout(() => { location.reload(); }, 1000);
+            }).catch(reason => {
+                alert(reason);
+            });
         }
 
         private OnSetHeightButtonClick = () => {

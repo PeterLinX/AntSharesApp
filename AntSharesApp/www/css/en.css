@@ -42,7 +42,7 @@
 .lang-my-asset::before { content:'My asset' }
 .lang-no-asset::before { content:'You currently have no assets' }
 .lang-issuer::before { content:'issuer: ' }
-.lang-asset-transfer::before { content:'Asset transfer' }
+.lang-asset-transfer::before { content:'Transfer' }
 .lang-select-asset::before { content:'select asset' }
 .lang-max-to-transfer::before { content:'the maximum transfer' }
 .lang-receiver::before { content:'receiver' }
@@ -108,10 +108,13 @@
 .lang-backup-restore::after { content:'Backup / Restore' }
 .lang-please-choose::after { content:'please choose' }
 .lang-transaction-list::after { content:'Transaction list' }
+.lang-transaction::after { content:'Transaction' }
 .lang-backup-danger::after { content:'To ensure the safety of your funds, please back up the wallet and keep it safe.' }
-.lang-account-list-info { content:'To ensure the safety of your funds, please export each account and keep it safe.' }
+.lang-account-list-info::after { content:'To ensure the safety of your funds, please export each account and keep it safe.' }
 .lang-tx-time::after { content:'Time' }
 .lang-tx-id::after { content:'Id' }
 .lang-tx-confirms::after { content:'Confirmations' }
 .lang-tx-type::after { content:'Type' }
 .lang-privacy::after { content:'Privacy policy' }
+.lang-receiver-address::after { content:'Receiver address' }
+.lang-backup-wallet::after { content:'Backup wallet' }
