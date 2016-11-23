@@ -32,7 +32,7 @@
                 <span class="lang-title"> </span>
             </header>
             <div class="tab-content">
-                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showdevtools()"></div>
+                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
                     <div class="start">
                         <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
@@ -48,10 +48,9 @@
                     <form id="form_create_wallet" autocomplete="off">
                         <h2 class="page-header lang-create-wallet"></h2>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label lang-input-wallet-name"></label>
+                            <label class="col-sm-4 control-label lang-wallet-name"></label>
                             <div class="col-sm-6">
-                                <input id="wallet_name" name="wallet_name" type="text" data-val="true" />
-                                <span class="text-danger" data-valmsg-for="wallet_name" data-valmsg-replace="true"></span>
+                                <input id="wallet_name" readonly="readonly" type="text" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -74,6 +73,7 @@
                             </div>
                         </div>
                     </form>
+                    <a class="tab-trigger return-start lang-return-start" href="#Tab_Wallet_Start"></a>
                 </div>
                 <div id="Tab_Wallet_Restore" class="form-horizontal tab-pane">
                     <form id="form_backup">
@@ -86,6 +86,7 @@
                             </div>
                         </div>
                     </form>
+                    <a class="tab-trigger return-start lang-return-start" href="#Tab_Wallet_Start"></a>
                 </div>
 
                 <div id="Tab_Wallet_Import" class="form-horizontal tab-pane">
@@ -99,11 +100,26 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-4 control-label  lang-import-password"></label>
+                            <div class="col-sm-6">
+                                <input id="import_password" name="import_password" type="password" data-val="true" data-val-length-min="6" />
+                                <span class="text-danger" data-valmsg-for="import_password" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-wallet-confirm-password"></label>
+                            <div class="col-sm-6">
+                                <input id="import_password_confirm" name="import_password_confirm" type="password" data-val="true" />
+                                <span class="text-danger" data-valmsg-for="import_password_confirm" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
                                 <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
                             </div>
                         </div>
                     </form>
+                    <a class="tab-trigger return-start lang-return-start" href="#Tab_Wallet_Start"></a>
                 </div>
 
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
@@ -143,7 +159,7 @@
                     <form id="form_change_password" autocomplete="off">
                         <h2 class="page-header lang-change-wallet-password"></h2>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label lang-wallet-name"></label>
+                            <label class="col-sm-4 control-label lang-wallet-name"></label>:
                             <div class="col-sm-6">
                                 <label class="change-wallet-name" id="change_wallet_name">点位符：钱包名称</label>
                             </div>
@@ -265,10 +281,12 @@
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <form id="form_dev_tool" autocomplete="off">
-                        <h2 class="page-header lang-developer-tool"></h2>
-                        <h5>删除所有钱包，请谨慎操作</h5>
-                        <button id="delete_wallet" type="button" class="btn btn-default">删除所有钱包</button>
-                        <br /><br />
+                        <h2 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h2>
+                        <div id="delete_all_wallet">
+                            <h5 class="text-danger">删除所有钱包，请谨慎操作</h5>
+                            <button id="delete_wallet" type="button" class="btn btn-danger">删除所有钱包</button>
+                            <br /><br />
+                        </div>
                         <h5>手动设置钱包同步高度</h5>
                         <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
                         <div class="form-group">
@@ -398,6 +416,7 @@
                 <li>
                     <span class="lang-wallet"><i class="iconfont">&#xe602;</i></span>
                     <ul>
+                        <li id="menu_wallet_start"><a class="tab-trigger lang-start" href="#Tab_Wallet_Start"></a></li>
                         <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
                         <li><a class="tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"></a></li>
                     </ul>
@@ -485,13 +504,22 @@
         }
 
         var i = 1;
-        function showdevtools()
+        function showDevTools()
         {
             i++;
             if (i % 4 == 0)
                 $("#develop_tool").show();
             else
                 $("#develop_tool").hide();
+        }
+        var j = 1;
+        function showDeleteWallet()
+        {
+            j++;
+            if (j % 4 == 0)
+                $("#delete_all_wallet").show();
+            else
+                $("#delete_all_wallet").hide();
         }
         var comingSoon = false;
         if (comingSoon)

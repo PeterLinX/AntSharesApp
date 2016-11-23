@@ -37,8 +37,6 @@ function resetFileinput()
 resetFileinput();
 
 var global = AntShares.UI.Resources.global;
-$("#wallet_name").attr("placeholder", global.walletName);
-$("#wallet_name").attr("data-val-required", global.walletNameRequired);
 $("#create_password").attr("placeholder", global.createPasswordPlaceholder);
 $("#create_password").attr("data-val-required", global.createPasswordRequired);
 $("#create_password").attr("data-val-length", global.createPasswordLength);

@@ -17,6 +17,7 @@
         {
             if (formIsValid("form_create_wallet"))
             {
+                let name = "wallet";
                 if ($("#remote_height").text() == "0")
                 {
                     alert(Resources.global.RPCError);
@@ -29,14 +30,13 @@
                     return master.get();
                 }).then(result =>
                 {
-                    let name = $("#wallet_name").val().trim();
                     if (result.indexOf(name) >= 0)
                         throw new Error(Resources.global.sameWalletName);
                     return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val());
                 }).then(wallet =>
                 {
                     Global.Wallet = wallet;
-                    return master.add($("#wallet_name").val().trim());
+                    return master.add(name);
                 }).then(results =>
                 {
                     formReset("form_create_wallet");

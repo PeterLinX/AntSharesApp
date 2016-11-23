@@ -41,6 +41,7 @@
             }
             else
             {
+                $("#menu_wallet_start").hide();
                 $("#input_wallet_name").hide();
                 $("#list_wallet_name").show();
                 let ul = $("#list_wallet_name");

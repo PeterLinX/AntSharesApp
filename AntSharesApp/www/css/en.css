@@ -3,8 +3,9 @@
 .lang-create-wallet::before { content:'Create wallet' }
 .lang-open-wallet::before { content:'Open wallet' }
 .lang-input-wallet-name::before { content:'input wallet name' }
-
-
+.lang-import-password::before { content:'Set password for new wallet' }
+.lang-return-start::before { content:'Return to start' }
+.lang-start::before { content:'Start' }
 .lang-input-wallet-password::before { content:'input wallet password' }
 .lang-input-wallet-confirm-password::before { content:'input confirm password' }
 .lang-select-wallet-file::before { content:'select wallet file' }
@@ -15,7 +16,6 @@
 .lang-input-new-password::before { content:'input new password' }
 .lang-confirm-new-password::before { content:'confirm new password' }
 .lang-account-list::before { content:'Account list' }
-.lang-wallet-name::before { content:'wallet name: ' }
 .lang-create-account::before { content:'create account' }
 .lang-import-private-key::before { content:'import private key' }
 .lang-details::before { content:'details' }
