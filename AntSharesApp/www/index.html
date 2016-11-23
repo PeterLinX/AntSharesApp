@@ -282,20 +282,29 @@
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <form id="form_dev_tool" autocomplete="off">
                         <h2 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h2>
+                        <div>
+                            <h5>节点信息</h5>
+                            <div>中国上海：延迟<span id="seed2"></span>ms</div>
+                            <div>英国伦敦：延迟<span id="seed8"></span>ms</div>
+                            <div>当前连接节点：<span id="seed"></span></div>
+                            <br />
+                        </div>
                         <div id="delete_all_wallet">
                             <h5 class="text-danger">删除所有钱包，请谨慎操作</h5>
                             <button id="delete_wallet" type="button" class="btn btn-danger">删除所有钱包</button>
                             <br /><br />
                         </div>
-                        <h5>手动设置钱包同步高度</h5>
-                        <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
-                        <div class="form-group">
-                            <div class="col-xs-8">
-                                <input type="text" id="input_curent_height" name="input_curent_height" class="form-control" data-val="true" data-val-required="请指定一个高度，让钱包从此高度开始同步" />
-                                <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
-                            </div>
-                            <div class="col-xs-4">
-                                <button id="set_height" type="button" class="btn btn-default">确定</button>
+                        <div>
+                            <h5>手动设置钱包同步高度</h5>
+                            <p>指定一个高度，让钱包从此高度开始同步，设置同步高度不会影响已同步数据</p>
+                            <div class="form-group">
+                                <div class="col-xs-8">
+                                    <input type="text" id="input_curent_height" name="input_curent_height" class="form-control" data-val="true" data-val-required="请指定一个高度，让钱包从此高度开始同步" />
+                                    <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button id="set_height" type="button" class="btn btn-default">确定</button>
+                                </div>
                             </div>
                         </div>
                     </form>

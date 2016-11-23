@@ -4,7 +4,7 @@
     {
         public static getblockcount(): void
         {
-            Core.Blockchain.Default.getBlockCount().then(result =>
+            Global.Blockchain.getBlockCount().then(result =>
             {
                 let remoteHeight = result - 1;
                 $("#remote_height").text(remoteHeight);

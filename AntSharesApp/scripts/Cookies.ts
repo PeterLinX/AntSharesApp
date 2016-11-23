@@ -23,3 +23,8 @@ function getCookie(c_name)
     }
     return ""
 }
+
+function getTime()
+{
+    return new Date().getTime();
+}
