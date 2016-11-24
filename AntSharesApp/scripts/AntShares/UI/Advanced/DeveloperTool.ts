@@ -6,7 +6,7 @@
         protected oncreate(): void {
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
             $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
-
+            $(this.target).find("#refresh_nood").click(Global.chooseNode);
         }
 
         protected onload(args: any[]): void {
