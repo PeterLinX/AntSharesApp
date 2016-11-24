@@ -39,13 +39,19 @@
                 {
                     let strDb: string = JSON.stringify(array);
                     let db = [strDb];
-                    let blob = new Blob(db, { "type": "application/octet-binary" });
-                    let url = URL.createObjectURL(blob);
-                    var a = $('#Tab_Wallet_Backup #blob');
-                    a.attr('href', url);
-                    console.log(url);
-                    a[0].click();
-                    navigator.msSaveBlob(blob, "antshares_backup");
+                    let blob = new Blob(db, { "type": "application/octet-binary" });           
+                    if (navigator.msSaveBlob)
+                    {
+                        navigator.msSaveBlob(blob, "antshares_backup");
+                    }
+                    else
+                    {
+                        let url = URL.createObjectURL(blob);
+                        var a = $('#Tab_Wallet_Backup #blob');
+                        a.attr('href', url);
+                        a[0].click();
+                    }
+                    
                 }).catch(e =>
                 {
                     console.log(e)
