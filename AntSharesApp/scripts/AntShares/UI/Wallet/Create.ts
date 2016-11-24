@@ -11,6 +11,7 @@
 
         protected onload(): void
         {
+            $("#wallet_name").val("wallet");
         }
 
         private OnCreateButtonClick = () =>
