@@ -2,6 +2,11 @@
 {
     export class Index extends TabBase
     {
+        protected oncreate(): void
+        {
+            $(this.target).find("#copy-addr").click(this.OnCopyAddress);
+        }
+
         protected onload(): void
         {
             if (Global.Wallet == null)
@@ -44,6 +49,11 @@
                 }
             }
             map.forEach(Index.addCoinList);
+        }
+
+        protected OnCopyAddress(): void
+        {
+
         }
 
         private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })

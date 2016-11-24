@@ -14,7 +14,6 @@
                 return result.get();
             }).then(Open.listWallet);
             $("#open_error").hide();
-            $("#open_password").focus();
         }
 
         private OnOpenButtonClick = () =>
@@ -42,6 +41,7 @@
             }
             else
             {
+                $("#open_password").focus();
                 $("#menu_wallet_start").hide();
                 $("#input_wallet_name").hide();
                 $("#list_wallet_name").show();

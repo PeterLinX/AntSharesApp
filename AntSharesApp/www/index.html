@@ -23,16 +23,13 @@
 <body>
     <div id="page">
         <div class="content">
-            <div class="hello">
-                <h1>Coming Soon</h1>
-            </div>
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
                 <img src="img/logo-line.png" />
                 <span class="lang-title"> </span>
             </header>
             <div class="tab-content">
-                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
+                <div style="position:absolute; left:0; bottom:0; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
                     <div class="start">
                         <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
@@ -197,7 +194,7 @@
                 <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-backup"></h2>
                     <div id="div_web">
-                        <button id="backup_web" class="btn btn-primary lang-backup-current-wallet"></button>
+                        <button id="backup_web" class="btn btn-danger lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
                     </div>
                     <div id="div_app">
@@ -211,8 +208,24 @@
                     </div>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
+                    <div class="row status">
+                        <div class="col-sm-8">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info progress-bar-striped lang-height" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                    <span id="local_process">0</span>%
+                                </div>
+                            </div>
+                        </div>
+                        <div id="div_height" class="col-sm-4 text-right lang-height2"><span id="local_height">0</span><span>/</span><span id="remote_height">0</span></div>
+                    </div>
                     <h2 class="page-header lang-receiver-address"></h2>
-                    <div id="receiver" class="select"></div>
+                    <div class="row">
+                        <div class="col-sm-8 select">
+                            <pre class="select">
+                                <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
+                            </pre>
+                        </div>
+                    </div>
                     <h2 class="page-header lang-my-asset"></h2>
                     <h5 class="lang-no-asset" style="display:none; padding-top:50px; text-align:center"></h5>
                     <ul>
@@ -418,55 +431,39 @@
                     </div>
                 </div>
             </div>
-            <footer>
-                <div class="footer-process lang-height"><span id="local_process">0</span>%</div>
-                <div class="footer-height lang-height2"><span id="local_height">0</span><span>/</span><span id="remote_height">0</span></div>
-                <button class="btn btn-sm" style="display:none" id="testbutton1">reset local height</button>
-            </footer>
         </div>
         <nav id="menu" class="mm-theme-dark">
             <ul>
-                <li>
-                    <span class="lang-wallet"><i class="iconfont">&#xe602;</i></span>
-                    <ul>
-                        <li id="menu_wallet_start"><a class="tab-trigger lang-start" href="#Tab_Wallet_Start"></a></li>
-                        <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
-                        <li><a class="tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"></a></li>
-                    </ul>
+                <li id="menu_wallet_start">
+                    <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
                 </li>
                 <li>
-                    <a class="user-center tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
+                    <a class="fist-menu tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
                 </li>
                 <li>
-                    <span class="lang-transaction"><i class="iconfont">&#xe604;</i></span>
-                    <ul>
-                        <li><a class="tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"></a></li>
-                        <li><a class="tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"></a></li>
-                    </ul>
-                </li>
-                <!--<li>
-                    <span><i class="iconfont">&#xe600;</i>联系人</span>
-                    <ul>
-                        <li><a href="javascript:void(0)">所有联系人</a></li>
-                    </ul>
-                </li>-->
-                <li>
-                    <span class="lang-antshares-blockchain"><i class="iconfont">&#xe60a;</i></span>
-                    <ul>
-                        <li><a href="http://antcha.in/" target="_blank">AntCha.in<i class="iconfont link">&#xe60b;</i></a></li>
-                    </ul>
+                    <a class="fist-menu tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"><i class="iconfont">&#xe604;</i></a>
                 </li>
                 <li>
-                    <span class="lang-about"><i class="iconfont">&#xe685;</i></span>
-                    <ul>
-                        <li><a class="tab-trigger lang-about" href="#Tab_Help_About"></a></li>
-                        <li><a class="tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"></a></li>
-                    </ul>
+                    <a class="fist-menu tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"><i class="iconfont">&#xe657;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
                 </li>
                 <li id="develop_tool">
-                    <a class="dev-tool tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
+                    <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
                 </li>
-
             </ul>
         </nav>
     </div>
@@ -534,15 +531,6 @@
                 $("#delete_all_wallet").show();
             else
                 $("#delete_all_wallet").hide();
-        }
-        var comingSoon = false;
-        if (comingSoon)
-        {
-            var hello = $(".hello").clone();
-            hello.show();
-            $("body").append(hello);
-            $("#Tab_Wallet_Open").removeClass("active");
-            $("#Tab_Help_About").addClass("active");
         }
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
