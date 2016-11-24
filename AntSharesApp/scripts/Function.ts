@@ -80,3 +80,33 @@ function convertTxType(type: AntShares.Core.TransactionType): string
     }
     return typeStr;
 }
+
+let isMobile = {
+    Android: function () {
+        return navigator.userAgent.match(/Android/i);
+    },
+    iOS: function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function () {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    IE: function () {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    Mozilla: function () {
+        return navigator.userAgent.match(/Mozilla/i);
+    },
+    Safari: function () {
+        return navigator.userAgent.match(/Safari/i);
+    },
+    Edge: function () {
+        return navigator.userAgent.match(/Edge/i);
+    },
+    Web: function () {
+        return (isMobile.Opera() || isMobile.IE() || isMobile.Mozilla() || isMobile.Safari() || isMobile.Edge());
+    },
+    App: function () {
+        return (isMobile.Android() || isMobile.iOS());
+    }
+}

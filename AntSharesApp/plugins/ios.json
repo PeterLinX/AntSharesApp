@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "org.antshares.app"
         }
     },
     "dependent_plugins": {}

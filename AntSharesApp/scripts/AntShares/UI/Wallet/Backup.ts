@@ -7,7 +7,8 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#backup").click(this.OnBackupClick);
+            $(this.target).find("#backup_web").click(this.OnWebBackupClick);
+            $(this.target).find("#backup_app").click(this.OnAppBackupClick);
         }
 
         protected onload(args: any[]): void
@@ -29,9 +30,14 @@
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
+            if (isMobile.App) {
+                $("#Tab_Wallet_Backup #div_web").css('display', 'none');
+            } else {
+                $("#Tab_Wallet_Backup #div_app").css('display', 'none');
+            }
         }
 
-        private OnBackupClick = () =>
+        private OnWebBackupClick = () =>
         {
             try
             {
@@ -60,9 +66,26 @@
             catch (e)
             {
                 console.log(e);
-                //alert(e);
             }
 
+        }
+
+        private OnAppBackupClick = () => {
+            try {
+                this.loadFile().then((array) => {
+                    let strDb: string = JSON.stringify(array);
+                    let dataUrl = "data:text/json;base64," + window.btoa(strDb);
+                    let db = [strDb];
+                    let blob = new Blob(db, { "type": "text/json" });
+                    let url = URL.createObjectURL(blob);
+                    (<any>window).plugins.socialsharing.share('wallet file', 'Your wallet', dataUrl)
+                }).catch(e => {
+                    console.log(e)
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
         }
 
         private loadFile = (): PromiseLike<any> =>
