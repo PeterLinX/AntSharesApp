@@ -5,7 +5,7 @@
 .lang-input-wallet-name::before { content:'input wallet name' }
 .lang-import-password::before { content:'Set password for new wallet' }
 .lang-return-start::before { content:'Return to start' }
-.lang-start::before { content:'Start' }
+.lang-start::after { content:'Start' }
 .lang-input-wallet-password::before { content:'input wallet password' }
 .lang-input-wallet-confirm-password::before { content:'input confirm password' }
 .lang-select-wallet-file::before { content:'select wallet file' }
@@ -42,7 +42,7 @@
 .lang-my-asset::before { content:'My asset' }
 .lang-no-asset::before { content:'You currently have no assets' }
 .lang-issuer::before { content:'issuer: ' }
-.lang-asset-transfer::before { content:'Transfer' }
+.lang-asset-transfer::after { content:'Transfer' }
 .lang-select-asset::before { content:'select asset' }
 .lang-max-to-transfer::before { content:'the maximum transfer' }
 .lang-receiver::before { content:'receiver' }
