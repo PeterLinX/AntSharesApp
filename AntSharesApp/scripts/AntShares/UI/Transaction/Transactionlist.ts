@@ -63,6 +63,7 @@
                                     } else {
                                         tr.find(".tx-confirm").text(confirmations);
                                     }
+                                    tr.find(".tx-confirm").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
                                     tr.find(".tx-type").text(convertTxType(tx.type));
                                     tbody.append(tr);
                                 });
