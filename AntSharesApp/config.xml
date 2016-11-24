@@ -114,4 +114,5 @@
     <vs:platformSpecificWidget platformName="windows" version="1.0.0.0">
     </vs:platformSpecificWidget>
   </vs:platformSpecificValues>
+  <plugin name="cordova-plugin-x-socialsharing" version="5.1.3" src="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
 </widget>

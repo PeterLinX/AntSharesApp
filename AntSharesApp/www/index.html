@@ -196,10 +196,12 @@
                 </div>
                 <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-backup"></h2>
-                    <p style="color:darkgray" class="lang-backup-note"></p>
-                    <div>
-                        <button id="backup" class="btn btn-primary lang-backup-current-wallet"></button>
+                    <div id="div_web">
+                        <button id="backup_web" class="btn btn-primary lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
+                    </div>
+                    <div id="div_app">
+                        <button type="button" id="backup_app" class="btn btn-primary lang-backup-current-wallet"></button>
                     </div>
                     <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -478,6 +480,7 @@
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/appBundle.js"></script>
     <script src="scripts/set_language.js"></script>
+    <script src="scripts/SocialSharing.js"></script>
 
     <script>
         $("input[type='text']").addClass("form-control");

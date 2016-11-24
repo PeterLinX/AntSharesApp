@@ -8,6 +8,12 @@
       "keystoreType": ""
     }
   },
+  "ios": {
+    "debug": {
+      "codeSignIdentity": "iPhone Developer",
+      "provisioningProfile": "a67ff34b-81ba-42c3-8cb9-95a087eeedb3"
+    }
+  },
   "windows": {
     "release": {
       "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx"
