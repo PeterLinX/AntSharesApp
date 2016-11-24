@@ -30,7 +30,7 @@
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
-            if (isMobile.App) {
+            if (isMobile.App()) {
                 $("#Tab_Wallet_Backup #div_web").css('display', 'none');
             } else {
                 $("#Tab_Wallet_Backup #div_app").css('display', 'none');
