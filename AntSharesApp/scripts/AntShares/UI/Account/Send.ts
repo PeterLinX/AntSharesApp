@@ -1,14 +1,9 @@
-﻿namespace AntShares.UI.Asset
+﻿namespace AntShares.UI.Account
 {
-    export class Transfer extends TabBase
+    export class Send extends TabBase
     {
         protected oncreate(): void
         {
-            $("#Tab_Asset_Transfer select").change(() =>
-            {
-                $("#Tab_Asset_Transfer .asset_amount").text($("#Tab_Asset_Transfer select>:selected").data("amount"));
-            });
-            $("#Tab_Asset_Transfer .btn-primary").click(this.OnSendButtonClick);
         }
 
         private OnSendButtonClick = () =>
@@ -70,11 +65,12 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            setTitle(0);
             let assets = linq(Global.Wallet.findUnspentCoins()).groupBy(p => p.assetId, (k, g) =>
             {
                 return {
                     assetId: k,
-                    amount: Transfer.sumf(g.select(p => p.value))
+                    amount: Send.sumf(g.select(p => p.value))
                 };
             }).toArray();
             Promise.all(linq(assets).select(p => Core.Blockchain.Default.getTransaction(p.assetId)).toArray()).then(results =>

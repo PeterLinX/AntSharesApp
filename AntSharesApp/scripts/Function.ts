@@ -110,3 +110,9 @@ let isMobile = {
         return (isMobile.Android() || isMobile.iOS());
     }
 }
+
+function setTitle(index: number)
+{
+    $(".header-title").hide();
+    $(".header-title").eq(index).show();
+}

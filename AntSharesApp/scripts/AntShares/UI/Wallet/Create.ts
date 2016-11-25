@@ -11,6 +11,7 @@
 
         protected onload(): void
         {
+            setTitle(0);
             $("#wallet_name").val("wallet");
         }
 
@@ -41,7 +42,8 @@
                 }).then(results =>
                 {
                     formReset("form_create_wallet");
-                    TabBase.showTab("#Tab_Wallet_Backup", true);
+                        $("footer").show();
+                        TabBase.showTab("#Tab_Wallet_Backup", true);
                     }, reason => alert(reason));
             }
         }

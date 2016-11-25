@@ -118,3 +118,6 @@
 .lang-receiver-address::after { content:'收款地址' }
 .lang-backup-wallet::after { content:'备份钱包' }
 .lang-welcome::after { content:'欢迎' }
+.lang-activity::after { content:'活动' }
+.lang-receive::after { content:'收款' }
+.lang-send::after { content:'发送' }

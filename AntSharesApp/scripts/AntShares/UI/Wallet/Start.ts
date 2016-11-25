@@ -5,7 +5,7 @@
         }
 
         protected onload(): void {
-
+            setTitle(0);
         }
     }
 }

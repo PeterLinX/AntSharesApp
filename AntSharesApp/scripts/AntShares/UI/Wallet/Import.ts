@@ -9,6 +9,7 @@
 
         protected onload(): void
         {
+            setTitle(0);
             formReset("form_account_import");
         }
 
@@ -65,6 +66,7 @@
                         return Global.Wallet.rebuild();
                     }).then(() =>
                     {
+                        $("footer").show();
                         TabBase.showTab("#Tab_Account_Index");
                     }).catch(e =>
                     {

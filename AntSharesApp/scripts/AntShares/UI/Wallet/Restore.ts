@@ -12,6 +12,7 @@
 
         protected onload(args: any[]): void
         {
+            setTitle(0);
             if (args[0])
                 $("#danger").show();
             formReset("form_backup");
@@ -158,6 +159,7 @@
                     }).then(() =>
                     {
                         formReset("form_backup");
+                        $("footer").show();
                         TabBase.showTab("#Tab_Wallet_Open");
                     }, reason =>
                     {

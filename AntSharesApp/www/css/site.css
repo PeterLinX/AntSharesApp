@@ -7,7 +7,7 @@ html { height: 100%; }
 body { height: 100%; font-family: "微软雅黑 light" !important; color: #666; overflow-x: hidden; }
 header, footer { position:fixed; z-index:100; background: #0a6ea9; font-size: 18px; text-align: center; color: #fff; line-height: 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px; padding:0 50px }
 header { top: 0; font-weight: bold; }
-header span { vertical-align:-6px }
+.header-antsharesapp { vertical-align:-6px }
 header img { height:70% }
 footer { bottom: 0; }
 fieldset { overflow-x: hidden; }
@@ -34,7 +34,7 @@ input[type="radio"] { vertical-align: -3px; }
     .mm-menu.mm-offcanvas { display: block; }
     header a { display: none; }
     .mm-menu.mm-offcanvas:not(.mm-opened) + .mm-page { margin-left: 300px; }
-    header, footer { border-left: 1px solid white; }
+    header, footer, .blue-panel { border-left: 1px solid white; }
     .alert.bottom { width:calc(100% - 400px) }
     .status { display:none }
 }
@@ -50,7 +50,7 @@ input[type="radio"] { vertical-align: -3px; }
 /*设置侧边栏边框样式*/
 .mm-navbar > .mm-title { font-size: 18px; padding: 15px 0; }
 .mm-listview > li i.iconfont { margin-right: 24px; }
-.mm-listview > li > a, .mm-listview > li > span { padding: 12px 10px 12px 20px; }
+.mm-listview > li > a, .mm-listview > li > span { padding: 12px 10px 12px 20px; transition:padding-top .4s, padding-bottom .4s }
 .mm-listview > li:not(.mm-divider)::after { left: 0; }
 .mm-listview > li a:hover { border-left: 5px solid #ffc000; }
 .mm-listview > li:hover .mm-listview > li a:hover { padding-left: 15px; }
@@ -65,20 +65,31 @@ input[type="radio"] { vertical-align: -3px; }
 header.mm-slideout { position: fixed; top: 0; left: 0; }
 .mm-panels, .mm-panels > .mm-panel { background: none; }
 nav:not(.mm-menu) { display: none; }
-.content { background: white; min-height: 100%; padding: 0; }
-.tab-content { width: 100%; height: 100%; padding: 50px 50px 0; transition:padding .5s }
+.content { background: white; min-height: 100%; padding-bottom: 50px; }
+.tab-content { width: 100%; height: 100%; padding: 50px 50px 0; transition:padding .4s }
 .issue-tempate > div { padding-top:5px; padding-bottom:5px }
 *::-webkit-scrollbar{width:0px}
 .mm-panel { width: 100%;  }
 .mm-panels > .mm-panel { padding-right:25px }
 .menu-progress { position:absolute; width:100%; margin:0 -20px; bottom:0; padding:10px 20px 20px; }
 .menu-progress .progress { margin-bottom:5px }
+footer div { width:80%; margin:auto }
+.blue-panel { margin:0 -50px; height:240px; background: -webkit-linear-gradient(0deg, #73c3a0, #0a6ea9); background: linear-gradient(0deg, #73c3a0, #0a6ea9); color:white; transition: margin .4s }
+
 @media only screen and (max-width: 480px) {
     .tab-content { width: 100%; height: 100%; padding: 50px 35px; }
+    .mm-listview > li > a, .mm-listview > li > span { padding: 10px 10px 10px 20px; }
     .alert-info { display:none }
+    .alert.bottom { position:fixed; bottom:50px; margin: 0 50px 20px 0; width:calc(100% - 70px) }
+    .blue-panel { margin:0 -35px }
 }
 @media only screen and (max-height: 560px) {
     .alert-info { display:none }
+    .mm-listview > li.short-hidden { display:none }
+}
+@media only screen and (max-height: 420px) {
+    .alert-info { display:none }
+    .mm-listview > li.sshort-hidden { display:none }
 }
 @media only screen and (max-width: 360px) {
     footer { font-size:14px }
@@ -86,7 +97,7 @@ nav:not(.mm-menu) { display: none; }
     h2 { font-size:24px }
     .mm-vertical .mm-listview .mm-panel, .mm-listview .mm-vertical .mm-panel { padding:5px 0 5px 5px }
     .mm-listview > li > a, .mm-listview > li > span { padding:10px 10px 10px 20px }
-
+    .blue-panel { margin:0 -30px }
     .mm-navbar { height:40px; }
     header, footer { height:40px; line-height:40px }
     .mm-navbar > .mm-title { padding:10px 0 }
@@ -120,4 +131,6 @@ textarea.pre { display: block; outline:none; font-weight:bold; width:100%; paddi
 .progress { margin-bottom:10px; }
 #copy-addr { float:right; cursor:pointer }
 footer a, footer a:hover, footer a:focus, footer a:active { color:#fff }
-.events { height:500px; margin-top:-20px; padding-top:10px; background: -webkit-linear-gradient(90deg, #fff 40%, #06a 100%), linear-gradient(90deg, #fff 40%, #06a 100%) }
+.asset-amount { line-height: 2; font-size: 16px; padding: 2px 10px; font-weight: bold; }
+.ans-div, .anc-div  { width:300px; font-size:16px; text-align:center; margin:auto }
+.ans-div { font-size:36px; padding:60px 0 10px; }
