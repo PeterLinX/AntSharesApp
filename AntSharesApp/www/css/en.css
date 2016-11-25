@@ -1,7 +1,7 @@
 ﻿title::before { content:'Antshares App' }
 .lang-title::before { content:'Antshares App' }
 .lang-create-wallet::before { content:'Create wallet' }
-.lang-open-wallet::before { content:'Open wallet' }
+.lang-open-wallet::after { content:'Open wallet' }
 .lang-input-wallet-name::before { content:'input wallet name' }
 .lang-import-password::before { content:'Set password for new wallet' }
 .lang-return-start::before { content:'Return to start' }
@@ -118,3 +118,4 @@
 .lang-privacy::after { content:'Privacy policy' }
 .lang-receiver-address::after { content:'Receiver address' }
 .lang-backup-wallet::after { content:'Backup wallet' }
+.lang-welcome::after { content:'Welcome' }

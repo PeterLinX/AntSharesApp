@@ -1,7 +1,7 @@
 ﻿title::before { content:'antshares APP' }
 .lang-title::before { content:'antshares APP' }
 .lang-create-wallet::before { content:'创建钱包' }
-.lang-open-wallet::before { content:'打开钱包' }
+.lang-open-wallet::after { content:'打开钱包' }
 .lang-input-wallet-name::before { content:'输入钱包名称' }
 .lang-import-password::before { content:'为新钱包设置密码' }
 .lang-return-start::before { content:'返回开始页面' }
@@ -117,3 +117,4 @@
 .lang-privacy::after { content:'隐私政策' }
 .lang-receiver-address::after { content:'收款地址' }
 .lang-backup-wallet::after { content:'备份钱包' }
+.lang-welcome::after { content:'欢迎' }

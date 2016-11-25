@@ -29,16 +29,39 @@
                 <span class="lang-title"> </span>
             </header>
             <div class="tab-content">
-                <div style="position:absolute; left:0; bottom:0; height:50px; width:50px" onclick="showDevTools()"></div>
+                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                    <h2 class="page-header lang-welcome"></h2>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">创建新钱包</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-success tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9 text-success">如果你是第一次使用，请执行此操作，创建好钱包后请备份好钱包文件</div>
+                         </div>
                     </div>
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">从备份文件恢复</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-info tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <div class="text-info">如果你想从还原备份的钱包文件，请执行此操作</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">从私钥创建钱包</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-warning tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <div class="text-warning">如果你有小蚁私钥，想导入到钱包中，请执行此操作，导入后需要耐心等待钱包同步完成才可以看到资产</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
@@ -125,7 +148,6 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-select-wallet-file"></label>
                             <div class="col-sm-6">
-                                <input id="input_wallet_name" type="text" />
                                 <span class="text-danger"></span>
                                 <ul class="list_wallet_ul" id="list_wallet_name">
                                     <li style="display:none">
@@ -210,13 +232,14 @@
                 <div id="Tab_Account_Index" class="tab-pane">
                     <div class="row status">
                         <div class="col-sm-8">
+                            <div class="lang-height"></div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped lang-height" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                    <span id="local_process">0</span>%
+                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                                    <span class="local_process">0</span>%
                                 </div>
                             </div>
                         </div>
-                        <div id="div_height" class="col-sm-4 text-right lang-height2"><span id="local_height">0</span><span>/</span><span id="remote_height">0</span></div>
+                        <div class="div_height col-sm-4 text-right lang-height2"><span class="local_height">0</span><span>/</span><span class="remote_height">0</span></div>
                     </div>
                     <h2 class="page-header lang-receiver-address"></h2>
                     <div class="row">
@@ -431,40 +454,68 @@
                     </div>
                 </div>
             </div>
+            <footer>
+                <a class="col-sm-4 tab-trigger" href="#Tab_Account_Index">
+                    <i class="iconfont">&#xe6ab;</i>
+                    收款
+                </a>
+                <a class="col-sm-4 tab-trigger" href="#Tab_Account_Index">
+                    <i class="iconfont">&#xe686;</i>
+                    活动
+                </a>
+                <a class="col-sm-4 tab-trigger" href="#Tab_Asset_Transfer">
+                    <i class="iconfont">&#xe610;</i>
+                    转账
+                </a>
+            </footer>
         </div>
         <nav id="menu" class="mm-theme-dark">
-            <ul>
-                <li id="menu_wallet_start">
-                    <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"><i class="iconfont">&#xe604;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"><i class="iconfont">&#xe657;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
-                </li>
-                <li id="develop_tool">
-                    <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li id="menu_wallet_start">
+                        <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
+                    </li>
+                    <li id="menu_wallet_open">
+                        <a class="fist-menu tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"><i class="iconfont">&#xe62e;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"><i class="iconfont">&#xe604;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"><i class="iconfont">&#xe657;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
+                    </li>
+                    <li>
+                        <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
+                    </li>
+                    <li id="develop_tool">
+                        <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
+                    </li>
+                </ul>
+                <div class="menu-progress" style="display:none">
+                    <div class="lang-height"></div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                            <span class="local_process">0</span>%
+                        </div>
+                    </div>
+                    <div class="lang-height2"><span class="local_height">0</span><span>/</span><span class="remote_height">0</span></div>
+                </div>
+            </div>
         </nav>
     </div>
     <script src="lib/jQuery.mmenu/dist/core/js/hammer.js"></script>
