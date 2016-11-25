@@ -10,8 +10,8 @@
         {
             if (formIsValid("form_asset_transfer"))
             {
-                let address = $("#Tab_Asset_Transfer .pay_address").val();
-                let value = $("#Tab_Asset_Transfer .pay_value").val();
+                let address = $("#Tab_Account_Send .pay_address").val();
+                let value = $("#Tab_Account_Send .pay_value").val();
  
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
@@ -23,7 +23,7 @@
                 {
                     tx = new Core.ContractTransaction();
                     tx.outputs = [new Core.TransactionOutput()];
-                    tx.outputs[0].assetId = Uint256.parse($("#Tab_Asset_Transfer select>:selected").val());
+                    tx.outputs[0].assetId = Uint256.parse($("#Tab_Account_Send select>:selected").val());
                     tx.outputs[0].scriptHash = result;
                     tx.outputs[0].value = Fixed8.parse(value);
                     if (Global.Wallet.makeTransaction(tx, Fixed8.Zero) == null)
@@ -75,7 +75,7 @@
             }).toArray();
             Promise.all(linq(assets).select(p => Core.Blockchain.Default.getTransaction(p.assetId)).toArray()).then(results =>
             {
-                let select = $("#Tab_Asset_Transfer select");
+                let select = $("#Tab_Account_Send select");
                 select.html("");
                 select.append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
                 for (let i = 0; i < results.length; i++)
