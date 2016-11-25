@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label  lang-input-wallet-password"></label>
                             <div class="col-sm-6">
-                                <input id="create_password" name="create_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="create_password" name="create_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="create_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label  lang-import-password"></label>
                             <div class="col-sm-6">
-                                <input id="import_password" name="import_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="import_password" name="import_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="import_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -199,7 +199,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-new-password"></label>
                             <div class="col-sm-6">
-                                <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -265,28 +265,30 @@
                             </div>
                         </li>
                     </ul>
-                    <h3 class="page-header lang-my-tx-list"></h3>
-                    <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
-                    <table class="table table-condensed table-bordered table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="lang-tx-time"></th>
-                                <th class="lang-tx-id"></th>
-                                <th class="lang-tx-confirms"></th>
-                                <th class="lang-tx-type"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display:none">
-                                <td class="tx-time">2016/11/2 16:41:52</td>
-                                <td class="tx-id select">cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940</td>
-                                <td>
-                                    <a class="tx-confirm">1</a>
-                                </td>
-                                <td class="tx-type">ctTransaction</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="Account_TransactionList">
+                        <h3 class="page-header lang-my-tx-list"></h3>
+                        <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
+                        <table class="table table-condensed table-bordered table-striped table-responsive">
+                            <thead>
+                                <tr>
+                                    <th class="lang-tx-time"></th>
+                                    <th class="lang-tx-id"></th>
+                                    <th class="lang-tx-confirms"></th>
+                                    <th class="lang-tx-type"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="display:none">
+                                    <td class="tx-time">2016/11/2 16:41:52</td>
+                                    <td class="tx-id select">cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940</td>
+                                    <td>
+                                        <a class="tx-confirm">1</a>
+                                    </td>
+                                    <td class="tx-type">ctTransaction</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div id="Tab_Account_Receive" class="form-horizontal tab-pane">
@@ -467,7 +469,7 @@
                     <a class="col-xs-4 tab-trigger lang-receive" href="#Tab_Account_Receive">
                         <i class="iconfont">&#xe6ab;</i>
                     </a>
-                    <a class="col-xs-4 tab-trigger lang-activity" href="#Tab_Account_Index">
+                    <a class="col-xs-4 tab-trigger lang-home" href="#Tab_Account_Index">
                         <i class="iconfont">&#xe686;</i>
                     </a>
                     <a class="col-xs-4 tab-trigger lang-send" href="#Tab_Account_Send">
@@ -486,7 +488,7 @@
                         <a class="fist-menu tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"><i class="iconfont">&#xe62e;</i></a>
                     </li>
                     <li class="short-hidden">
-                        <a class="fist-menu tab-trigger lang-activity" href="#Tab_Account_Index"><i class="iconfont">&#xe686;</i></a>
+                        <a class="fist-menu tab-trigger lang-home" href="#Tab_Account_Index"><i class="iconfont">&#xe686;</i></a>
                     </li>
                     <li class="short-hidden">
                         <a class="fist-menu tab-trigger lang-receive" href="#Tab_Account_Receive"><i class="iconfont">&#xe6ab;</i></a>

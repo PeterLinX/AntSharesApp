@@ -51,7 +51,7 @@
         static walletNameRequired = "钱包名称不能为空";
         static createPasswordPlaceholder = "钱包密码";
         static createPasswordRequired = "钱包密码不能为空";
-        static createPasswordLength = "密码必须至少包含 6 个字符";
+        static createPasswordLength = "密码必须至少包含 8 个字符";
         static createPasswordConfirmPlaceholder = "钱包密码";
         static createPasswordConfirmRequired = "确认密码不能为空";
         static createPasswordConfirmEqualtoOther = "密码和确认密码不匹配";
@@ -62,7 +62,7 @@
         static oldPasswordRequired = "钱包密码不能为空";
         static newPasswordPlaceholder = "钱包密码";
         static newPasswordRequired = "钱包密码不能为空";
-        static newPasswordLength = "密码必须至少包含6个字符";
+        static newPasswordLength = "密码必须至少包含8个字符";
         static newPasswordConfirmPlaceholder = "钱包密码";
         static newPasswordConfirmRequired = "确认密码不能为空";
         static newPasswordConfirmEqualto = "密码和确认密码不匹配";
@@ -150,7 +150,7 @@
         static walletNameRequired = "Wallet name is required";
         static createPasswordPlaceholder = "wallet password";
         static createPasswordRequired = "Wallet password is required";
-        static createPasswordLength = "The password must be at least 6 bits long";
+        static createPasswordLength = "The password must be at least 8 bits long";
         static createPasswordConfirmPlaceholder = "wallet password";
         static createPasswordConfirmRequired = "Password confirm is required";
         static createPasswordConfirmEqualtoOther = "Password and confirm password do not match";
@@ -161,7 +161,7 @@
         static oldPasswordRequired = "Wallet password is required";
         static newPasswordPlaceholder = "wallet password";
         static newPasswordRequired = "Wallet password is required";
-        static newPasswordLength = "The password must be at least 6 bits long";
+        static newPasswordLength = "The password must be at least 8 bits long";
         static newPasswordConfirmPlaceholder = "wallet password";
         static newPasswordConfirmRequired = "Password confirm is required";
         static newPasswordConfirmEqualto = "Password and confirm password do not match";

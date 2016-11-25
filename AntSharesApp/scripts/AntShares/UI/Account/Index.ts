@@ -17,7 +17,7 @@
                 return;
             }
             setTitle(1);
-            let tbody = $("#Tab_Asset_TransactionList").find("tbody:eq(0)");
+            let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
             tbody.find("tr :visible").remove();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open().then(() =>
@@ -56,7 +56,7 @@
 
         private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })
         {
-            let ul = $("#Tab_Asset_Index").find("ul:eq(0)");
+            let ul = $("#Account_TransactionList").find("ul:eq(0)");
             let liTemplet = ul.find("li:eq(0)");
             let li = liTemplet.clone(true);
             li.removeAttr("style");
@@ -97,21 +97,21 @@
             {
                 if (arrayTransaction.length <= 0)
                 {
-                    $("#Tab_Asset_TransactionList > h5").show();
-                    $("#Tab_Asset_TransactionList > table").hide();
+                    $("#Account_TransactionList > h5").show();
+                    $("#Account_TransactionList > table").hide();
                     throw new Error(Resources.global.noTxs);
                 }
                 else
                 {
-                    $("#Tab_Asset_TransactionList > h5").hide();
-                    $("#Tab_Asset_TransactionList > table").show();
+                    $("#Account_TransactionList > h5").hide();
+                    $("#Account_TransactionList > table").show();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void>
                     {
                         for (let i = 0; i < txArray.length; i++)
                         {
-                            let tbody = $("#Tab_Asset_TransactionList").find("tbody:eq(0)");
+                            let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
                             let trTemp = tbody.find("tr:eq(0)");
                             let tr = trTemp.clone(true);
                             tr.removeAttr("style");

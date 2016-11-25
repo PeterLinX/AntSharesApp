@@ -160,6 +160,7 @@
                     {
                         formReset("form_backup");
                         $("footer").show();
+                        $("#menu_wallet_start").hide();
                         TabBase.showTab("#Tab_Wallet_Open");
                     }, reason =>
                     {

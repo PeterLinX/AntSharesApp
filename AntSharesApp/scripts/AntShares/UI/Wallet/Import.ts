@@ -33,7 +33,7 @@
                 {
                     if (result.indexOf(name) >= 0)
                         throw new Error(Resources.global.sameWalletName);
-                    return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#import_password").val());
+                    return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#import_password").val(), false);
                 }).then(wallet =>
                 {
                     Global.Wallet = wallet;
@@ -67,6 +67,7 @@
                     }).then(() =>
                     {
                         $("footer").show();
+                        $("#menu_wallet_start").hide();
                         TabBase.showTab("#Tab_Account_Index");
                     }).catch(e =>
                     {
