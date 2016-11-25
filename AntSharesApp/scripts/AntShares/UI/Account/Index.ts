@@ -65,11 +65,11 @@
             {
                 let asset = <Core.RegisterTransaction>result;
                 if (asset.assetType == AntShares.Core.AssetType.AntShare) {
-                    $("#my_ans").text(item.amount.toString())
+                    $("#my_ans").text(convert(item.amount.toString()))
                 }
                 else if (asset.assetType == AntShares.Core.AssetType.AntCoin)
                 {
-                    $("#my_anc").text(item.amount.toString())
+                    $("#my_anc").text(convert(item.amount.toString()))
                 } else
                 {
                     li.find(".asset_issuer").text(Resources.global.issuerPubKey + asset.issuer.toString());
