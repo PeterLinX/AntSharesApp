@@ -6,7 +6,7 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#copy-addr").click(this.OnCopyAddress);
+            $(this.target).find("#asset_show_more").click(this.OnShowMore);
         }
 
         protected onload(): void
@@ -49,9 +49,18 @@
             map.forEach(Index.addCoinList);
         }
 
-        protected OnCopyAddress(): void
+        private OnShowMore()
         {
-
+            if ($("#asset_show_more").hasClass("rotate180"))
+            {
+                $("#asset_show_more").removeClass("rotate180");
+                $(".blue-panel").css("height", "240");
+            }
+            else
+            {
+                $("#asset_show_more").addClass("rotate180");
+                $(".blue-panel").css("height", "300");
+            }
         }
 
         private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })

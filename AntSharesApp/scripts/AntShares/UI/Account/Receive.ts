@@ -4,7 +4,7 @@
     {
         protected oncreate(): void
         {
-
+            $(this.target).find("#copy-addr").click(this.OnCopyAddress);
         }
 
         protected onload(): void
@@ -18,6 +18,12 @@
             Global.Wallet.getContracts()[0].getAddress().then(result => {
                 $("#receiver").text(result);
             });
+        }
+
+
+        protected OnCopyAddress(): void
+        {
+
         }
     }
 }

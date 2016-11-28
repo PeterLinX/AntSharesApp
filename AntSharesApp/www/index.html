@@ -13,8 +13,8 @@
     <link href="lib/jQuery.mmenu/dist/core/css/jquery.mmenu.all.css" rel="stylesheet" />
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap-material-design/css/ripples.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet" />
-
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/jquery-collapse/jquery.collapse.js"></script>
     <script src="lib/jQuery.mmenu/dist/core/js/jquery.mmenu.min.all.js"></script>
@@ -237,6 +237,9 @@
                     <div class="blue-panel">
                         <div class="ans-div"><span>小蚁股</span> <span id="my_ans">0</span></div>
                         <div class="anc-div"><span>小蚁币</span> <span id="my_anc">0</span></div>
+                        <div class="all-asset-btn withripple">
+                            <a id="asset_show_more" href="javascript:" class="iconfont">&#xe73d;</a>
+                        </div>
                     </div>
                     <div class="row status">
                         <div class="col-sm-8">
@@ -294,7 +297,7 @@
                 <div id="Tab_Account_Receive" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-receiver-address"></h3>
                     <div class="row">
-                        <div class="col-sm-8 select">
+                        <div class="col-lg-6 col-md-7 col-sm-10 select">
                             <pre class="select">
                             <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
@@ -466,13 +469,13 @@
             </div>
             <footer>
                 <div>
-                    <a class="col-xs-4 tab-trigger lang-receive" href="#Tab_Account_Receive">
+                    <a class="col-xs-4 tab-trigger lang-receive withripple" href="#Tab_Account_Receive">
                         <i class="iconfont">&#xe6ab;</i>
                     </a>
-                    <a class="col-xs-4 tab-trigger lang-home" href="#Tab_Account_Index">
+                    <a class="col-xs-4 tab-trigger lang-home withripple" href="#Tab_Account_Index">
                         <i class="iconfont">&#xe686;</i>
                     </a>
-                    <a class="col-xs-4 tab-trigger lang-send" href="#Tab_Account_Send">
+                    <a class="col-xs-4 tab-trigger lang-send withripple" href="#Tab_Account_Send">
                         <i class="iconfont">&#xe610;</i>
                     </a>
                 </div>
@@ -481,37 +484,37 @@
         <nav id="menu" class="mm-theme-dark">
             <div>
                 <ul>
-                    <li id="menu_wallet_start">
+                    <li id="menu_wallet_start" class="withripple">
                         <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
                     </li>
-                    <li id="menu_wallet_open">
+                    <li id="menu_wallet_open" class="withripple">
                         <a class="fist-menu tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"><i class="iconfont">&#xe62e;</i></a>
                     </li>
-                    <li class="short-hidden">
+                    <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-home" href="#Tab_Account_Index"><i class="iconfont">&#xe686;</i></a>
                     </li>
-                    <li class="short-hidden">
+                    <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-receive" href="#Tab_Account_Receive"><i class="iconfont">&#xe6ab;</i></a>
                     </li>
-                    <li class="short-hidden">
+                    <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-send" href="#Tab_Account_Send"><i class="iconfont">&#xe610;</i></a>
                     </li>
-                    <li>
+                    <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
                     </li>
-                    <li>
+                    <li class="withripple">
                         <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
                     </li>
-                    <li class="sshort-hidden">
+                    <li class="sshort-hidden withripple">
                         <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
                     </li>
-                    <li>
+                    <li class="withripple">
                         <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
                     </li>
-                    <li>
+                    <li class="withripple">
                         <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
                     </li>
-                    <li id="develop_tool">
+                    <li id="develop_tool" class="withripple">
                         <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
                     </li>
                 </ul>
@@ -534,13 +537,14 @@
     <script src="lib/bootstrap-fileinput/js/fileinput.min.js"></script>
     <script src="lib/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
     <script src="lib/jQuery.mmenu/dist/core/js/jquery.mmenu.dragclose.min.js"></script>
+    <script src="lib/bootstrap-material-design/js/material.js"></script>
+    <script src="lib/bootstrap-material-design/js/ripples.js"></script>
     <!-- Cordova 引用，它在生成应用程序时添加到其中。 -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/appBundle.js"></script>
     <script src="scripts/set_language.js"></script>
     <script src="scripts/SocialSharing.js"></script>
-
     <script>
         $("input[type='text']").addClass("form-control");
         $("input[type='password']").addClass("form-control");
@@ -592,6 +596,7 @@
             else
                 $("#delete_all_wallet").hide();
         }
+        $.material.init()
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
