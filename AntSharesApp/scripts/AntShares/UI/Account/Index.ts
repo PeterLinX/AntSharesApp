@@ -7,6 +7,8 @@
         protected oncreate(): void
         {
             $(this.target).find("#asset_show_more").click(this.OnShowMore);
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
+
         }
 
         protected onload(): void
@@ -18,15 +20,14 @@
             }
             setTitle(1);
             let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
-            tbody.find("tr :visible").remove();
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
+            tbody.find(".add").remove();
+            
             this.db.open().then(() =>
             {
                 this.loadTransactionList();
             });
-
-            let ul = $("#Tab_Asset_Index").find("ul:eq(0)");
-            ul.find("li :visible").remove();
+            let ul = $("#Tab_Account_Index").find("ul:eq(0)");
+            ul.find(".add").remove();
 
             let coins = Global.Wallet.findCoins();
 
@@ -85,6 +86,7 @@
                     li.find(".asset_value").text(convert(item.amount.toString()));
                     li.find(".asset_issuer").text(asset.issuer.toString());
                     li.find(".asset_name").text(asset.getName());
+                    li.addClass("add");
                     ul.append(li);
                 }
             });
@@ -133,21 +135,11 @@
                                 return tx.ensureHash();
                             }).then(() =>
                             {
-                                return Global.Blockchain.getBlockCount();
-                            }).then(currentHeight =>
-                            {
-                                let confirmations: number = currentHeight - txArray[i].height + 1;
                                 tr.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
                                 tr.find(".tx-id").text(tx.hash.toString());
-                                if (confirmations <= 0)
-                                {
-                                    tr.find(".tx-confirm").text(Resources.global.unConfirmed);
-                                } else
-                                {
-                                    tr.find(".tx-confirm").text(confirmations);
-                                }
-                                tr.find(".tx-confirm").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
+                                tr.find(".tx-type").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
                                 tr.find(".tx-type").text(convertTxType(tx.type));
+                                tr.addClass("add");
                                 tbody.append(tr);
                             });
                         }
