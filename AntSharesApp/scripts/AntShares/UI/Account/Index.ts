@@ -55,21 +55,22 @@
             {
                 $("#asset_show_more").removeClass("rotate180");
                 $(".blue-panel").css("height", "240");
+                $(".other-assets").hide();
             }
             else
             {
                 $("#asset_show_more").addClass("rotate180");
-                $(".blue-panel").css("height", "300");
+                $(".blue-panel").css("height", "340");
+                $(".other-assets").show();
             }
         }
 
         private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })
         {
-            let ul = $("#Account_TransactionList").find("ul:eq(0)");
+            let ul = $("#Tab_Account_Index").find("ul:eq(0)");
             let liTemplet = ul.find("li:eq(0)");
             let li = liTemplet.clone(true);
             li.removeAttr("style");
-            li.find(".asset_value").text(item.amount.toString());
             Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
                 let asset = <Core.RegisterTransaction>result;
@@ -81,10 +82,11 @@
                     $("#my_anc").text(convert(item.amount.toString()))
                 } else
                 {
-                    li.find(".asset_issuer").text(Resources.global.issuerPubKey + asset.issuer.toString());
+                    li.find(".asset_value").text(convert(item.amount.toString()));
+                    li.find(".asset_issuer").text(asset.issuer.toString());
+                    li.find(".asset_name").text(asset.getName());
+                    ul.append(li);
                 }
-                li.find(".asset_name").text(asset.getName());
-                ul.append(li);
             });
         }
 
