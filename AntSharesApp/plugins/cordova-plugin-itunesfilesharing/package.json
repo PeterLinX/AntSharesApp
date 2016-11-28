@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-itunesfilesharing",
+  "version": "0.0.1",
+  "description": "Cordova/PhoneGap plugin for enabling iTunes file sharing",
+  "cordova": {
+    "id": "io.phasr.cordova.plugin.itunesfilesharing",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christianjunk/cordova-plugin-itunesfilesharing.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Christian Junk",
+  "license": "Apache 2.0 License",
+  "bugs": {
+    "url": "https://github.com/christianjunk/cordova-plugin-itunesfilesharing/issues"
+  },
+  "homepage": "https://github.com/christianjunk/cordova-plugin-itunesfilesharing#readme"
+}

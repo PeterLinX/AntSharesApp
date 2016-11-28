@@ -12,6 +12,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "AntShares"
+        },
+        "cordova-plugin-itunesfilesharing": {
+            "PACKAGE_NAME": "AntShares"
         }
     },
     "dependent_plugins": {}

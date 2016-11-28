@@ -9,6 +9,7 @@
         {
             $(this.target).find("#backup_web").click(this.OnWebBackupClick);
             $(this.target).find("#backup_app").click(this.OnAppBackupClick);
+            $(this.target).find("#read").click(this.OnReadClick);
         }
 
         protected onload(args: any[]): void
@@ -35,6 +36,47 @@
             } else {
                 $("#Tab_Wallet_Backup #div_app").css('display', 'none');
             }
+        }
+
+        private readFile(fileEntry) {
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    alert(this.result);
+                };
+                reader.readAsText(file);
+            }, () => {
+                console.log("onErrorReadFile");
+            });
+        }
+
+        private OnReadClick = () =>
+        {
+            console.log(navigator.userAgent);
+            let x = "444";
+            $("#Tab_Wallet_Backup #textarea").text(x);
+
+            let size = 5 * 1024;
+            window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
+            window.requestFileSystem(window.PERSISTENT, size, fs => {
+                fs.root.getFile('18a20a76-155f-4e4b-b9fc-12a885f6b086', {}, function (fileEntry) {
+                    fileEntry.file(function (file) {
+                        var reader = new FileReader();
+                        reader.onloadend = function (e) {
+                            //let txtArea = document.getElementById('textarea');
+                            //txtArea.value = this.result;
+                            //$("#Tab_Wallet_Backup #textarea").val(this.result);
+                            let x = "312312";
+                            $("#Tab_Wallet_Backup #textarea").text(x);
+                        };
+
+                        reader.readAsText(file);
+
+                    }, error => { alert(error);});
+
+                }, error => { alert(error); });
+            }, () => {
+            });
         }
 
         private OnWebBackupClick = () =>

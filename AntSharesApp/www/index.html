@@ -200,6 +200,10 @@
                     <div id="div_app">
                         <button type="button" id="backup_app" class="btn btn-primary lang-backup-current-wallet"></button>
                     </div>
+                    <!--<div id="div_test">
+                        <button type="button" id="read" class="btn btn-primary">read</button>
+                    </div>
+                    <textarea id="textarea"></textarea>-->
                     <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -292,9 +296,51 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
-
+                <div id="Tab_Contacts_Index" class="form-horizontal tab-pane">
+                    <h2 class="page-header">我的联系人</h2>
+                    <a class="btn tab-trigger btn-default" id="create_contact" href="#Tab_Contacts_Create">创建联系人</a>
+                    <br/>
+                    <br/>
+                    <h5 style="display:none; padding-top:50px; text-align:center">您还没有联系人</h5>
+                    <table class="table table-condensed table-bordered table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="lang-name">名称</th>
+                                <th class="lang-address">地址</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="display:none">
+                                <td class="contact-name">Peter Lin</td>
+                                <td class="contact-address">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="Tab_Contacts_Create" class="form-horizontal tab-pane">
+                    <form id="form_create_contact" autocomplete="off">
+                        <h2 class="page-header">创建联系人</h2>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">地址</label>
+                            <div class="col-sm-6">
+                                <input id="contact_address" type="text" data-val="true" />
+                                <!--<span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">名称</label>
+                            <div class="col-sm-6">
+                                <input id="contact_name" type="text" data-val="true" data-val-length-max="10" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button id="create_contact" type="button" class="btn btn-primary">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <h2 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h2>
@@ -451,6 +497,9 @@
                 </li>
                 <li>
                     <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
+                </li>
+                <li>
+                    <a class="fist-menu tab-trigger lang-contacts" href="#Tab_Contacts_Index"><i class="iconfont">&#xe6a9;</i></a>
                 </li>
                 <li>
                     <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>

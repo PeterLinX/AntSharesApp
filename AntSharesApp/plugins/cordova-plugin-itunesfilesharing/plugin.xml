@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-itunesfilesharing"
+        version="0.0.1">
+
+    <name>cordova-plugin-itunesfilesharing</name>
+    <description>Cordova/PhoneGap plugin for enabling iTunes file sharing</description>
+    <license>Apache 2.0 License</license>
+    <platform name="ios">
+        <config-file target="*-Info.plist" parent="UIFileSharingEnabled">
+            <true/>
+        </config-file>
+    </platform>
+</plugin>

@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-itunesfilesharing": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "org.antshares.app"
         },

@@ -15,5 +15,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-itunesfilesharing": {
+        "source": {
+            "type": "local",
+            "path": "E:\\Fortunesky\\Pictures\\cordova-plugin-itunesfilesharing-master\\cordova-plugin-itunesfilesharing-master"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
