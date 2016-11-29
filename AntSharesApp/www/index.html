@@ -367,9 +367,13 @@
                 </div>
                 <div id="Tab_Contacts_Index" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-my-contacts"></h3>
-                    <a class="btn tab-trigger btn-success lang-create-contact" id="create_contact" href="#Tab_Contacts_Create"></a>
-                    <br/>
-                    <br/>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn tab-trigger btn-success lang-create-contact" id="create_contact" href="#Tab_Contacts_Create"></button>
+                            <button id="dedete_contact" class="btn btn-danger" type="button">删除</button>
+                        </div>
+                        <input type="hidden" id="contact_name_selected" />
+                    </div>
                     <h5 style="display:none; padding-top:50px; text-align:center" class="lang-no-contact"></h5>
                     <table class="table table-condensed table-striped">
                         <thead>
@@ -392,7 +396,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-name"></label>
                             <div class="col-sm-6">
-                                <input name="contact_name" id="contact_name" type="text" data-val="true" data-val-length-max="20" data-val-regex-pattern="^([\u4e00-\u9fa5]+|([a-z]+\s?)+)$"  />
+                                <input name="contact_name" id="contact_name" type="text" data-val="true" data-val-length-max="20"  />
                                 <span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>
                             </div>
                         </div>

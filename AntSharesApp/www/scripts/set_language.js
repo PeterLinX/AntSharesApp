@@ -84,5 +84,4 @@ $("#contact_address").attr("data-val-required", global.contactAddressRequired);
 $("#contact_name").attr("data-val-required", global.contactNameRequired);
 $("#contact_name").attr("data-val-length", global.contactNameLength);
 $("#contact_address").attr("data-val-regex", global.contactAddressRegex);
-$("#contact_name").attr("data-val-regex", global.contactNameRegex);
 

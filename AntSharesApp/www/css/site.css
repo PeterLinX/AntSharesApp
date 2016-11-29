@@ -146,3 +146,5 @@ footer a, footer a:hover, footer a:focus, footer a:active { color:#fff }
 .ans-div, .anc-div  { width:300px; font-size:16px; text-align:center; margin:auto }
 .ans-div { font-size:36px; padding:60px 0 10px; }
 .progress { background-color:#ddd }
+#dedete_contact { display:none }
+tr.active { background-color:#ddd }
