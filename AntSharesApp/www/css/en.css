@@ -41,7 +41,7 @@
 .lang-back-to-list::before { content:'back to list' }
 .lang-my-asset::before { content:'My asset' }
 .lang-no-asset::before { content:'You currently have no assets' }
-.lang-issuer::before { content:'issuer: ' }
+.lang-issuer::before { content:'issuer' }
 .lang-asset-transfer::after { content:'Transfer' }
 .lang-select-asset::before { content:'select asset' }
 .lang-max-to-transfer::before { content:'the maximum transfer' }
@@ -123,3 +123,11 @@
 .lang-home::after { content:'Home' }
 .lang-receive::after { content:'Receive' }
 .lang-transfer::after { content:'Send' }
+.lang-create-contact::after { content:'Create contact' }
+.lang-name::after { content:'Name' }
+.lang-address::after { content:'Address' }
+.lang-my-contacts::after { content:'My Contacts' }
+.lang-no-contact::after { content:'You have no contacts' }
+.lang-asset-balance::after { content:'balance' }
+.lang-ans::after { content:'ANS' }
+.lang-anc::after { content:'ANC' }

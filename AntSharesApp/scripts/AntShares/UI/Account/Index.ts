@@ -7,8 +7,6 @@
         protected oncreate(): void
         {
             $(this.target).find("#asset_show_more").click(this.OnShowMore);
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
-
         }
 
         protected onload(): void
@@ -19,9 +17,10 @@
                 return;
             }
             setTitle(1);
+
             let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
             tbody.find(".add").remove();
-            
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open().then(() =>
             {
                 this.loadTransactionList();

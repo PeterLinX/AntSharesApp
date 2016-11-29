@@ -226,10 +226,6 @@
                     <div id="div_app">
                         <button type="button" id="backup_app" class="btn btn-success lang-backup-current-wallet"></button>
                     </div>
-                    <!--<div id="div_test">
-                        <button type="button" id="read" class="btn btn-primary">read</button>
-                    </div>
-                    <textarea id="textarea"></textarea>-->
                     <div id="danger" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -239,21 +235,18 @@
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
                     <div class="blue-panel">
-                        <div class="ans-div"><span>小蚁股</span> <span id="my_ans">0</span></div>
-                        <div class="anc-div"><span>小蚁币</span> <span id="my_anc">0</span></div>
+                        <div class="ans-div"><span class="lang-ans"></span> <span id="my_ans">0</span></div>
+                        <div class="anc-div"><span class="lang-anc"></span> <span id="my_anc">0</span></div>
                         <div class="all-asset-btn withripple">
                             <a id="asset_show_more" href="javascript:" class="iconfont">&#xe73d;</a>
                         </div>
                         <div class="other-assets">
                             <div class="row">
-                                <div class="col-xs-4">
-                                    资产名称
+                                <div class="col-xs-4 lang-asset-name">
                                 </div>
-                                <div class="col-xs-3">
-                                    余额
+                                <div class="col-xs-3 lang-asset-value">
                                 </div>
-                                <div class="col-xs-5">
-                                    发行人公钥
+                                <div class="col-xs-5 lang-issuer">
                                 </div>
                             </div>
                             <ul>
@@ -349,7 +342,7 @@
                     </form>
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-my-tx-list"></h2>
+                    <h3 class="page-header lang-my-tx-list"></h3>
                     <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
                     <table class="table table-condensed table-bordered table-striped table-responsive">
                         <thead>
@@ -373,45 +366,46 @@
                     </table>
                 </div>
                 <div id="Tab_Contacts_Index" class="form-horizontal tab-pane">
-                    <h2 class="page-header">我的联系人</h2>
-                    <a class="btn tab-trigger btn-default" id="create_contact" href="#Tab_Contacts_Create">创建联系人</a>
+                    <h3 class="page-header lang-my-contacts"></h3>
+                    <a class="btn tab-trigger btn-success lang-create-contact" id="create_contact" href="#Tab_Contacts_Create"></a>
                     <br/>
                     <br/>
-                    <h5 style="display:none; padding-top:50px; text-align:center">您还没有联系人</h5>
-                    <table class="table table-condensed table-bordered table-striped table-responsive">
+                    <h5 style="display:none; padding-top:50px; text-align:center" class="lang-no-contact"></h5>
+                    <table class="table table-condensed table-striped">
                         <thead>
                             <tr>
-                                <th class="lang-name">名称</th>
-                                <th class="lang-address">地址</th>
+                                <th class="lang-name"></th>
+                                <th class="lang-address"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="display:none">
-                                <td class="contact-name">Peter Lin</td>
-                                <td class="contact-address">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</td>
+                                <td class="contact-name select">Peter Lin</td>
+                                <td class="contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div id="Tab_Contacts_Create" class="form-horizontal tab-pane">
                     <form id="form_create_contact" autocomplete="off">
-                        <h2 class="page-header">创建联系人</h2>
+                        <h3 class="page-header lang-create-contact"></h3>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">地址</label>
+                            <label class="col-sm-4 control-label lang-name"></label>
                             <div class="col-sm-6">
-                                <input id="contact_address" type="text" data-val="true" />
-                                <!--<span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>-->
+                                <input name="contact_name" id="contact_name" type="text" data-val="true" data-val-length-max="20" data-val-regex-pattern="^([\u4e00-\u9fa5]+|([a-z]+\s?)+)$"  />
+                                <span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">名称</label>
+                            <label class="col-sm-4 control-label lang-address"></label>
                             <div class="col-sm-6">
-                                <input id="contact_name" type="text" data-val="true" data-val-length-max="10" />
+                                <input name="contact_address" id="contact_address" type="text" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" />
+                                <span class="text-danger" data-valmsg-for="contact_address" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_contact" type="button" class="btn btn-primary">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
+                                <button id="create_contact" type="button" class="btn btn-success">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
                     </form>
@@ -583,6 +577,9 @@
                     </li>
                     <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-send" href="#Tab_Account_Send"><i class="iconfont">&#xe610;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-contacts" href="#Tab_Contacts_Index"><i class="iconfont">&#xe635;</i></a>
                     </li>
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>

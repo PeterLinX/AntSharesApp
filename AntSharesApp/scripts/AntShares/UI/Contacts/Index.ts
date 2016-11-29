@@ -8,10 +8,7 @@
         }
 
         protected onload(): void {
-            if (Global.Wallet == null) {
-                TabBase.showTab("#Tab_Wallet_Start");
-                return;
-            }
+
             let tbody = $("#Tab_Contacts_Index").find("tbody:eq(0)");
             tbody.find("tr :visible").remove();
             this.loadContactsList();

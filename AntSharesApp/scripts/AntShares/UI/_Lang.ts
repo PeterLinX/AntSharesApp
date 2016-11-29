@@ -109,6 +109,11 @@
         static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
         static txId = "交易已经发送，等待区块确认，交易id: ";
         static addressError = "地址信息有误";
+        static contactAddressRequired = "地址不能为空";
+        static contactNameRequired = "姓名不能为空";
+        static contactNameLength = "姓名不能超过20个字符";
+        static contactAddressRegex = "地址格式不正确";
+        static contactNameRegex = "姓名不正确";
     }
 
     class global_en
@@ -208,5 +213,10 @@
         static RPCError = "Sorry, we have some problems here, cannot create wallets now, please try again later.";
         static txId = "Transaction has been made, please wait for confirmations, txid: ";
         static addressError = "Improper Address";
+        static contactAddressRequired = "Address is required";
+        static contactNameRequired = "Name is required";
+        static contactNameLength = "The name must be at least 20 bits long";
+        static contactAddressRegex = "Incorrect address format";
+        static contactNameRegex = "Incorrect neme format";
     }
 }

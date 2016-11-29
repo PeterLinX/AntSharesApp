@@ -79,5 +79,9 @@ $("#input_amount").attr("data-val-required", global.assetAmountRequired);
 $("#select_issue_assets").attr("data-val-required", global.issueAssetsRequired);
 $("#relay_data").attr("data-val-required", global.relayDataRequired);
 $("#input_data").attr("data-val-required", global.inputDataRequired);
-
+$("#contact_address").attr("data-val-required", global.contactAddressRequired);
+$("#contact_name").attr("data-val-required", global.contactNameRequired);
+$("#contact_name").attr("data-val-length", global.contactNameLength);
+$("#contact_address").attr("data-val-regex", global.contactAddressRegex);
+$("#contact_name").attr("data-val-regex", global.contactNameRegex);
 
