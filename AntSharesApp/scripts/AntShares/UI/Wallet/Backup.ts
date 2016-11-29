@@ -18,6 +18,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            setTitle(0);
             if (args[0])
                 $("#danger").show();
             formReset("form_backup");

@@ -9,6 +9,7 @@
 
         protected onload(): void
         {
+            setTitle(0);
             formReset("form_account_import");
         }
 
@@ -32,7 +33,7 @@
                 {
                     if (result.indexOf(name) >= 0)
                         throw new Error(Resources.global.sameWalletName);
-                    return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#import_password").val());
+                    return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#import_password").val(), false);
                 }).then(wallet =>
                 {
                     Global.Wallet = wallet;
@@ -65,6 +66,8 @@
                         return Global.Wallet.rebuild();
                     }).then(() =>
                     {
+                        $("footer").show();
+                        $("#menu_wallet_start").hide();
                         TabBase.showTab("#Tab_Account_Index");
                     }).catch(e =>
                     {

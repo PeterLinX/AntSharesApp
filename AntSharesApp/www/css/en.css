@@ -1,7 +1,7 @@
 ﻿title::before { content:'Antshares App' }
 .lang-title::before { content:'Antshares App' }
 .lang-create-wallet::before { content:'Create wallet' }
-.lang-open-wallet::before { content:'Open wallet' }
+.lang-open-wallet::after { content:'Open wallet' }
 .lang-input-wallet-name::before { content:'input wallet name' }
 .lang-import-password::before { content:'Set password for new wallet' }
 .lang-return-start::before { content:'Return to start' }
@@ -47,7 +47,7 @@
 .lang-max-to-transfer::before { content:'the maximum transfer' }
 .lang-receiver::before { content:'receiver' }
 .lang-confirm-transfer::before { content:'confirm transfer' }
-.lang-my-tx-list::before { content:'My Transaction List' }
+.lang-my-tx-list::before { content:'Recently Transaction' }
 .lang-no-tx::before { content:"No transactions yet" }
 .lang-collapse-all::before { content:'collapse all' }
 .lang-tx::before { content:'transaction: ' }
@@ -119,3 +119,7 @@
 .lang-receiver-address::after { content:'Receiver address' }
 .lang-backup-wallet::after { content:'Backup wallet' }
 .lang-contacts::after { content:'Contacts' }
+.lang-welcome::after { content:'Welcome' }
+.lang-home::after { content:'Home' }
+.lang-receive::after { content:'Receive' }
+.lang-transfer::after { content:'Send' }

@@ -7,14 +7,14 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="description" content="小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
-    <title></title>
+    <title>Antshares APP</title>
     <!-- AntSharesApp 引用 -->
     <link id="lang" href="" rel="stylesheet" />
     <link href="lib/jQuery.mmenu/dist/core/css/jquery.mmenu.all.css" rel="stylesheet" />
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap-material-design/css/ripples.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet" />
-
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/jquery-collapse/jquery.collapse.js"></script>
     <script src="lib/jQuery.mmenu/dist/core/js/jquery.mmenu.min.all.js"></script>
@@ -25,25 +25,52 @@
         <div class="content">
             <header>
                 <a href="#menu" class="iconfont">&#xe60c;</a>
-                <img src="img/logo-line.png" />
-                <span class="lang-title"> </span>
+                <span class="header-title">
+                    <img src="img/logo-line.png" /><span class="header-antsharesapp lang-title"></span>
+                </span>
+                <span class="header-title">
+                    我的钱包
+                </span>
             </header>
             <div class="tab-content">
-                <div style="position:absolute; left:0; bottom:0; height:50px; width:50px" onclick="showDevTools()"></div>
+                <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                    <h3 class="page-header lang-welcome"></h3>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">创建新钱包</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-success tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9 text-success">如果你是第一次使用，请执行此操作，创建好钱包后请备份好钱包文件</div>
+                         </div>
                     </div>
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">从备份文件恢复</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-info tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <div class="text-info">如果你想从还原备份的钱包文件，请执行此操作</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="start">
-                        <a class="btn btn-primary tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">从私钥创建钱包</div>
+                        <div class="panel-body row">
+                            <div class="col-md-2 col-sm-3">
+                                <a class="btn btn-warning tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <div class="text-warning">如果你有小蚁私钥，想导入到钱包中，请执行此操作，导入后需要耐心等待钱包同步完成才可以看到资产</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
                     <form id="form_create_wallet" autocomplete="off">
-                        <h2 class="page-header lang-create-wallet"></h2>
+                        <h3 class="page-header lang-create-wallet"></h3>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-wallet-name"></label>
                             <div class="col-sm-6">
@@ -53,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label  lang-input-wallet-password"></label>
                             <div class="col-sm-6">
-                                <input id="create_password" name="create_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="create_password" name="create_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="create_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -66,7 +93,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_wallet" type="button" class="btn btn-primary lang-create-wallet"></button> <!--如果不加preventDefault会跳转空白页面-->
+                                <button id="create_wallet"  type="submit" onclick="event.preventDefault()"  class="btn btn-success lang-create-wallet"></button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
                     </form>
@@ -76,7 +103,7 @@
                     <form id="form_backup">
                         <div class="row">
                             <div class="col-lg-6 col-md-8">
-                                <h2 class="page-header lang-import-wallet-file"></h2>
+                                <h3 class="page-header lang-import-wallet-file"></h3>
                                 <div>
                                     <input type="file" id="files" class="file" data-show-upload="false" data-show-preview="false" />
                                 </div>
@@ -88,7 +115,7 @@
 
                 <div id="Tab_Wallet_Import" class="form-horizontal tab-pane">
                     <form id="form_account_import" autocomplete="off">
-                        <h2 class="page-header lang-import-account"></h2>
+                        <h3 class="page-header lang-import-account"></h3>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-private-key"></label>
                             <div class="col-sm-6">
@@ -99,7 +126,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label  lang-import-password"></label>
                             <div class="col-sm-6">
-                                <input id="import_password" name="import_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="import_password" name="import_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="import_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -112,7 +139,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="import_prikey" type="button" class="btn btn-primary lang-import-account"></button>
+                                <button id="import_prikey"  type="submit" onclick="event.preventDefault()"  class="btn btn-success lang-import-account"></button>
                             </div>
                         </div>
                     </form>
@@ -121,11 +148,10 @@
 
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
                     <form id="form_open_wallet" autocomplete="off">
-                        <h2 class="page-header lang-open-wallet"></h2>
+                        <h3 class="page-header lang-open-wallet"></h3>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-select-wallet-file"></label>
                             <div class="col-sm-6">
-                                <input id="input_wallet_name" type="text" />
                                 <span class="text-danger"></span>
                                 <ul class="list_wallet_ul" id="list_wallet_name">
                                     <li style="display:none">
@@ -147,14 +173,14 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button type="button" class="btn btn-primary lang-open-wallet"></button>
+                                <button type="submit" onclick="event.preventDefault()" class="btn btn-success lang-open-wallet"></button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
                     <form id="form_change_password" autocomplete="off">
-                        <h2 class="page-header lang-change-wallet-password"></h2>
+                        <h3 class="page-header lang-change-wallet-password"></h3>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-wallet-name"></label>:
                             <div class="col-sm-6">
@@ -173,7 +199,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-new-password"></label>
                             <div class="col-sm-6">
-                                <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="6" />
+                                <input id="new_password" name="new_password" type="password" data-val="true" data-val-length-min="8" />
                                 <span class="text-danger" data-valmsg-for="new_password" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -186,25 +212,25 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button type="button" class="btn btn-primary lang-change-wallet-password"></button>
+                                <button type="submit" onclick="event.preventDefault()"  class="btn btn-success lang-change-wallet-password"></button>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-backup"></h2>
+                    <h3 class="page-header lang-backup"></h3>
                     <div id="div_web">
-                        <button id="backup_web" class="btn btn-danger lang-backup-current-wallet"></button>
+                        <button id="backup_web" class="btn btn-success lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
                     </div>
                     <div id="div_app">
-                        <button type="button" id="backup_app" class="btn btn-primary lang-backup-current-wallet"></button>
+                        <button type="button" id="backup_app" class="btn btn-success lang-backup-current-wallet"></button>
                     </div>
                     <!--<div id="div_test">
                         <button type="button" id="read" class="btn btn-primary">read</button>
                     </div>
                     <textarea id="textarea"></textarea>-->
-                    <div id="danger" style="display:none" class="alert alert-warning bottom" role="alert">
+                    <div id="danger" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -212,45 +238,94 @@
                     </div>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
+                    <div class="blue-panel">
+                        <div class="ans-div"><span>小蚁股</span> <span id="my_ans">0</span></div>
+                        <div class="anc-div"><span>小蚁币</span> <span id="my_anc">0</span></div>
+                        <div class="all-asset-btn withripple">
+                            <a id="asset_show_more" href="javascript:" class="iconfont">&#xe73d;</a>
+                        </div>
+                        <div class="other-assets">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    资产名称
+                                </div>
+                                <div class="col-xs-3">
+                                    余额
+                                </div>
+                                <div class="col-xs-5">
+                                    发行人公钥
+                                </div>
+                            </div>
+                            <ul>
+                                <li style="display:none">
+                                    <div class="row">
+                                        <div class="col-xs-4 ellipsis-div">
+                                            <span class="asset_name">点位符：资产名称</span>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <span class="asset_value">点位符：余额</span>
+                                        </div>
+                                        <div class="col-xs-5 ellipsis-div">
+                                            <span class="asset_issuer">发行人</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
                     <div class="row status">
                         <div class="col-sm-8">
+                            <div class="lang-height"></div>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-info progress-bar-striped lang-height" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                    <span id="local_process">0</span>%
+                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                                    <span class="local_process">0</span>%
                                 </div>
                             </div>
                         </div>
-                        <div id="div_height" class="col-sm-4 text-right lang-height2"><span id="local_height">0</span><span>/</span><span id="remote_height">0</span></div>
+                        <div class="div_height col-sm-4 text-right lang-height2"><span class="local_height">0</span><span>/</span><span class="remote_height">0</span></div>
                     </div>
-                    <h2 class="page-header lang-receiver-address"></h2>
+                    
+                    <div id="Account_TransactionList">
+                        <h3 class="page-header lang-my-tx-list"></h3>
+                        <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="lang-tx-time"></th>
+                                    <th class="lang-tx-id"></th>
+                                    <th class="lang-tx-type"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="display:none">
+                                    <td class="tx-time">2016/11/2 16:41:52</td>
+                                    <td class="tx-id select">
+                                        cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940
+                                    </td>
+                                    <td >
+                                        <a class="tx-type">ctTransaction</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="Tab_Account_Receive" class="form-horizontal tab-pane">
+                    <h3 class="page-header lang-receiver-address"></h3>
                     <div class="row">
-                        <div class="col-sm-8 select">
+                        <div class="col-lg-6 col-md-7 col-sm-10 select">
                             <pre class="select">
-                                <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
+                            <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
                         </div>
                     </div>
-                    <h2 class="page-header lang-my-asset"></h2>
-                    <h5 class="lang-no-asset" style="display:none; padding-top:50px; text-align:center"></h5>
-                    <ul>
-                        <li style="display:none">
-                            <div class="row">
-                                <div class="issuer col-md-9 col-sm-8 asset_issuer"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9 col-sm-8">
-                                    <pre class="asset_name">点位符：资产名称</pre>
-                                </div>
-                                <div class="col-md-3 col-sm-4">
-                                    <pre class="asset_value">点位符：数量</pre>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
-                <div id="Tab_Asset_Transfer" class="form-horizontal tab-pane">
+
+                <div id="Tab_Account_Send" class="form-horizontal tab-pane">
                     <form id="form_asset_transfer" autocomplete="off">
-                        <h2 class="page-header lang-asset-transfer"></h2>
+                        <h3 class="page-header lang-asset-transfer"></h3>
                         <div class="form-group">
                             <div class="col-md-6">
                                 <h5 class="lang-select-asset"></h5>
@@ -258,7 +333,7 @@
                                 <span class="text-danger" data-valmsg-for="transfer_asset" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                        <div class="lang-max-to-transfer"><span class="asset_amount" style="line-height: 2; font-size: 16px; padding: 2px 10px; color: rgb(237, 28, 36); font-weight: bold;">0</span></div>
+                        <div class="lang-max-to-transfer"><span class="asset-amount text-success">0</span></div>
                         <h5 class="lang-receiver"></h5>
                         <div class="form-group">
                             <div class="col-sm-9" style="margin-bottom:10px">
@@ -270,7 +345,7 @@
                                 <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                        <button class="btn btn-primary lang-confirm-transfer" type="button"></button>
+                        <button class="btn btn-success lang-confirm-transfer"  type="submit" onclick="event.preventDefault()" ></button>
                     </form>
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
@@ -343,7 +418,7 @@
                 </div>
                 <!-- 测试用的开发人员工具 -->
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h2>
+                    <h3 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h3>
                     <div>
                         <h5>节点信息</h5>
                         <div>中国上海：延迟<span id="seed2"></span>ms</div>
@@ -367,14 +442,14 @@
                                     <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button id="set_height" type="button" class="btn btn-default">确定</button>
+                                    <button id="set_height"  type="submit" onclick="event.preventDefault()"  class="btn btn-default">确定</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
-                    <h2 class="page-header lang-help"></h2>
+                    <h3 class="page-header lang-help"></h3>
                     <div id="zh_help">
                         QQ群：573816801
                     </div>
@@ -387,8 +462,8 @@
                     </div>
                 </div>
                 <div id="Tab_Help_About" class="tab-pane">
-                    <h2 class="page-header lang-about"></h2>
-                    <div id="zh_about">
+                    <h3 class="page-header lang-about"></h3>
+                    <div id="zh_about" class="select">
                         <p>
                             小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。
                         </p>
@@ -401,7 +476,7 @@
                         <p>官方网站： <a href="https://www.antshares.org">www.antshares.org</a></p>
                         <p>版权所有： 小蚁团队 © 2014 - 2016</p>
                     </div>
-                    <div id="en_about">
+                    <div id="en_about" class="select">
                         <p>
                             Antshares is a decentralized and distributed network protocol which is based on blockchain technology. People can use it to digitalize assets or shares, and accomplish some financial business through peer-to-peer network such as registration and issuing, make transactions, settlement and payment.
                         </p>
@@ -419,8 +494,8 @@
                     </div>
                 </div>
                 <div id="Tab_Help_Privacy_Policy" class="tab-pane">
-                    <h2 class="page-header lang-privacy"></h2>
-                    <div id="zh_privacy">
+                    <h3 class="page-header lang-privacy"></h3>
+                    <div id="zh_privacy" class="select">
                         <p>
                             使用该钱包之前，请了解加密数字货币以及基于区块链的开源软件使用时所遇到的各种风险，同时，如果您不熟悉钱包、 账户、合约等术语， 请先登录小蚁官网了解有关这些关键术语的信息。
                         </p>
@@ -448,7 +523,7 @@
                         <br />
                         <p><small>以上所有解释权归小蚁团队所有，并受 <a href="https://github.com/AntShares/AntShares/blob/master/LICENSE">MIT开源协议</a> 保护。</small></p>
                     </div>
-                    <div id="en_privacy">
+                    <div id="en_privacy" class="select">
                         <p>
                             Before using the wallet software, you should be capable of acknowledging risks associated with crypto-currency and blockchain-based open-source software. In the meantime, if you are not familiar with terminologies like wallet, account and/or contract, we strongly advise you to visit Antshares’ official website to learn more.
                         </p>
@@ -477,43 +552,67 @@
                     </div>
                 </div>
             </div>
+            <footer>
+                <div>
+                    <a class="col-xs-4 tab-trigger lang-receive withripple" href="#Tab_Account_Receive">
+                        <i class="iconfont">&#xe6ab;</i>
+                    </a>
+                    <a class="col-xs-4 tab-trigger lang-home withripple" href="#Tab_Account_Index">
+                        <i class="iconfont">&#xe686;</i>
+                    </a>
+                    <a class="col-xs-4 tab-trigger lang-send withripple" href="#Tab_Account_Send">
+                        <i class="iconfont">&#xe610;</i>
+                    </a>
+                </div>
+            </footer>
         </div>
         <nav id="menu" class="mm-theme-dark">
-            <ul>
-                <li id="menu_wallet_start">
-                    <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-user-center" href="#Tab_Account_Index"><i class="iconfont">&#xe600;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-asset-transfer" href="#Tab_Asset_Transfer"><i class="iconfont">&#xe604;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-transaction-list" href="#Tab_Asset_TransactionList"><i class="iconfont">&#xe657;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-contacts" href="#Tab_Contacts_Index"><i class="iconfont">&#xe6a9;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
-                </li>
-                <li>
-                    <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
-                </li>
-                <li id="develop_tool">
-                    <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li id="menu_wallet_start" class="withripple">
+                        <a class="fist-menu tab-trigger lang-start" href="#Tab_Wallet_Start"><i class="iconfont">&#xe62e;</i></a>
+                    </li>
+                    <li id="menu_wallet_open" class="withripple">
+                        <a class="fist-menu tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"><i class="iconfont">&#xe62e;</i></a>
+                    </li>
+                    <li class="short-hidden withripple">
+                        <a class="fist-menu tab-trigger lang-home" href="#Tab_Account_Index"><i class="iconfont">&#xe686;</i></a>
+                    </li>
+                    <li class="short-hidden withripple">
+                        <a class="fist-menu tab-trigger lang-receive" href="#Tab_Account_Receive"><i class="iconfont">&#xe6ab;</i></a>
+                    </li>
+                    <li class="short-hidden withripple">
+                        <a class="fist-menu tab-trigger lang-send" href="#Tab_Account_Send"><i class="iconfont">&#xe610;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
+                    </li>
+                    <li class="sshort-hidden withripple">
+                        <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
+                    </li>
+                    <li id="develop_tool" class="withripple">
+                        <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
+                    </li>
+                </ul>
+                <div class="menu-progress" style="display:none">
+                    <div class="lang-height"></div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                            <span class="local_process">0</span>%
+                        </div>
+                    </div>
+                    <div class="lang-height2"><span class="local_height">0</span><span>/</span><span class="remote_height">0</span></div>
+                </div>
+            </div>
         </nav>
     </div>
     <script src="lib/jQuery.mmenu/dist/core/js/hammer.js"></script>
@@ -523,13 +622,14 @@
     <script src="lib/bootstrap-fileinput/js/fileinput.min.js"></script>
     <script src="lib/bootstrap-fileinput/js/fileinput_locale_zh.js"></script>
     <script src="lib/jQuery.mmenu/dist/core/js/jquery.mmenu.dragclose.min.js"></script>
+    <script src="lib/bootstrap-material-design/js/material.js"></script>
+    <script src="lib/bootstrap-material-design/js/ripples.js"></script>
     <!-- Cordova 引用，它在生成应用程序时添加到其中。 -->
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/appBundle.js"></script>
     <script src="scripts/set_language.js"></script>
     <script src="scripts/SocialSharing.js"></script>
-
     <script>
         $("input[type='text']").addClass("form-control");
         $("input[type='password']").addClass("form-control");
@@ -581,6 +681,7 @@
             else
                 $("#delete_all_wallet").hide();
         }
+        $.material.init()
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

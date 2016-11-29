@@ -31,7 +31,7 @@ namespace AntShares.Implementations.Wallets.IndexedDB
             });
         }
 
-        public static create(name: string, password: string): PromiseLike<IndexedDBWallet>
+        public static create(name: string, password: string, createAccount = true): PromiseLike<IndexedDBWallet>
         {
             let wallet = new IndexedDBWallet(name);
             return wallet.db.open().then(() =>
@@ -39,7 +39,10 @@ namespace AntShares.Implementations.Wallets.IndexedDB
                 return wallet.init(name, password, true);
             }).then(() =>
             {
-                return wallet.createAccount();
+                if (createAccount)
+                    return wallet.createAccount();
+                else
+                    return;
             }).then(() =>
             {
                 return wallet;

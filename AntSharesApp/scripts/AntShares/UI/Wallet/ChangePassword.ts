@@ -14,6 +14,7 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            setTitle(0);
             $("#change_wallet_name").text(Global.Wallet.dbPath);
         }
 

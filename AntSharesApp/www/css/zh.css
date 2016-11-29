@@ -1,7 +1,7 @@
 ﻿title::before { content:'antshares APP' }
 .lang-title::before { content:'antshares APP' }
 .lang-create-wallet::before { content:'创建钱包' }
-.lang-open-wallet::before { content:'打开钱包' }
+.lang-open-wallet::after { content:'打开钱包' }
 .lang-input-wallet-name::before { content:'输入钱包名称' }
 .lang-import-password::before { content:'为新钱包设置密码' }
 .lang-return-start::before { content:'返回开始页面' }
@@ -47,7 +47,7 @@
 .lang-max-to-transfer::before { content:'最大可转让' }
 .lang-receiver::before { content:'接收方' }
 .lang-confirm-transfer::before { content:'确认转账' }
-.lang-my-tx-list::before { content:'我的交易列表' }
+.lang-my-tx-list::before { content:'最近交易' }
 .lang-no-tx::before { content:'您目前还没有交易' }
 .lang-collapse-all::before { content:'全部收起' }
 .lang-tx::before { content:'交易：' }
@@ -118,3 +118,7 @@
 .lang-receiver-address::after { content:'收款地址' }
 .lang-backup-wallet::after { content:'备份钱包' }
 .lang-contacts::after { content:'联系人' }
+.lang-welcome::after { content:'欢迎' }
+.lang-home::after { content:'首页' }
+.lang-receive::after { content:'收款' }
+.lang-send::after { content:'发送' }

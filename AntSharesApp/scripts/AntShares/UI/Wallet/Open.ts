@@ -9,6 +9,7 @@
 
         protected onload(): void
         {
+            setTitle(0);
             AntShares.Wallets.Master.instance().then(result =>
             {
                 return result.get();
@@ -25,8 +26,9 @@
                 {
                     Global.Wallet = result;
                     formReset("form_open_wallet");
-                    alert(UI.Resources.global.openWalletAlert);
                     $("#open_error").hide();
+                    $(".menu-progress").show();
+                    $("#open_password").blur();
                     //打开成功后跳转账户管理页面
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#open_error").show());
@@ -38,12 +40,15 @@
             if (walletNameList.length == 0)
             {
                 TabBase.showTab("#Tab_Wallet_Start");
+                $("#menu_wallet_open").hide();
+                $("footer").hide();
             }
             else
             {
                 $("#open_password").focus();
                 $("#menu_wallet_start").hide();
-                $("#input_wallet_name").hide();
+                $("footer").show();
+
                 $("#list_wallet_name").show();
                 let ul = $("#list_wallet_name");
                 ul.find("li:visible").remove();
