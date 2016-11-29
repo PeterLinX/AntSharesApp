@@ -79,6 +79,11 @@
                 let select = $("#Tab_Account_Send select");
                 select.html("");
                 select.append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
+                select.change(() =>
+                {
+                    var amount = $("#transfer_asset").find("option:selected").data("amount");
+                    $(".asset-amount").text(amount ? amount : 0);
+                });
                 for (let i = 0; i < results.length; i++)
                 {
                     let asset = <Core.RegisterTransaction>results[i];
