@@ -4,11 +4,12 @@
     {
         protected oncreate(): void
         {
+            $("#Tab_Account_Send .btn-success").click(this.OnSendButtonClick);
         }
 
         private OnSendButtonClick = () =>
         {
-            if (formIsValid("form_asset_transfer"))
+            if (formIsValid("form_account_send"))
             {
                 let address = $("#Tab_Account_Send .pay_address").val();
                 let value = $("#Tab_Account_Send .pay_value").val();
@@ -49,7 +50,7 @@
                         return Global.Node.relay(tx);
                     }).then(result =>
                     {
-                        TabBase.showTab("#Tab_Asset_Index");
+                        TabBase.showTab("#Tab_Account_Index");
                         alert(Resources.global.txId + tx.hash.toString());
                     }).catch(reason =>
                     {

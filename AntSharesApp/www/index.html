@@ -87,7 +87,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-wallet-confirm-password"></label>
                             <div class="col-sm-6">
-                                <input id="create_password_confirm" name="create_password_confirm" type="password" data-val="true" />
+                                <input id="create_password_confirm" name="create_password_confirm" data-val-equalto-other="create_password" type="password" data-val="true" />
                                 <span class="text-danger" data-valmsg-for="create_password_confirm" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                 </div>
 
                 <div id="Tab_Account_Send" class="form-horizontal tab-pane">
-                    <form id="form_asset_transfer" autocomplete="off">
+                    <form id="form_account_send" autocomplete="off">
                         <h3 class="page-header lang-asset-transfer"></h3>
                         <div class="form-group">
                             <div class="col-md-6">
@@ -330,7 +330,7 @@
                         <h5 class="lang-receiver"></h5>
                         <div class="form-group">
                             <div class="col-sm-9" style="margin-bottom:10px">
-                                <input id="transfer_txout" name="transfer_txout" data-val="true" class="pay_address" type="text" />
+                                <input id="transfer_txout" name="transfer_txout" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" class="pay_address" type="text" />
                                 <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
                             </div>
                             <div class="col-sm-3" style="margin-bottom:10px">
@@ -338,7 +338,7 @@
                                 <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                        <button class="btn btn-success lang-confirm-transfer"  type="submit" onclick="event.preventDefault()" ></button>
+                        <button class="btn btn-success lang-confirm-transfer" type="submit" onclick="event.preventDefault()" ></button>
                     </form>
                 </div>
                 <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
@@ -418,7 +418,7 @@
                         <div>中国上海：延迟<span id="seed2"></span>ms</div>
                         <div>英国伦敦：延迟<span id="seed8"></span>ms</div>
                         <div>当前连接节点：<span id="seed"></span></div>
-                        <button id="refresh_nood" class="btn btn-default">刷新</button>
+                        <button id="refresh_nood" class="btn btn-success">刷新</button>
                         <br /><br />
                     </div>
                     <div id="delete_all_wallet">
@@ -436,7 +436,7 @@
                                     <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button id="set_height"  type="submit" onclick="event.preventDefault()"  class="btn btn-default">确定</button>
+                                    <button id="set_height" type="submit" onclick="event.preventDefault()" class="btn btn-success">确定</button>
                                 </div>
                             </div>
                         </form>

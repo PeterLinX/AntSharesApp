@@ -11,7 +11,7 @@
                 if (Global.Wallet)
                 {
                     let localHeight = (Global.Wallet as any).walletHeight - 1;
-                    let process = (localHeight / remoteHeight * 100).toFixed(0);
+                    let process = (localHeight / remoteHeight * 100).toFixed(2);
                     $(".progress-bar").css("width", process + "%")
                     $(".progress-bar").attr("aria-valuenow", process + "%");
                     

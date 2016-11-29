@@ -99,7 +99,7 @@
         static unConfirmed = "未确认";
         static minerTx = "矿工交易";
         static issueTx = "资产发行";
-        static claimTx = "小蚁币提取";
+        static claimTx = "提取小蚁币";
         static enrollmentTx = "记账报名";
         static registerTx = "资产注册";
         static contractTx = "合约交易";
@@ -114,6 +114,7 @@
         static contactNameLength = "姓名不能超过20个字符";
         static contactAddressRegex = "地址格式不正确";
         static contactNameRegex = "姓名不正确";
+        static transferTxoutRegex = "地址格式不正确";
     }
 
     class global_en
@@ -218,5 +219,6 @@
         static contactNameLength = "The name must be at least 20 bits long";
         static contactAddressRegex = "Incorrect address format";
         static contactNameRegex = "Incorrect neme format";
+        static transferTxoutRegex = "Incorrect address format";
     }
 }
