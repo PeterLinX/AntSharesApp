@@ -43,6 +43,7 @@
                 {
                     formReset("form_create_wallet");
                     $("footer").show();
+                    $(".menu-progress").show();
                     $("#menu_wallet_start").hide();
                     TabBase.showTab("#Tab_Wallet_Backup", true);
                 }, reason => alert(reason));
