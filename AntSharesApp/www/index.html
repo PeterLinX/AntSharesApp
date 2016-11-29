@@ -370,25 +370,30 @@
                     <div class="form-group">
                         <div class="col-xs-12">
                             <button type="button" class="btn tab-trigger btn-success lang-create-contact" id="create_contact" href="#Tab_Contacts_Create"></button>
-                            <button id="dedete_contact" class="btn btn-danger" type="button">删除</button>
                         </div>
                         <input type="hidden" id="contact_name_selected" />
+                        <input type="hidden" id="contact_address_selected" />
                     </div>
-                    <h5 style="display:none; padding-top:50px; text-align:center" class="lang-no-contact"></h5>
-                    <table class="table table-condensed table-striped">
-                        <thead>
-                            <tr>
-                                <th class="lang-name"></th>
-                                <th class="lang-address"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display:none">
-                                <td class="contact-name select">Peter Lin</td>
-                                <td class="contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="my-table striped click">
+                        <div class="row">
+                            <div class="col-sm-3 col-xs-5 lang-name"></div>
+                            <div class="col-sm-6 col-xs-7 lang-address"></div>
+                            <div class="col-sm-3 col-xs-12"></div>
+                        </div>
+                        <div>
+                            <h5 style="display:none; padding-top:50px; text-align:center" class="lang-no-contact"></h5>
+                        </div>
+                        <ul>
+                            <li class="row" style="display:none">
+                                <div class="col-sm-3 col-xs-5 contact-name select">Peter Lin</div>
+                                <div class="col-sm-6 col-xs-7 contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</div>
+                                <div class="col-sm-3 col-xs-12 contact-action" style="display:none">
+                                    <button class="btn btn-sm btn-danger btn-delete" type="button">删除</button>
+                                    <button class="btn btn-sm btn-info btn-send" type="button">发送</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div id="Tab_Contacts_Create" class="form-horizontal tab-pane">
                     <form id="form_create_contact" autocomplete="off">

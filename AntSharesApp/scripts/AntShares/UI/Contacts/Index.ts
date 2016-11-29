@@ -6,15 +6,13 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#dedete_contact").click(this.OnDeleteClick);
         }
 
         protected onload(): void {
 
-            let tbody = $("#Tab_Contacts_Index").find("tbody:eq(0)");
-            tbody.find("tr :visible").remove();
+            let ul = $("#Tab_Contacts_Index").find("ul:eq(0)");
+            ul.find("li.add").remove();
             this.loadContactsList();
-            $("#dedete_contact").hide();
         }
 
         private loadContactsList = () => 
@@ -26,27 +24,30 @@
             }).then(results => {
                 if (results.length == 0) {
                     $("#Tab_Contacts_Index > h5").show();
-                    $("#Tab_Contacts_Index > table").hide();
                 } else {
                     $("#Tab_Contacts_Index > h5").hide();
-                    $("#Tab_Contacts_Index > table").show();
                     let contactsArray = linq(results).orderByDescending(p => p.name).toArray();
                     let result = Promise.resolve();
                     for (let i = 0; i < contactsArray.length; i++) {
-                        let tbody = $("#Tab_Contacts_Index").find("tbody:eq(0)");
-                        let trTemp = tbody.find("tr:eq(0)");
-                        let tr = trTemp.clone(true);
-                        tr.removeAttr("style");
-                        tr.click(() =>
+                        let ul = $("#Tab_Contacts_Index").find("ul:eq(0)");
+                        let liTemp = ul.find("li:eq(0)");
+                        let li = liTemp.clone(true);
+                        li.removeAttr("style");
+                        li.click(() =>
                         {
                             $("#contact_name_selected").val(results[i].name);
-                            $("#Tab_Contacts_Index tr").removeClass("info");
-                            tr.addClass("info");
-                            $("#dedete_contact").show();
+                            $("#contact_address_selected").val(results[i].address);
+                            $("#Tab_Contacts_Index li").removeClass("info");
+                            $("#Tab_Contacts_Index .contact-action").hide();
+                            li.addClass("info");
+                            li.find(".contact-action").show();
                         });
-                        tr.find(".contact-name").text(results[i].name);
-                        tr.find(".contact-address").text(results[i].address);
-                        tbody.append(tr);
+                        li.find(".btn-delete").click(this.OnDeleteClick);
+                        li.find(".btn-send").click(this.OnSendClick);
+                        li.addClass("add");
+                        li.find(".contact-name").text(results[i].name);
+                        li.find(".contact-address").text(results[i].address);
+                        ul.append(li);
                     }
                 }
                 }).catch(e => {
@@ -76,6 +77,11 @@
                 })
 
             }
+        }
+        private OnSendClick()
+        {
+            let address = $("#contact_address_selected").val();
+            TabBase.showTab("#Tab_Account_Send", address);
         }
     }
 }

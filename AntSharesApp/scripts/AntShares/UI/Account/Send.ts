@@ -59,7 +59,7 @@
             }
         }
 
-        protected onload(): void
+        protected onload(args: any[]): void
         {
             if (Global.Wallet == null)
             {
@@ -67,6 +67,10 @@
                 return;
             }
             setTitle(0);
+            if (args[0])
+            {
+                $("#transfer_txout").val(args[0]);
+            }
             let assets = linq(Global.Wallet.findUnspentCoins()).groupBy(p => p.assetId, (k, g) =>
             {
                 return {
