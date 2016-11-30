@@ -51,6 +51,7 @@
                     }).then(result =>
                     {
                         TabBase.showTab("#Tab_Account_Index");
+                        formReset("form_account_send");
                         alert(Resources.global.txId + tx.hash.toString());
                     }).catch(reason =>
                     {
