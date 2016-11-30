@@ -39,7 +39,7 @@
 
     $(function ()
     {
-        Global.chooseNode();
+        //Global.chooseNode();
     });
 
     
