@@ -160,3 +160,6 @@ tr.active { background-color:#ddd }
 .my-table div.row { border-bottom:1px solid #ddd }
 .my-table > ul > li { border-top:1px solid #ddd }
 .my-table > ul > li > div{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+
+.other-assets.my-table div.row { border-bottom:none }
+.other-assets.my-table > ul > li { border-top:1px solid rgba(255,255,255,.2) }

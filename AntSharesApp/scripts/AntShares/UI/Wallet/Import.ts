@@ -65,7 +65,7 @@
                     TabBase.showTab("#Tab_Account_Index");
                 }).catch(e =>
                 {
-                    alert("failed: " + e.message + "\r\n" + e.stack)
+                    alert(e.message)
                 });
             }
         }
