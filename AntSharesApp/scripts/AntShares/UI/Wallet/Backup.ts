@@ -32,11 +32,11 @@
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
-            if (isMobile.App()) {
-                $("#Tab_Wallet_Backup #div_web").css('display', 'none');
-            } else {
-                $("#Tab_Wallet_Backup #div_app").css('display', 'none');
-            }
+            //if (isMobile.App()) {
+            //    $("#Tab_Wallet_Backup #div_web").css('display', 'none');
+            //} else {
+            //    $("#Tab_Wallet_Backup #div_app").css('display', 'none');
+            //}
         }
 
         private readFile(fileEntry) {
@@ -91,14 +91,28 @@
                     let blob = new Blob(db, { "type": "application/octet-binary" });           
                     if (navigator.msSaveBlob)
                     {
-                        navigator.msSaveBlob(blob, "antshares_backup");
+                        try
+                        {
+                            navigator.msSaveBlob(blob, "antshares_backup");
+                        }
+                        catch (e)
+                        {
+                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack)
+                        }
                     }
                     else
                     {
-                        let url = URL.createObjectURL(blob);
-                        var a = $('#Tab_Wallet_Backup #blob');
-                        a.attr('href', url);
-                        a[0].click();
+                        try
+                        {
+                            let url = URL.createObjectURL(blob);
+                            var a = $('#Tab_Wallet_Backup #blob');
+                            a.attr('href', url);
+                            a[0].click();
+                        }
+                        catch (e)
+                        {
+                            alert("download failed: " + e.message + "\r\n" + e.stack)
+                        }
                     }
                     
                 }).catch(e =>

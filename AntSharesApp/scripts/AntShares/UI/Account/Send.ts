@@ -19,6 +19,8 @@
 
                 Promise.resolve(1).then(() =>
                 {
+                    if ($("#Tab_Account_Send select>:selected").val() == 0)
+                        throw new Error(Resources.global.pleaseChooseAsset);
                     return Wallets.Wallet.toScriptHash(address);
                 }).then((result) =>
                 {
@@ -53,9 +55,9 @@
                         TabBase.showTab("#Tab_Account_Index");
                         formReset("form_account_send");
                         alert(Resources.global.txId + tx.hash.toString());
-                    }).catch(reason =>
+                    }).catch(e =>
                     {
-                        alert(reason);
+                        alert(e.message)
                     });
             }
         }

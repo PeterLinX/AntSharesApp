@@ -37,19 +37,19 @@
                     <div class="panel panel-success">
                         <div class="panel-heading lang-start-create"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
+                            <div class="col-md-3 col-sm-4">
                                 <a class="btn btn-success tab-trigger lang-start-create3" href="#Tab_Wallet_Create"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9 text-success lang-start-create2"></div>
+                            <div class="col-md-9 col-sm-8 text-success lang-start-create2"></div>
                          </div>
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading lang-start-restore"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
+                            <div class="col-md-3 col-sm-4">
                                 <a class="btn btn-info tab-trigger lang-start-restore3" href="#Tab_Wallet_Restore"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9">
+                            <div class="col-md-9 col-sm-8">
                                 <div class="text-info lang-start-restore2"></div>
                             </div>
                         </div>
@@ -57,10 +57,10 @@
                     <div class="panel panel-warning">
                         <div class="panel-heading lang-start-import"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
+                            <div class="col-md-3 col-sm-4">
                                 <a class="btn btn-warning tab-trigger lang-start-import3" href="#Tab_Wallet_Import"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9">
+                            <div class="col-md-9 col-sm-8">
                                 <div class="text-warning lang-start-import2"></div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-wallet-confirm-password"></label>
                             <div class="col-sm-6">
-                                <input id="import_password_confirm" name="import_password_confirm" type="password" data-val="true" />
+                                <input id="import_password_confirm" name="import_password_confirm" type="password" data-val-equalto-other="import_password" data-val="true" />
                                 <span class="text-danger" data-valmsg-for="import_password_confirm" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -218,11 +218,12 @@
                 <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-backup"></h3>
                     <div id="div_web">
-                        <button id="backup_web" class="btn btn-success lang-backup-current-wallet"></button>
+                        <button id="backup_web" class="btn btn-success withripple lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
                     </div>
+                    <br />
                     <div id="div_app">
-                        <button type="button" id="backup_app" class="btn btn-success lang-backup-current-wallet"></button>
+                        <button type="button" id="backup_app" class="btn btn-info withripple lang-backup-current-wallet"></button>
                     </div>
                     <div id="danger" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -332,7 +333,7 @@
                                 <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
                             </div>
                             <div class="col-sm-3" style="margin-bottom:10px">
-                                <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" type="text" />
+                                <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" data-val-regex-pattern="\d+(\.\d+)?" type="text" />
                                 <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
                             </div>
                         </div>

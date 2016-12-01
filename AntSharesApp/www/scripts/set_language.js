@@ -74,6 +74,7 @@ $("#relay_data").attr("placeholder", global.relayDataPlaceholder);
 $("#transfer_txout").attr("data-val-required", global.transferTxoutRequired);
 $("#transfer_txout").attr("data-val-regex", global.transferTxoutRegex);
 $("#transfer_value").attr("data-val-required", global.transferValueRequired);
+$("#transfer_value").attr("data-val-regex", global.transferValueRegex);
 $("#transfer_asset").attr("data-val-required", global.transferAssetRequired);
 $("#input_asset_name").attr("data-val-required", global.assetNameRequired);
 $("#input_amount").attr("data-val-required", global.assetAmountRequired);
@@ -84,4 +85,11 @@ $("#contact_address").attr("data-val-required", global.contactAddressRequired);
 $("#contact_name").attr("data-val-required", global.contactNameRequired);
 $("#contact_name").attr("data-val-length", global.contactNameLength);
 $("#contact_address").attr("data-val-regex", global.contactAddressRegex);
+
+$("#import_password").attr("placeholder", global.newPasswordPlaceholder);
+$("#import_password").attr("data-val-required", global.newPasswordRequired);
+$("#import_password").attr("data-val-length", global.newPasswordLength);
+$("#import_password_confirm").attr("placeholder", global.newPasswordConfirmPlaceholder);
+$("#import_password_confirm").attr("data-val-required", global.newPasswordConfirmRequired);
+$("#import_password_confirm").attr("data-val-equalto", global.newPasswordConfirmEqualto);
 

@@ -115,6 +115,9 @@
         static contactAddressRegex = "地址格式不正确";
         static contactNameRegex = "姓名不正确";
         static transferTxoutRegex = "地址格式不正确";
+        static privateIsWrong = "私钥格式不正确";
+        static pleaseChooseAsset = "请选择资产";
+        static transferValueRegex = "金额输入错误";
     }
 
     class global_en
@@ -220,5 +223,8 @@
         static contactAddressRegex = "Incorrect address format";
         static contactNameRegex = "Incorrect neme format";
         static transferTxoutRegex = "Incorrect address format";
+        static privateIsWrong = "Incorrect private key format";
+        static pleaseChooseAsset = "Please choose asset.";
+        static transferValueRegex = "Incorrect value";
     }
 }
