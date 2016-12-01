@@ -23,9 +23,11 @@
                 return contacts.getContacts();
             }).then(results => {
                 if (results.length == 0) {
-                    $("#Tab_Contacts_Index > h5").show();
+                    $("#Tab_Contacts_Index .empty").show();
+                    $("#Tab_Contacts_Index .title").hide();
                 } else {
-                    $("#Tab_Contacts_Index > h5").hide();
+                    $("#Tab_Contacts_Index .empty").hide();
+                    $("#Tab_Contacts_Index .title").show();
                     let contactsArray = linq(results).orderByDescending(p => p.name).toArray();
                     let result = Promise.resolve();
                     for (let i = 0; i < contactsArray.length; i++) {

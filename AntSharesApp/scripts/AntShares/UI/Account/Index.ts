@@ -113,12 +113,14 @@
             {
                 if (arrayTransaction.length <= 0)
                 {
-                    $("#Account_TransactionList > h5").show();
+                    $("#Account_TransactionList .empty").show();
+                    $("#Account_TransactionList .title").hide();
                     throw new Error(Resources.global.noTxs);
                 }
                 else
                 {
-                    $("#Account_TransactionList > h5").hide();
+                    $("#Account_TransactionList .empty").hide();
+                    $("#Account_TransactionList .title").hide();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void>
