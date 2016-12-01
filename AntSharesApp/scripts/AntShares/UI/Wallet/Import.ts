@@ -20,7 +20,16 @@
                 let wifPrivateKey: string = $("#import_prikey_input").val();
                 let account: Wallets.Account;
                 let name = "wallet"
-                AntShares.Wallets.Wallet.getPrivateKeyFromWIF(wifPrivateKey).then(result =>
+                Promise.resolve(1).then(() =>
+                {
+                    try
+                    {
+                        return AntShares.Wallets.Wallet.getPrivateKeyFromWIF(wifPrivateKey);
+                    } catch (e)
+                    {
+                        throw new Error(Resources.global.privateIsWrong);
+                    }
+                }).then(result =>
                 {
                     return AntShares.Wallets.Account.create(new Uint8Array(result));
                 },(e) =>
