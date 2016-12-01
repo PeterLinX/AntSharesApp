@@ -58,14 +58,17 @@
             {
                 $("#asset_show_more").removeClass("rotate180");
                 $(".blue-panel").css("height", "240");
-                $(".other-assets").hide();
+                $(".other-assets").hide("400");
             }
             else
             {
                 $("#asset_show_more").addClass("rotate180");
                 console.log(this.otherAssetCount);
-                $(".blue-panel").css("height", (260 + this.otherAssetCount * 40).toString());
-                $(".other-assets").show();
+                if (this.otherAssetCount)
+                    $(".blue-panel").css("height", (260 + this.otherAssetCount * 40).toString());
+                else
+                    $(".blue-panel").css("height", 320);
+                $(".other-assets").show("400");
             }
         }
 
@@ -120,7 +123,7 @@
                 else
                 {
                     $("#Account_TransactionList .empty").hide();
-                    $("#Account_TransactionList .title").hide();
+                    $("#Account_TransactionList .title").show();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void>
