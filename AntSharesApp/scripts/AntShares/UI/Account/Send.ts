@@ -17,10 +17,13 @@
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
 
+                if ($("#Tab_Account_Send select>:selected").val() == 0)
+                {
+                    alert(Resources.global.pleaseChooseAsset);
+                    return;
+                }
                 Promise.resolve(1).then(() =>
                 {
-                    if ($("#Tab_Account_Send select>:selected").val() == 0)
-                        throw new Error(Resources.global.pleaseChooseAsset);
                     return Wallets.Wallet.toScriptHash(address);
                 }).then((result) =>
                 {
