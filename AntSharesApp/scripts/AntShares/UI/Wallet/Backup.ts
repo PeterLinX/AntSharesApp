@@ -50,12 +50,11 @@
                 let dataObj = new Blob(['some'], { type: 'text/plain' });
                 fs.root.getFile('2.txt', { create: true, exclusive: false }, function (fileEntry) {
                     this.writeFile(fileEntry, dataObj, true);
-                }, error => {
-                    alert(error);
-                    $("#Tab_Wallet_Backup #textarea1").text(error.code);
+                }, fileError => {
+                    alert(cordovaFileError(fileError.code));
                 });
             }, (fileError) => {
-                $("#Tab_Wallet_Backup #textarea1").text(fileError.code);
+                alert(cordovaFileError(fileError.code));
             });
         }
 

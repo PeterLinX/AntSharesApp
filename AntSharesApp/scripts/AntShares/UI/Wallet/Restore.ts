@@ -76,7 +76,14 @@
             fileEntry.file((file) => {
                 let reader = new FileReader();
                 reader.onloadend = function () {
-                    Restore.Restore(JSON.parse(this.result));
+                    Restore.Restore(JSON.parse(this.result)).then(() => {
+                        $("footer").show();
+                        $(".menu-progress").show();
+                        $("#menu_wallet_start").hide();
+                        TabBase.showTab("#Tab_Wallet_Open");
+                    }, reason => {
+                        alert(reason);
+                    });
                 };
                 reader.readAsText(file);
             }, (fileError) => {
@@ -108,11 +115,20 @@
             reader.onload = function () {
                 console.log(this.result);
                 console.log(JSON.parse(this.result));
-                Restore.Restore(JSON.parse(this.result));
+                Restore.Restore(JSON.parse(this.result)).then(() => {
+                    formReset("form_restore");
+                    $("footer").show();
+                    $(".menu-progress").show();
+                    $("#menu_wallet_start").hide();
+                    TabBase.showTab("#Tab_Wallet_Open");
+                }, reason => {
+                    formReset("form_restore");
+                    alert(reason);
+                });
             };
         }
 
-        private static Restore = (pJson: JSON) => {
+        private static Restore = (pJson: JSON): PromiseLike<void> => {
             let master: Wallets.Master;
             let db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
             let _transaction: AntShares.Implementations.Wallets.IndexedDB.DbTransaction;
@@ -124,7 +140,7 @@
             let Account: JSON;
             let Transaction: JSON;
 
-            Promise.resolve(1).then(() => {
+            return Promise.resolve(1).then(() => {
                 return pJson;
             }).then((json) => {
                 let count = 0;
@@ -220,16 +236,6 @@
                         count++;
                     }
                     return _transaction.commit();
-                }).then(() =>
-                {
-                    formReset("form_backup");
-                    $("footer").show();
-                    $(".menu-progress").show();
-                    $("#menu_wallet_start").hide();
-                    TabBase.showTab("#Tab_Wallet_Open");
-                }, reason => {
-                    formReset("form_backup");
-                    alert(reason)
                 });
         }
     }
