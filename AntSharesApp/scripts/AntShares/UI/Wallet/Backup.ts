@@ -20,7 +20,6 @@
             setTitle(0);
             if (args[0])
                 $("#danger").show();
-            formReset("form_backup");
             let back = $("#Tab_Wallet_Backup #back_div");
             if (Global.Wallet == null)
             {
