@@ -20,7 +20,7 @@
             if (formIsValid("form_create_wallet"))
             {
                 let name = "wallet";
-                if ($("#remote_height").text() == "0")
+                if ($(".remote_height:eq(0)").text() == "0")
                 {
                     alert(Resources.global.RPCError);
                     return;
@@ -43,6 +43,7 @@
                 {
                     formReset("form_create_wallet");
                     $("footer").show();
+                    $(".menu-progress").show();
                     $("#menu_wallet_start").hide();
                     TabBase.showTab("#Tab_Wallet_Backup", true);
                 }, reason => alert(reason));

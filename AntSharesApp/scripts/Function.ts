@@ -184,10 +184,40 @@ let isMobileApp = {
     }
 }
 
+function is_weixin()//only for Android and IOS
+{
+    let ua: any = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function is_weibo()//only for Android and IOS
+{
+    let ua: any = navigator.userAgent.toLowerCase();
+    if (ua.match(/weibo/i) == "weibo") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function is_qq()//only for Android and IOS
+{
+    let ua: any = navigator.userAgent.toLowerCase();
+    if (ua.match(/qq/i) == "qq") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function cordovaFileError(errorCode: number): string {
     let errorMessage: string = "";
-    switch (errorCode)
-    {
+    switch (errorCode) {
         case 1:
             errorMessage = "NOT_FOUND_ERR";
             break;

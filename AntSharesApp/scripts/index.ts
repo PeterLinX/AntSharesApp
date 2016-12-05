@@ -27,6 +27,10 @@ module AntSharesApp {
     }
 
     window.onload = function () {
-        Application.initialize();
+        Application.initialize();  
+        if (is_weibo() || is_qq() || is_weixin())
+        {
+            alert("请使用chrome浏览器打开该钱包，如果您使用iphone或是android手机，可以前往应用商店下载小蚁App钱包。");
+        }
     }
 }

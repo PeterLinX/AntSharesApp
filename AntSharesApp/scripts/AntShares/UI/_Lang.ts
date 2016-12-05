@@ -99,7 +99,7 @@
         static unConfirmed = "未确认";
         static minerTx = "矿工交易";
         static issueTx = "资产发行";
-        static claimTx = "小蚁币提取";
+        static claimTx = "提取小蚁币";
         static enrollmentTx = "记账报名";
         static registerTx = "资产注册";
         static contractTx = "合约交易";
@@ -109,6 +109,15 @@
         static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
         static txId = "交易已经发送，等待区块确认，交易id: ";
         static addressError = "地址信息有误";
+        static contactAddressRequired = "地址不能为空";
+        static contactNameRequired = "姓名不能为空";
+        static contactNameLength = "姓名不能超过20个字符";
+        static contactAddressRegex = "地址格式不正确";
+        static contactNameRegex = "姓名不正确";
+        static transferTxoutRegex = "地址格式不正确";
+        static privateIsWrong = "私钥格式不正确";
+        static pleaseChooseAsset = "请选择资产";
+        static transferValueRegex = "金额输入错误";
     }
 
     class global_en
@@ -208,5 +217,14 @@
         static RPCError = "Sorry, we have some problems here, cannot create wallets now, please try again later.";
         static txId = "Transaction has been made, please wait for confirmations, txid: ";
         static addressError = "Improper Address";
+        static contactAddressRequired = "Address is required";
+        static contactNameRequired = "Name is required";
+        static contactNameLength = "The name must be at least 20 bits long";
+        static contactAddressRegex = "Incorrect address format";
+        static contactNameRegex = "Incorrect neme format";
+        static transferTxoutRegex = "Incorrect address format";
+        static privateIsWrong = "Incorrect private key format";
+        static pleaseChooseAsset = "Please choose asset.";
+        static transferValueRegex = "Incorrect value";
     }
 }

@@ -28,42 +28,40 @@
                 <span class="header-title">
                     <img src="img/logo-line.png" /><span class="header-antsharesapp lang-title"></span>
                 </span>
-                <span class="header-title">
-                    我的钱包
-                </span>
+                <span class="header-title lang-my-wallet"></span>
             </header>
             <div class="tab-content">
                 <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-welcome"></h3>
                     <div class="panel panel-success">
-                        <div class="panel-heading">创建新钱包</div>
+                        <div class="panel-heading lang-start-create"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
-                                <a class="btn btn-success tab-trigger" href="#Tab_Wallet_Create">创建钱包</a>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="btn btn-success tab-trigger lang-start-create3" href="#Tab_Wallet_Create"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9 text-success">如果你是第一次使用，请执行此操作，创建好钱包后请备份好钱包文件</div>
+                            <div class="col-md-9 col-sm-8 text-success lang-start-create2"></div>
                          </div>
                     </div>
                     <div class="panel panel-info">
-                        <div class="panel-heading">从备份文件恢复</div>
+                        <div class="panel-heading lang-start-restore"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
-                                <a class="btn btn-info tab-trigger" href="#Tab_Wallet_Restore">恢复钱包</a>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="btn btn-info tab-trigger lang-start-restore3" href="#Tab_Wallet_Restore"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9">
-                                <div class="text-info">如果你想从还原备份的钱包文件，请执行此操作</div>
+                            <div class="col-md-9 col-sm-8">
+                                <div class="text-info lang-start-restore2"></div>
                             </div>
                         </div>
                     </div>
                     <div class="panel panel-warning">
-                        <div class="panel-heading">从私钥创建钱包</div>
+                        <div class="panel-heading lang-start-import"></div>
                         <div class="panel-body row">
-                            <div class="col-md-2 col-sm-3">
-                                <a class="btn btn-warning tab-trigger" href="#Tab_Wallet_Import">导入私钥</a>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="btn btn-warning tab-trigger lang-start-import3" href="#Tab_Wallet_Import"></a>
                             </div>
-                            <div class="col-md-10 col-sm-9">
-                                <div class="text-warning">如果你有小蚁私钥，想导入到钱包中，请执行此操作，导入后需要耐心等待钱包同步完成才可以看到资产</div>
+                            <div class="col-md-9 col-sm-8">
+                                <div class="text-warning lang-start-import2"></div>
                             </div>
                         </div>
                     </div>
@@ -87,7 +85,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-wallet-confirm-password"></label>
                             <div class="col-sm-6">
-                                <input id="create_password_confirm" name="create_password_confirm" type="password" data-val="true" />
+                                <input id="create_password_confirm" name="create_password_confirm" data-val-equalto-other="create_password" type="password" data-val="true" />
                                 <span class="text-danger" data-valmsg-for="create_password_confirm" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -156,7 +154,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-wallet-confirm-password"></label>
                             <div class="col-sm-6">
-                                <input id="import_password_confirm" name="import_password_confirm" type="password" data-val="true" />
+                                <input id="import_password_confirm" name="import_password_confirm" type="password" data-val-equalto-other="import_password" data-val="true" />
                                 <span class="text-danger" data-valmsg-for="import_password_confirm" data-valmsg-replace="true"></span>
                             </div>
                         </div>
@@ -243,11 +241,12 @@
                 <div id="Tab_Wallet_Backup" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-backup"></h3>
                     <div id="div_web">
-                        <button id="backup_web" class="btn btn-success lang-backup-current-wallet"></button>
+                        <button id="backup_web" class="btn btn-success withripple lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
                     </div>
+                    <br />
                     <div id="div_app">
-                        <button type="button" id="backup_app" class="btn btn-success lang-backup-current-wallet"></button>
+                        <button type="button" id="backup_app" class="btn btn-info withripple lang-backup-current-wallet"></button>
                     </div>
                     <div id="div_backup_info" style="display:none">
                         <p>
@@ -263,21 +262,18 @@
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
                     <div class="blue-panel">
-                        <div class="ans-div"><span>小蚁股</span> <span id="my_ans">0</span></div>
-                        <div class="anc-div"><span>小蚁币</span> <span id="my_anc">0</span></div>
+                        <div class="ans-div"><span class="lang-ans"></span> <span id="my_ans">0</span></div>
+                        <div class="anc-div"><span class="lang-anc"></span> <span id="my_anc">0</span></div>
                         <div class="all-asset-btn withripple">
                             <a id="asset_show_more" href="javascript:" class="iconfont">&#xe73d;</a>
                         </div>
-                        <div class="other-assets">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    资产名称
+                        <div class="other-assets my-table">
+                            <div class="row title">
+                                <div class="col-xs-4 lang-asset-name">
                                 </div>
-                                <div class="col-xs-3">
-                                    余额
+                                <div class="col-xs-3 lang-asset-balance">
                                 </div>
-                                <div class="col-xs-5">
-                                    发行人公钥
+                                <div class="col-xs-5 lang-issuer">
                                 </div>
                             </div>
                             <ul>
@@ -312,27 +308,23 @@
                     
                     <div id="Account_TransactionList">
                         <h3 class="page-header lang-my-tx-list"></h3>
-                        <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
-                        <table class="table table-condensed table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="lang-tx-time"></th>
-                                    <th class="lang-tx-id"></th>
-                                    <th class="lang-tx-type"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="display:none">
-                                    <td class="tx-time">2016/11/2 16:41:52</td>
-                                    <td class="tx-id select">
+                        <div class="my-table striped">
+                            <div class="row title">
+                                <div class="col-sm-3 col-xs-12 lang-tx-time"></div>
+                                <div class="col-sm-6 col-xs-6 lang-tx-id"></div>
+                                <div class="col-sm-3 col-xs-6 lang-tx-type"></div>
+                            </div>
+                            <div class="empty text-center lang-no-tx"></div>
+                            <ul>
+                                <li class="row" style="display:none">
+                                    <div class="col-sm-3 col-xs-12 tx-time">2016/11/2 16:41:52</div>
+                                    <div class="col-sm-6 col-xs-6 tx-id select">
                                         cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940
-                                    </td>
-                                    <td >
-                                        <a class="tx-type">ctTransaction</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6"><a class="tx-type">ctTransaction</a></div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -348,7 +340,7 @@
                 </div>
 
                 <div id="Tab_Account_Send" class="form-horizontal tab-pane">
-                    <form id="form_asset_transfer" autocomplete="off">
+                    <form id="form_account_send" autocomplete="off">
                         <h3 class="page-header lang-asset-transfer"></h3>
                         <div class="form-group">
                             <div class="col-md-6">
@@ -361,81 +353,65 @@
                         <h5 class="lang-receiver"></h5>
                         <div class="form-group">
                             <div class="col-sm-9" style="margin-bottom:10px">
-                                <input id="transfer_txout" name="transfer_txout" data-val="true" class="pay_address" type="text" />
+                                <input id="transfer_txout" name="transfer_txout" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" class="pay_address" type="text" />
                                 <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
                             </div>
                             <div class="col-sm-3" style="margin-bottom:10px">
-                                <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" type="text" />
+                                <input id="transfer_value" name="transfer_value" data-val="true" class="pay_value" data-val-regex-pattern="\d+(\.\d+)?" type="text" />
                                 <span class="text-danger" data-valmsg-for="transfer_value" data-valmsg-replace="true"></span>
                             </div>
                         </div>
-                        <button class="btn btn-success lang-confirm-transfer"  type="submit" onclick="event.preventDefault()" ></button>
+                        <button class="btn btn-success lang-confirm-transfer" type="submit" onclick="event.preventDefault()" ></button>
                     </form>
                 </div>
-                <div id="Tab_Asset_TransactionList" class="form-horizontal tab-pane">
-                    <h2 class="page-header lang-my-tx-list"></h2>
-                    <h5 class="lang-no-tx" style="display:none; padding-top:50px; text-align:center"></h5>
-                    <table class="table table-condensed table-bordered table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="lang-tx-time"></th>
-                                <th class="lang-tx-id"></th>
-                                <th class="lang-tx-confirms"></th>
-                                <th class="lang-tx-type"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display:none">
-                                <td class="tx-time">2016/11/2 16:41:52</td>
-                                <td class="tx-id select">cea66dc84f5f2aa4fbbbbd0bb2211ca58ac33ac647a3a88fda80640c391f2940</td>
-                                <td>
-                                    <a class="tx-confirm">1</a>
-                                </td>
-                                <td class="tx-type">ctTransaction</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
                 <div id="Tab_Contacts_Index" class="form-horizontal tab-pane">
-                    <h2 class="page-header">我的联系人</h2>
-                    <a class="btn tab-trigger btn-default" id="create_contact" href="#Tab_Contacts_Create">创建联系人</a>
-                    <br/>
-                    <br/>
-                    <h5 style="display:none; padding-top:50px; text-align:center">您还没有联系人</h5>
-                    <table class="table table-condensed table-bordered table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th class="lang-name">名称</th>
-                                <th class="lang-address">地址</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="display:none">
-                                <td class="contact-name">Peter Lin</td>
-                                <td class="contact-address">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h3 class="page-header lang-my-contacts"></h3>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn tab-trigger btn-success lang-create-contact" id="create_contact" href="#Tab_Contacts_Create"></button>
+                        </div>
+                        <input type="hidden" id="contact_name_selected" />
+                        <input type="hidden" id="contact_address_selected" />
+                    </div>
+                    <div class="my-table striped click">
+                        <div class="row title">
+                            <div class="col-sm-3 col-xs-5 lang-name"></div>
+                            <div class="col-sm-5 col-xs-7 lang-address"></div>
+                            <div class="col-sm-4 col-xs-12"></div>
+                        </div>
+                        <div class="empty text-center lang-no-contact"></div>
+                        <ul>
+                            <li class="row" style="display:none">
+                                <div class="col-sm-3 col-xs-5 contact-name select">Peter Lin</div>
+                                <div class="col-sm-5 col-xs-7 contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</div>
+                                <div class="col-sm-4 col-xs-12 contact-action" style="display:none">
+                                    <button class="btn btn-sm btn-danger btn-delete" type="button">删除</button>
+                                    <button class="btn btn-sm btn-info btn-send" type="button">发送</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div id="Tab_Contacts_Create" class="form-horizontal tab-pane">
                     <form id="form_create_contact" autocomplete="off">
-                        <h2 class="page-header">创建联系人</h2>
+                        <h3 class="page-header lang-create-contact"></h3>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">地址</label>
+                            <label class="col-sm-4 control-label lang-name"></label>
                             <div class="col-sm-6">
-                                <input id="contact_address" type="text" data-val="true" />
-                                <!--<span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>-->
+                                <input name="contact_name" id="contact_name" type="text" data-val="true" data-val-length-max="20"  />
+                                <span class="text-danger" data-valmsg-for="contact_name" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">名称</label>
+                            <label class="col-sm-4 control-label lang-address"></label>
                             <div class="col-sm-6">
-                                <input id="contact_name" type="text" data-val="true" data-val-length-max="10" />
+                                <input name="contact_address" id="contact_address" type="text" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" />
+                                <span class="text-danger" data-valmsg-for="contact_address" data-valmsg-replace="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_contact" type="button" class="btn btn-primary">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
+                                <button id="create_contact" type="button" class="btn btn-success">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
                     </form>
@@ -448,7 +424,7 @@
                         <div>中国上海：延迟<span id="seed2"></span>ms</div>
                         <div>英国伦敦：延迟<span id="seed8"></span>ms</div>
                         <div>当前连接节点：<span id="seed"></span></div>
-                        <button id="refresh_nood" class="btn btn-default">刷新</button>
+                        <button id="refresh_nood" class="btn btn-success">刷新</button>
                         <br /><br />
                     </div>
                     <div id="delete_all_wallet">
@@ -466,7 +442,7 @@
                                     <span class="text-danger" data-valmsg-for="input_curent_height" data-valmsg-replace="true"></span>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button id="set_height"  type="submit" onclick="event.preventDefault()"  class="btn btn-default">确定</button>
+                                    <button id="set_height" type="submit" onclick="event.preventDefault()" class="btn btn-success">确定</button>
                                 </div>
                             </div>
                         </form>
@@ -499,6 +475,7 @@
                         <p>开发团队： <a href="mailto:dev@antshares.org">dev@antshares.org</a></p>
                         <p>官方网站： <a href="https://www.antshares.org">www.antshares.org</a></p>
                         <p>版权所有： 小蚁团队 © 2014 - 2016</p>
+                        <img style="width:140px;" src="img/wechat.jpg" />
                     </div>
                     <div id="en_about" class="select">
                         <p>
@@ -607,6 +584,9 @@
                     </li>
                     <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-send" href="#Tab_Account_Send"><i class="iconfont">&#xe610;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <a class="fist-menu tab-trigger lang-contacts" href="#Tab_Contacts_Index"><i class="iconfont">&#xe635;</i></a>
                     </li>
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>

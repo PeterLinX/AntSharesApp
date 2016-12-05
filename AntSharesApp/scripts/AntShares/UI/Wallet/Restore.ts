@@ -2,8 +2,6 @@
 {
     export class Restore extends TabBase
     {
-
-
         protected oncreate(): void
         {
             $(this.target).find("#files").change(this.RestoreAction);
@@ -130,7 +128,8 @@
                 return pJson;
             }).then((json) => {
                 let count = 0;
-                for (let obj in json) {
+                for (let obj in json)
+                {
                     switch (json[count]["table"]) {
                         case "Wallet": Wallet = json[count]["content"];
                             break;
@@ -162,10 +161,12 @@
                     master.add(Wallet["name"]);
                     db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Wallet["name"]);
                     return db.open();
-                }).then(() => {
+                }).then(() =>
+                {
                     _transaction = db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readwrite");
                     let count = 0;
-                    for (let key in Key) {
+                    for (let key in Key)
+                    {
                         _transaction.store("Key").put({
                             name: Key[count]["name"],
                             value: Key[count]["value"]
@@ -173,7 +174,8 @@
                         count++;
                     }
                     count = 0;
-                    for (let contract in Contract) {
+                    for (let contract in Contract)
+                    {
                         _transaction.store("Contract").put({
                             parameterList: Contract[count]["parameterList"],
                             publicKeyHash: Contract[count]["publicKeyHash"],
@@ -183,7 +185,8 @@
                         count++;
                     }
                     count = 0;
-                    for (let coin in Coin) {
+                    for (let coin in Coin)
+                    {
                         _transaction.store("Coin").put({
                             assetId: Coin[count]["assetId"],
                             index: Coin[count]["index"],
@@ -196,7 +199,8 @@
                         count++;
                     }
                     count = 0;
-                    for (let account in Account) {
+                    for (let account in Account) 
+                    {
                         _transaction.store("Account").put({
                             privateKeyEncrypted: Account[count]["privateKeyEncrypted"],
                             publicKeyHash: Account[count]["publicKeyHash"]
@@ -204,7 +208,8 @@
                         count++;
                     }
                     count = 0;
-                    for (let tx in Transaction) {
+                    for (let tx in Transaction)
+                    {
                         _transaction.store("Transaction").put({
                             hash: Transaction[count]["hash"],
                             height: Transaction[count]["height"],
@@ -215,13 +220,15 @@
                         count++;
                     }
                     return _transaction.commit();
-                }).then(() => {
-                    formReset("form_restore");
+                }).then(() =>
+                {
+                    formReset("form_backup");
                     $("footer").show();
+                    $(".menu-progress").show();
                     $("#menu_wallet_start").hide();
                     TabBase.showTab("#Tab_Wallet_Open");
                 }, reason => {
-                    formReset("form_restore");
+                    formReset("form_backup");
                     alert(reason)
                 });
         }

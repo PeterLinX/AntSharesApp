@@ -150,13 +150,17 @@ tr.active { background-color:#ddd }
 
 .my-table { line-height:2.8; }
 .my-table .row { margin:0 }
-.my-table div.row { font-weight:bold }
+.my-table div.title.row { font-weight:bold }
 .my-table.striped > ul > li:nth-of-type(2n+1) { background-color:#f9f9f9 }
 .my-table.click > ul > li   { cursor:pointer }
 .my-table.striped > ul > li.success, .my-table > ul > li.success { background-color:#dff0d8 }
 .my-table.striped > ul > li.info, .my-table > ul > li.info    { background-color:#d9edf7 }
 .my-table.striped > ul > li.warning, .my-table > ul > li.warning { background-color:#fcf8e3 }
 .my-table.striped > ul > li.danger, .my-table > ul > li.danger  { background-color:#f2dede }
-.my-table div.row { border-bottom:1px solid #ddd }
+.my-table div.title.row { border-bottom:1px solid #ddd }
 .my-table > ul > li { border-top:1px solid #ddd }
 .my-table > ul > li > div{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+
+.other-assets.my-table div.title.row { border-top:none; border-bottom:none }
+.other-assets.my-table div.title.row { font-weight:normal }
+.other-assets.my-table > ul > li { border-top:1px solid rgba(255,255,255,.2) }

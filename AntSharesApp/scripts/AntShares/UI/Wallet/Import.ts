@@ -17,63 +17,65 @@
         {
             if (formIsValid("form_account_import"))
             {
-                //创建钱包
-                let name = "wallet";
-                if ($("#remote_height").text() == "0")
+                let wifPrivateKey: string = $("#import_prikey_input").val();
+                let account: Wallets.Account;
+                let name = "wallet"
+                Promise.resolve(1).then(() =>
                 {
-                    alert(Resources.global.RPCError);
-                    return;
-                }
-                let master: Wallets.Master;
-                Wallets.Master.instance().then(result =>
-                {
-                    master = result;
-                    return master.get();
+                    try
+                    {
+                        return AntShares.Wallets.Wallet.getPrivateKeyFromWIF(wifPrivateKey);
+                    } catch (e)
+                    {
+                        throw new Error(Resources.global.privateIsWrong);
+                    }
                 }).then(result =>
                 {
-                    if (result.indexOf(name) >= 0)
-                        throw new Error(Resources.global.sameWalletName);
+                    return AntShares.Wallets.Account.create(new Uint8Array(result));
+                },(e) =>
+                {
+                    throw new Error(Resources.global.privateIsWrong);
+                }).then(result =>
+                {
+                    account = result;
+                    if ($("#remote_height").text() == "0")
+                    {
+                        throw new Error(Resources.global.RPCError);
+                    }
                     return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#import_password").val(), false);
                 }).then(wallet =>
                 {
                     Global.Wallet = wallet;
+                    return Wallets.Master.instance();
+                }).then(master =>
+                {
                     return master.add(name);
                 }).then(results =>
-                {
-                    //导入私钥
-                    let wifPrivateKey: string = $("#import_prikey_input").val();
-                    let accounts: AntShares.Wallets.Account[];
-                    AntShares.Wallets.Wallet.getPrivateKeyFromWIF(wifPrivateKey).then(result =>
+                { 
+                    let accounts = Global.Wallet.getAccounts();
+                    let wifPublicKeyHash = account.publicKeyHash.toString();
+                    for (let i = 0; i < accounts.length; i++)
                     {
-                        return AntShares.Wallets.Account.create(new Uint8Array(result));
-                    }).then(result =>
-                    {
-                        accounts = Global.Wallet.getAccounts();
-                        let wifPublicKeyHash = result.publicKeyHash.toString();
-                        for (let i = 0; i < accounts.length; i++)
+                        if (wifPublicKeyHash == accounts[i].publicKeyHash.toString())
                         {
-                            if (wifPublicKeyHash == accounts[i].publicKeyHash.toString())
-                            {
-                                throw new Error(Resources.global.accountAlreadyExits);
-                            }
+                            throw new Error(Resources.global.accountAlreadyExits);
                         }
-                        return Global.Wallet.import(wifPrivateKey);
-                    }).then(result =>
-                    {
-                        alert(Resources.global.importAccountAlert);
-                    }).then(() =>
-                    {
-                        return Global.Wallet.rebuild();
-                    }).then(() =>
-                    {
-                        $("footer").show();
-                        $("#menu_wallet_start").hide();
-                        TabBase.showTab("#Tab_Account_Index");
-                    }).catch(e =>
-                    {
-                        alert(e);
-                    });;
-                }, reason => alert(reason));
+                    }
+                    return Global.Wallet.import(wifPrivateKey);
+                }).then(result =>
+                {
+                    alert(Resources.global.importAccountAlert);
+                    return Global.Wallet.rebuild();
+                }).then(() =>
+                {
+                    $("footer").show();
+                    $(".menu-progress").show();
+                    $("#menu_wallet_start").hide();
+                    TabBase.showTab("#Tab_Account_Index");
+                }).catch(e =>
+                {
+                    alert(e.message)
+                });
             }
         }
     }

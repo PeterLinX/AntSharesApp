@@ -4,11 +4,12 @@
     {
         protected oncreate(): void
         {
+            $("#Tab_Account_Send .btn-success").click(this.OnSendButtonClick);
         }
 
         private OnSendButtonClick = () =>
         {
-            if (formIsValid("form_asset_transfer"))
+            if (formIsValid("form_account_send"))
             {
                 let address = $("#Tab_Account_Send .pay_address").val();
                 let value = $("#Tab_Account_Send .pay_value").val();
@@ -16,6 +17,11 @@
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
 
+                if ($("#Tab_Account_Send select>:selected").val() == 0)
+                {
+                    alert(Resources.global.pleaseChooseAsset);
+                    return;
+                }
                 Promise.resolve(1).then(() =>
                 {
                     return Wallets.Wallet.toScriptHash(address);
@@ -49,16 +55,17 @@
                         return Global.Node.relay(tx);
                     }).then(result =>
                     {
-                        TabBase.showTab("#Tab_Asset_Index");
+                        TabBase.showTab("#Tab_Account_Index");
+                        formReset("form_account_send");
                         alert(Resources.global.txId + tx.hash.toString());
-                    }).catch(reason =>
+                    }).catch(e =>
                     {
-                        alert(reason);
+                        alert(e.message)
                     });
             }
         }
 
-        protected onload(): void
+        protected onload(args: any[]): void
         {
             if (Global.Wallet == null)
             {
@@ -66,6 +73,10 @@
                 return;
             }
             setTitle(0);
+            if (args[0])
+            {
+                $("#transfer_txout").val(args[0]);
+            }
             let assets = linq(Global.Wallet.findUnspentCoins()).groupBy(p => p.assetId, (k, g) =>
             {
                 return {
@@ -78,6 +89,11 @@
                 let select = $("#Tab_Account_Send select");
                 select.html("");
                 select.append("<option value=0>" + Resources.global.pleaseChoose + "</option>");
+                select.change(() =>
+                {
+                    var amount = $("#transfer_asset").find("option:selected").data("amount");
+                    $(".asset-amount").text(amount ? amount : 0);
+                });
                 for (let i = 0; i < results.length; i++)
                 {
                     let asset = <Core.RegisterTransaction>results[i];

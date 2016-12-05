@@ -7,9 +7,9 @@
         protected oncreate(): void
         {
             $(this.target).find("#asset_show_more").click(this.OnShowMore);
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
-
         }
+
+        private otherAssetCount: number;
 
         protected onload(): void
         {
@@ -19,15 +19,16 @@
                 return;
             }
             setTitle(1);
-            let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
-            tbody.find(".add").remove();
-            
+
+            let tx_ul = $("#Account_TransactionList").find("ul:eq(0)");
+            tx_ul.find("li.add").remove();
+            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open().then(() =>
             {
                 this.loadTransactionList();
             });
-            let ul = $("#Tab_Account_Index").find("ul:eq(0)");
-            ul.find(".add").remove();
+            let asset_ul = $("#Tab_Account_Index").find("ul:eq(0)");
+            asset_ul.find(".add").remove();
 
             let coins = Global.Wallet.findCoins();
 
@@ -47,22 +48,27 @@
                     map.set(key, { assetId: coins[i].assetId, amount: coins[i].value });
                 }
             }
+            this.otherAssetCount = map.size;
             map.forEach(Index.addCoinList);
         }
 
-        private OnShowMore()
+        private OnShowMore =()=>
         {
             if ($("#asset_show_more").hasClass("rotate180"))
             {
                 $("#asset_show_more").removeClass("rotate180");
                 $(".blue-panel").css("height", "240");
-                $(".other-assets").hide();
+                $(".other-assets").hide("400");
             }
             else
             {
                 $("#asset_show_more").addClass("rotate180");
-                $(".blue-panel").css("height", "340");
-                $(".other-assets").show();
+                console.log(this.otherAssetCount);
+                if (this.otherAssetCount)
+                    $(".blue-panel").css("height", (260 + this.otherAssetCount * 40).toString());
+                else
+                    $(".blue-panel").css("height", 320);
+                $(".other-assets").show("400");
             }
         }
 
@@ -110,24 +116,24 @@
             {
                 if (arrayTransaction.length <= 0)
                 {
-                    $("#Account_TransactionList > h5").show();
-                    $("#Account_TransactionList > table").hide();
+                    $("#Account_TransactionList .empty").show();
+                    $("#Account_TransactionList .title").hide();
                     throw new Error(Resources.global.noTxs);
                 }
                 else
                 {
-                    $("#Account_TransactionList > h5").hide();
-                    $("#Account_TransactionList > table").show();
+                    $("#Account_TransactionList .empty").hide();
+                    $("#Account_TransactionList .title").show();
                     let txArray = linq(arrayTransaction).orderByDescending(p => p.time).toArray();
                     let result = Promise.resolve();
                     execute = function (): PromiseLike<void>
                     {
                         for (let i = 0; i < txArray.length; i++)
                         {
-                            let tbody = $("#Account_TransactionList").find("tbody:eq(0)");
-                            let trTemp = tbody.find("tr:eq(0)");
-                            let tr = trTemp.clone(true);
-                            tr.removeAttr("style");
+                            let ul = $("#Account_TransactionList").find("ul:eq(0)");
+                            let liTemp = ul.find("li:eq(0)");
+                            let li = liTemp.clone(true);
+                            li.removeAttr("style");
 
                             let tx = Core.Transaction.deserializeFrom(txArray[i].rawData.hexToBytes().buffer);
                             result = result.then(() =>
@@ -135,12 +141,12 @@
                                 return tx.ensureHash();
                             }).then(() =>
                             {
-                                tr.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
-                                tr.find(".tx-id").text(tx.hash.toString());
-                                tr.find(".tx-type").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
-                                tr.find(".tx-type").text(convertTxType(tx.type));
-                                tr.addClass("add");
-                                tbody.append(tr);
+                                li.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
+                                li.find(".tx-id").text(tx.hash.toString());
+                                li.find(".tx-type").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
+                                li.find(".tx-type").text(convertTxType(tx.type));
+                                li.addClass("add");
+                                ul.append(li);
                             });
                         }
                         return result;

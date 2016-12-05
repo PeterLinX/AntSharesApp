@@ -42,7 +42,7 @@ $("#create_password").attr("data-val-required", global.createPasswordRequired);
 $("#create_password").attr("data-val-length", global.createPasswordLength);
 $("#create_password_confirm").attr("placeholder", global.createPasswordConfirmPlaceholder);
 $("#create_password_confirm").attr("data-val-required", global.createPasswordConfirmRequired);
-$("#create_password_confirm").attr("data-val-equalto-other", global.createPasswordConfirmEqualtoOther);
+$("#create_password_confirm").attr("data-val-equalto", global.createPasswordConfirmEqualtoOther);
 $("#input_wallet_name").attr("placeholder", global.inputWalletNamePlaceholder);
 $("#open_password").attr("placeholder", global.openPasswordPlaceholder);
 $("#open_password").attr("data-val-required", global.openPasswordRequired);
@@ -72,12 +72,24 @@ $(".issue_output_value").attr("placeholder", global.issueOutputValuePlaceholder)
 $("#input_antcoin").attr("placeholder", global.inputAntcoinPlaceholder);
 $("#relay_data").attr("placeholder", global.relayDataPlaceholder);
 $("#transfer_txout").attr("data-val-required", global.transferTxoutRequired);
+$("#transfer_txout").attr("data-val-regex", global.transferTxoutRegex);
 $("#transfer_value").attr("data-val-required", global.transferValueRequired);
+$("#transfer_value").attr("data-val-regex", global.transferValueRegex);
 $("#transfer_asset").attr("data-val-required", global.transferAssetRequired);
 $("#input_asset_name").attr("data-val-required", global.assetNameRequired);
 $("#input_amount").attr("data-val-required", global.assetAmountRequired);
 $("#select_issue_assets").attr("data-val-required", global.issueAssetsRequired);
 $("#relay_data").attr("data-val-required", global.relayDataRequired);
 $("#input_data").attr("data-val-required", global.inputDataRequired);
+$("#contact_address").attr("data-val-required", global.contactAddressRequired);
+$("#contact_name").attr("data-val-required", global.contactNameRequired);
+$("#contact_name").attr("data-val-length", global.contactNameLength);
+$("#contact_address").attr("data-val-regex", global.contactAddressRegex);
 
+$("#import_password").attr("placeholder", global.newPasswordPlaceholder);
+$("#import_password").attr("data-val-required", global.newPasswordRequired);
+$("#import_password").attr("data-val-length", global.newPasswordLength);
+$("#import_password_confirm").attr("placeholder", global.newPasswordConfirmPlaceholder);
+$("#import_password_confirm").attr("data-val-required", global.newPasswordConfirmRequired);
+$("#import_password_confirm").attr("data-val-equalto", global.newPasswordConfirmEqualto);
 

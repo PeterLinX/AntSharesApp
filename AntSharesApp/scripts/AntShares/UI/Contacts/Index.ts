@@ -1,6 +1,9 @@
-﻿namespace AntShares.UI.Contacts {
-    export class Index extends TabBase {
-        protected oncreate(): void {
+﻿namespace AntShares.UI.Contacts
+{
+    export class Index extends TabBase
+    {
+        protected oncreate(): void
+        {
         }
 
         protected onload(): void {
@@ -10,16 +13,19 @@
             this.loadContactsList();
         }
 
-        private loadContactsList = () => {
+        private loadContactsList = () => 
+        {
             let contacts: Contacts.Contact;
             Contacts.Contact.instance().then(result => {
                 contacts = result;
                 return contacts.getContacts();
             }).then(results => {
                 if (results.length == 0) {
-                    $("#Tab_Contacts_Index > h5").show();
+                    $("#Tab_Contacts_Index .empty").show();
+                    $("#Tab_Contacts_Index .title").hide();
                 } else {
-                    $("#Tab_Contacts_Index > h5").hide();
+                    $("#Tab_Contacts_Index .empty").hide();
+                    $("#Tab_Contacts_Index .title").show();
                     let contactsArray = linq(results).orderByDescending(p => p.name).toArray();
                     let result = Promise.resolve();
                     for (let i = 0; i < contactsArray.length; i++) {
@@ -27,7 +33,8 @@
                         let liTemp = ul.find("li:eq(0)");
                         let li = liTemp.clone(true);
                         li.removeAttr("style");
-                        li.click(() => {
+                        li.click(() =>
+                        {
                             $("#contact_name_selected").val(results[i].name);
                             $("#contact_address_selected").val(results[i].address);
                             $("#Tab_Contacts_Index li").removeClass("info");
@@ -65,6 +72,7 @@
 
             }
         }
+
         private OnSendClick() {
             let address = $("#contact_address_selected").val();
             TabBase.showTab("#Tab_Account_Send", address);

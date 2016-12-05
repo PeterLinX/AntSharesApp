@@ -31,6 +31,7 @@
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
+
             if (isMobileApp.App()) {
                 //App
                 $("#Tab_Wallet_Backup #div_web").css('display', 'none');
@@ -43,7 +44,6 @@
                 //PC Web
                 $("#Tab_Wallet_Backup #div_app").css('display', 'none');
             }
-            
         }
 
         private OnWriteClick = () => {
@@ -60,6 +60,7 @@
             });
         }
 
+
         private OnWebBackupClick = () => {
             try {
                 this.loadFile().then((array) => {
@@ -71,7 +72,7 @@
                             navigator.msSaveBlob(blob, "antshares_backup");
                         }
                         catch (e) {
-                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack);
+                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack)
                         }
                     }
                     else {
@@ -82,12 +83,12 @@
                             a[0].click();
                         }
                         catch (e) {
-                            alert("download failed: " + e.message + "\r\n" + e.stack);
+                            alert("download failed: " + e.message + "\r\n" + e.stack)
                         }
                     }
 
                 }).catch(e => {
-                    console.log(e);
+                    console.log(e)
                 });
             }
             catch (e) {
@@ -208,7 +209,6 @@
 
             return _transaction.commit().then(() =>
             {
-
                 key.content = arrayKey;
                 contract.content = arrayContract;
                 coin.content = arrayCoin;

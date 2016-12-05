@@ -61,7 +61,7 @@
         }
 
         protected onModelCreating(db: IDBDatabase): void {
-            db.createObjectStore("Contacts", { keyPath: ["name"] });
+            db.createObjectStore("Contacts", { keyPath: "name" });
         }
     }
 }
