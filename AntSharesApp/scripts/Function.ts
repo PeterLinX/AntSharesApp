@@ -107,7 +107,7 @@ function convertTxType(type: AntShares.Core.TransactionType): string
     return typeStr;
 }
 
-let isMobile = {
+let isMobileWeb = {
     Android: function () {
         return navigator.userAgent.match(/Android/i);
     },
@@ -129,11 +129,20 @@ let isMobile = {
     Edge: function () {
         return navigator.userAgent.match(/Edge/i);
     },
-    Web: function () {
-        return (isMobile.Opera() || isMobile.IE() || isMobile.Mozilla() || isMobile.Safari() || isMobile.Edge());
+    PC: function (): boolean {
+        if (isMobileWeb.Opera() || isMobileWeb.IE() || isMobileWeb.Mozilla() || isMobileWeb.Safari() || isMobileWeb.Edge()) {
+            return true;
+        } else {
+            return false;
+        }
     },
-    App: function () {
-        return (isMobile.Android() || isMobile.iOS());
+    Web: function (): boolean {
+        if (isMobileWeb.Android() || isMobileWeb.iOS())
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -141,4 +150,83 @@ function setTitle(index: number)
 {
     $(".header-title").hide();
     $(".header-title").eq(index).show();
+}
+
+let isMobileApp = {
+    Android: function (): boolean {
+        try {
+            if (device.platform == "Android") {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ReferenceError){
+            return false;
+        }
+    },
+    iOS: function (): boolean {
+        try {
+            if (device.platform == "iOS") {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (ReferenceError) {
+            return false;
+        }
+    },
+    App: function (): boolean {
+        if (isMobileApp.iOS() || isMobileApp.Android()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+function cordovaFileError(errorCode: number): string {
+    let errorMessage: string = "";
+    switch (errorCode)
+    {
+        case 1:
+            errorMessage = "NOT_FOUND_ERR";
+            break;
+        case 2:
+            errorMessage = "SECURITY_ERR";
+            break;
+        case 3:
+            errorMessage = "ABORT_ERR";
+            break;
+        case 4:
+            errorMessage = "NOT_READABLE_ERR";
+            break;
+        case 5:
+            errorMessage = "ENCODING_ERR";
+            break;
+        case 6:
+            errorMessage = "NO_MODIFICATION_ALLOWED_ERR";
+            break;
+        case 7:
+            errorMessage = "INVALID_STATE_ERR";
+            break;
+        case 8:
+            errorMessage = "SYNTAX_ERR";
+            break;
+        case 9:
+            errorMessage = "INVALID_MODIFICATION_ERR";
+            break;
+        case 10:
+            errorMessage = "QUOTA_EXCEEDED_ERR";
+            break;
+        case 11:
+            errorMessage = "TYPE_MISMATCH_ERR";
+            break;
+        case 12:
+            errorMessage = "PATH_EXISTS_ERR";
+            break;
+        default:
+            errorMessage = "UNKOWN_ERR";
+            break;
+    }
+    return errorMessage;
 }

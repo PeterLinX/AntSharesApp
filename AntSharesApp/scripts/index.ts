@@ -14,6 +14,7 @@ module AntSharesApp {
             // 处理 Cordova 暂停并恢复事件
             document.addEventListener('pause', onPause, false);
             document.addEventListener('resume', onResume, false);
+            window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
 
         }
 

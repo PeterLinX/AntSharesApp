@@ -15,7 +15,17 @@
         },
         "cordova-plugin-itunesfilesharing": {
             "PACKAGE_NAME": "AntShares"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "AntShares"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "AntShares"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "AntShares"
+        }
+    }
 }

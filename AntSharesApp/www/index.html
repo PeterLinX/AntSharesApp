@@ -100,7 +100,12 @@
                     <a class="tab-trigger return-start lang-return-start" href="#Tab_Wallet_Start"></a>
                 </div>
                 <div id="Tab_Wallet_Restore" class="form-horizontal tab-pane">
-                    <form id="form_backup">
+                    <div id="div_restore_info" style="display:none">
+                        <p>
+                            在iPhone上无法导入钱包，请前往应用商店下载小蚁钱包App.
+                        </p>
+                    </div>
+                    <form id="form_restore">
                         <div class="row">
                             <div class="col-lg-6 col-md-8">
                                 <h3 class="page-header lang-import-wallet-file"></h3>
@@ -110,9 +115,27 @@
                             </div>
                         </div>
                     </form>
+                    <div id="form_ios_restore" style="display:none">
+                        <h3 class="page-header">恢复</h3>
+                        <div class="form-group">
+                            <input type="hidden" id="restore_name_selected" />
+                        </div>
+                        <div class="my-table">
+                            <div>
+                                <h5 id="restore_info" style="display:none; padding-top:50px; text-align:center">无钱包文件</h5>
+                            </div>
+                            <ul>
+                                <li class="row" style="display:none">
+                                    <div class="col-sm-9 col-xs-8 restore-name select">Peter Lin</div>
+                                    <div class="col-sm-3 col-xs-4 restore-action" style="display:none">
+                                        <button class="btn btn-sm btn-danger btn-restore" type="button">恢复</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <a class="tab-trigger return-start lang-return-start" href="#Tab_Wallet_Start"></a>
                 </div>
-
                 <div id="Tab_Wallet_Import" class="form-horizontal tab-pane">
                     <form id="form_account_import" autocomplete="off">
                         <h3 class="page-header lang-import-account"></h3>
@@ -226,10 +249,11 @@
                     <div id="div_app">
                         <button type="button" id="backup_app" class="btn btn-success lang-backup-current-wallet"></button>
                     </div>
-                    <!--<div id="div_test">
-                        <button type="button" id="read" class="btn btn-primary">read</button>
+                    <div id="div_backup_info" style="display:none">
+                        <p>
+                            在手机上无法备份钱包，请前往应用商店下载小蚁钱包App.
+                        </p>
                     </div>
-                    <textarea id="textarea"></textarea>-->
                     <div id="danger" class="alert alert-warning bottom" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>

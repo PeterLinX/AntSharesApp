@@ -9,7 +9,6 @@
         {
             $(this.target).find("#backup_web").click(this.OnWebBackupClick);
             $(this.target).find("#backup_app").click(this.OnAppBackupClick);
-            $(this.target).find("#read").click(this.OnReadClick);
         }
 
         protected onload(args: any[]): void
@@ -22,7 +21,7 @@
             if (args[0])
                 $("#danger").show();
             formReset("form_backup");
-            var back = $("#Tab_Wallet_Backup #back_div");
+            let back = $("#Tab_Wallet_Backup #back_div");
             if (Global.Wallet == null)
             {
                 back.hide();
@@ -32,82 +31,66 @@
                 back.show();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
             this.db.open();
-            if (isMobile.App()) {
+            if (isMobileApp.App()) {
+                //App
                 $("#Tab_Wallet_Backup #div_web").css('display', 'none');
             } else {
+                //Mobile Web
+                if (isMobileWeb.Web()) {
+                    $("#Tab_Wallet_Backup #div_backup_info").show();
+                    $("#Tab_Wallet_Backup #div_web").css('display', 'none');
+                }
+                //PC Web
                 $("#Tab_Wallet_Backup #div_app").css('display', 'none');
             }
+            
         }
 
-        private readFile(fileEntry) {
-            fileEntry.file(function (file) {
-                var reader = new FileReader();
-                reader.onloadend = function () {
-                    alert(this.result);
-                };
-                reader.readAsText(file);
-            }, () => {
-                console.log("onErrorReadFile");
+        private OnWriteClick = () => {
+            window.requestFileSystem(window.PERSISTENT, 0, fs => {
+                let dataObj = new Blob(['some'], { type: 'text/plain' });
+                fs.root.getFile('2.txt', { create: true, exclusive: false }, function (fileEntry) {
+                    this.writeFile(fileEntry, dataObj, true);
+                }, error => {
+                    alert(error);
+                    $("#Tab_Wallet_Backup #textarea1").text(error.code);
+                });
+            }, (fileError) => {
+                $("#Tab_Wallet_Backup #textarea1").text(fileError.code);
             });
         }
 
-        private OnReadClick = () =>
-        {
-            console.log(navigator.userAgent);
-            let x = "444";
-            $("#Tab_Wallet_Backup #textarea").text(x);
-
-            let size = 5 * 1024;
-            window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
-            window.requestFileSystem(window.PERSISTENT, size, fs => {
-                fs.root.getFile('18a20a76-155f-4e4b-b9fc-12a885f6b086', {}, function (fileEntry) {
-                    fileEntry.file(function (file) {
-                        var reader = new FileReader();
-                        reader.onloadend = function (e) {
-                            //let txtArea = document.getElementById('textarea');
-                            //txtArea.value = this.result;
-                            //$("#Tab_Wallet_Backup #textarea").val(this.result);
-                            let x = "312312";
-                            $("#Tab_Wallet_Backup #textarea").text(x);
-                        };
-
-                        reader.readAsText(file);
-
-                    }, error => { alert(error);});
-
-                }, error => { alert(error); });
-            }, () => {
-            });
-        }
-
-        private OnWebBackupClick = () =>
-        {
-            try
-            {
-                this.loadFile().then((array) =>
-                {
+        private OnWebBackupClick = () => {
+            try {
+                this.loadFile().then((array) => {
                     let strDb: string = JSON.stringify(array);
                     let db = [strDb];
-                    let blob = new Blob(db, { "type": "application/octet-binary" });           
-                    if (navigator.msSaveBlob)
-                    {
-                        navigator.msSaveBlob(blob, "antshares_backup");
+                    let blob = new Blob(db, { "type": "application/octet-binary" });
+                    if (navigator.msSaveBlob) {
+                        try {
+                            navigator.msSaveBlob(blob, "antshares_backup");
+                        }
+                        catch (e) {
+                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack);
+                        }
                     }
-                    else
-                    {
-                        let url = URL.createObjectURL(blob);
-                        var a = $('#Tab_Wallet_Backup #blob');
-                        a.attr('href', url);
-                        a[0].click();
+                    else {
+                        try {
+                            let url = URL.createObjectURL(blob);
+                            var a = $('#Tab_Wallet_Backup #blob');
+                            a.attr('href', url);
+                            a[0].click();
+                        }
+                        catch (e) {
+                            alert("download failed: " + e.message + "\r\n" + e.stack);
+                        }
                     }
-                    
-                }).catch(e =>
-                {
-                    console.log(e)
+
+                }).catch(e => {
+                    console.log(e);
                 });
             }
-            catch (e)
-            {
+            catch (e) {
                 console.log(e);
             }
 
