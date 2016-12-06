@@ -10,9 +10,11 @@
         }
 
         protected onload(args: any[]): void {
-
-            this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
-            this.db.open();
+            try {
+                this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
+                this.db.open();
+            } catch (e)
+            { }
             formReset("form_dev_tool");
         }
 
