@@ -113,8 +113,6 @@
             reader.readAsText(file);
             let json;
             reader.onload = function () {
-                console.log(this.result);
-                console.log(JSON.parse(this.result));
                 Restore.Restore(JSON.parse(this.result)).then(() => {
                     formReset("form_restore");
                     $("footer").show();
@@ -128,7 +126,7 @@
             };
         }
 
-        private static Restore = (pJson: JSON): PromiseLike<void> => {
+        private static Restore = (pJsonArray: Array<JSON>): PromiseLike<void> => {
             let master: Wallets.Master;
             let db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
             let _transaction: AntShares.Implementations.Wallets.IndexedDB.DbTransaction;
@@ -141,28 +139,27 @@
             let Transaction: JSON;
 
             return Promise.resolve(1).then(() => {
-                return pJson;
-            }).then((json) => {
+                return pJsonArray;
+            }).then((array) => {
                 let count = 0;
-                for (let obj in json)
+                for (let i = 0; i < array.length; i++)
                 {
-                    switch (json[count]["table"]) {
-                        case "Wallet": Wallet = json[count]["content"];
+                    switch (array[count]["table"]) {
+                        case "Wallet": Wallet = array[count]["content"];
                             break;
-                        case "Key": Key = json[count]["content"];
+                        case "Key": Key = array[count]["content"];
                             break;
-                        case "Contract": Contract = json[count]["content"];
+                        case "Contract": Contract = array[count]["content"];
                             break;
-                        case "Coin": Coin = json[count]["content"];
+                        case "Coin": Coin = array[count]["content"];
                             break;
-                        case "Account": Account = json[count]["content"];
+                        case "Account": Account = array[count]["content"];
                             break;
-                        case "Transaction": Transaction = json[count]["content"];
+                        case "Transaction": Transaction = array[count]["content"];
                             break;
                         default:
                             throw new Error(Resources.global.walletJsonError);
                     }
-                    count++;
                 }
             }, onreject => {
                     throw new Error(Resources.global.walletJsonError);
