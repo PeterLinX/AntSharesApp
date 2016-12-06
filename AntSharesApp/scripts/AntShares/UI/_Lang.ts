@@ -120,6 +120,7 @@
         static transferValueRegex = "金额输入错误";
         static browserIndexedb = "该浏览器不支持IndexedDB，无法使用小蚁钱包APP.";
         static browserError = "无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请下载小蚁钱包APP.";
+        static contactExists = "已经添加过该联系人.";
     }
 
     class global_en
@@ -230,5 +231,7 @@
         static transferValueRegex = "Incorrect value";
         static browserIndexedb = "IndexedDB is not supported in this browser, please dowanload Antshares App in Appstore.";
         static browserError = "This wallet cannot be used in embedded browser, please dowanload Antshares App in Appstore.";
+        static contactExists = "Contact already exists.";
+
     }
 }

@@ -28,7 +28,7 @@
                 }).then(result =>
                 {
                     if (result.indexOf(name) >= 0)
-                        throw new Error("已经添加过该联系人");
+                        throw new Error(Resources.global.contactExists);
                     return contacts.add(name, address);
                 }).then(wallet =>
                 {
