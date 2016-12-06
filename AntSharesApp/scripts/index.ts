@@ -32,10 +32,10 @@ module AntSharesApp {
         let w = window as any;
         var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
         if (!indexedDB) {
-            alert("该浏览器不支持IndexedDB，无法使用小蚁钱包APP");
+            alert(AntShares.UI.Resources.global.browserIndexedb);
             return;
         } else if (is_weixin() || is_weibo() || is_qq()) {
-            alert("无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请使用Chrome浏览器或下载小蚁钱包APP");
+            alert(AntShares.UI.Resources.global.browserError);
             return;
         }
         else if (w.mobilecheck() && !isMobileApp.App) {
