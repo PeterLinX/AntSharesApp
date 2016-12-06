@@ -144,5 +144,5 @@
 .lang-restore2::after { content:'恢复' }
 .lang-no-wallet::after { content:'无钱包文件' }
 .lang-delete::after { content:'删除' }
-.lang-restore-info::after { content:'注意：在iPhone上无法导入钱包，请前往应用商店下载小蚁钱包App.' }
-.lang-backup-info::after { content:'注意：在手机上无法备份钱包，请前往应用商店下载小蚁钱包App.' }
+.lang-restore-info::after { content:'注意：在该浏览器上无法备份或恢复钱包，为了保障您的资产安全，强烈建议您前往应用商店下载小蚁钱包App.' }
+.lang-backup-info::after { content:'注意：在该浏览器上无法备份或恢复钱包，为了保障您的资产安全，强烈建议您前往应用商店下载小蚁钱包App.' }

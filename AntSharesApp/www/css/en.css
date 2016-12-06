@@ -145,6 +145,6 @@
 .lang-restore2::after { content:'Restore' }
 .lang-no-wallet::after { content:'No Wallet File' }
 .lang-delete::after { content:'delete' }
-.lang-restore-info::after { content:'Warning: wallet file cannot be loaded in iphone browser, please download Antshares APP in Appstore.' }
-.lang-backup-info::after { content:'Warning: wallet file cannot be downloaded in iphone browser, please download Antshares APP in Appstore.' }
+.lang-restore-info::after { content:'Warning: wallet file cannot be downloaded or restored in this browser, for your asset safety, please download Antshares APP in Appstore.' }
+.lang-backup-info::after { content:'Warning: wallet file cannot be downloaded or restored in this browser, for your asset safety, please download Antshares APP in Appstore.' }
                             

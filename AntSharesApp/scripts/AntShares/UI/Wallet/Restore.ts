@@ -16,7 +16,7 @@
                 //App
                 if (isMobileApp.iOS())
                 {
-                    $("#Tab_Wallet_Restore #form_restore").css('display', 'none'); 
+                    $("#Tab_Wallet_Restore #form_restore").hide(); 
                     $("#Tab_Wallet_Restore #form_ios_restore").show();
                     let ul = $("#Tab_Wallet_Restore").find("ul:eq(0)");
                     ul.find("li.add").remove();
@@ -24,9 +24,9 @@
                 }
             } else {
                 //Mobile Web
-                if (isMobileWeb.Web() && isMobileWeb.iOS()) {
+                if (isMobileWeb.iOS()) {
                     $("#Tab_Wallet_Restore #div_restore_info").show();
-                    $("#Tab_Wallet_Restore #form_restore").css('display', 'none');
+                    $("#Tab_Wallet_Restore #form_restore").hide(); 
                 }
                 //PC Web
             }

@@ -33,15 +33,15 @@
 
             if (isMobileApp.App()) {
                 //App
-                $("#Tab_Wallet_Backup #div_web").css('display', 'none');
+                $("#Tab_Wallet_Backup #div_web").hide();
             } else {
                 //Mobile Web
-                if (isMobileWeb.Web()) {
+                if (isMobileWeb.iOS()) {
                     $("#Tab_Wallet_Backup #div_backup_info").show();
-                    $("#Tab_Wallet_Backup #div_web").css('display', 'none');
+                    $("#Tab_Wallet_Backup #div_web").hide();
                 }
                 //PC Web
-                $("#Tab_Wallet_Backup #div_app").css('display', 'none');
+                $("#Tab_Wallet_Backup #div_app").hide();
             }
         }
 
