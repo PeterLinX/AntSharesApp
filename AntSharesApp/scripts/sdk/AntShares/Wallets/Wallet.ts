@@ -118,7 +118,7 @@
         {
             if (encryptedPrivateKey == null) throw new RangeError();
             if (encryptedPrivateKey.byteLength != 112) throw new RangeError();
-            return window.crypto.subtle.importKey("raw", this.masterKey, "AES-CBC", false, ["decrypt"]).then(result =>
+            return window.crypto.subtle.importKey("raw", this.masterKey, { name: "AES-CBC" }, false, ["decrypt"]).then(result =>
             {
                 return window.crypto.subtle.decrypt({ name: "AES-CBC", iv: this.iv }, result, encryptedPrivateKey);
             }).then(result =>
@@ -154,7 +154,7 @@
 
         protected encryptPrivateKey(decryptedPrivateKey: Uint8Array): PromiseLike<Uint8Array>
         {
-            return window.crypto.subtle.importKey("raw", this.masterKey, "AES-CBC", false, ["encrypt"]).then(result =>
+            return window.crypto.subtle.importKey("raw", this.masterKey, { name: "AES-CBC" }, false, ["encrypt"]).then(result =>
             {
                 return window.crypto.subtle.encrypt({ name: "AES-CBC", iv: this.iv }, result, decryptedPrivateKey);
             }).then(result =>
