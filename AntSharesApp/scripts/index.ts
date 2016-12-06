@@ -38,7 +38,7 @@ module AntSharesApp {
             alert("无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请使用Chrome浏览器或下载小蚁钱包APP");
             return;
         }
-        else if (w.mobilecheck()) {
+        else if (w.mobilecheck() && !isMobileApp.App) {
             if (isMobileWeb.Edge())
                 $("#download_link").attr("href", "https://www.microsoft.com/store/apps/9nblggh42jbd");
             else if (isMobileWeb.Android())
