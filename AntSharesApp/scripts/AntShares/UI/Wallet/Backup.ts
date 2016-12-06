@@ -45,20 +45,6 @@
             }
         }
 
-        private OnWriteClick = () => {
-            window.requestFileSystem(window.PERSISTENT, 0, fs => {
-                let dataObj = new Blob(['some'], { type: 'text/plain' });
-                fs.root.getFile('2.txt', { create: true, exclusive: false }, function (fileEntry) {
-                    this.writeFile(fileEntry, dataObj, true);
-                }, fileError => {
-                    alert(cordovaFileError(fileError.code));
-                });
-            }, (fileError) => {
-                alert(cordovaFileError(fileError.code));
-            });
-        }
-
-
         private OnWebBackupClick = () => {
             try {
                 this.loadFile().then((array) => {

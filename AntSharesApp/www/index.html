@@ -99,8 +99,7 @@
                 </div>
                 <div id="Tab_Wallet_Restore" class="form-horizontal tab-pane">
                     <div id="div_restore_info" style="display:none">
-                        <p>
-                            在iPhone上无法导入钱包，请前往应用商店下载小蚁钱包App.
+                        <p class="lang-restore-info">
                         </p>
                     </div>
                     <form id="form_restore">
@@ -114,19 +113,19 @@
                         </div>
                     </form>
                     <div id="form_ios_restore" style="display:none">
-                        <h3 class="page-header">恢复</h3>
+                        <h3 class="page-header lang-restore"></h3>
                         <div class="form-group">
                             <input type="hidden" id="restore_name_selected" />
                         </div>
                         <div class="my-table">
                             <div>
-                                <h5 id="restore_info" style="display:none; padding-top:50px; text-align:center">无钱包文件</h5>
+                                <h5 id="restore_info" style="display:none; padding-top:50px; text-align:center" class="lang-no-wallet"></h5>
                             </div>
                             <ul>
                                 <li class="row" style="display:none">
                                     <div class="col-sm-9 col-xs-8 restore-name select">Peter Lin</div>
                                     <div class="col-sm-3 col-xs-4 restore-action" style="display:none">
-                                        <button class="btn btn-sm btn-danger btn-restore" type="button">恢复</button>
+                                        <button class="btn btn-sm btn-danger btn-restore lang-restore2" type="button"></button>
                                     </div>
                                 </li>
                             </ul>
@@ -178,7 +177,7 @@
                                     <li style="display:none">
                                         <label>
                                             <input type="radio" name="wallet" />
-                                            <span>点位符：钱包名称</span>
+                                            <span>占位符：钱包名称</span>
                                         </label>
                                     </li>
                                 </ul>
@@ -205,7 +204,7 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-wallet-name"></label>:
                             <div class="col-sm-6">
-                                <label class="change-wallet-name" id="change_wallet_name">点位符：钱包名称</label>
+                                <label class="change-wallet-name" id="change_wallet_name">占位符：钱包名称</label>
                             </div>
                         </div>
 
@@ -249,8 +248,7 @@
                         <button type="button" id="backup_app" class="btn btn-info withripple lang-backup-current-wallet"></button>
                     </div>
                     <div id="div_backup_info" style="display:none">
-                        <p>
-                            在手机上无法备份钱包，请前往应用商店下载小蚁钱包App.
+                        <p class="lang-backup-info">
                         </p>
                     </div>
                     <div id="danger" class="alert alert-warning bottom" role="alert">
@@ -280,10 +278,10 @@
                                 <li style="display:none">
                                     <div class="row">
                                         <div class="col-xs-4 ellipsis-div">
-                                            <span class="asset_name">点位符：资产名称</span>
+                                            <span class="asset_name">占位符：资产名称</span>
                                         </div>
                                         <div class="col-xs-3">
-                                            <span class="asset_value">点位符：余额</span>
+                                            <span class="asset_value">占位符：余额</span>
                                         </div>
                                         <div class="col-xs-5 ellipsis-div">
                                             <span class="asset_issuer">发行人</span>
@@ -385,8 +383,8 @@
                                 <div class="col-sm-3 col-xs-5 contact-name select">Peter Lin</div>
                                 <div class="col-sm-5 col-xs-7 contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</div>
                                 <div class="col-sm-4 col-xs-12 contact-action" style="display:none">
-                                    <button class="btn btn-sm btn-danger btn-delete" type="button">删除</button>
-                                    <button class="btn btn-sm btn-info btn-send" type="button">发送</button>
+                                    <button class="btn btn-sm btn-danger btn-delete lang-delete" type="button"></button>
+                                    <button class="btn btn-sm btn-info btn-send lang-send" type="button"></button>
                                 </div>
                             </li>
                         </ul>
@@ -411,7 +409,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_contact" type="button" class="btn btn-success">创建联系人</button> <!--如果不加preventDefault会跳转空白页面-->
+                                <button id="create_contact" type="button" class="btn btn-success lang-create-contact"></button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
                     </form>

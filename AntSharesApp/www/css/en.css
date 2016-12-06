@@ -141,3 +141,10 @@
 .lang-start-create3::after { content:'Create wallet' }
 .lang-start-restore3::after { content:'Restore wallet' }
 .lang-start-import3::after { content:'Import pri-key' }
+.lang-restore1::after { content:'restore' }
+.lang-restore2::after { content:'Restore' }
+.lang-no-wallet::after { content:'No Wallet File' }
+.lang-delete::after { content:'delete' }
+.lang-restore-info::after { content:'Warning: wallet file cannot be loaded in iphone browser, please download Antshares APP in Appstore.' }
+.lang-backup-info::after { content:'Warning: wallet file cannot be downloaded in iphone browser, please download Antshares APP in Appstore.' }
+                            
