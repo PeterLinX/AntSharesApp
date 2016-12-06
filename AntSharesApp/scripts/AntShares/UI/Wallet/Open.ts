@@ -24,6 +24,11 @@
                 let name = $('#list_wallet_name input[name="wallet"]:checked ').val();
                 Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
+                    if (!result)//兼容IE
+                    {
+                        $("#open_error").show()
+                        return;
+                    }
                     Global.Wallet = result;
                     formReset("form_open_wallet");
                     $("#open_error").hide();
