@@ -39,7 +39,7 @@
                 this.loadStoredData("PasswordHash"),
                 password_old.toAesKey().then(result =>
                 {
-                    return window.crypto.subtle.digest("SHA-256", result);
+                    return window.crypto.subtle.digest({ name: "SHA-256" }, result);
                 })
             ]).then(results =>
             {
@@ -54,8 +54,8 @@
             {
                 passwordKey = new Uint8Array(result);
                 return Promise.all<any>([
-                    window.crypto.subtle.digest("SHA-256", passwordKey),
-                    window.crypto.subtle.importKey("raw", <any>result, "AES-CBC", false, ["encrypt"])
+                    window.crypto.subtle.digest({ name: "SHA-256" }, passwordKey),
+                    window.crypto.subtle.importKey("raw", <any>result, { name: "AES-CBC" }, false, ["encrypt"])
                 ]);
             }).then(results =>
             {
@@ -305,9 +305,9 @@
             let data = wif.base58Decode();
             if (data.length != 38 || data[0] != 0x80 || data[33] != 0x01)
                 throw new RangeError();
-            return window.crypto.subtle.digest("SHA-256", new Uint8Array(data.buffer, 0, data.length - 4)).then(result =>
+            return window.crypto.subtle.digest({ name: "SHA-256" }, new Uint8Array(data.buffer, 0, data.length - 4)).then(result =>
             {
-                return window.crypto.subtle.digest("SHA-256", result);
+                return window.crypto.subtle.digest({ name: "SHA-256" }, result);
             }).then(result =>
             {
                 let array = new Uint8Array(result);
@@ -350,8 +350,8 @@
             {
                 passwordKey = new Uint8Array(result);
                 return Promise.all<any>([
-                    window.crypto.subtle.digest("SHA-256", passwordKey),
-                    window.crypto.subtle.importKey("raw", passwordKey, "AES-CBC", false, ["encrypt", "decrypt"])
+                    window.crypto.subtle.digest({ name: "SHA-256" }, passwordKey),
+                    window.crypto.subtle.importKey("raw", passwordKey, { name: "AES-CBC" }, false, ["encrypt", "decrypt"])
                 ]);
             }).then(results =>
             {
@@ -728,9 +728,9 @@
             let data = new Uint8Array(25);
             data[0] = Wallet.CoinVersion;
             Array.copy(new Uint8Array(scriptHash.bits.buffer), 0, data, 1, 20);
-            return window.crypto.subtle.digest("SHA-256", new Uint8Array(data.buffer, 0, 21)).then(result =>
+            return window.crypto.subtle.digest({ name: "SHA-256" }, new Uint8Array(data.buffer, 0, 21)).then(result =>
             {
-                return window.crypto.subtle.digest("SHA-256", result);
+                return window.crypto.subtle.digest({ name: "SHA-256" }, result);
             }).then(result =>
             {
                 Array.copy(new Uint8Array(result), 0, data, 21, 4);
@@ -743,9 +743,9 @@
             let data = address.base58Decode();
             if (data.length != 25) throw new RangeError();
             if (data[0] != Wallet.CoinVersion) throw new RangeError();
-            return window.crypto.subtle.digest("SHA-256", new Uint8Array(data.buffer, 0, data.length - 4)).then(result =>
+            return window.crypto.subtle.digest({ name: "SHA-256" }, new Uint8Array(data.buffer, 0, data.length - 4)).then(result =>
             {
-                return window.crypto.subtle.digest("SHA-256", result);
+                return window.crypto.subtle.digest({ name: "SHA-256" }, result);
             }).then(result =>
             {
                 let array = new Uint8Array(result);

@@ -7,9 +7,9 @@ namespace AntShares.Network
         public ensureHash(): PromiseLike<Uint256>
         {
             if (this.hash != null) return Promise.resolve(this.hash);
-            return window.crypto.subtle.digest("SHA-256", this.getHashData()).then(result =>
+            return window.crypto.subtle.digest({ name: "SHA-256" }, this.getHashData()).then(result =>
             {
-                return window.crypto.subtle.digest("SHA-256", result);
+                return window.crypto.subtle.digest({ name: "SHA-256" }, result);
             }).then(result =>
             {
                 return this.hash = new Uint256(result);

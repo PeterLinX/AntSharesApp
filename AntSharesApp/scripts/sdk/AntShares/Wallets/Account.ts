@@ -43,9 +43,9 @@ namespace AntShares.Wallets
             data[0] = 0x80;
             Array.copy(new Uint8Array(this.privateKey), 0, data, 1, 32);
             data[33] = 0x01;
-            return window.crypto.subtle.digest("SHA-256", new Uint8Array(data.buffer, 0, data.byteLength - 4)).then(result =>
+            return window.crypto.subtle.digest({ name: "SHA-256" }, new Uint8Array(data.buffer, 0, data.byteLength - 4)).then(result =>
             {
-                return window.crypto.subtle.digest("SHA-256", new Uint8Array(result));
+                return window.crypto.subtle.digest({ name: "SHA-256" }, new Uint8Array(result));
             }).then(result =>
             {
                 let checksum = new Uint8Array(result, 0, 4);

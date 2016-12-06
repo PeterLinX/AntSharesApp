@@ -35,9 +35,9 @@ namespace AntShares.Cryptography
         let codes = new Uint8Array(utf8.length);
         for (let i = 0; i < codes.length; i++)
             codes[i] = utf8.charCodeAt(i);
-        return window.crypto.subtle.digest("SHA-256", codes).then(result =>
+        return window.crypto.subtle.digest({ name: "SHA-256" }, codes).then(result =>
         {
-            return window.crypto.subtle.digest("SHA-256", result);
+            return window.crypto.subtle.digest({ name: "SHA-256" }, result);
         });
     }
 
