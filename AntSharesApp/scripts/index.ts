@@ -28,9 +28,25 @@ module AntSharesApp {
 
     window.onload = function () {
         Application.initialize();  
-        if (is_weibo() || is_qq() || is_weixin())
-        {
-            alert("请使用chrome浏览器打开该钱包，如果您使用iphone或是android手机，可以前往应用商店下载小蚁App钱包。");
+
+        let w = window as any;
+        var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        if (!indexedDB) {
+            alert("该浏览器不支持IndexedDB，无法使用小蚁钱包APP");
+            return;
+        } else if (is_weixin() || is_weibo() || is_qq()) {
+            alert("无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请使用Chrome浏览器或下载小蚁钱包APP");
+            return;
+        }
+        else if (w.mobilecheck()) {
+            if (isMobileWeb.Edge())
+                $("#download_link").attr("href", "https://www.microsoft.com/store/apps/9nblggh42jbd");
+            else if (isMobileWeb.Android())
+                $("#download_link").attr("href", "https://www.antshares.org/Client/android-release.apk");
+            else if (isMobileWeb.iOS())
+                $("#download_link").attr("href", "https://itunes.apple.com/app/xiao-yi/id1164555453");
+            ($('#downloadAPP') as any).modal();
+            return;
         }
     }
 }

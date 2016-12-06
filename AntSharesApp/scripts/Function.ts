@@ -137,8 +137,7 @@ let isMobileWeb = {
         }
     },
     Web: function (): boolean {
-        if (isMobileWeb.Android() || isMobileWeb.iOS())
-        {
+        if (isMobileWeb.Android() || isMobileWeb.iOS()) {
             return true;
         } else {
             return false;
@@ -176,9 +175,11 @@ let isMobileApp = {
         }
     },
     App: function (): boolean {
-        if (isMobileApp.iOS() || isMobileApp.Android()) {
-            return true;
-        } else {
+        try
+        {
+            return device.platform != "";
+        } catch (e)
+        {
             return false;
         }
     }
@@ -187,31 +188,19 @@ let isMobileApp = {
 function is_weixin()//only for Android and IOS
 {
     let ua: any = navigator.userAgent.toLowerCase();
-    if (ua.match(/MicroMessenger/i) == "micromessenger") {
-        return true;
-    } else {
-        return false;
-    }
+    return ua.match(/MicroMessenger/i) == "micromessenger";
 }
 
 function is_weibo()//only for Android and IOS
 {
     let ua: any = navigator.userAgent.toLowerCase();
-    if (ua.match(/weibo/i) == "weibo") {
-        return true;
-    } else {
-        return false;
-    }
+    return ua.match(/weibo/i) == "weibo";
 }
 
 function is_qq()//only for Android and IOS
 {
     let ua: any = navigator.userAgent.toLowerCase();
-    if (ua.match(/qq/i) == "qq") {
-        return true;
-    } else {
-        return false;
-    }
+    return ua.match(/qq/i) == "qq";
 }
 
 
