@@ -119,6 +119,7 @@
 .lang-receiver-address::after { content:'Receiver address' }
 .lang-backup-wallet::after { content:'Backup wallet' }
 .lang-contacts::after { content:'Contacts' }
+.lang-contact-btn::before { content:'Contacts' }
 .lang-welcome::after { content:'Welcome' }
 .lang-home::after { content:'Home' }
 .lang-receive::after { content:'Receive' }

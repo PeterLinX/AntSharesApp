@@ -118,6 +118,7 @@
 .lang-receiver-address::after { content:'收款地址' }
 .lang-backup-wallet::after { content:'备份钱包' }
 .lang-contacts::after { content:'联系人' }
+.lang-contact-btn::before { content:'联系人' }
 .lang-welcome::after { content:'欢迎' }
 .lang-home::after { content:'首页' }
 .lang-receive::after { content:'收款' }

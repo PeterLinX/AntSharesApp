@@ -350,7 +350,18 @@
                         <h5 class="lang-receiver"></h5>
                         <div class="form-group">
                             <div class="col-sm-9" style="margin-bottom:10px">
-                                <input id="transfer_txout" name="transfer_txout" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" class="pay_address" type="text" />
+                                <div class="input-group">
+                                    <input id="transfer_txout" name="transfer_txout" data-val="true" data-val-regex-pattern="A[F-HJ-NP-Za-f][1-9A-HJ-NP-Za-km-z]{32}" class="pay_address" type="text" />
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle lang-contact-btn" data-toggle="dropdown"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li class="row" style="display:none">
+                                                <div class="col-xs-4 contact-name">点位符：联系人名称</div>
+                                                <div class="col-xs-8 contact-address">点位符：AQVh2pG732YvtNaxEGkQUei3YA4cvo7d2i</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <span class="text-danger" data-valmsg-for="transfer_txout" data-valmsg-replace="true"></span>
                             </div>
                             <div class="col-sm-3" style="margin-bottom:10px">

@@ -165,6 +165,8 @@ tr.active { background-color:#ddd }
 .other-assets.my-table div.title.row { font-weight:normal }
 .other-assets.my-table > ul > li { border-top:1px solid rgba(255,255,255,.2) }
 
+.dropdown-menu li div{ padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.dropdown-menu li.row { margin:10px 5px; cursor:pointer }
 @media only screen and (max-width: 480px) {
     .my-table li .row div { padding-left:5px !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }

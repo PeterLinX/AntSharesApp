@@ -50,6 +50,9 @@
             }
             this.otherAssetCount = map.size;
             map.forEach(Index.addCoinList);
+
+            $(".dropdown-menu").find("li.add").remove();;
+            this.loadContactsList();
         }
 
         private OnShowMore =()=>
@@ -143,8 +146,8 @@
                             {
                                 li.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
                                 li.find(".tx-id").text(tx.hash.toString());
-                                li.find(".tx-type").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
-                                li.find(".tx-type").attr("target", "_blank");
+                                li.find(".tx-id").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
+                                li.find(".tx-id").attr("target", "_blank");
                                 li.find(".tx-type").text(convertTxType(tx.type));
                                 li.addClass("add");
                                 ul.append(li);
@@ -163,6 +166,31 @@
             {
                 alert(e);
             });
+        }
+        private loadContactsList = () => {
+            let contacts: Contacts.Contact;
+            Contacts.Contact.instance().then(result => {
+                contacts = result;
+                return contacts.getContacts();
+            }).then(results => {
+                if (results.length > 0){
+                    let contactsArray = linq(results).orderByDescending(p => p.name).toArray();
+                    let result = Promise.resolve();
+                    for (let i = 0; i < contactsArray.length; i++) {
+                        let ul = $(".dropdown-menu");
+                        let liTemp = ul.find("li:eq(0)");
+                        let li = liTemp.clone(true);
+                        li.removeAttr("style");
+                        li.addClass("add");
+                        li.find(".contact-name").text(results[i].name);
+                        li.find(".contact-address").text(results[i].address);
+                        li.attr("onclick", "$('#transfer_txout').val('" + results[i].address +"')");
+                        ul.append(li);
+                    }
+                }
+            }).catch(e => {
+                alert(e);
+            });;
         }
 
     }
