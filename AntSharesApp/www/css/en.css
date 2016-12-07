@@ -147,4 +147,5 @@
 .lang-delete::after { content:'delete' }
 .lang-restore-info::after { content:'Warning: wallet file cannot be downloaded or restored in this browser, for your asset safety, please download Antshares APP in Appstore.' }
 .lang-backup-info::after { content:'Warning: wallet file cannot be downloaded or restored in this browser, for your asset safety, please download Antshares APP in Appstore.' }
-                            
+.lang-cancel::after { content:'cancel' }
+.lang-confirm-delete::after { content:'Are you sure you want to delete this contact?' }

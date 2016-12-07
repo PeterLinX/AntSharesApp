@@ -146,3 +146,5 @@
 .lang-delete::after { content:'删除' }
 .lang-restore-info::after { content:'注意：在该浏览器上无法备份或恢复钱包，为了保障您的资产安全，强烈建议您前往应用商店下载小蚁钱包App.' }
 .lang-backup-info::after { content:'注意：在该浏览器上无法备份或恢复钱包，为了保障您的资产安全，强烈建议您前往应用商店下载小蚁钱包App.' }
+.lang-cancel::after { content:'取消' }
+.lang-confirm-delete::after { content:'确定要删除联系人吗' }

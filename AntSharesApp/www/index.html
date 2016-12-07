@@ -382,7 +382,7 @@
                                 <div class="col-sm-3 col-xs-5 contact-name select">Peter Lin</div>
                                 <div class="col-sm-5 col-xs-7 contact-address select">AXd4TZaSVe6jECWrse5GCtoG1Lhi8YmbE6</div>
                                 <div class="col-sm-4 col-xs-12 contact-action" style="display:none">
-                                    <button class="btn btn-sm btn-danger btn-delete lang-delete" type="button"></button>
+                                    <button class="btn btn-sm btn-danger lang-delete" type="button" data-toggle="modal" data-target="#deleteModal"></button>
                                     <button class="btn btn-sm btn-info btn-send lang-send" type="button"></button>
                                 </div>
                             </li>
@@ -704,6 +704,19 @@
                     <div class="col-xs-4 text-right" style="padding-left:0">
                         <a id="download_link" class="btn btn-primary">立即下载</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body wrap lang-confirm-delete" style="word-break:break-all;">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_delte_contact" type="button" class="btn btn-danger lang-delete"></button>
+                    <button type="button" class="btn btn-default lang-cancel" data-dismiss="modal"></button>
                 </div>
             </div>
         </div>

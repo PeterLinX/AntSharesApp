@@ -4,12 +4,12 @@
     {
         protected oncreate(): void
         {
+            $("#btn_delte_contact").click(this.OnDeleteClick);
         }
 
         protected onload(): void {
-
             let ul = $("#Tab_Contacts_Index").find("ul:eq(0)");
-            ul.find("li.add").remove();
+            ul.find("li.add").remove();;
             this.loadContactsList();
         }
 
@@ -42,7 +42,6 @@
                             li.addClass("info");
                             li.find(".contact-action").show();
                         });
-                        li.find(".btn-delete").click(this.OnDeleteClick);
                         li.find(".btn-send").click(this.OnSendClick);
                         li.addClass("add");
                         li.find(".contact-name").text(results[i].name);
@@ -56,21 +55,20 @@
         }
 
         private OnDeleteClick() {
+            let modal = $('#deleteModal') as any;
+            modal.modal('hide');
             let name = $("#contact_name_selected").val();
-            if (confirm("确定要删除联系人" + name + "吗？")) {
-                let contacts: Contacts.Contact;
-                Contacts.Contact.instance().then(result => {
-                    contacts = result;
-                    return contacts.get();
-                }).then(() => {
-                    return contacts.delete(name);
-                }).then(() => {
-                    TabBase.showTab("#Tab_Contacts_Index");
-                }).catch(e => {
-                    alert(e);
-                })
-
-            }
+            let contacts: Contacts.Contact;
+            Contacts.Contact.instance().then(result => {
+                contacts = result;
+                return contacts.get();
+            }).then(() => {
+                return contacts.delete(name);
+            }).then(() => {
+                TabBase.showTab("#Tab_Contacts_Index");
+            }).catch(e => {
+                alert(e);
+            })
         }
 
         private OnSendClick() {
