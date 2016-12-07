@@ -15,6 +15,8 @@
                 this.db.open();
             } catch (e)
             { }
+            $("#platform").text(device.platform);
+            $("#version").text(device.version);
             formReset("form_dev_tool");
         }
 
