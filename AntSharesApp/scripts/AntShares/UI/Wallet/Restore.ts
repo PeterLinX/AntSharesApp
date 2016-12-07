@@ -131,31 +131,30 @@
             let db: AntShares.Implementations.Wallets.IndexedDB.WalletDataContext;
             let _transaction: AntShares.Implementations.Wallets.IndexedDB.DbTransaction;
 
-            let Wallet: JSON;
-            let Key: JSON;
-            let Contract: JSON;
-            let Coin: JSON;
-            let Account: JSON;
-            let Transaction: JSON;
+            let Wallet: Array<JSON>;
+            let Key: Array<JSON>;
+            let Contract: Array<JSON>;
+            let Coin: Array<JSON>;
+            let Account: Array<JSON>;
+            let Transaction: Array<JSON>;
 
             return Promise.resolve(1).then(() => {
                 return pJsonArray;
             }).then((array) => {
-                let count = 0;
                 for (let i = 0; i < array.length; i++)
                 {
-                    switch (array[count]["table"]) {
-                        case "Wallet": Wallet = array[count]["content"];
+                    switch (array[i]["table"]) {
+                        case "Wallet": Wallet = array[i]["content"];
                             break;
-                        case "Key": Key = array[count]["content"];
+                        case "Key": Key = array[i]["content"];
                             break;
-                        case "Contract": Contract = array[count]["content"];
+                        case "Contract": Contract = array[i]["content"];
                             break;
-                        case "Coin": Coin = array[count]["content"];
+                        case "Coin": Coin = array[i]["content"];
                             break;
-                        case "Account": Account = array[count]["content"];
+                        case "Account": Account = array[i]["content"];
                             break;
-                        case "Transaction": Transaction = array[count]["content"];
+                        case "Transaction": Transaction = array[i]["content"];
                             break;
                         default:
                             throw new Error(Resources.global.walletJsonError);
@@ -177,60 +176,50 @@
                 }).then(() =>
                 {
                     _transaction = db.transaction(["Key", "Contract", "Coin", "Account", "Transaction"], "readwrite");
-                    let count = 0;
-                    for (let key in Key)
+                    for (let i = 0; i < Key.length; i++)
                     {
                         _transaction.store("Key").put({
-                            name: Key[count]["name"],
-                            value: Key[count]["value"]
+                            name: Key[i]["name"],
+                            value: Key[i]["value"]
                         });
-                        count++;
                     }
-                    count = 0;
-                    for (let contract in Contract)
+                    for (let i = 0; i < Contract.length; i++)
                     {
                         _transaction.store("Contract").put({
-                            parameterList: Contract[count]["parameterList"],
-                            publicKeyHash: Contract[count]["publicKeyHash"],
-                            redeemScript: Contract[count]["redeemScript"],
-                            scriptHash: Contract[count]["scriptHash"]
+                            parameterList: Contract[i]["parameterList"],
+                            publicKeyHash: Contract[i]["publicKeyHash"],
+                            redeemScript: Contract[i]["redeemScript"],
+                            scriptHash: Contract[i]["scriptHash"]
                         });
-                        count++;
                     }
-                    count = 0;
-                    for (let coin in Coin)
+                    for (let i = 0; i < Coin.length; i++)
                     {
                         _transaction.store("Coin").put({
-                            assetId: Coin[count]["assetId"],
-                            index: Coin[count]["index"],
-                            scriptHash: Coin[count]["scriptHash"],
-                            state: Coin[count]["state"],
-                            txid: Coin[count]["txid"],
-                            "txid,index": Coin[count]["txid,index"],
-                            value: Coin[count]["value"]
+                            assetId: Coin[i]["assetId"],
+                            index: Coin[i]["index"],
+                            scriptHash: Coin[i]["scriptHash"],
+                            state: Coin[i]["state"],
+                            txid: Coin[i]["txid"],
+                            "txid,index": Coin[i]["txid,index"],
+                            value: Coin[i]["value"]
                         });
-                        count++;
                     }
-                    count = 0;
-                    for (let account in Account) 
+                    for (let i = 0; i < Account.length; i++)
                     {
                         _transaction.store("Account").put({
-                            privateKeyEncrypted: Account[count]["privateKeyEncrypted"],
-                            publicKeyHash: Account[count]["publicKeyHash"]
+                            privateKeyEncrypted: Account[i]["privateKeyEncrypted"],
+                            publicKeyHash: Account[i]["publicKeyHash"]
                         });
-                        count++;
                     }
-                    count = 0;
-                    for (let tx in Transaction)
+                    for (let i = 0; i < Transaction.length; i++)
                     {
                         _transaction.store("Transaction").put({
-                            hash: Transaction[count]["hash"],
-                            height: Transaction[count]["height"],
-                            rawData: Transaction[count]["rawData"],
-                            time: Transaction[count]["time"],
-                            type: Transaction[count]["type"]
+                            hash: Transaction[i]["hash"],
+                            height: Transaction[i]["height"],
+                            rawData: Transaction[i]["rawData"],
+                            time: Transaction[i]["time"],
+                            type: Transaction[i]["type"]
                         });
-                        count++;
                     }
                     return _transaction.commit();
                 });
