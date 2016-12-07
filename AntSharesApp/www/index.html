@@ -256,6 +256,9 @@
                         </button>
                         <div class="lang-backup-danger"> </div>
                     </div>
+                    <div >
+                        <button id="hasBackup" class="btn btn-danger withripple ">我已妥善备份钱包</button>
+                    </div>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
                     <div class="blue-panel">
@@ -328,7 +331,9 @@
                 <div id="Tab_Account_Receive" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-receiver-address"></h3>
                     <div class="row">
-                        <div class="col-lg-6 col-md-7 col-sm-10 select">
+                        <span id="receiver_info" class="text-danger">收款地址只有在完成钱包备份后才能显示。</span>
+                        <button id="receiver_backup" class="btn">前往备份</button>
+                        <div id="receiver_address" class="col-lg-6 col-md-7 col-sm-10 select">
                             <pre class="select">
                             <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>

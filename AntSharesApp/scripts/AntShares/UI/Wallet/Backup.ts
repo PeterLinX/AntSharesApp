@@ -9,6 +9,7 @@
         {
             $(this.target).find("#backup_web").click(this.OnWebBackupClick);
             $(this.target).find("#backup_app").click(this.OnAppBackupClick);
+            $(this.target).find("#hasBackup").click(this.OnHasBackupClick);
         }
 
         protected onload(args: any[]): void
@@ -43,8 +44,15 @@
                 //PC Web
                 $("#Tab_Wallet_Backup #div_app").hide();
             }
-        }
 
+            let backup: string = getCookie("hasBackup");
+            if (backup == "" || backup == "0") {
+                $("#Tab_Wallet_Backup #hasBackup").show();
+            } else {
+                $("#Tab_Wallet_Backup #hasBackup").hide();
+            }
+        }
+        
         private OnWebBackupClick = () => {
             try {
                 this.loadFile().then((array) => {
@@ -56,7 +64,7 @@
                             navigator.msSaveBlob(blob, "antshares_backup");
                         }
                         catch (e) {
-                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack)
+                            alert("msSaveBlob failed: " + e.message + "\r\n" + e.stack);
                         }
                     }
                     else {
@@ -67,7 +75,7 @@
                             a[0].click();
                         }
                         catch (e) {
-                            alert("download failed: " + e.message + "\r\n" + e.stack)
+                            alert("download failed: " + e.message + "\r\n" + e.stack);
                         }
                     }
 
@@ -96,6 +104,14 @@
             }
             catch (e) {
                 console.log(e);
+            }
+        }
+
+        private OnHasBackupClick = () => {
+            let backup: string = getCookie("hasBackup");
+            if (backup == "" || backup == "0") {
+                setCookie("hasBackup", "1", 365);
+                $("#Tab_Wallet_Backup #hasBackup").hide();
             }
         }
 
