@@ -49,10 +49,7 @@
                 }
             }
             this.otherAssetCount = map.size;
-            map.forEach(Index.addCoinList);
-
-            $(".dropdown-menu").find("li.add").remove();;
-            this.loadContactsList();
+            map.forEach(Index.addCoinList);            
         }
 
         private OnShowMore =()=>
@@ -167,31 +164,5 @@
                 alert(e);
             });
         }
-        private loadContactsList = () => {
-            let contacts: Contacts.Contact;
-            Contacts.Contact.instance().then(result => {
-                contacts = result;
-                return contacts.getContacts();
-            }).then(results => {
-                if (results.length > 0){
-                    let contactsArray = linq(results).orderByDescending(p => p.name).toArray();
-                    let result = Promise.resolve();
-                    for (let i = 0; i < contactsArray.length; i++) {
-                        let ul = $(".dropdown-menu");
-                        let liTemp = ul.find("li:eq(0)");
-                        let li = liTemp.clone(true);
-                        li.removeAttr("style");
-                        li.addClass("add");
-                        li.find(".contact-name").text(results[i].name);
-                        li.find(".contact-address").text(results[i].address);
-                        li.attr("onclick", "$('#transfer_txout').val('" + results[i].address +"')");
-                        ul.append(li);
-                    }
-                }
-            }).catch(e => {
-                alert(e);
-            });;
-        }
-
     }
 }
