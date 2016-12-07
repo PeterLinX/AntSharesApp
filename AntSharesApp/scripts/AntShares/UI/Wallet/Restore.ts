@@ -116,7 +116,6 @@
                 Restore.Restore(JSON.parse(this.result)).then(() => {
                     formReset("form_restore");
                     $("footer").show();
-                    $(".menu-progress").show();
                     $("#menu_wallet_start").hide();
                     TabBase.showTab("#Tab_Wallet_Open");
                 }, reason => {
