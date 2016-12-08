@@ -119,7 +119,6 @@
                     let backup: string = getCookie("hasBackup");
                     if (backup == "" || backup == "0") {
                         setCookie("hasBackup", "1", 365);
-                        $("#hasbackup_div").hide();
                     }
                     TabBase.showTab("#Tab_Wallet_Open");
                 }, reason => {
