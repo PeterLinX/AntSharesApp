@@ -117,6 +117,9 @@
         static transferTxoutRegex = "地址格式不正确";
         static privateIsWrong = "私钥格式不正确";
         static pleaseChooseAsset = "请选择资产";
+        static createWallet = "创建钱包";
+        static pleaseWait = "请稍候...";
+        static importPrikey = "导入私钥";
         static transferValueRegex = "金额输入错误";
         static browserIndexedb = "该浏览器不支持IndexedDB，无法使用小蚁钱包APP.";
         static browserError = "无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请下载小蚁钱包APP.";
@@ -229,6 +232,9 @@
         static transferTxoutRegex = "Incorrect address format";
         static privateIsWrong = "Incorrect private key format";
         static pleaseChooseAsset = "Please choose asset.";
+        static createWallet = "Create Wallet";
+        static pleaseWait = "Please Wait...";
+        static importPrikey = "Import private key";
         static transferValueRegex = "Incorrect value";
         static browserIndexedb = "IndexedDB is not supported in this browser, please dowanload Antshares App in Appstore.";
         static browserError = "This wallet cannot be used in embedded browser, please dowanload Antshares App in Appstore.";

@@ -12,6 +12,7 @@
         protected onload(): void
         {
             setTitle(0);
+            $("#create_wallet").text(Resources.global.createWallet);
             $("#wallet_name").val("wallet");
         }
 
@@ -19,35 +20,46 @@
         {
             if (formIsValid("form_create_wallet"))
             {
-                let name = "wallet";
-                if ($(".remote_height:eq(0)").text() == "0")
+                if ($("#create_wallet").text() == Resources.global.pleaseWait)
                 {
-                    alert(Resources.global.RPCError);
+                    console.log("重复点击");
                     return;
                 }
-                let master: Wallets.Master;
-                Wallets.Master.instance().then(result =>
-                {
-                    master = result;
-                    return master.get();
-                }).then(result =>
-                {
-                    if (result.indexOf(name) >= 0)
-                        throw new Error(Resources.global.sameWalletName);
-                    return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val());
-                }).then(wallet =>
-                {
-                    Global.Wallet = wallet;
-                    return master.add(name);
-                }).then(results =>
-                {
-                    formReset("form_create_wallet");
-                    $("footer").show();
-                    $(".menu-progress").show();
-                    $("#menu_wallet_start").hide();
-                    TabBase.showTab("#Tab_Wallet_Backup", true);
-                }, reason => alert(reason));
+                $("#create_wallet").text(Resources.global.pleaseWait);
+                setTimeout(() => { this.CreateRun() }, 100);
             }
+        }
+
+        private CreateRun()
+        {
+            let name = "wallet";
+            if ($(".remote_height:eq(0)").text() == "0") {
+                alert(Resources.global.RPCError);
+                $("#create_wallet").text(Resources.global.createWallet);
+                return;
+            }
+            let master: Wallets.Master;
+            Wallets.Master.instance().then(result => {
+                master = result;
+                return master.get();
+            }).then(result => {
+                if (result.indexOf(name) >= 0)
+                    throw new Error(Resources.global.sameWalletName);
+                return Implementations.Wallets.IndexedDB.IndexedDBWallet.create(name, $("#create_password").val());
+            }).then(wallet => {
+                Global.Wallet = wallet;
+                return master.add(name);
+            }).then(results => {
+                $("#create_wallet").text(Resources.global.createWallet);
+                formReset("form_create_wallet");
+                $("footer").show();
+                $(".menu-progress").show();
+                $("#menu_wallet_start").hide();
+                TabBase.showTab("#Tab_Wallet_Backup", true);
+            }, reason => {
+                alert(reason);
+                $("#create_wallet").text(Resources.global.createWallet);
+            });
         }
     }
 }

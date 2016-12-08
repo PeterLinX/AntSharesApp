@@ -7,6 +7,7 @@
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
             $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
             $(this.target).find("#refresh_nood").click(Global.chooseNode);
+            $(this.target).find("#no_backup").click(this.OnNoBackupButtonClick);
         }
 
         protected onload(args: any[]): void {
@@ -49,6 +50,13 @@
             }).catch(reason => {
                 alert(reason);
             });
+        }
+
+        private OnNoBackupButtonClick()
+        {
+            let backup: string = getCookie("hasBackup");
+            setCookie("hasBackup", "0", 365);
+            TabBase.showTab("#Tab_Account_Receive");
         }
 
         private OnSetHeightButtonClick = () => {

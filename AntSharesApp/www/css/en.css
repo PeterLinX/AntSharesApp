@@ -25,7 +25,7 @@
 .lang-public-key::before { content:'public key' }
 .lang-show-hide-private-key::before { content:'show/hide private key' }
 .lang-back-to-account-list::before { content:'back to account list' }
-.lang-import-account::before { content:'import account' }
+.lang-import-private-key::before { content:'import private key' }
 .lang-input-private-key::before { content:'input private key' }
 .lang-contract-list::before { content:'Contract list' }
 .lang-create-muntisig::before { content:'create multiple signature account' }

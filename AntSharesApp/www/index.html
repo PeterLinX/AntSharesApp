@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="create_wallet" type="submit" onclick="event.preventDefault()" class="btn btn-success lang-create-wallet"></button> <!--如果不加preventDefault会跳转空白页面-->
+                                <button id="create_wallet" type="submit" onclick="event.preventDefault()" class="btn btn-success"></button> <!--如果不加preventDefault会跳转空白页面-->
                             </div>
                         </div>
                     </form>
@@ -136,7 +136,7 @@
                 </div>
                 <div id="Tab_Wallet_Import" class="form-horizontal tab-pane">
                     <form id="form_account_import" autocomplete="off">
-                        <h3 class="page-header lang-import-account"></h3>
+                        <h3 class="page-header lang-import-private-key"></h3>
                         <div class="form-group">
                             <label class="col-sm-4 control-label lang-input-private-key"></label>
                             <div class="col-sm-6">
@@ -160,7 +160,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
-                                <button id="import_prikey" type="submit" onclick="event.preventDefault()" class="btn btn-success lang-import-account"></button>
+                                <button id="import_prikey" type="submit" onclick="event.preventDefault()" class="btn btn-success"></button>
                             </div>
                         </div>
                     </form>
@@ -454,6 +454,11 @@
                     <div id="delete_all_wallet">
                         <h5 class="text-danger">删除所有钱包，请谨慎操作</h5>
                         <button id="delete_wallet" type="button" class="btn btn-danger">删除所有钱包</button>
+                        <br /><br />
+                    </div>
+                    <div>
+                        <h5>设置钱包为未备份状态</h5>
+                        <button id="no_backup" type="button" class="btn btn-success">设置</button>
                         <br /><br />
                     </div>
                     <div>
