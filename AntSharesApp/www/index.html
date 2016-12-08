@@ -250,19 +250,16 @@
                     <div id="div_backup_info" style="display:none">
                         <p class="lang-backup-info"></p>
                     </div>
-                    <div id="danger" class="alert alert-warning bottom" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="lang-backup-danger"> </div>
-                    </div>
                     <div class="bs-callout bs-callout-danger">
                         <h4 class="lang-tips"></h4>
                         <p id="callout_web" class="lang-callout-web"></p>
                         <p id="callout_app" class="lang-callout-app"></p>
                     </div>
-                    <div >
-                        <button id="hasBackup" style="display:none" class="btn btn-danger withripple lang-already-backup"></button>
+                    <div id="hasbackup_div" style="display:none" class="bs-callout bs-callout-info">
+                        <h4 class="lang-haveyoubackup"></h4>
+                        <p class="lang-hasbackup-p"></p>
+                        <button id="hasBackup" class="btn btn-info withripple lang-already-backup"></button>
+                        <button onclick="$('#hasbackup_div').hide()" class="btn btn-default withripple lang-no-backup"></button>
                     </div>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
@@ -441,7 +438,7 @@
                 <div id="Tab_Advanced_DeveloperTool" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h3>
                     <div>
-                        <h5>节点信息</h5>
+                        <h4>节点信息</h4>
                         <div>中国上海：延迟<span id="seed2"></span>ms</div>
                         <div>英国伦敦：延迟<span id="seed8"></span>ms</div>
                         <div>当前连接节点：<span id="seed"></span></div>
@@ -449,10 +446,10 @@
                         <br /><br />
                     </div>
                     <div>
-                        <h5>设备信息</h5>
-                        <div>platform：<span id="platform"></span></div>
-                        <div>version：<span id="version"></span></div>
-                        <br /><br />
+                        <h4>设备信息</h4>
+                        <div>platform：<span id="platform">null</span></div>
+                        <div>version：<span id="version">null</span></div>
+                        <br />
                     </div>
                     <div id="delete_all_wallet">
                         <h5 class="text-danger">删除所有钱包，请谨慎操作</h5>

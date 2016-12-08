@@ -19,8 +19,6 @@
                 return;
             }
             setTitle(0);
-            if (args[0])
-                $("#danger").show();
             let back = $("#Tab_Wallet_Backup #back_div");
             if (Global.Wallet == null)
             {
@@ -46,7 +44,7 @@
                 $("#Tab_Wallet_Backup #div_app").hide();
                 $("#callout_app").hide();
             }
-            $("#Tab_Wallet_Backup #hasBackup").hide();
+            $("#hasbackup_div").hide();
         }
         
         private OnWebBackupClick = () => {
@@ -109,7 +107,7 @@
         {
             let backup: string = getCookie("hasBackup");
             if (backup == "" || backup == "0") {
-                $("#Tab_Wallet_Backup #hasBackup").show();
+                $("#hasbackup_div").show();
             }
         }
 
@@ -117,7 +115,7 @@
             let backup: string = getCookie("hasBackup");
             if (backup == "" || backup == "0") {
                 setCookie("hasBackup", "1", 365);
-                $("#Tab_Wallet_Backup #hasBackup").hide();
+                $("#hasbackup_div").hide();
                 alert(Resources.global.showReceiveAddress);
             }
         }

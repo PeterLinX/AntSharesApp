@@ -153,7 +153,9 @@
 .lang-callout-web::after { content:'The browser will generate a wallet backup file after you click [backup your current wallet]. When you empty the browser database or you changed the browser or rebuilt the OS, you can use this very backup file to recover your current wallet. So please store this file safe and remember the password to it. Loss of wallet file or forgetting the wallet password may cause the loss of assets.' }
 .lang-callout-app::after { content:'After clicking [backup your current wallet file], a systemic share menu will show up, you can share the wallet file to yourself via email, qq or Internet drives. When you reinstall the Antshares Wallet App or you changed your device, you can use the backup file to recover the current wallet. We strongly recommend you safely store the shared wallet file in case of deleted emails or expired Internet drive.' }
 .lang-already-backup::after { content:'I have backed up wallet' }
+.lang-no-backup::after { content:'Not yet' }
 .lang-receive-backup::after { content:'To protect your assets, recipient address will show up only after you backed up the wallet file. Click the [Foward to Backup] below to the backup page. After backup, store the wallet file appropriately.' }
 .lang-receive-gotobackup::after { content:'Foward to Backup' }
 .lang-tips::after { content:'Tips' }
-
+.lang-haveyoubackup::after { content:'Have you backed up?' }
+.lang-hasbackup-p::after { content:'After backing up wallet, please click the button below, you can see receive address.' }

@@ -151,7 +151,10 @@
 .lang-confirm-delete::after { content:'确定要删除联系人吗' }
 .lang-callout-web::after { content:'点击“备份当前钱包”按钮后，浏览器会生成一个钱包备份文件，当您清空浏览器数据库、或者更换浏览器、重装系统后，可以使用钱包备份文件恢复当前钱包。请将该文件保存到安全的地方，并牢记钱包密码，钱包文件丢失或钱包密码遗忘可能会导致您的资产丢失。' }
 .lang-callout-app::after { content:'点击“备份当前钱包”按钮后，会调用系统的分享，请将钱包通过邮件、QQ、微信、网盘等方式分享给自己。在您重装小蚁钱包APP或者刷机、更换手机后，可以使用钱包备份文件恢复当前钱包。强烈建议您在备份后用电脑将分享的钱包文件安全存储，避免因删除邮件、QQ文件到期等原因丢失钱包备份。' }
-.lang-already-backup::after { content:'我已妥善备份钱包' }
+.lang-already-backup::after { content:'备份好了' }
+.lang-no-backup::after { content:'还没呢' }
 .lang-receive-backup::after { content:'为了保障您的资金安全，只有在备份钱包后才能显示收款地址，请点击下面的 [前往备份] 按钮前往备份页面备份钱包，备份后，请将钱包文件妥善保管。' }
 .lang-receive-gotobackup::after { content:'前往备份' }
 .lang-tips::after { content:'贴心提示' }
+.lang-haveyoubackup::after { content:'备份好了吗？' }
+.lang-hasbackup-p::after { content:'备份好钱包后请点击下面的按钮，才可以显示收款地址。' }
