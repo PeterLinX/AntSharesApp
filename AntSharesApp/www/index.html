@@ -14,6 +14,7 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
     <link href="lib/bootstrap-material-design/css/ripples.css" rel="stylesheet">
+    <link href="lib/docs/docs.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/jquery-collapse/jquery.collapse.js"></script>
@@ -243,7 +244,6 @@
                         <button id="backup_web" class="btn btn-success withripple lang-backup-current-wallet"></button>
                         <a id="blob" href="" style="display:none">blob</a>
                     </div>
-                    <br />
                     <div id="div_app">
                         <button type="button" id="backup_app" class="btn btn-info withripple lang-backup-current-wallet"></button>
                     </div>
@@ -256,8 +256,13 @@
                         </button>
                         <div class="lang-backup-danger"> </div>
                     </div>
+                    <div class="bs-callout bs-callout-danger">
+                        <h4 class="lang-tips"></h4>
+                        <p id="callout_web" class="lang-callout-web"></p>
+                        <p id="callout_app" class="lang-callout-app"></p>
+                    </div>
                     <div >
-                        <button id="hasBackup" class="btn btn-danger withripple ">我已妥善备份钱包</button>
+                        <button id="hasBackup" style="display:none" class="btn btn-danger withripple lang-already-backup"></button>
                     </div>
                 </div>
                 <div id="Tab_Account_Index" class="tab-pane">
@@ -331,8 +336,13 @@
                 <div id="Tab_Account_Receive" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-receiver-address"></h3>
                     <div class="row">
-                        <span id="receiver_info" class="text-danger">收款地址只有在完成钱包备份后才能显示。</span>
-                        <button id="receiver_backup" class="btn">前往备份</button>
+                        <div id="receiver_info" class="col-lg-8 col-md-9 col-sm-10 select">
+                            <div class="bs-callout bs-callout-info">
+                                <h4 class="lang-tips"></h4>
+                                <p class="lang-receive-backup"></p>
+                            </div>
+                            <button class="btn btn-success tab-trigger lang-receive-gotobackup" href="#Tab_Wallet_Backup"></button>
+                        </div>
                         <div id="receiver_address" class="col-lg-6 col-md-7 col-sm-10 select">
                             <pre class="select">
                             <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>

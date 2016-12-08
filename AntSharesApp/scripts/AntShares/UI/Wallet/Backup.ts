@@ -35,6 +35,7 @@
             if (isMobileApp.App()) {
                 //App
                 $("#Tab_Wallet_Backup #div_web").hide();
+                $("#callout_web").hide();
             } else {
                 //Mobile Web
                 if (isMobileWeb.iOS()) {
@@ -43,14 +44,9 @@
                 }
                 //PC Web
                 $("#Tab_Wallet_Backup #div_app").hide();
+                $("#callout_app").hide();
             }
-
-            let backup: string = getCookie("hasBackup");
-            if (backup == "" || backup == "0") {
-                $("#Tab_Wallet_Backup #hasBackup").show();
-            } else {
-                $("#Tab_Wallet_Backup #hasBackup").hide();
-            }
+            $("#Tab_Wallet_Backup #hasBackup").hide();
         }
         
         private OnWebBackupClick = () => {
@@ -78,7 +74,7 @@
                             alert("download failed: " + e.message + "\r\n" + e.stack);
                         }
                     }
-
+                    this.showHasBackup();
                 }).catch(e => {
                     console.log(e)
                 });
@@ -98,12 +94,22 @@
                     let blob = new Blob(db, { "type": "text/json" });
                     let url = URL.createObjectURL(blob);
                     (<any>window).plugins.socialsharing.share('wallet file', 'Your wallet', dataUrl)
+                    this.showHasBackup();
                 }).catch(e => {
                     console.log(e)
                 });
+
             }
             catch (e) {
                 console.log(e);
+            }
+        }
+
+        private showHasBackup()
+        {
+            let backup: string = getCookie("hasBackup");
+            if (backup == "" || backup == "0") {
+                $("#Tab_Wallet_Backup #hasBackup").show();
             }
         }
 
@@ -112,6 +118,7 @@
             if (backup == "" || backup == "0") {
                 setCookie("hasBackup", "1", 365);
                 $("#Tab_Wallet_Backup #hasBackup").hide();
+                alert(Resources.global.showReceiveAddress);
             }
         }
 

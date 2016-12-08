@@ -115,8 +115,12 @@
             reader.onload = function () {
                 Restore.Restore(JSON.parse(this.result)).then(() => {
                     formReset("form_restore");
-                    $("footer").show();
                     $("#menu_wallet_start").hide();
+                    let backup: string = getCookie("hasBackup");
+                    if (backup == "" || backup == "0") {
+                        setCookie("hasBackup", "1", 365);
+                        $("#Tab_Wallet_Backup #hasBackup").hide();
+                    }
                     TabBase.showTab("#Tab_Wallet_Open");
                 }, reason => {
                     formReset("form_restore");
