@@ -148,8 +148,8 @@ footer a, footer a:hover, footer a:focus, footer a:active { color:#fff }
 .progress { background-color:#ddd }
 tr.active { background-color:#ddd }
 
-.my-table { line-height:2.8; }
-.my-table .row { margin:0 }
+.my-table { line-height:1.5; }
+.my-table .row { margin:0; padding-top:10px; padding-bottom:10px }
 .my-table div.title.row { font-weight:bold; line-height:1.5 }
 .my-table.striped > ul > li:nth-of-type(2n+1) { background-color:#f9f9f9 }
 .my-table.click > ul > li   { cursor:pointer }
@@ -170,6 +170,6 @@ tr.active { background-color:#ddd }
 
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger { padding:15px }
 @media only screen and (max-width: 480px) {
-    .my-table li .row div { padding-left:5px !important; padding-right:5px !important }
+    .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }
 }
