@@ -107,7 +107,7 @@
         {
             let backup: string = getCookie("hasBackup");
             if (backup == "" || backup == "0") {
-                $("#hasbackup_div").show();
+                setTimeout(() => { $("#hasbackup_div").show('fast'); }, 1000);
             }
         }
 
