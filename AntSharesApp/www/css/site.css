@@ -91,6 +91,7 @@ footer div { width:80%; margin:auto }
     .blue-panel { margin:0 -35px }
     .all-asset-btn { right:35px  }
     .other-assets { padding:0 35px }
+    select:focus, textarea:focus, input:focus { font-size: 16px !important; }
 }
 @media only screen and (max-height: 560px) {
     .alert-info { display:none }
