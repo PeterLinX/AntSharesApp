@@ -21,6 +21,9 @@
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "AntShares"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "AntShares"
         }
     },
     "dependent_plugins": {

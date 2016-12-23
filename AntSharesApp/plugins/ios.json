@@ -7,19 +7,22 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "org.antshares.app"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "org.antshares.app"
-        },
-        "cordova-plugin-itunesfilesharing": {
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "org.antshares.app"
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "org.antshares.app"
         },
-        "cordova-plugin-device": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-itunesfilesharing": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "org.antshares.app"
         }
     },

@@ -15,13 +15,25 @@ module AntSharesApp {
             document.addEventListener('pause', onPause, false);
             document.addEventListener('resume', onResume, false);
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
-
         }
 
         function onPause() {
         }
 
         function onResume() {
+            let gesturePwd: string = getCookie("gesturePwd");
+            if (gesturePwd == "") {
+                if (AntShares.Global.Wallet != null) {
+                    AntShares.Global.Wallet.close().then(() => {
+                        AntShares.Global.Wallet = null;
+                        AntShares.UI.TabBase.showTab("#Tab_Account_Index");
+                        alert("提示：可以设置手势密码登录");
+                    });
+                }
+            } else {
+                AntShares.UI.TabBase.showTab("#Tab_Wallet_Validate");
+            }
+            
         }
 
     }

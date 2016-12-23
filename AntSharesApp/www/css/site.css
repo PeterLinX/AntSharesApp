@@ -174,3 +174,22 @@ tr.active { background-color:#ddd }
     .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }
 }
+
+.gesture-password {
+    height:600px;
+}
+#gesturepwdSet {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin:-120px 0 0 -120px;
+    text-align: center;
+}
+
+#gesturepwdValidate {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin:-120px 0 0 -120px;
+    text-align: center;
+}

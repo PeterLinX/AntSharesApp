@@ -25,7 +25,7 @@
     <div id="page">
         <div class="content">
             <header>
-                <a href="#menu" class="iconfont">&#xe60c;</a>
+                <a id="icon_menu" href="#menu" class="iconfont">&#xe60c;</a>
                 <span class="header-title">
                     <img src="img/logo-line.png" /><span class="header-antsharesapp lang-title"></span>
                 </span>
@@ -578,6 +578,16 @@
                         <p><small>The Antshares Team reserves the right of final interpretation of the aforementioned clauses, which are under the protection of <a href="https://github.com/AntShares/AntShares/blob/master/LICENSE">MIT open source protocol</a>.</small></p>
                     </div>
                 </div>
+                <div id="Tab_Wallet_Validate"  class="form-horizontal tab-pane">
+                    <div class="gesture-password">
+                        <div id="gesturepwdValidate"></div>
+                    </div>
+                </div>
+                <div id="Tab_Wallet_GesturePassword" class="form-horizontal tab-pane">
+                    <div class="gesture-password">
+                        <div id="gesturepwdSet"></div>
+                    </div>
+                </div>
             </div>
             <footer>
                 <div>
@@ -617,11 +627,15 @@
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
                     </li>
-                    <li class="withripple">
-                        <a class="fist-menu tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"><i class="iconfont">&#xe6a9;</i></a>
-                    </li>
                     <li class="sshort-hidden withripple">
                         <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
+                    </li>
+                    <li class="withripple">
+                        <span><i class="iconfont">&#xe601;</i>系统设置</span>
+                        <ul>
+                            <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
+                            <li><a class="tab-trigger" href="#Tab_Wallet_GesturePassword">手势密码</a></li>
+                        </ul>
                     </li>
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-privacy" href="#Tab_Help_Privacy_Policy"><i class="iconfont">&#xe7a3;</i></a>
@@ -660,6 +674,7 @@
     <script src="scripts/appBundle.js"></script>
     <script src="scripts/set_language.js"></script>
     <script src="scripts/SocialSharing.js"></script>
+    <script src="scripts/jquery.gesture.password.js"></script>
     <script>
         $("input[type='text']").addClass("form-control");
         $("input[type='password']").addClass("form-control");
@@ -683,7 +698,7 @@
             navbar: {
                 title: AntShares.UI.Resources.global.menu
             },
-            dragOpen: { open: true },
+            dragOpen: { open: false },
             dragClose: { close: true },
             navbars: [{
                 position: 'top',
