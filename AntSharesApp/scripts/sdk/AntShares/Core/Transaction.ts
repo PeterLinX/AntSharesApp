@@ -36,9 +36,7 @@ namespace AntShares.Core
                 let ms = new IO.MemoryStream(value, offset, value.byteLength - offset, false);
                 let reader = new IO.BinaryReader(ms);
                 return Transaction.deserializeFrom(reader);
-            }
-            else
-            {
+            }else{
                 let reader = <IO.BinaryReader>arguments[0];
                 let type = <TransactionType>reader.readByte();
                 let typeName = "AntShares.Core." + TransactionType[type];

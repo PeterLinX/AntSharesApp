@@ -343,6 +343,9 @@
                             <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
                         </div>
+                        <div id="qrcode"></div>
+                        <button id="btnQRcode" class="btn btn-primary" style="display:none" onclick="showQRcode()"></button><br><br>
+                        <button id="camera" class="btn btn-primary" onclick="event.preventDefault();">Camera</button><br><br>
                     </div>
                 </div>
 
@@ -675,6 +678,8 @@
     <script src="scripts/set_language.js"></script>
     <script src="scripts/SocialSharing.js"></script>
     <script src="scripts/jquery.gesture.password.js"></script>
+    <script src="scripts/qrcode.js"></script>
+
     <script>
         $("input[type='text']").addClass("form-control");
         $("input[type='password']").addClass("form-control");
@@ -734,6 +739,19 @@
             else
                 $("#delete_all_wallet").hide();
         }
+
+        function showQRcode() {
+            var address = $("#receiver").text();
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: address,
+                width: 128,
+                height: 128,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
         $.material.init()
     </script>
     <div class="modal fade" id="downloadAPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

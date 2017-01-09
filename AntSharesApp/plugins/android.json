@@ -24,6 +24,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "org.antshares.app"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "org.antshares.app"
         }
     },
     "dependent_plugins": {

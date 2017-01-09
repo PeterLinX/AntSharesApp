@@ -24,6 +24,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "AntShares"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "AntShares"
         }
     },
     "dependent_plugins": {
