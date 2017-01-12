@@ -27,7 +27,9 @@
             }
             Global.Wallet.getContracts()[0].getAddress().then(result => {
                 $("#receiver").text(result);
-                $("#btnQRcode").click();
+
+                let img = $("#qrcode").find("img");
+                if (img.length == 0) $("#btnQRcode").click();
             });
         }
 
