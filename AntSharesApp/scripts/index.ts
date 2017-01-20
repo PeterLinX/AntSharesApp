@@ -17,6 +17,15 @@ module AntSharesApp {
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
         
             (<any>cordova).plugins.backgroundMode.enable();
+            // Called when background mode has been activated
+            // (<any>cordova).plugins.backgroundMode.onactivate = function () {
+            //     setTimeout(function () {
+            //         // Modify the currently displayed notification
+            //         (<any>cordova).plugins.backgroundMode.configure({
+            //             text:'Running in background for more than 5s now.'
+            //         });
+            //     }, 5000);
+            // }
         }
 
         function onPause() {
