@@ -27,6 +27,9 @@
         },
         "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "org.antshares.app"
         }
     },
     "dependent_plugins": {

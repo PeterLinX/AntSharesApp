@@ -20,9 +20,11 @@
             let backup: string = getCookie("hasBackup");
             if (backup == "" || backup == "0") {
                 $("#receiver_address").hide();
+                $("#qrcode").hide();
                 $("#receiver_info").show();
             } else {
                 $("#receiver_address").show();
+                $("#qrcode").show();
                 $("#receiver_info").hide();
             }
             Global.Wallet.getContracts()[0].getAddress().then(result => {

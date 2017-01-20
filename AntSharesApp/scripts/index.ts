@@ -15,9 +15,12 @@ module AntSharesApp {
             document.addEventListener('pause', onPause, false);
             document.addEventListener('resume', onResume, false);
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
+        
+            (<any>cordova).plugins.backgroundMode.enable();
         }
 
         function onPause() {
+
         }
 
         function onResume() {
