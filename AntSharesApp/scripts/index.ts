@@ -20,25 +20,24 @@ module AntSharesApp {
         }
 
         function onPause() {
-			wait();
+			console.log("onPause()");
+			//wait();
         }
 
         function onResume() {
+			console.log("onResume()");
             let gesturePwd: string = getCookie("gesturePwd");
             if (gesturePwd == "") {
                 if (AntShares.Global.Wallet != null) {
-                    AntShares.Global.Wallet.close().then(() => {				
-                        AntShares.Global.Wallet = null;
-                        AntShares.UI.TabBase.showTab("#Tab_Account_Index");
-						wait_cancel();
-                        alert("提示：可以设置手势密码登录");
-                    });
+                    AntShares.Global.Wallet = null;
+					AntShares.UI.TabBase.showTab("#Tab_Wallet_Open", true);
+					//wait_cancel();
                 }
-				else{
-					wait_cancel();
+				else {
+					//wait_cancel();
 				}
             } else {
-				wait_cancel();
+				//wait_cancel();
                 AntShares.UI.TabBase.showTab("#Tab_Wallet_Validate");
             }
             

@@ -7,9 +7,13 @@
             $(this.target).find("button").click(this.OnOpenButtonClick);
         }
 
-        protected onload(): void
+        protected onload(args: any[]): void
         {
             setTitle(0);
+			if (args[0])
+			{
+				$("#gesture_pwd_tips").show();
+			}
             AntShares.Wallets.Master.instance().then(result =>
             {
                 return result.get();

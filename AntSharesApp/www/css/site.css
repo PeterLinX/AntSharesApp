@@ -192,6 +192,7 @@ tr.active { background-color:#ddd }
 .dropdown-menu li.row { margin:10px 5px; cursor:pointer }
 
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger { padding:15px }
+#gesture_pwd_tips { display:none }
 @media only screen and (max-width: 480px) {
     .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }
