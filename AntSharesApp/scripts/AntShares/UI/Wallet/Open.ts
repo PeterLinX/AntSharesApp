@@ -50,7 +50,7 @@
             }
             else
             {
-                $("#open_password").focus();
+                //$("#open_password").focus();
                 $("#menu_wallet_start").hide();
                 $("footer").show();
 

@@ -261,8 +261,8 @@ function wait()
 	$("#page").addClass("blur");
 }
 
-function wait_calcel() {
-	$("new-hello").remove();
+function wait_cancel() {
+	$(".new-hello").remove();
 	$("body nav").removeClass("blur");
 	$("#page").removeClass("blur");
 }

@@ -157,7 +157,7 @@
                 execute();
             }, onreject =>
             {
-                console.log(Resources.global.noTxs);
+                //console.log(Resources.global.noTxs);
             }).catch(e =>
             {
                 alert(e);

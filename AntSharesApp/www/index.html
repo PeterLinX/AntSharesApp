@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="description" content="小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
@@ -31,6 +31,7 @@
                     <span></span>
                     <span></span>
                     <span></span>
+                    <div style="margin-top:50px">正在恢复……</div>
                 </div>
             </div>
             <header>
@@ -177,6 +178,38 @@
                 </div>
 
                 <div id="Tab_Wallet_Open" class="form-horizontal tab-pane active">
+                    <form id="form_open_wallet" autocomplete="off">
+                        <h3 class="page-header lang-open-wallet"></h3>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-select-wallet-file"></label>
+                            <div class="col-sm-6">
+                                <span class="text-danger"></span>
+                                <ul class="list_wallet_ul" id="list_wallet_name">
+                                    <li style="display:none">
+                                        <label>
+                                            <input type="radio" name="wallet" />
+                                            <span>占位符：钱包名称</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label lang-input-wallet-password"></label>
+                            <div class="col-sm-6">
+                                <input id="open_password" name="open_password" data-val="true" type="password" />
+                                <span class="text-danger" data-valmsg-for="open_password" data-valmsg-replace="true"></span>
+                                <span id="open_error" class="text-danger lang-wallet-password-error" style="display:none"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-md-push-4 col-sm-push-4">
+                                <button type="submit" onclick="event.preventDefault()" class="btn btn-success lang-open-wallet"></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="Tab_Wallet_Resume" class="form-horizontal tab-pane active">
                     <form id="form_open_wallet" autocomplete="off">
                         <h3 class="page-header lang-open-wallet"></h3>
                         <div class="form-group">
@@ -762,7 +795,6 @@
         }
 
         $.material.init();
-        
     </script>
     <div class="modal fade" id="downloadAPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
