@@ -1,6 +1,5 @@
 {
-    "name": "AntSharesApp",
-    "version": "1.0.0",
-    "dependencies": {
-    }
+  "name": "AntSharesApp",
+  "version": "1.0.0",
+  "dependencies": {}
 }

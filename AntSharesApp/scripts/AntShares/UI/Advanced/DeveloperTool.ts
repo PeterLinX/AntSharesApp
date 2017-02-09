@@ -42,6 +42,7 @@
                 return Promise.all(promises);
             }).then(() => {
                 master.close();
+                setCookie("gesturePwd", "", 365);
                 return Implementations.Wallets.IndexedDB.DbContext.delete("master");
             }).then(() => {
                 console.log("删除中，进度：100%");

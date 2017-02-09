@@ -140,10 +140,19 @@
                                 return tx.ensureHash();
                             }).then(() =>
                             {
+                                console.log(tx);
                                 li.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
                                 li.find(".tx-id").text(tx.hash.toString());
-                                li.find(".tx-id").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
-                                li.find(".tx-id").attr("target", "_blank");
+                                // li.find(".tx-id").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());
+                                li.find(".tx-id").bind("click", function(){
+  
+                                    let target = "_blank";
+                                    let options = "location=yes";
+                                    let inAppBrowserRef = (<any>cordova).InAppBrowser.open("http://antcha.in/tx/hash/" + tx.hash.toString(), target, options);
+                                });
+
+                                // let ref = (<any>cordova).InAppBrowser.open('http://antcha.in/tx/hash/' + tx.hash.toString(), '_blank', 'location=yes');
+                                //li.find(".tx-id").attr("target", "_blank");
                                 li.find(".tx-type").text(convertTxType(tx.type));
                                 li.addClass("add");
                                 ul.append(li);

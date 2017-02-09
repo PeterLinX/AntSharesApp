@@ -7,6 +7,15 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
         "cordova-plugin-itunesfilesharing": {
             "PACKAGE_NAME": "org.antshares.app"
         },
@@ -16,10 +25,10 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "org.antshares.app"
         },
-        "cordova-plugin-file": {
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "org.antshares.app"
         },
-        "cordova-plugin-device": {
+        "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "org.antshares.app"
         }
     },

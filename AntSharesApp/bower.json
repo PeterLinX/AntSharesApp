@@ -5,6 +5,7 @@
     "jquery-validation-unobtrusive": "~3.2.5",
     "jQuery.mmenu": "5.5.3",
     "bootstrap": "~3.3.5",
-    "bootstrap-fileinput": "~4.3.0"
+    "bootstrap-fileinput": "~4.3.0",
+    "qrcode.js": "qrcode-js#*"
   }
 }
