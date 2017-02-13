@@ -98,12 +98,12 @@ nav:not(.mm-menu) { display: none; }
 footer div { width:80%; margin:auto }
 #myModal { top:30%; }
 /*.modal-content { border-radius:0 }*/
-.blue-panel { position:relative; margin:0 -50px; height:240px; background: -webkit-linear-gradient(0deg, #73c3a0, #0a6ea9); background: linear-gradient(0deg, #73c3a0, #0a6ea9); color:white; transition: margin .4s, height .4s }
+.blue-panel { position:relative; margin:0 -50px; min-height:240px; background: -webkit-linear-gradient(0deg, #73c3a0, #0a6ea9); background: linear-gradient(0deg, #73c3a0, #0a6ea9); color:white; transition: margin .4s, height .4s }
 .all-asset-btn, .all-asset-btn:focus { position:absolute; z-index:100; bottom:-18px; right:50px; width:40px; height:40px; border-radius:50%; background-color:#5677fc; transition: background-color .2s; box-shadow:0px 1px 1.5px 0px rgba(0,0,0,0.12), 0px 1px 1px 0px rgba(0,0,0,0.24); }
 .all-asset-btn:hover { background-color: rgba(153, 153, 153, 1); }
 .all-asset-btn .iconfont { display:inline-block; width:40px; text-align:center; font-size:14px; color:#fff; line-height:38px;  transition: transform .4s, -o-transform .4s, -webkit-transform .4s, -moz-transform .4s }
 .rotate180 { transform: rotate(180deg); -o-transform: rotate(180deg); -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); }
-.other-assets { position:absolute; top: 240px; padding:0 50px; display:none; width:100%; }
+.other-assets { padding:0 50px; width:100%; }
 .ellipsis-div { overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 @media only screen and (max-width: 480px) {
     .tab-content { width: 100%; height: 100%; padding: 50px 35px; }

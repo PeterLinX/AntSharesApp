@@ -6,7 +6,6 @@
 
         protected oncreate(): void
         {
-            $(this.target).find("#asset_show_more").click(this.OnShowMore);
         }
 
         protected onload(): void
@@ -47,28 +46,7 @@
                     map.set(key, { assetId: coins[i].assetId, amount: coins[i].value });
                 }
             }
-            map.forEach(Index.addCoinList);            
-        }
-
-        private OnShowMore =()=>
-        {
-            if ($("#asset_show_more").hasClass("rotate180"))
-            {
-                $("#asset_show_more").removeClass("rotate180");
-                $(".blue-panel").css("height", "240");
-                $(".other-assets").hide("400");
-            }
-            else
-            {
-                $("#asset_show_more").addClass("rotate180");
-                let otherAssetCount = $("#Tab_Account_Index").find("ul:eq(0)").find("li").length - 1;
-                console.log(otherAssetCount);
-                if (otherAssetCount)
-                    $(".blue-panel").css("height", (320 + otherAssetCount * 40).toString());
-                else
-                    $(".blue-panel").css("height", 320);
-                $(".other-assets").show("400");
-            }
+            map.forEach(Index.addCoinList);
         }
 
         private static addCoinList(item: { assetId: Uint256, amount: Fixed8 })
@@ -80,20 +58,21 @@
             Core.Blockchain.Default.getTransaction(item.assetId).then(result =>
             {
                 let asset = <Core.RegisterTransaction>result;
-                if (asset.assetType == AntShares.Core.AssetType.AntShare) {
-                    $("#my_ans").text(convert(item.amount.toString()))
+				li.find(".asset_value").text(convert(item.amount.toString()));
+				
+				li.find(".asset_name").text(asset.getName());
+				li.addClass("add");
+				
+                if (asset.assetType == AntShares.Core.AssetType.AntShare || asset.assetType == AntShares.Core.AssetType.AntCoin)
+				{
+					li.find(".asset_issuer").text(Resources.global.theAntsharesSystem);
                 }
-                else if (asset.assetType == AntShares.Core.AssetType.AntCoin)
+				else
                 {
-                    $("#my_anc").text(convert(item.amount.toString()))
-                } else
-                {
-                    li.find(".asset_value").text(convert(item.amount.toString()));
                     li.find(".asset_issuer").text(asset.issuer.toString());
-                    li.find(".asset_name").text(asset.getName());
-                    li.addClass("add");
-                    ul.append(li);
                 }
+				ul.append(li);
+				$(".blue-panel").height($("#Tab_Account_Index").find("ul:eq(0)").find("li").length * 42);
             });
         }
 

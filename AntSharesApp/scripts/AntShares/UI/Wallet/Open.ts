@@ -18,6 +18,10 @@
             {
                 return result.get();
             }).then(Open.listWallet);
+			if (window.innerWidth > 767)
+			{
+				$("#open_password").focus();
+			}
             $("#open_error").hide();
         }
 
