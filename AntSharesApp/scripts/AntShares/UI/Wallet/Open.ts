@@ -18,6 +18,10 @@
             {
                 return result.get();
             }).then(Open.listWallet);
+			if (window.innerWidth > 767)
+			{
+				$("#open_password").focus();
+			}
             $("#open_error").hide();
         }
 
@@ -25,7 +29,7 @@
         {
             if (formIsValid("form_open_wallet"))
             {
-                let name = $('#list_wallet_name input[name="wallet"]:checked ').val();
+                let name = $('#list_wallet_name').val();
                 Implementations.Wallets.IndexedDB.IndexedDBWallet.open(name, $("#open_password").val()).then(result =>
                 {
                     if (!result)//兼容IE
@@ -54,25 +58,18 @@
             }
             else
             {
-                //$("#open_password").focus();
                 $("#menu_wallet_start").hide();
                 $("footer").show();
 
                 $("#list_wallet_name").show();
-                let ul = $("#list_wallet_name");
-                ul.find("li:visible").remove();
+                let select = $("#list_wallet_name");
+                select.find("option").remove();
                 for (let i = 0; i < walletNameList.length; i++)
                 {
-                    let liTemplet = ul.find("li:eq(0)");
-                    let li = liTemplet.clone();
-                    li.removeAttr("style");
-                    li.find("input").val(walletNameList[i]);
-                    li.find("span").text(walletNameList[i]);
-                    if (i == 0) //第一个默认选中
-                    {
-                        li.find("input").attr("checked", 'checked');
-                    }
-                    ul.append(li);
+                    let option = document.createElement("option");
+                    option.value = walletNameList[i];
+                    option.text = walletNameList[i];
+                    select.append(option);
                 }
             }
         }

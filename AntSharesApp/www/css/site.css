@@ -193,6 +193,7 @@ tr.active { background-color:#ddd }
 
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger { padding:15px }
 #gesture_pwd_tips { display:none }
+#qrcode canvas { width:200px; height:200px; max-width:100%; border:10px solid #fff }
 @media only screen and (max-width: 480px) {
     .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }
