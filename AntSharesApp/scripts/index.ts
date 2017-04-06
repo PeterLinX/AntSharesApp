@@ -16,33 +16,28 @@ module AntSharesApp {
             document.addEventListener('resume', onResume, false);
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
         
-            (<any>cordova).plugins.backgroundMode.enable();
-            // Called when background mode has been activated
-            // (<any>cordova).plugins.backgroundMode.onactivate = function () {
-            //     setTimeout(function () {
-            //         // Modify the currently displayed notification
-            //         (<any>cordova).plugins.backgroundMode.configure({
-            //             text:'Running in background for more than 5s now.'
-            //         });
-            //     }, 5000);
-            // }
+            //(<any>cordova).plugins.backgroundMode.enable();
         }
 
         function onPause() {
-
+			console.log("onPause()");
+			//wait();
         }
 
         function onResume() {
+			console.log("onResume()");
             let gesturePwd: string = getCookie("gesturePwd");
             if (gesturePwd == "") {
                 if (AntShares.Global.Wallet != null) {
-                    AntShares.Global.Wallet.close().then(() => {
-                        AntShares.Global.Wallet = null;
-                        AntShares.UI.TabBase.showTab("#Tab_Account_Index");
-                        alert("提示：可以设置手势密码登录");
-                    });
+                    AntShares.Global.Wallet = null;
+					AntShares.UI.TabBase.showTab("#Tab_Wallet_Open", true);
+					//wait_cancel();
                 }
+				else {
+					//wait_cancel();
+				}
             } else {
+				//wait_cancel();
                 AntShares.UI.TabBase.showTab("#Tab_Wallet_Validate");
             }
             
@@ -51,8 +46,7 @@ module AntSharesApp {
     }
 
     window.onload = function () {
-        Application.initialize();  
-
+        Application.initialize();
         let w = window as any;
         var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
         if (!indexedDB) {
@@ -62,7 +56,7 @@ module AntSharesApp {
             alert(AntShares.UI.Resources.global.browserError);
             return;
         }
-        else if (w.mobilecheck() && !isMobileApp.App) {
+        else if (w.mobilecheck() && !isMobileApp.App()) {
             if (isMobileWeb.Edge())
                 $("#download_link").attr("href", "https://www.microsoft.com/store/apps/9nblggh42jbd");
             else if (isMobileWeb.Android())

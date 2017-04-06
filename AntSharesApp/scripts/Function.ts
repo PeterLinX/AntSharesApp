@@ -249,3 +249,20 @@ function cordovaFileError(errorCode: number): string {
     }
     return errorMessage;
 }
+
+function wait()
+{
+	$(".hello").focus();
+	var hello = $(".hello").clone();
+	hello.addClass("new-hello");
+	hello.show();
+	$("body").append(hello);
+	$("body nav").addClass("blur");
+	$("#page").addClass("blur");
+}
+
+function wait_cancel() {
+	$(".new-hello").remove();
+	$("body nav").removeClass("blur");
+	$("#page").removeClass("blur");
+}

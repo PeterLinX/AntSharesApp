@@ -3,8 +3,8 @@
 
 .iconfont { font-family: "iconfont" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -webkit-text-stroke-width: 0.2px; -moz-osx-font-smoothing: grayscale; }
 header a.iconfont, header a.iconfont:hover, header a.iconfont:focus { position: absolute; top: 0; left: 0; padding: 0 20px 0 15px; color: #fff; font-size: 25px; line-height: 50px; text-decoration: none; }
-html { height: 100%; }
-body { height: 100%; font-family: "微软雅黑 light" !important; color: #333; overflow-x: hidden; }
+html { height: 100%; overflow-y:hidden }
+body { height: 100%; overflow-y:hidden; font-family: "微软雅黑 light" !important; color: #333; overflow-x: hidden; }
 header, footer { position:fixed; z-index:100; background: #0a6ea9; font-size: 18px; text-align: center; color: #fff; line-height: 50px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; height: 50px; padding:0 50px }
 header { top: 0; font-weight: bold; }
 .header-antsharesapp { vertical-align:-6px }
@@ -26,9 +26,30 @@ input[type="radio"] { vertical-align: -3px; }
 .expand > div { margin-top:5px }
 .iconfont.link { font-size:10px; position:absolute; right:0 }
 .alert.bottom { position:fixed; bottom:50px; margin: 0 50px 20px 0; width:calc(100% - 100px) }
-.hello { position:absolute; display:none; width:100%; height:100%; top:0; left:0; z-index:1000; text-align:center; background:rgba(255, 255, 255, .7) }
-.hello h1 { position:absolute; top:40%; left:50%; width:400px; margin-left:-200px; color:black; }
 .mm-menu > .mm-navbar-bottom { padding-top:5px }
+
+.hello { position:absolute; display:none; width:100%; height:100%; top:0; left:0; z-index:1000; text-align:center; background:rgba(255, 255, 255, .7); }
+.loading { position:absolute; top:40%; left:50%; width: 80px; height: 40px; margin-left:-40px; }
+.loading span { display: inline-block; width: 8px; height: 100%; border-radius: 4px; background: lightgreen; -webkit-animation: load 1s ease infinite; }
+.blur {filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    
+    -webkit-filter: blur(10px); /* Chrome, Opera */
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);    
+            filter: blur(10px);
+    
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+ }
+@-webkit-keyframes load {
+    0%,100% { height: 40px; background: lightgreen; }
+    50% { height: 70px; margin: -15px 0; background: lightblue; }
+}
+
+.loading span:nth-child(2) { -webkit-animation-delay: 0.2s; }
+.loading span:nth-child(3) { -webkit-animation-delay: 0.4s; }
+.loading span:nth-child(4) { -webkit-animation-delay: 0.6s; }
+.loading span:nth-child(5) { -webkit-animation-delay: 0.8s; }
+
 /* 改进的 jquery.mmenu.widescreen.css */
 @media only screen and (min-width:768px) {
     header, footer { padding:0 300px 0 0 }
@@ -75,7 +96,8 @@ nav:not(.mm-menu) { display: none; }
 .menu-progress { position:absolute; width:100%; margin:0 -20px; bottom:0; padding:10px 20px 20px; }
 .menu-progress .progress { margin-bottom:5px }
 footer div { width:80%; margin:auto }
-.modal-content { border-radius:0 }
+#myModal { top:30%; }
+/*.modal-content { border-radius:0 }*/
 .blue-panel { position:relative; margin:0 -50px; height:240px; background: -webkit-linear-gradient(0deg, #73c3a0, #0a6ea9); background: linear-gradient(0deg, #73c3a0, #0a6ea9); color:white; transition: margin .4s, height .4s }
 .all-asset-btn, .all-asset-btn:focus { position:absolute; z-index:100; bottom:-18px; right:50px; width:40px; height:40px; border-radius:50%; background-color:#5677fc; transition: background-color .2s; box-shadow:0px 1px 1.5px 0px rgba(0,0,0,0.12), 0px 1px 1px 0px rgba(0,0,0,0.24); }
 .all-asset-btn:hover { background-color: rgba(153, 153, 153, 1); }
@@ -170,6 +192,8 @@ tr.active { background-color:#ddd }
 .dropdown-menu li.row { margin:10px 5px; cursor:pointer }
 
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger { padding:15px }
+#gesture_pwd_tips { display:none }
+#qrcode canvas { width:200px; height:200px; max-width:100%; border:10px solid #fff }
 @media only screen and (max-width: 480px) {
     .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="description" content="小蚁是基于区块链技术，将实体世界的资产和权益进行数字化，通过点对点网络进行登记发行、转让交易、清算交割等金融业务的去中心化网络协议。" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval' data: gap: blob:; connect-src *; media-src *; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
@@ -24,6 +24,16 @@
 <body>
     <div id="page">
         <div class="content">
+            <div class="hello">
+                <div class="loading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div style="margin-top:50px">正在恢复……</div>
+                </div>
+            </div>
             <header>
                 <a id="icon_menu" href="#menu" class="iconfont">&#xe60c;</a>
                 <span class="header-title">
@@ -70,12 +80,6 @@
                 <div id="Tab_Wallet_Create" class="form-horizontal tab-pane">
                     <form id="form_create_wallet" autocomplete="off">
                         <h3 class="page-header lang-create-wallet"></h3>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label lang-wallet-name"></label>
-                            <div class="col-sm-6">
-                                <input id="wallet_name" readonly="readonly" type="text" />
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label  lang-input-wallet-password"></label>
                             <div class="col-sm-6">
@@ -174,14 +178,7 @@
                             <label class="col-sm-4 control-label lang-select-wallet-file"></label>
                             <div class="col-sm-6">
                                 <span class="text-danger"></span>
-                                <ul class="list_wallet_ul" id="list_wallet_name">
-                                    <li style="display:none">
-                                        <label>
-                                            <input type="radio" name="wallet" />
-                                            <span>占位符：钱包名称</span>
-                                        </label>
-                                    </li>
-                                </ul>
+                                <select class="list_wallet_ul form-control" id="list_wallet_name"></select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -196,6 +193,10 @@
                             <div class="col-sm-4 col-md-push-4 col-sm-push-4">
                                 <button type="submit" onclick="event.preventDefault()" class="btn btn-success lang-open-wallet"></button>
                             </div>
+                        </div>
+                        <div id="gesture_pwd_tips" class="bs-callout bs-callout-danger">
+                            <h4 class="lang-tips"></h4>
+                            <p>您可以在设置中设置手势密码进行登录</p>
                         </div>
                     </form>
                 </div>
@@ -339,13 +340,16 @@
                             <button class="btn btn-success tab-trigger lang-receive-gotobackup" href="#Tab_Wallet_Backup"></button>
                         </div>
                         <div id="receiver_address" class="col-lg-6 col-md-7 col-sm-10 select">
-                            <pre class="select">
-                            <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
+                            <pre class="select text-center">
+                                <span id="qrcode"></span>
+                                <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
                         </div>
-                        <div id="qrcode"></div>
-                        <button id="btnQRcode" class="btn btn-primary" style="display:none" onclick="showQRcode()"></button><br><br>
-                        <button id="camera" class="btn btn-primary" onclick="event.preventDefault();">Camera</button><br><br>
+                        <div class="col-sm-12">
+                            
+                            <button id="btnQRcode" class="btn btn-primary" style="display:none" onclick="showQRcode()"></button><br><br>
+                            <button id="camera" class="btn btn-primary" onclick="event.preventDefault();">Camera</button><br><br>
+                        </div>
                     </div>
                 </div>
 
@@ -678,8 +682,7 @@
     <script src="scripts/set_language.js"></script>
     <script src="scripts/SocialSharing.js"></script>
     <script src="scripts/jquery.gesture.password.js"></script>
-    <script src="scripts/qrcode.js"></script>
-
+    <script src="scripts/jquery.qrcode.min.js"></script>
     <script>
         $("input[type='text']").addClass("form-control");
         $("input[type='password']").addClass("form-control");
@@ -740,19 +743,13 @@
                 $("#delete_all_wallet").hide();
         }
 
-        function showQRcode() {
-            var address = $("#receiver").text();
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: address,
-                width: 128,
-                height: 128,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
-            });
+        function showQRcode()
+        {
+            console.log($("#receiver").text());
+            $("#qrcode").html("").qrcode($("#receiver").text());
         }
 
-        $.material.init()
+        $.material.init();
     </script>
     <div class="modal fade" id="downloadAPP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

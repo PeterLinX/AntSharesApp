@@ -9,8 +9,6 @@
             $(this.target).find("#asset_show_more").click(this.OnShowMore);
         }
 
-        private otherAssetCount: number;
-
         protected onload(): void
         {
             if (Global.Wallet == null)
@@ -33,6 +31,7 @@
             let coins = Global.Wallet.findCoins();
 
             let map = new Map<string, { assetId: Uint256, amount: Fixed8 }>();
+
             for (let i = 0; i < coins.length; i++)
             {
                 if (coins[i].state != Wallets.CoinState.Unspent && coins[i].state != Wallets.CoinState.Unconfirmed)
@@ -48,7 +47,6 @@
                     map.set(key, { assetId: coins[i].assetId, amount: coins[i].value });
                 }
             }
-            this.otherAssetCount = map.size;
             map.forEach(Index.addCoinList);            
         }
 
@@ -63,9 +61,10 @@
             else
             {
                 $("#asset_show_more").addClass("rotate180");
-                console.log(this.otherAssetCount);
-                if (this.otherAssetCount)
-                    $(".blue-panel").css("height", (260 + this.otherAssetCount * 40).toString());
+                let otherAssetCount = $("#Tab_Account_Index").find("ul:eq(0)").find("li").length - 1;
+                console.log(otherAssetCount);
+                if (otherAssetCount)
+                    $(".blue-panel").css("height", (320 + otherAssetCount * 40).toString());
                 else
                     $(".blue-panel").css("height", 320);
                 $(".other-assets").show("400");
@@ -167,7 +166,7 @@
                 execute();
             }, onreject =>
             {
-                console.log(Resources.global.noTxs);
+                //console.log(Resources.global.noTxs);
             }).catch(e =>
             {
                 alert(e);
