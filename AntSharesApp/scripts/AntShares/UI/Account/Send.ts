@@ -60,7 +60,7 @@
                         alert(Resources.global.txId + tx.hash.toString());
                     }).catch(e =>
                     {
-                        alert(e.message)
+                        alert(e.message);
                     });
             }
         }
@@ -105,7 +105,7 @@
                 }
                 select.change();
             });
-            $(".dropdown-menu").find("li.add").remove();;
+            $(".dropdown-menu").find("li.add").remove();
             this.loadContactsList();
         }
 
@@ -139,7 +139,7 @@
                 }
             }).catch(e => {
                 alert(e);
-            });;
+            });
         }
 
 

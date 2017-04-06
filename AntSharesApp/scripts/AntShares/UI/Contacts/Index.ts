@@ -9,7 +9,7 @@
 
         protected onload(): void {
             let ul = $("#Tab_Contacts_Index").find("ul:eq(0)");
-            ul.find("li.add").remove();;
+            ul.find("li.add").remove();
             this.loadContactsList();
         }
 
@@ -51,7 +51,7 @@
                 }
             }).catch(e => {
                 alert(e);
-            });;
+            });
         }
 
         private OnDeleteClick() {
