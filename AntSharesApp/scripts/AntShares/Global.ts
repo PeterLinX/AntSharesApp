@@ -3,15 +3,15 @@
     export class Global
     {
         public static Wallet: Implementations.Wallets.IndexedDB.IndexedDBWallet;
-        public static RpcClient = new Network.RPC.RpcClient("https://seed2.antshares.org:10331");
+        public static RpcClient = new Network.RPC.RpcClient("http://seed2.antshares.org:10332");
         public static Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
         public static Node = new Network.RemoteNode(Global.RpcClient);
 
         static chooseNode()
         {
             let start = new Date().getTime();
-            let seed2 = new Network.RPC.RpcClient("https://seed2.antshares.org:10331/");
-            let seed8 = new Network.RPC.RpcClient("https://seed8.antshares.org:10331");
+            let seed2 = new Network.RPC.RpcClient("http://seed2.antshares.org:10332/");
+            let seed8 = new Network.RPC.RpcClient("http://seed8.antshares.org:10332");
             $("#seed").text("中国上海 https://seed2.antshares.org:10331");
             new Implementations.Blockchains.RPC.RpcBlockchain(seed2).getBlockCount().then(result =>
             {
@@ -39,7 +39,7 @@
 
     $(function ()
     {
-        Global.chooseNode();
+        //Global.chooseNode();
     });
 
     

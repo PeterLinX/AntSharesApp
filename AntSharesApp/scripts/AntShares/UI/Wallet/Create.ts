@@ -55,6 +55,7 @@
                 $("footer").show();
                 $(".menu-progress").show();
                 $("#menu_wallet_start").hide();
+                $(".camera").show();
                 TabBase.showTab("#Tab_Wallet_Backup", true);
             }, reason => {
                 alert(reason);

@@ -266,3 +266,20 @@ function wait_cancel() {
 	$("body nav").removeClass("blur");
 	$("#page").removeClass("blur");
 }
+
+function scan()
+{
+    (<any>cordova).plugins.barcodeScanner.scan(result => {
+        let address: string = result.text;
+        AntShares.UI.TabBase.showTab("#Tab_Account_Send", address);
+    }, error => {
+        alert("Scanning failed: " + error);
+    }, {
+            showFlipCameraButton: true, // iOS and Android
+            showTorchButton: true, // iOS and Android
+            torchOn: true, // Android, launch with the torch switched on (if available)
+            prompt: "Place a barcode inside the scan area", // Android
+            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+            formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+        });
+}
