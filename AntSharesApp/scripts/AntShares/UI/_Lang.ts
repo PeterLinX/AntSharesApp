@@ -127,6 +127,7 @@
         static showReceiveAddress = "现在你可以点击“收款”查看到你的收款地址了";
         static netError = "网络异常！"; 
         static antshareIntegerOnly = "小蚁股转账金额只能为整数";
+        static gesturePwdWrong = "两次绘制的图案不一致，请重新绘制";
     }
 
     class global_en
@@ -244,6 +245,6 @@
         static showReceiveAddress = "Good job, Now you can click 'receive' and see receive address.";
         static netError = "Internet Error!";
         static antshareIntegerOnly = "Integer only for Antshares";
-
+        static gesturePwdWrong = "Drawn twice does not match the pattern, please try again.";
     }
 }

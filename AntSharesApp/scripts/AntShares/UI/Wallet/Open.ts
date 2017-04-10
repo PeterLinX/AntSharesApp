@@ -44,6 +44,7 @@
                     $(".menu-progress").show();
                     $("#open_password").blur();
                     //打开成功后跳转账户管理页面
+                    $("#menu_wallet_open").hide();
                     $(".camera").show();
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#open_error").show());
