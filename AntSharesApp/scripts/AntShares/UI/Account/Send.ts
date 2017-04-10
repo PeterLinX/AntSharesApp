@@ -11,8 +11,8 @@
         {
             if (formIsValid("form_account_send"))
             {
-                let address = $("#Tab_Account_Send .pay_address").val();
-                let value = $("#Tab_Account_Send .pay_value").val();
+                let address: string = $("#Tab_Account_Send .pay_address").val();
+                let value: string = $("#Tab_Account_Send .pay_value").val();
  
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
@@ -20,6 +20,10 @@
                 if ($("#Tab_Account_Send select>:selected").val() == 0)
                 {
                     alert(Resources.global.pleaseChooseAsset);
+                    return;
+                }
+                if (Uint256.parse($("#Tab_Account_Send select>:selected").val()) == AntShares.Core.Blockchain.AntShare.hash && value.indexOf(".") > -1) {
+                    alert(Resources.global.antshareIntegerOnly);
                     return;
                 }
                 Promise.resolve(1).then(() =>

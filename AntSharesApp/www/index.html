@@ -635,7 +635,7 @@
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
                     </li>
                     <li class="sshort-hidden withripple">
-                        <a class="fist-menu" href="http://antcha.in/" target="_blank"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
+                        <a class="fist-menu" id="blockchain_browser" onclick="browserClick()"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
                     </li>
                     <li class="withripple">
                         <span><i class="iconfont">&#xe601;</i>系统设置</span>
@@ -747,6 +747,10 @@
         {
             console.log($("#receiver").text());
             $("#qrcode").html("").qrcode($("#receiver").text());
+        }
+
+        function browserClick(){
+            cordova.InAppBrowser.open("http://antcha.in", "_blank", "location=yes");
         }
 
         $.material.init();

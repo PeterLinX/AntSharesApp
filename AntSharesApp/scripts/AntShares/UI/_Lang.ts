@@ -125,7 +125,8 @@
         static browserError = "无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请下载小蚁钱包APP.";
         static contactExists = "已经添加过该联系人。";
         static showReceiveAddress = "现在你可以点击“收款”查看到你的收款地址了";
-		static netError = "网络异常！";
+        static netError = "网络异常！"; 
+        static antshareIntegerOnly = "小蚁股转账金额只能为整数";
     }
 
     class global_en
@@ -241,6 +242,8 @@
         static browserError = "This wallet cannot be used in embedded browser, please dowanload Antshares App in Appstore.";
         static contactExists = "Contact already exists.";
         static showReceiveAddress = "Good job, Now you can click 'receive' and see receive address.";
-		static netError = "Internet Error!";
+        static netError = "Internet Error!";
+        static antshareIntegerOnly = "Integer only for Antshares";
+
     }
 }

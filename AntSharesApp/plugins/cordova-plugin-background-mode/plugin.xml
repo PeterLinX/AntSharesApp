@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-background-mode"
-        version="0.6.6-dev">
+        version="0.7.2">
 
     <name>BackgroundMode</name>
 
@@ -24,6 +24,7 @@
     <engines>
         <engine name="cordova" version=">=3.0.0" />
         <engine name="android-sdk" version=">=16" />
+        <engine name="windows-sdk" version=">=10.0.14393.0" />
     </engines>
 
     <!-- js -->
@@ -65,6 +66,7 @@
 
         <config-file target="res/xml/config.xml" parent="/*">
             <preference name="KeepRunning" value="true" />
+            <preference name="AndroidLaunchMode" value="singleInstance"/>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -80,6 +82,10 @@
             target-dir="src/de/appplant/cordova/plugin/background" />
 
         <source-file
+            src="src/android/BackgroundExt.java"
+            target-dir="src/de/appplant/cordova/plugin/background" />
+
+        <source-file
             src="src/android/ForegroundService.java"
             target-dir="src/de/appplant/cordova/plugin/background" />
     </platform>
@@ -92,9 +98,35 @@
             </feature>
         </config-file>
 
-        <js-module src="src/windows/backgroundmodeProxy.js" name="backgroundmodeProxy">
-            <merges target="" />
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities" device-target="windows">
+            <Capability Name="backgroundMediaPlayback" />
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <preference name="windows-target-version" value="UAP" />
+            <preference name="uap-target-min-version" value="10.0.14393.0" />
+            <preference name="Windows.Universal-MinVersion" value="10.0.14393.0" />
+            <preference name="Windows.Universal" value="10.0.14393.0" />
+        </config-file>
+
+        <resource-file src="appbeep.wma" target="appbeep.wma" />
+
+        <js-module src="src/windows/BackgroundModeProxy.js" name="BackgroundMode.Proxy">
+            <runs />
         </js-module>
     </platform> -->
+
+    <!-- browser -->
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BackgroundMode">
+                <param name="browser-package" value="BackgroundMode"/>
+            </feature>
+        </config-file>
+
+        <js-module src="src/browser/BackgroundModeProxy.js" name="BackgroundMode.Proxy">
+            <runs />
+        </js-module>
+    </platform>
 
 </plugin>

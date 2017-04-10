@@ -17,6 +17,16 @@ module AntSharesApp {
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
         
             //(<any>cordova).plugins.backgroundMode.enable();
+            //(<any>cordova).plugins.backgroundMode.on('activate', function () {
+            //    setInterval(function () {
+            //        (<any>cordova).plugins.notification.badge.increase();
+
+            //    }, 1000);
+            //});
+            //(<any>cordova).plugins.backgroundMode.on('deactivate', function () {
+            //    (<any>cordova).plugins.notification.badge.clear();
+            //});
+
         }
 
         function onPause() {

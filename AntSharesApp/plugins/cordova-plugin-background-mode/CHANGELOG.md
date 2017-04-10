@@ -1,6 +1,21 @@
 ## ChangeLog
-#### Version 0.7.0 (not yet released)
+#### Version 0.7.3 (not yet released)
+- Check if screen is off on Android
+- Wake-up device on Android
+- Unlock device on Android
+
+#### Version 0.7.2 (02.02.2017)
+- Fixed app freeze on iOS using wkwebview-engine
+- Websocket sample in SampleApp
+
+#### Version 0.7.1 (30.01.2017)
+- Bug fixes for iOS9 and Android
+- Allow app to be excluded from recent list on Android
+
+#### Version 0.7.0 (27.01.2017)
 - __Features__
+ - Support for tAmazon FireOS
+ - Support for the browser platform
  - Ability to configure icon and color on Android
  - Allow app to move to foreground on Android
  - Allow app to move to background on Android
@@ -23,7 +38,8 @@
  - Other apps audio interruption on iOS
 - __Changes__
  - Deprecate event callbacks
- - Notification not visible anymore on lock screen
+ - Notification not visible by default on lock screen
+ - Remove ticker property on Android
  - Remove unexpected back button handler
  - Remove support for wp8 platform
 
