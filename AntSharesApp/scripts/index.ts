@@ -25,7 +25,10 @@ module AntSharesApp {
         }
 
         function onResume() {
-			console.log("onResume()");
+            if (noResume) {
+                noResume = false;
+                return;
+            }
             let gesturePwd: string = getCookie("gesturePwd");
             if (gesturePwd == "") {
                 if (AntShares.Global.Wallet != null) {
