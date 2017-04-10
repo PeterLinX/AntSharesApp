@@ -267,8 +267,10 @@ function wait_cancel() {
 	$("#page").removeClass("blur");
 }
 
+let noResume = false;
 function scan()
 {
+    noResume = true;
     (<any>cordova).plugins.barcodeScanner.scan(result => {
         let address: string = result.text;
         AntShares.UI.TabBase.showTab("#Tab_Account_Send", address);
@@ -277,7 +279,7 @@ function scan()
     }, {
             showFlipCameraButton: true, // iOS and Android
             showTorchButton: true, // iOS and Android
-            torchOn: true, // Android, launch with the torch switched on (if available)
+            torchOn: false, // Android, launch with the torch switched on (if available)
             prompt: "Place a barcode inside the scan area", // Android
             resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
             formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED

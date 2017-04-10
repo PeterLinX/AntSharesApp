@@ -10,6 +10,7 @@
         protected onload(args: any[]): void
         {
             setTitle(0);
+            $(".camera").hide();
 			if (args[0])
 			{
 				$("#gesture_pwd_tips").show();
