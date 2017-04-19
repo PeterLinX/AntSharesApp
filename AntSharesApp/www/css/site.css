@@ -194,15 +194,15 @@ tr.active { background-color:#ddd }
 .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger { padding:15px }
 #gesture_pwd_tips { display:none }
 #qrcode canvas { width:200px; height:200px; max-width:100%; border:10px solid #fff }
-
-.header-title .camera { display:none; font-size:20px; float:right; font-weight:normal; margin-right:20px; cursor:pointer}
+.header-title { display:none }
+.header-title .camera { display:none; position:absolute; font-size:20px; right:20px; font-weight:normal; cursor:pointer}
 @media only screen and (max-width: 480px) {
     .my-table li.row div { padding-left:0 !important; padding-right:5px !important }
     .my-table .title.row div { padding-left:0 !important; padding-right:0 !important }
 }
 
 .gesture-password {
-    height:600px;
+    height:300px; margin-top:100px;
 }
 #gesturepwdSet {
     position: absolute;

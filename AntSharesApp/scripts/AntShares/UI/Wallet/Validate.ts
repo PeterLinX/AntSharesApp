@@ -20,6 +20,7 @@
             (<any>$('#menu')).mmenu({ dragOpen: { open: false }});
             $('footer').hide();
             $('#icon_menu').hide();
+            setTitle(3);
             let effective: number = 0;
             
             $("#gesturepwdValidate").on("hasPasswd", function (e, passwd) {

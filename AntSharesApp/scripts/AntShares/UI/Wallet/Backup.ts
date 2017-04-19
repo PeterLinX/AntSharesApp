@@ -87,6 +87,7 @@
         private OnAppBackupClick = () => {
             try {
                 this.loadFile().then((array) => {
+                    noResume = true;
                     let strDb: string = JSON.stringify(array);
                     let dataUrl = "data:text/json;base64," + window.btoa(strDb);
                     let db = [strDb];

@@ -44,6 +44,12 @@
                     <span class="lang-my-wallet"></span>
                     <i class="camera iconfont" onclick="scan()">&#xe621;</i>
                 </span>
+                <span class="header-title">
+                    <span class="lang-setup-gesture"></span>
+                </span>
+                <span class="header-title">
+                    <span class="lang-unlock-pattern"></span>
+                </span>
             </header>
             <div class="tab-content">
                 <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
@@ -485,13 +491,6 @@
                             </div>
                         </form>
                     </div>
-                    1<br />
-                    1<br />
-                    1<br />
-                    1<br />1<br />1<br />1<br />1<br />1<br />
-
-                    1<br />
-                    1<br />
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
                     <h3 class="page-header lang-help"></h3>
@@ -598,11 +597,13 @@
                     <div class="gesture-password">
                         <div id="gesturepwdValidate"></div>
                     </div>
+                    <div class="text-center lang-draw-unlock-pattern"></div>
                 </div>
                 <div id="Tab_Wallet_GesturePassword" class="form-horizontal tab-pane">
                     <div class="gesture-password">
                         <div id="gesturepwdSet"></div>
                     </div>
+                    <div class="text-center lang-draw-unlock-pattern"></div>
                 </div>
             </div>
             <footer>
@@ -643,14 +644,14 @@
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
                     </li>
-                    <li class="sshort-hidden withripple">
+                    <!--<li class="sshort-hidden withripple">
                         <a class="fist-menu" id="blockchain_browser" onclick="browserClick()"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
-                    </li>
+                    </li>-->
                     <li class="withripple">
-                        <span><i class="iconfont">&#xe601;</i>系统设置</span>
+                        <span class="lang-system-setup"><i class="iconfont">&#xe601;</i></span>
                         <ul>
                             <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
-                            <li><a class="tab-trigger" href="#Tab_Wallet_GesturePassword">手势密码</a></li>
+                            <li><a class="tab-trigger lang-setup-gesture" href="#Tab_Wallet_GesturePassword"></a></li>
                         </ul>
                     </li>
                     <li class="withripple">

@@ -28,6 +28,16 @@
             {
                 tab = TabBase._tabs[className];
             }
+            $("#menu").find("li").removeClass("mm-selected");
+            let menuList = $("#menu").find("li");
+            for (let i = 0; i < menuList.length; i++)
+            {
+                if ($(menuList[i]).find("a").attr("href") == id)
+                {
+                    $(menuList[i]).addClass("mm-selected");
+                    break;
+                }
+            }
             tab.onload(args);
         }
     }
