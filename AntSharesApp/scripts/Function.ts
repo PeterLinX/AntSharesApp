@@ -285,3 +285,9 @@ function scan()
             formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
         });
 }
+
+function delay(t) {
+    return new Promise(function (resolve) {
+        setTimeout(resolve, t)
+    });
+}

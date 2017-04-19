@@ -4,6 +4,8 @@
     {
         constructor(private url = "http://localhost/") { }
 
+        public get Url() { return this.url; }
+
         private static makeRequest(method: string, params: any[]): any
         {
             return { jsonrpc: "2.0", method: method, params: params, id: Math.random() };
@@ -15,43 +17,24 @@
             {
                 let xhr = new XMLHttpRequest();
                 xhr.addEventListener("load", () => { resolve(JSON.parse(xhr.responseText)); });
-				xhr.addEventListener("error", (e) => { reject(); });
+                xhr.addEventListener("error", () => { reject(new Error("Network Error")); });
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader('Content-Type', 'application/json-rpc');
                 xhr.send(JSON.stringify(request));
             });
         }
 
-        public call(method: string, params: any[]): PromiseLike<any>
-        {
-			return RpcClient.send(this.url, RpcClient.makeRequest(method, params)).then(response =>
-			{
-				return new Promise((resolve, reject) =>
-				{
-					if (response.error !== undefined)
-						reject(response.error);
-					else
-						resolve(response.result);
-				});
-			}, error =>
-			{
-				console.log("网络异常，正在重试……");
-				return RpcClient.send(this.url, RpcClient.makeRequest(method, params)).then(response =>
-				{
-					return new Promise((resolve, reject) =>
-					{
-						if (response.error !== undefined)
-							reject(response.error);
-						else
-							resolve(response.result);
-					});
-				}, error =>
-				{
-					alert(AntShares.UI.Resources.global.netError);
-				});
-			});
+        public call(method: string, params: any[]): PromiseLike<any> {
+            return RpcClient.send(this.url, RpcClient.makeRequest(method, params)).then(response => {
+                return new Promise((resolve, reject) => {
+                    if (response.error !== undefined)
+                        reject(response.error);
+                    else
+                        resolve(response.result);
+                });
+            });
         }
-
+        
         public callBatch(batch: Array<{ method: string, params: any[] }>): PromiseLike<any[]>
         {
             let request = [];

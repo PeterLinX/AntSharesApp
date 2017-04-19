@@ -726,7 +726,6 @@
             }]
         });
 
-        AntShares.Sync.getblockcount();
         function alert(message)
         {
             $('.modal-body').text(message);
@@ -759,7 +758,7 @@
         }
 
         function browserClick(){
-            cordova.InAppBrowser.open("http://antcha.in", "_blank", "location=yes");
+            cordova.InAppBrowser.open("http://antcha.in", "_blank", "location=no");
         }
 
         $.material.init();

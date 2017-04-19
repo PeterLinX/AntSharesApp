@@ -44,6 +44,7 @@
                 $("#Tab_Wallet_Backup #div_app").hide();
                 $("#callout_app").hide();
             }
+            //$("#Tab_Wallet_Backup #div_web").show();
             $("#hasbackup_div").hide();
         }
         
