@@ -1,10 +1,10 @@
 ﻿namespace AntShares {
     export class Global {
-        public static isMainNet: boolean = true;
+        public static isMainNet: boolean = false;
         public static isConnected: boolean = false;
         public static reConnectMultiplier: number = 15;
         //MainNet
-        public static mainHttpNetList: string[] = ["http://seed2.antshares.org:10332"];
+        public static mainHttpNetList: string[] = ["http://seed2.antshares.org:10332", "http://seed8.antshares.org:10332"];
         public static mainHttpsNetList: string[] = ["https://seed2.antshares.org:10331", "https://seed8.antshares.org:10331"];
         //TestNet
         public static testNetList: string[] = ["http://seed2.antshares.org:20332"];
@@ -47,7 +47,4 @@
         }
     }
 
-    $(function() {
-        Global.chooseNode();
-    });
 }

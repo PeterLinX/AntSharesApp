@@ -33,7 +33,7 @@
         private CreateRun()
         {
             let name = "wallet";
-            if ($(".remote_height:eq(0)").text() == "0") {
+            if (Global.isConnected == false) {
                 alert(Resources.global.RPCError);
                 $("#create_wallet").text(Resources.global.createWallet);
                 return;

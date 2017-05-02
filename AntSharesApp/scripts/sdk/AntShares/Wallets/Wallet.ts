@@ -533,11 +533,13 @@
                 else
                     this.isclosed = true;
             }).catch(error => {
-                console.log("网络连接中断");
+                console.log(111); 
+                console.log(error);
+                setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
                 if (error == "Error: Network Error") {
-                    setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
+                    console.log("网络连接中断112");
                 }
-
+                console.log(113);
             });
 
         }

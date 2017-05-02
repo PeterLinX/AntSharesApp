@@ -40,7 +40,7 @@
                 let node: string;
                 for (let i = 0; i < results.length; i++) {
                     if ((<any>results[i]).has(true)) {
-                        console.log((<any>results[i]).get(true));
+                        //console.log((<any>results[i]).get(true));
                         Global.isConnected = true;
                         node = (<any>results[i]).get(true);
                         break;
@@ -48,20 +48,26 @@
                 }
                 if (Global.isConnected) {
                     if (Global.RpcClient == null) {
+                        console.log(5);
                         Global.RpcClient = new Network.RPC.RpcClient(node);
                         Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
                         Global.Node = new Network.RemoteNode(Global.RpcClient);
                     } else {
+                        console.log(6);
+                        console.log(Global.RpcClient.Url);
                         if (Global.RpcClient.Url != node) {
+                        console.log(7);
                             Global.RpcClient = new Network.RPC.RpcClient(node);
                             Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
                             Global.Node = new Network.RemoteNode(Global.RpcClient);
                         }
                     }
                 } else {
-                    throw new Error("网络连接中断");
+                    throw new Error("网络连接中断333");
                 }
-            }).then(success => {
+                }).then(success => {
+                    console.log(888);
+                    console.log(Global.RpcClient.Url);
                 return Global.Blockchain.getBlockCount();
             }).then(result => {
                 let remoteHeight = result - 1;
@@ -69,11 +75,11 @@
                 if (Global.Wallet) {
                     let localHeight = (Global.Wallet as any).walletHeight - 1;
                     let process = (localHeight / remoteHeight * 100).toFixed(1);
-                    $(".progress-bar").css("width", process + "%")
+                    $(".progress-bar").css("width", process + "%");
                     $(".progress-bar").attr("aria-valuenow", process + "%");
-
                     $(".local_process").text(process);
                     $(".local_height").text(localHeight);
+                    console.log("localHeight");
                 }
             }).then(() => {
                 return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {
@@ -87,6 +93,7 @@
             });
 
         }
+
     }
 
     AntShares.Sync.connectNode(Global.isMainNet);
