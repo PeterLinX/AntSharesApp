@@ -63,7 +63,7 @@ module AntSharesApp {
     window.onload = function () {
         Application.initialize();
         let w = window as any;
-        var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
         if (!indexedDB) {
             alert(AntShares.UI.Resources.global.browserIndexedb);
             return;

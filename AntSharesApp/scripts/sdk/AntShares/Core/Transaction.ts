@@ -1,3 +1,4 @@
+/// <reference path="../Network/Inventory.ts"/>
 namespace AntShares.Core
 {
     export abstract class Transaction extends Network.Inventory

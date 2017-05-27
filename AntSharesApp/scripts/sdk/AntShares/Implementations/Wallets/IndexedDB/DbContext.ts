@@ -13,7 +13,7 @@
 
         public static delete(name: string): PromiseLike<void>
         {
-            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB;
             let request = indexedDB.deleteDatabase(name);
             return new Promise<void>((resolve, reject) =>
             {
@@ -37,7 +37,7 @@
         public open(version = 1): PromiseLike<void>
         {
             if (this.db != null) return Promise.resolve();
-            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+            let indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB;
             let request = indexedDB.open(this.name, version);
             return new Promise<void>((resolve, reject) =>
             {

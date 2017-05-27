@@ -54,14 +54,14 @@ namespace AntShares.Cryptography
     }
 
     let getAlgorithmName = (algorithm: string | Algorithm) => typeof algorithm === "string" ? algorithm : algorithm.name;
-
+    let w = window as any;
     if (window.crypto == null)
-        window.crypto = { subtle: null, getRandomValues: null };
+        (window as any).crypto  = { subtle: null, getRandomValues: null };
     if (window.crypto.getRandomValues == null)
     {
-        if (window.msCrypto)
+        if (w.msCrypto)
         {
-            window.crypto.getRandomValues = array => window.msCrypto.getRandomValues(array);
+            w.crypto.getRandomValues = array => w.msCrypto.getRandomValues(array);
         }
         else
         {
@@ -69,27 +69,27 @@ namespace AntShares.Cryptography
             window.crypto.getRandomValues = RandomNumberGenerator.getRandomValues;
         }
     }
-    window.crypto.subtle = window.crypto.subtle || window.crypto.webkitSubtle;
-    if (window.crypto.subtle == null && window.msCrypto)
+    w.crypto.subtle = window.crypto.subtle || w.crypto.webkitSubtle;
+    if (window.crypto.subtle == null && w.msCrypto)
     {
-        window.crypto.subtle = {
-            decrypt: (a, b, c) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.decrypt(a, b, c); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            deriveBits: (a, b, c) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.deriveBits(a, b, c); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            deriveKey: (a, b, c, d, e) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.deriveKey(a, b, c, d, e); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            digest: (a, b) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.digest(a, b); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            encrypt: (a, b, c) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.encrypt(a, b, c); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            exportKey: (a, b) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.exportKey(a, b); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            generateKey: (a, b, c) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.generateKey(a, b, c); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            importKey: (a, b, c, d, e) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.importKey(a, b, c, d, e); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            sign: (a, b, c) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.sign(a, b, c); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            unwrapKey: (a, b, c, d, e, f, g) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.unwrapKey(a, b, c, d, e, f, g); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            verify: (a, b, c, d) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.verify(a, b, c, d); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
-            wrapKey: (a, b, c, d) => new Promise((resolve, reject) => { let op = window.msCrypto.subtle.wrapKey(a, b, c, d); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+        (window as any).crypto.subtle = {
+            decrypt: (a, b, c) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.decrypt(a, b, c) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            deriveBits: (a, b, c) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.deriveBits(a, b, c) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            deriveKey: (a, b, c, d, e) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.deriveKey(a, b, c, d, e) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            digest: (a, b) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.digest(a, b); op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            encrypt: (a, b, c) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.encrypt(a, b, c) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            exportKey: (a, b) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.exportKey(a, b) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            generateKey: (a, b, c) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.generateKey(a, b, c) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            importKey: (a, b, c, d, e) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.importKey(a, b, c, d, e) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            sign: (a, b, c) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.sign(a, b, c) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            unwrapKey: (a, b, c, d, e, f, g) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.unwrapKey(a, b, c, d, e, f, g) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            verify: (a, b, c, d) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.verify(a, b, c, d) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
+            wrapKey: (a, b, c, d) => new Promise((resolve, reject) => { let op = w.msCrypto.subtle.wrapKey(a, b, c, d) as any; op.oncomplete = () => resolve(op.result); op.onerror = e => reject(e); }),
         };
     }
     if (window.crypto.subtle == null)
     {
-        window.crypto.subtle = {
+        (window as any).crypto.subtle = {
             decrypt: (algorithm, key, data) => new Promise((resolve, reject) =>
             {
                 if (typeof algorithm === "string" || algorithm.name != "AES-CBC" || !algorithm.iv || algorithm.iv.byteLength != 16 || data.byteLength % 16 != 0)
@@ -99,7 +99,7 @@ namespace AntShares.Cryptography
                 }
                 try
                 {
-                    let aes = new Aes((key as any).export(), (algorithm as Algorithm).iv);
+                    let aes = new Aes((key as any).export(), (algorithm as any).iv);
                     resolve(aes.decrypt(data));
                 }
                 catch (e)
@@ -134,7 +134,7 @@ namespace AntShares.Cryptography
                 }
                 try
                 {
-                    let aes = new Aes((key as AesCryptoKey).export(), (algorithm as Algorithm).iv);
+                    let aes = new Aes((key as AesCryptoKey).export(), (algorithm as any).iv);
                     resolve(aes.encrypt(data));
                 }
                 catch (e)
@@ -234,14 +234,14 @@ namespace AntShares.Cryptography
             return new Promise((resolve, reject) =>
             {
                 let k = key as ECDsaCryptoKey;
-                if (format != "jwk" || k.algorithm.namedCurve != "P-256")
+                if (format != "jwk" || (k.algorithm as any).namedCurve != "P-256")
                     reject(new RangeError());
                 else
                     try
                     {
                         if (k.type == "private")
                             resolve({
-                                crv: k.algorithm.namedCurve,
+                                crv: (k.algorithm as any).namedCurve,
                                 d: k.privateKey.base64UrlEncode(),
                                 ext: true,
                                 key_ops: k.usages,
@@ -251,7 +251,7 @@ namespace AntShares.Cryptography
                             });
                         else
                             resolve({
-                                crv: k.algorithm.namedCurve,
+                                crv: (k.algorithm as any).namedCurve,
                                 ext: true,
                                 key_ops: k.usages,
                                 kty: "EC",
@@ -271,7 +271,7 @@ namespace AntShares.Cryptography
             if (getAlgorithmName(algorithm) != "ECDSA") return generateKey_old.call(window.crypto.subtle, algorithm, extractable, keyUsages);
             return new Promise((resolve, reject) =>
             {
-                if ((algorithm as Algorithm).namedCurve != "P-256")
+                if ((algorithm as any).namedCurve != "P-256")
                     reject(new RangeError());
                 else
                     try
@@ -290,7 +290,7 @@ namespace AntShares.Cryptography
             if (getAlgorithmName(algorithm) != "ECDSA") return importKey_old.call(window.crypto.subtle, format, keyData, algorithm, extractable, keyUsages);
             return new Promise((resolve, reject) =>
             {
-                if (format != "jwk" || (algorithm as Algorithm).namedCurve != "P-256")
+                if (format != "jwk" || (algorithm as any).namedCurve != "P-256")
                     reject(new RangeError());
                 else
                     try
@@ -317,10 +317,10 @@ namespace AntShares.Cryptography
         let sign_old = window.crypto.subtle.sign;
         window.crypto.subtle.sign = (algorithm, key, data) =>
         {
-            if (getAlgorithmName(algorithm) != "ECDSA") return sign_old.call(window.crypto.subtle, algorithm, key, data);
+            if (getAlgorithmName(algorithm as any) != "ECDSA") return sign_old.call(window.crypto.subtle, algorithm, key, data);
             return new Promise((resolve, reject) =>
             {
-                if ((algorithm as Algorithm).hash.name != "SHA-256" || key.algorithm.name != "ECDSA")
+                if ((algorithm as any).hash.name != "SHA-256" || key.algorithm.name != "ECDSA")
                     reject(new RangeError());
                 else
                     try
@@ -337,10 +337,10 @@ namespace AntShares.Cryptography
         let verify_old = window.crypto.subtle.verify;
         window.crypto.subtle.verify = (algorithm, key, signature, data) =>
         {
-            if (getAlgorithmName(algorithm) != "ECDSA") return verify_old.call(window.crypto.subtle, algorithm, key, signature, data);
+            if (getAlgorithmName(algorithm as any) != "ECDSA") return verify_old.call(window.crypto.subtle, algorithm, key, signature, data);
             return new Promise((resolve, reject) =>
             {
-                if ((algorithm as Algorithm).hash.name != "SHA-256" || key.algorithm.name != "ECDSA")
+                if ((algorithm as any).hash.name != "SHA-256" || key.algorithm.name != "ECDSA")
                     reject(new RangeError());
                 else
                     try
@@ -357,7 +357,7 @@ namespace AntShares.Cryptography
     }
     try
     {
-        window.crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, false, ["sign", "verify"]).catch(hook_ecdsa);
+        (window.crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, false, ["sign", "verify"]) as any).catch(hook_ecdsa);
     }
     catch (ex)
     {

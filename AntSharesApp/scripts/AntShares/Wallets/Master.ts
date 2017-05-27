@@ -1,4 +1,5 @@
-﻿namespace AntShares.Wallets
+﻿/// <reference path="../../sdk/AntShares/Implementations/Wallets/IndexedDB/DbContext.ts"/>
+namespace AntShares.Wallets
 {
     export class Master extends Implementations.Wallets.IndexedDB.DbContext
     {
@@ -33,7 +34,7 @@
                 let cursor = <IDBCursor>(<IDBRequest>e.target).result;
                 if (cursor)
                 {
-                    array.push(cursor.key);
+                    array.push(cursor.key as any);
                     cursor.continue();
                 }
             };

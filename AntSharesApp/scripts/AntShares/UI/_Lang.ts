@@ -4,7 +4,7 @@
     {
         static get global()
         {
-            let currentLanguage = navigator.language || navigator.browserLanguage;
+            let currentLanguage = navigator.language;
             if (currentLanguage.split('-')[0] == 'zh')
                 return global_zh;
             else

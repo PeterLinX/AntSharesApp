@@ -644,9 +644,6 @@
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-backup-wallet" href="#Tab_Wallet_Backup"><i class="iconfont">&#xe605;</i></a>
                     </li>
-                    <!--<li class="sshort-hidden withripple">
-                        <a class="fist-menu" id="blockchain_browser" onclick="browserClick()"><i class="iconfont">&#xe60f;</i>AntCha.in<i class="iconfont link">&#xe60b;</i></a>
-                    </li>-->
                     <li class="withripple">
                         <span class="lang-system-setup"><i class="iconfont">&#xe601;</i></span>
                         <ul>
@@ -756,10 +753,6 @@
         {
             console.log($("#receiver").text());
             $("#qrcode").html("").qrcode($("#receiver").text());
-        }
-
-        function browserClick(){
-            cordova.InAppBrowser.open("http://antcha.in", "_blank", "location=no");
         }
 
         $.material.init();
