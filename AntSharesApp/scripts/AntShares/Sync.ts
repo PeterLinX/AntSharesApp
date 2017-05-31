@@ -66,7 +66,6 @@
                     throw new Error("网络连接中断333");
                 }
                 }).then(success => {
-                    console.log(888);
                     console.log(Global.RpcClient.Url);
                 return Global.Blockchain.getBlockCount();
             }).then(result => {
@@ -79,7 +78,7 @@
                     $(".progress-bar").attr("aria-valuenow", process + "%");
                     $(".local_process").text(process);
                     $(".local_height").text(localHeight);
-                    console.log("localHeight");
+                    console.log(localHeight);
                 }
             }).then(() => {
                 return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {

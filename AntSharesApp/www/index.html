@@ -354,6 +354,7 @@
                                 <span id="qrcode"></span>
                                 <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
+                            <a id="show_prikey" href="javascript:">查看私钥</a>
                         </div>
                         <div class="col-sm-12">
                             <button id="btnQRcode" class="btn btn-primary" style="display:none" onclick="showQRcode()"></button><br><br>
@@ -466,6 +467,11 @@
                         <div>version：<span id="version">null</span></div>
                         <br />
                     </div>
+                    <!--<div>
+                        <h4>私钥</h4>
+                        <textarea id="pri_key"></textarea>
+                        <br />
+                    </div>-->
                     <div id="delete_all_wallet">
                         <h5 class="text-danger">删除所有钱包，请谨慎操作</h5>
                         <button id="delete_wallet" type="button" class="btn btn-danger">删除所有钱包</button>
@@ -730,23 +736,16 @@
             $('#myModal').modal();
         }
 
-        var i = 1;
+        var i = 0, j = 0;
         function showDevTools()
         {
-            i++;
-            if (i % 4 == 0)
+            if (++i >= 3)
                 $("#develop_tool").show();
-            else
-                $("#develop_tool").hide();
         }
-        var j = 1;
         function showDeleteWallet()
         {
-            j++;
-            if (j % 4 == 0)
+            if (++j >= 3)
                 $("#delete_all_wallet").show();
-            else
-                $("#delete_all_wallet").hide();
         }
 
         function showQRcode()
