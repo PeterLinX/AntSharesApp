@@ -533,10 +533,11 @@
                     this.isclosed = true;
             }).catch(error => {
                 console.log(error.message);
-                if (error.message = "EOF") {
-                    this.current_height++;
-                    this.processBlocks.bind(this);
-                }
+                //if (error.message = "EOF") {
+                //    //此处可以临时跳过因为节点更新后钱包无法同步的某个区块
+                //    this.current_height++;
+                //    this.processBlocks.bind(this);
+                //}
                 setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
                 if (error == "Error: Network Error") {
                     console.log("网络连接中断112");

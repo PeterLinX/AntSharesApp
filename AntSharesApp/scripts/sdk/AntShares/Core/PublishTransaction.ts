@@ -2,11 +2,17 @@ namespace AntShares.Core
 {
     export class PublishTransaction extends Transaction
     {
-        public contracts: ArrayBuffer[];
+        public code: FunctionCode;
+        public needStorage: boolean;
+        public name: string;
+        public codeVersion: string;
+        public author: string;
+        public email: string;
+        public description: string;
 
-        public get systemFee()
+        public getSize()
         {
-            return Fixed8.fromNumber(500 * this.contracts.length);
+            //TODO
         }
 
         constructor()
@@ -16,16 +22,21 @@ namespace AntShares.Core
 
         protected deserializeExclusiveData(reader: IO.BinaryReader): void
         {
-            this.contracts = new Array<ArrayBuffer>(reader.readByte());
-            for (let i = 0; i < this.contracts.length; i++)
-                this.contracts[i] = reader.readVarBytes();
+            this.code = <FunctionCode>(reader.readSerializable(FunctionCode));
+            if (this.version == 0)
+                this.needStorage = false;
+            else
+                this.needStorage = reader.readBoolean();
+            this.name = reader.readVarString();
+            this.codeVersion = reader.readVarString();
+            this.author = reader.readVarString();
+            this.email = reader.readVarString();
+            this.description = reader.readVarString();
         }
 
         protected serializeExclusiveData(writer: IO.BinaryWriter): void
         {
-            writer.writeByte(this.contracts.length);
-            for (let i = 0; i < this.contracts.length; i++)
-                writer.writeVarBytes(this.contracts[i]);
+            //TODO
         }
     }
 }
