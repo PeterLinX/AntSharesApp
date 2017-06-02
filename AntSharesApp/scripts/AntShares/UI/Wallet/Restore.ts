@@ -102,6 +102,7 @@
 
         private RestoreAction = () =>
         {
+            noResume = true;
             let selectedFile = document.getElementById('files') as any;
             let file = selectedFile.files[0];
             let name = file.name;

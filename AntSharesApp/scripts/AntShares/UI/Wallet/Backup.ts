@@ -94,6 +94,7 @@
                     let blob = new Blob(db, { "type": "text/json" });
                     let url = URL.createObjectURL(blob);
                     (<any>window).plugins.socialsharing.share('wallet file', 'Your wallet', dataUrl)
+                    noResume = true;
                     this.showHasBackup();
                 }).catch(e => {
                     console.log(e)

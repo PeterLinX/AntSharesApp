@@ -38,7 +38,9 @@ module AntSharesApp {
 
         function onResume() {
             if (noResume) {
-                noResume = false;
+                //在Android4.4设备上备份/恢复钱包后会执行多次onResume
+                //为了不跳到打开钱包页面，设置备份/恢复后1分钟内免登录
+                setTimeout(() => { noResume = false }, 60000);  
                 return;
             }
             let gesturePwd: string = getCookie("gesturePwd");
