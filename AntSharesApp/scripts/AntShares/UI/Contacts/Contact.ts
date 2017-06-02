@@ -1,4 +1,6 @@
-﻿namespace AntShares.UI.Contacts {
+﻿/// <reference path="../../../sdk/AntShares/Implementations/Wallets/IndexedDB/DbContext.ts"/>
+
+namespace AntShares.UI.Contacts {
     export class Contact extends Implementations.Wallets.IndexedDB.DbContext {
         private static singleton: Contact;
 

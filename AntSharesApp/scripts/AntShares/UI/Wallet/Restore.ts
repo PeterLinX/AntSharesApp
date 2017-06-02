@@ -4,7 +4,7 @@
     {
         protected oncreate(): void
         {
-            $(this.target).find("#files").change(this.RestoreAction);
+            $(this.target).find("#files").on('change', this.RestoreAction);
         }
 
         protected onload(args: any[]): void
