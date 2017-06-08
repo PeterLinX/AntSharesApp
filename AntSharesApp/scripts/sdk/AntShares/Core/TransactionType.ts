@@ -1,7 +1,5 @@
-﻿namespace AntShares.Core
-{
-    export enum TransactionType
-    {
+﻿namespace AntShares.Core {
+    export enum TransactionType {
         MinerTransaction = 0x00,
         IssueTransaction = 0x01,
         ClaimTransaction = 0x02,
@@ -9,6 +7,7 @@
         RegisterTransaction = 0x40,
         ContractTransaction = 0x80,
         AgencyTransaction = 0xb0,
-        PublishTransaction = 0xd0
+        PublishTransaction = 0xd0,
+        InvocationTransaction = 0xd1
     }
 }
