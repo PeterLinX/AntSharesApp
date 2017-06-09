@@ -71,7 +71,7 @@
             });
         }
 
-        private readFile(fileEntry)
+        private readFile(fileEntry: any)
         {
             fileEntry.file((file) => {
                 let reader = new FileReader();
@@ -106,8 +106,8 @@
             let file = selectedFile.files[0];
             let name = file.name;
             let size = file.size;
-            console.log("文件名:" + name);
-            console.log("文件大小:" + size);
+            debugLog("文件名:" + name);
+            debugLog("文件大小:" + size);
 
             let reader = new FileReader();
             reader.readAsText(file);

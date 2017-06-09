@@ -291,3 +291,8 @@ function delay(t) {
         setTimeout(resolve, t)
     });
 }
+
+function debugLog(p: any) {
+    console.log(p);
+    $("#debugLog").prepend(p + "|" + new Date().toLocaleString()+ "</br>");
+}

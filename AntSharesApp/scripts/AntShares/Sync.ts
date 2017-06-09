@@ -15,19 +15,23 @@
         }
 
         public static connectNode(isMainNet: boolean): void {
-            console.log("启动连接");
+            debugLog("启动连接");
             Promise.resolve(1).then(() => {
                 let promises = [];
                 let nodeList: string[] = new Array<string>();
 
                 if (isMainNet) {
-                    if (isMobileApp.App()) {
-                        //MainNet App https&http
-                        nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
-                    } else {
-                        //MainNet PC Web https
-                        nodeList = Global.mainHttpsNetList;
-                    }
+                    //if (isMobileApp.App()) {
+                    //    //MainNet App https&http
+                    //    nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
+                    //    debugLog(999);
+                    //} else {
+                    //    //MainNet PC Web https
+                    //    nodeList = Global.mainHttpsNetList;
+                    //    debugLog(998);
+                    //}
+                    //debugLog(nodeList);
+                    nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
                 } else {
                     //TestNet
                     nodeList = Global.testNetList;
@@ -40,7 +44,6 @@
                 let node: string;
                 for (let i = 0; i < results.length; i++) {
                     if ((<any>results[i]).has(true)) {
-                        //console.log((<any>results[i]).get(true));
                         Global.isConnected = true;
                         node = (<any>results[i]).get(true);
                         break;
@@ -48,15 +51,12 @@
                 }
                 if (Global.isConnected) {
                     if (Global.RpcClient == null) {
-                        console.log(5);
                         Global.RpcClient = new Network.RPC.RpcClient(node);
                         Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
                         Global.Node = new Network.RemoteNode(Global.RpcClient);
                     } else {
-                        console.log(6);
-                        console.log(Global.RpcClient.Url);
+                        debugLog(Global.RpcClient.Url);
                         if (Global.RpcClient.Url != node) {
-                        console.log(7);
                             Global.RpcClient = new Network.RPC.RpcClient(node);
                             Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
                             Global.Node = new Network.RemoteNode(Global.RpcClient);
@@ -66,8 +66,7 @@
                     throw new Error("网络连接中断333");
                 }
                 }).then(success => {
-                    console.log(888);
-                    console.log(Global.RpcClient.Url);
+                    debugLog(Global.RpcClient.Url);
                 return Global.Blockchain.getBlockCount();
             }).then(result => {
                 let remoteHeight = result - 1;
@@ -79,14 +78,14 @@
                     $(".progress-bar").attr("aria-valuenow", process + "%");
                     $(".local_process").text(process);
                     $(".local_height").text(localHeight);
-                    console.log("localHeight");
+                    debugLog("localHeight" + localHeight);
                 }
             }).then(() => {
                 return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {
                     return AntShares.Sync.connectNode(Global.isMainNet);
                 });
             }).catch(error => {
-                console.log("网络连接中断");
+                debugLog("网络连接中断");
                 return delay(Global.reConnectMultiplier * 1000).then(() => {
                     return AntShares.Sync.connectNode(Global.isMainNet);
                 });

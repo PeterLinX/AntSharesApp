@@ -4,7 +4,7 @@ namespace AntShares
 
     let _max: Fixed8, _minus: Fixed8, _min: Fixed8, _one: Fixed8, _satoshi: Fixed8;
 
-    export class Fixed8
+    export class Fixed8 implements IO.ISerializable
     {
         public static get MaxValue() { return _max || (_max = new Fixed8(new Uint64(0xffffffff, 0x7fffffff))); }
         public static get MinusOne() { return _minus || (_minus = new Fixed8(new Uint64(0xffffffff, 0xffffffff))); }
@@ -104,6 +104,16 @@ namespace AntShares
             if (str[str.length - 1] == '.')
                 str = str.substr(0, str.length - 1);
             return str;
+        }
+
+        public deserialize(reader: IO.BinaryReader): void {
+            //TODO
+            //this.data = reader.ReadInt64();
+        }
+
+        public serialize(writer: IO.BinaryWriter): void {
+            //TODO
+            //writer.writeUint64(this.data);
         }
     }
 }

@@ -204,10 +204,10 @@
                                 <button type="submit" onclick="event.preventDefault()" class="btn btn-success lang-open-wallet"></button>
                             </div>
                         </div>
-                        <div id="gesture_pwd_tips" class="bs-callout bs-callout-danger">
+                        <!--<div id="gesture_pwd_tips" class="bs-callout bs-callout-danger">
                             <h4 class="lang-tips"></h4>
                             <p>您可以在设置中设置手势密码进行登录</p>
-                        </div>
+                        </div>-->
                     </form>
                 </div>
                 <div id="Tab_Wallet_ChangePassword" class="form-horizontal tab-pane">
@@ -454,8 +454,6 @@
                     <h3 class="page-header lang-developer-tool" onclick="showDeleteWallet()"></h3>
                     <div>
                         <h4>节点信息</h4>
-                        <div>中国上海：延迟<span id="seed2"></span>ms</div>
-                        <div>英国伦敦：延迟<span id="seed8"></span>ms</div>
                         <div>当前连接节点：<span id="seed"></span></div>
                         <button id="refresh_nood" class="btn btn-success">刷新</button>
                         <br /><br />
@@ -492,6 +490,10 @@
                         </form>
                     </div>
                 </div>
+                <div id="Tab_Advanced_DebugLog" class="form-horizontal tab-pane">
+                    <button id="debug1" class="btn btn-primary" onclick="event.preventDefault();">test1</button><br/><br/>
+                    <div id="debugLog"></div>
+                </div>
                 <div id="Tab_Help_Help" class="tab-pane">
                     <h3 class="page-header lang-help"></h3>
                     <div id="zh_help">
@@ -513,9 +515,14 @@
                             这是一个离线钱包，所有代码均在您的浏览器端执行，钱包文件、私钥均不会上传给服务器，因此小蚁团队不能帮您保存、恢复钱包文件，请务必将钱包文件和私钥导出并妥善保管。
                         </p>
                         <br />
+                        
                         <p>QQ群：573816801</p>
                         <p>开发团队： <a href="mailto:dev@antshares.org">dev@antshares.org</a></p>
                         <p>官方网站： <a href="https://www.antshares.org">www.antshares.org</a></p>
+                        <p>区块链浏览器： <a href="https://antchain.xyz/">www.antchain.xyz</a></p>
+                        <p>&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&nbsp;<a href="http://antcha.in/">www.antcha.in</a></p>
+                        <br />
+                        <br />
                         <p>版权所有： 小蚁团队 © 2014 - 2016</p>
                         <img style="width:140px;" src="img/wechat.jpg" />
                     </div>
@@ -600,10 +607,18 @@
                     <div class="text-center lang-draw-unlock-pattern"></div>
                 </div>
                 <div id="Tab_Wallet_GesturePassword" class="form-horizontal tab-pane">
+                    <br /><br />
+                    <div style="text-align:center" ><img src="img/logo-sm.png" style="width:100px" /></div><br/>
+                    <div class="text-center lang-draw-unlock-pattern"></div><br />
                     <div class="gesture-password">
                         <div id="gesturepwdSet"></div>
                     </div>
-                    <div class="text-center lang-draw-unlock-pattern"></div>
+                    <div id="" class="col-lg-8 col-md-9 col-sm-10 select">
+                        <div class="bs-callout bs-callout-info">
+                            <h4 class="lang-tips"></h4>
+                            <p class="">请输入两次手势密码以完成设置</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer>
@@ -651,7 +666,7 @@
                         <span class="lang-system-setup"><i class="iconfont">&#xe601;</i></span>
                         <ul>
                             <li><a class="tab-trigger lang-change-password" href="#Tab_Wallet_ChangePassword"></a></li>
-                            <li><a class="tab-trigger lang-setup-gesture" href="#Tab_Wallet_GesturePassword"></a></li>
+                            <!--<li><a class="tab-trigger lang-setup-gesture" href="#Tab_Wallet_GesturePassword"></a></li>-->
                         </ul>
                     </li>
                     <li class="withripple">
@@ -660,8 +675,11 @@
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
                     </li>
-                    <li id="develop_tool" class="withripple">
+                    <li id="developer_tool" style="display:none"  class="withripple">
                         <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
+                    </li>
+                    <li id="debug_log" style="display:none"  class="withripple">
+                        <a class="fist-menu tab-trigger" href="#Tab_Advanced_DebugLog"><i class="iconfont">&#xe66d;</i>调试信息</a>
                     </li>
                 </ul>
                 <div class="menu-progress" style="display:none">

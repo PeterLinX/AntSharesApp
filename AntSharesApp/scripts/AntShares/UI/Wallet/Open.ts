@@ -14,7 +14,16 @@
 			if (args[0])
 			{
 				$("#gesture_pwd_tips").show();
-			}
+            }
+            if (Global.isDebug)
+            {
+                $("#developer_tool").show();
+                $("#debug_log").show();
+            } else {
+                $("#developer_tool").hide();
+                $("#debug_log").hide();
+            }
+
             AntShares.Wallets.Master.instance().then(result =>
             {
                 return result.get();

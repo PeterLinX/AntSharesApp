@@ -106,7 +106,7 @@
         static agencyTx = "代理交易";
         static publishTx = "合约发布";
         static noTxs = "您目前还没有交易";
-        static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
+        static RPCError = "很抱歉，网络连接失败，暂时不能创建钱包，请过一会儿再试。";
         static txId = "交易已经发送，等待区块确认，交易id: ";
         static addressError = "地址信息有误";
         static contactAddressRequired = "地址不能为空";

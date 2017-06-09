@@ -527,19 +527,17 @@
                     });
                 });
             }).then(result => {
-                console.log(result);
                 if (this.isrunning)
                     setTimeout(this.processBlocks.bind(this), result * 1000);
                 else
                     this.isclosed = true;
             }).catch(error => {
-                console.log(111); 
-                console.log(error);
+                debugLog(111); 
+                debugLog(error);
                 setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
                 if (error == "Error: Network Error") {
-                    console.log("网络连接中断112");
+                    debugLog("网络连接中断123.");
                 }
-                console.log(113);
             });
 
         }

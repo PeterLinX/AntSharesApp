@@ -1,6 +1,7 @@
 ﻿namespace AntShares {
     export class Global {
-        public static isMainNet: boolean = false;
+        public static isMainNet: boolean = true;
+        public static isDebug: boolean = true;
         public static isConnected: boolean = false;
         public static reConnectMultiplier: number = 15;
         //MainNet
