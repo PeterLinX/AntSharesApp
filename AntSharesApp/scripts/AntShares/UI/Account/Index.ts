@@ -140,7 +140,6 @@
                                 return tx.ensureHash();
                             }).then(() =>
                             {
-                                console.log(tx);
                                 li.find(".tx-time").text(new Date(parseInt(txArray[i].time) * 1000).toLocaleString());
                                 li.find(".tx-id").text(tx.hash.toString());
                                 // li.find(".tx-id").attr("href", "http://antcha.in/tx/hash/" + tx.hash.toString());

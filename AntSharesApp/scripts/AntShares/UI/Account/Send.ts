@@ -22,7 +22,8 @@
                     alert(Resources.global.pleaseChooseAsset);
                     return;
                 }
-                if (Uint256.parse($("#Tab_Account_Send select>:selected").val()) == AntShares.Core.Blockchain.AntShare.hash && value.indexOf(".") > -1) {
+                let assetType: Uint256 = Uint256.parse($("#Tab_Account_Send select>:selected").val());
+                if (assetType.equals(AntShares.Core.Blockchain.AntShare.hash) && value.indexOf(".") > -1) {
                     alert(Resources.global.antshareIntegerOnly);
                     return;
                 }
