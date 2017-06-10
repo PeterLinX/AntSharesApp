@@ -16,7 +16,19 @@ module AntSharesApp {
             document.addEventListener('resume', onResume, false);
             window.requestFileSystem = window.requestFileSystem || (<any>window).webkitRequestFileSystem;
         
-            //(<any>cordova).plugins.backgroundMode.enable();
+            (<any>cordova).plugins.backgroundMode.enable();
+            (<any>cordova).plugins.backgroundMode.on('activate', function () {
+                setInterval(function () {
+                    (<any>cordova).plugins.notification.badge.increase();
+
+                }, 1000);
+            });
+            (<any>cordova).plugins.backgroundMode.on('deactivate', function () {
+                (<any>cordova).plugins.notification.badge.clear();
+            });
+
+            
+
         }
 
         function onPause() {
@@ -25,7 +37,10 @@ module AntSharesApp {
         }
 
         function onResume() {
-			console.log("onResume()");
+            if (noResume) {
+                noResume = false;
+                return;
+            }
             let gesturePwd: string = getCookie("gesturePwd");
             if (gesturePwd == "") {
                 if (AntShares.Global.Wallet != null) {
@@ -55,8 +70,7 @@ module AntSharesApp {
         } else if (is_weixin() || is_weibo() || is_qq()) {
             alert(AntShares.UI.Resources.global.browserError);
             return;
-        }
-        else if (w.mobilecheck() && !isMobileApp.App()) {
+        } else if (w.mobilecheck() && !isMobileApp.App()) {
             if (isMobileWeb.Edge())
                 $("#download_link").attr("href", "https://www.microsoft.com/store/apps/9nblggh42jbd");
             else if (isMobileWeb.Android())

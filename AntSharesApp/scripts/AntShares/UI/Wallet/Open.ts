@@ -10,10 +10,20 @@
         protected onload(args: any[]): void
         {
             setTitle(0);
+            $(".camera").hide();
 			if (args[0])
 			{
 				$("#gesture_pwd_tips").show();
-			}
+            }
+            if (Global.isDebug)
+            {
+                $("#developer_tool").show();
+                $("#debug_log").show();
+            } else {
+                $("#developer_tool").hide();
+                $("#debug_log").hide();
+            }
+
             AntShares.Wallets.Master.instance().then(result =>
             {
                 return result.get();
@@ -43,6 +53,8 @@
                     $(".menu-progress").show();
                     $("#open_password").blur();
                     //打开成功后跳转账户管理页面
+                    $("#menu_wallet_open").hide();
+                    $(".camera").show();
                     TabBase.showTab("#Tab_Account_Index");
                 }, reason => $("#open_error").show());
             }

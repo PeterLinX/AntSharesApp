@@ -159,3 +159,7 @@
 .lang-tips::after { content:'Tips' }
 .lang-haveyoubackup::after { content:'Have you backed up?' }
 .lang-hasbackup-p::after { content:'After backing up wallet, please click the button below, you can see receive address.' }
+.lang-draw-unlock-pattern::after { content:'Please draw the unlock pattern' }
+.lang-unlock-pattern::after { content:'Unlock pattern' }
+.lang-setup-gesture::after { content: 'Setup gesture password' }
+.lang-system-setup::after { content: 'System setup' }

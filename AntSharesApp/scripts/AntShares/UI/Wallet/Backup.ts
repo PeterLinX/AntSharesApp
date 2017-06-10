@@ -44,6 +44,7 @@
                 $("#Tab_Wallet_Backup #div_app").hide();
                 $("#callout_app").hide();
             }
+            //$("#Tab_Wallet_Backup #div_web").show();
             $("#hasbackup_div").hide();
         }
         
@@ -86,6 +87,7 @@
         private OnAppBackupClick = () => {
             try {
                 this.loadFile().then((array) => {
+                    noResume = true;
                     let strDb: string = JSON.stringify(array);
                     let dataUrl = "data:text/json;base64," + window.btoa(strDb);
                     let db = [strDb];

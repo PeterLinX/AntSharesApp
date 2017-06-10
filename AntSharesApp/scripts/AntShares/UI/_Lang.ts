@@ -106,7 +106,7 @@
         static agencyTx = "代理交易";
         static publishTx = "合约发布";
         static noTxs = "您目前还没有交易";
-        static RPCError = "很抱歉，我们这边出了一些问题，暂不能创建钱包，请过一会儿再试。";
+        static RPCError = "很抱歉，网络连接失败，暂时不能创建钱包，请过一会儿再试。";
         static txId = "交易已经发送，等待区块确认，交易id: ";
         static addressError = "地址信息有误";
         static contactAddressRequired = "地址不能为空";
@@ -125,7 +125,9 @@
         static browserError = "无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请下载小蚁钱包APP.";
         static contactExists = "已经添加过该联系人。";
         static showReceiveAddress = "现在你可以点击“收款”查看到你的收款地址了";
-		static netError = "网络异常！";
+        static netError = "网络异常！"; 
+        static antshareIntegerOnly = "小蚁股转账金额只能为整数";
+        static gesturePwdWrong = "两次绘制的图案不一致，请重新绘制";
     }
 
     class global_en
@@ -241,6 +243,8 @@
         static browserError = "This wallet cannot be used in embedded browser, please dowanload Antshares App in Appstore.";
         static contactExists = "Contact already exists.";
         static showReceiveAddress = "Good job, Now you can click 'receive' and see receive address.";
-		static netError = "Internet Error!";
+        static netError = "Internet Error!";
+        static antshareIntegerOnly = "Integer only for Antshares";
+        static gesturePwdWrong = "Drawn twice does not match the pattern, please try again.";
     }
 }

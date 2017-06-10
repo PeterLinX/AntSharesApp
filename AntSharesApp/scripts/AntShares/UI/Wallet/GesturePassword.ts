@@ -19,7 +19,15 @@
                 TabBase.showTab("#Tab_Wallet_Open");
                 return;
             }
+            if (isMobileApp.App()) {
+                //App
+            } else {
+                TabBase.showTab("#Tab_Account_Index");
+                alert("网页版钱包无法设置手势密码");
+                return;
+            }
 
+            setTitle(2);
             let initPwd: string = "";
             let confirmPwd: string = "";
             let cnt: number = 0;
@@ -41,7 +49,9 @@
                             TabBase.showTab("#Tab_Account_Index");
                         }, 500);
                     } else {
+                        initPwd = passwd;
                         $("#Tab_Wallet_GesturePassword #gesturepwdSet").trigger("passwdWrong");
+                        alert(Resources.global.gesturePwdWrong);
                     }
                 }
                 

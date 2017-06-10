@@ -11,8 +11,8 @@
         {
             if (formIsValid("form_account_send"))
             {
-                let address = $("#Tab_Account_Send .pay_address").val();
-                let value = $("#Tab_Account_Send .pay_value").val();
+                let address: string = $("#Tab_Account_Send .pay_address").val();
+                let value: string = $("#Tab_Account_Send .pay_value").val();
  
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;
@@ -20,6 +20,11 @@
                 if ($("#Tab_Account_Send select>:selected").val() == 0)
                 {
                     alert(Resources.global.pleaseChooseAsset);
+                    return;
+                }
+                let assetType: Uint256 = Uint256.parse($("#Tab_Account_Send select>:selected").val());
+                if (assetType.equals(AntShares.Core.Blockchain.AntShare.hash) && value.indexOf(".") > -1) {
+                    alert(Resources.global.antshareIntegerOnly);
                     return;
                 }
                 Promise.resolve(1).then(() =>
@@ -60,7 +65,7 @@
                         alert(Resources.global.txId + tx.hash.toString());
                     }).catch(e =>
                     {
-                        alert(e.message)
+                        alert(e.message);
                     });
             }
         }
@@ -105,7 +110,7 @@
                 }
                 select.change();
             });
-            $(".dropdown-menu").find("li.add").remove();;
+            $(".dropdown-menu").find("li.add").remove();
             this.loadContactsList();
         }
 
@@ -139,7 +144,7 @@
                 }
             }).catch(e => {
                 alert(e);
-            });;
+            });
         }
 
 

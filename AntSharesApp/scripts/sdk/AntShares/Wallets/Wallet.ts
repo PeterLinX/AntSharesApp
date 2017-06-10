@@ -16,6 +16,7 @@
 
         public static get CoinVersion() { return 0x17; }
         public get dbPath() { return this.path; }
+        public get isWalletRunning() { return this.isrunning; }
         protected get walletHeight() { return this.current_height; }
 
         public addContract(contract: Contract): PromiseLike<void>
@@ -525,13 +526,20 @@
                         return this.current_height < block_height ? 0 : Core.Blockchain.SecondsPerBlock;
                     });
                 });
-            }).then(result =>
-            {
+            }).then(result => {
                 if (this.isrunning)
                     setTimeout(this.processBlocks.bind(this), result * 1000);
                 else
                     this.isclosed = true;
+            }).catch(error => {
+                debugLog(111); 
+                debugLog(error);
+                setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
+                if (error == "Error: Network Error") {
+                    debugLog("网络连接中断123.");
+                }
             });
+
         }
 
         private processNewBlock(block: Core.Block): PromiseLike<void>

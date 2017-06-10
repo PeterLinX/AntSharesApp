@@ -9,7 +9,8 @@ namespace AntShares.Core {
         public description: string;
 
         private size: number;
-        get Size(): number {
+        public get Size(): number {
+            //TODO
             return this.size;
         }
 

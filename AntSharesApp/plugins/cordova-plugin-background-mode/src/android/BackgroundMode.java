@@ -23,11 +23,9 @@ package de.appplant.cordova.plugin.background;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.view.View;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -35,7 +33,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
+import de.appplant.cordova.plugin.background.ForegroundService.ForegroundBinder;
+
+import static android.content.Context.BIND_AUTO_CREATE;
 
 public class BackgroundMode extends CordovaPlugin {
 
@@ -67,17 +67,22 @@ public class BackgroundMode extends CordovaPlugin {
     private final ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            ForegroundService.ForegroundBinder binder =
-                    (ForegroundService.ForegroundBinder) service;
-
+            ForegroundBinder binder = (ForegroundBinder) service;
             BackgroundMode.this.service = binder.getService();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            // Nothing to do here
+            fireEvent(Event.FAILURE, "'service disconnected'");
         }
     };
+
+    @Override
+    protected void pluginInitialize() {
+        BackgroundExt.addWindowFlags(cordova.getActivity());
+    }
+
+    // codebeat:disable[ABC]
 
     /**
      * Executes the request.
@@ -96,36 +101,28 @@ public class BackgroundMode extends CordovaPlugin {
                             CallbackContext callback) throws JSONException {
 
         if (action.equalsIgnoreCase("configure")) {
-            JSONObject settings = args.getJSONObject(0);
-            boolean update      = args.getBoolean(1);
-
-            configure(settings, update);
-        }
-
-        if (action.equalsIgnoreCase("disableWebViewOptimizations")) {
-            disableWebViewOptimizations();
-        }
-
-        if (action.equalsIgnoreCase("background")) {
-            moveToBackground();
-        }
-
-        if (action.equalsIgnoreCase("foreground")) {
-            moveToForeground();
+            configure(args.getJSONObject(0), args.getBoolean(1));
+            callback.success();
+            return true;
         }
 
         if (action.equalsIgnoreCase("enable")) {
             enableMode();
+            callback.success();
+            return true;
         }
 
         if (action.equalsIgnoreCase("disable")) {
             disableMode();
+            callback.success();
+            return true;
         }
 
-        callback.success();
-
+        BackgroundExt.execute(this, action, callback);
         return true;
     }
+
+    // codebeat:enable[ABC]
 
     /**
      * Called when the system is about to start resuming a previous activity.
@@ -156,35 +153,8 @@ public class BackgroundMode extends CordovaPlugin {
      */
     @Override
     public void onDestroy() {
-        super.onDestroy();
         stopService();
-    }
-
-    /**
-     * Move app to background.
-     */
-    private void moveToBackground() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-
-        intent.addCategory(Intent.CATEGORY_HOME);
-        cordova.getActivity().startActivity(intent);
-    }
-
-    /**
-     * Move app to foreground.
-     */
-    private void moveToForeground() {
-        Context context = cordova.getActivity();
-        String pkgName  = context.getPackageName();
-
-        Intent intent = context
-                .getPackageManager()
-                .getLaunchIntentForPackage(pkgName);
-
-        intent.addFlags(
-                Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        context.startActivity(intent);
+        super.onDestroy();
     }
 
     /**
@@ -260,18 +230,14 @@ public class BackgroundMode extends CordovaPlugin {
         if (isDisabled || isBind)
             return;
 
-        Intent intent = new Intent(
-                context, ForegroundService.class);
+        Intent intent = new Intent(context, ForegroundService.class);
 
         try {
-            context.bindService(intent,
-                    connection, Context.BIND_AUTO_CREATE);
-
+            context.bindService(intent, connection, BIND_AUTO_CREATE);
             fireEvent(Event.ACTIVATE, null);
-
             context.startService(intent);
         } catch (Exception e) {
-            fireEvent(Event.FAILURE, e.getMessage());
+            fireEvent(Event.FAILURE, String.format("'%s'", e.getMessage()));
         }
 
         isBind = true;
@@ -283,54 +249,16 @@ public class BackgroundMode extends CordovaPlugin {
      */
     private void stopService() {
         Activity context = cordova.getActivity();
-
-        Intent intent = new Intent(
-                context, ForegroundService.class);
+        Intent intent    = new Intent(context, ForegroundService.class);
 
         if (!isBind)
             return;
 
         fireEvent(Event.DEACTIVATE, null);
-
         context.unbindService(connection);
         context.stopService(intent);
 
         isBind = false;
-    }
-
-    /**
-     * Enable GPS position tracking while in background.
-     */
-    private void disableWebViewOptimizations() {
-        Thread thread = new Thread(){
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    cordova.getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            View view = webView.getEngine().getView();
-
-                            try {
-                                Class<?> xWalkCls = Class.forName(
-                                        "org.crosswalk.engine.XWalkCordovaView");
-
-                                Method onShowMethod =
-                                        xWalkCls.getMethod("onShow");
-
-                                onShowMethod.invoke(view);
-                            } catch (Exception e){
-                                view.dispatchWindowVisibilityChanged(View.VISIBLE);
-                            }
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    // do nothing
-                }
-            }
-        };
-
-        thread.start();
     }
 
     /**
@@ -340,29 +268,19 @@ public class BackgroundMode extends CordovaPlugin {
      * @param params Optional arguments for the event
      */
     private void fireEvent (Event event, String params) {
-        String eventName;
+        String eventName = event.name().toLowerCase();
+        Boolean active   = event == Event.ACTIVATE;
 
-        switch (event) {
-            case ACTIVATE:
-                eventName = "activate"; break;
-            case DEACTIVATE:
-                eventName = "deactivate"; break;
-            default:
-                eventName = "failure";
-        }
-
-        String active = event == Event.ACTIVATE ? "true" : "false";
-
-        String flag = String.format("%s._isActive=%s;",
+        String str = String.format("%s._setActive(%b)",
                 JS_NAMESPACE, active);
 
-        String depFn = String.format("%s.on%s(%s);",
-                JS_NAMESPACE, eventName, params);
+        str = String.format("%s;%s.on%s(%s)",
+                str, JS_NAMESPACE, eventName, params);
 
-        String fn = String.format("%s.fireEvent('%s',%s);",
-                JS_NAMESPACE, eventName, params);
+        str = String.format("%s;%s.fireEvent('%s',%s);",
+                str, JS_NAMESPACE, eventName, params);
 
-        final String js = flag + fn + depFn;
+        final String js = str;
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override

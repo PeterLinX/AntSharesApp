@@ -6,7 +6,7 @@
         protected oncreate(): void {
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
             $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
-            $(this.target).find("#refresh_nood").click(Global.chooseNode);
+            $(this.target).find("#refresh_nood").click(this.OnRefreshNode);
             $(this.target).find("#no_backup").click(this.OnNoBackupButtonClick);
         }
 
@@ -86,5 +86,11 @@
 
 
         }
+
+        private OnRefreshNode = () => {
+            $("#seed").text(Global.RpcClient.Url);
+
+        }
+
     }
 }

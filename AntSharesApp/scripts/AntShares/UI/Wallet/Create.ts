@@ -33,7 +33,7 @@
         private CreateRun()
         {
             let name = "wallet";
-            if ($(".remote_height:eq(0)").text() == "0") {
+            if (Global.isConnected == false) {
                 alert(Resources.global.RPCError);
                 $("#create_wallet").text(Resources.global.createWallet);
                 return;
@@ -55,6 +55,7 @@
                 $("footer").show();
                 $(".menu-progress").show();
                 $("#menu_wallet_start").hide();
+                $(".camera").show();
                 TabBase.showTab("#Tab_Wallet_Backup", true);
             }, reason => {
                 alert(reason);

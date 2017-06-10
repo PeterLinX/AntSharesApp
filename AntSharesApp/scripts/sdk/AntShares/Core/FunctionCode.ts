@@ -18,10 +18,10 @@
             return this.scriptHash;
         }
 
-        private size: number;
-        get Size(): number {
+        private _size;
+        public get Size() {
             //TODO
-            return this.size;
+            return this._size;
         }
 
         public deserialize(reader: IO.BinaryReader): void {
