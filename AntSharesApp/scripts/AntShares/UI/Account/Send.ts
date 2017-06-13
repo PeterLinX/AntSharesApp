@@ -11,8 +11,8 @@
         {
             if (formIsValid("form_account_send"))
             {
-                let address: string = $("#Tab_Account_Send .pay_address").val();
-                let value: string = $("#Tab_Account_Send .pay_value").val();
+                let address = $("#Tab_Account_Send .pay_address").val();
+                let value = $("#Tab_Account_Send .pay_value").val();
  
                 let tx: Core.ContractTransaction;
                 let context: Core.SignatureContext;

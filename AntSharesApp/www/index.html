@@ -756,9 +756,15 @@
         {
             i++;
             if (i % 4 == 0)
-                $("#develop_tool").show();
+            {
+                $("#developer_tool").show();
+                $("#debug_log").show();
+            }
             else
-                $("#develop_tool").hide();
+            {
+                $("#developer_tool").hide();
+                $("#debug_log").hide();
+            }
         }
         var j = 1;
         function showDeleteWallet()

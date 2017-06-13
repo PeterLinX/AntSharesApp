@@ -18,6 +18,9 @@
             }
             setTitle(1);
 
+            $("#my_ans").text("0");
+            $("#my_anc").text("0");
+
             let tx_ul = $("#Account_TransactionList").find("ul:eq(0)");
             tx_ul.find("li.add").remove();
             this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
@@ -86,8 +89,7 @@
                 else if (asset.assetType == AntShares.Core.AssetType.AntCoin)
                 {
                     $("#my_anc").text(convert(item.amount.toString()))
-                } else
-                {
+                } else {
                     li.find(".asset_value").text(convert(item.amount.toString()));
                     li.find(".asset_issuer").text(asset.issuer.toString());
                     li.find(".asset_name").text(asset.getName());
@@ -165,7 +167,7 @@
                 execute();
             }, onreject =>
             {
-                //console.log(Resources.global.noTxs);
+                debugLog(Resources.global.noTxs);
             }).catch(e =>
             {
                 alert(e);

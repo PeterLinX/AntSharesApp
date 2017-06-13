@@ -1,7 +1,7 @@
 ﻿namespace AntShares {
     export class Global {
         public static isMainNet: boolean = true;
-        public static isDebug: boolean = true;
+        public static isDebug: boolean = false;
         public static isConnected: boolean = false;
         public static reConnectMultiplier: number = 15;
         //MainNet
@@ -18,7 +18,7 @@
 
         public static chooseNode() {
             let isChoosed = false;
-            let seed2 = new Network.RPC.RpcClient("https://seed2.antshares.org:10331/");
+            let seed2 = new Network.RPC.RpcClient("https://seed2.antshares.org:10331");
             let seed8 = new Network.RPC.RpcClient("https://seed8.antshares.org:10331");
 
             let start = new Date().getTime();

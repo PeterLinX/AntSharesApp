@@ -24,13 +24,10 @@
                     //if (isMobileApp.App()) {
                     //    //MainNet App https&http
                     //    nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
-                    //    debugLog(999);
                     //} else {
                     //    //MainNet PC Web https
                     //    nodeList = Global.mainHttpsNetList;
-                    //    debugLog(998);
                     //}
-                    //debugLog(nodeList);
                     nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
                 } else {
                     //TestNet
@@ -55,7 +52,7 @@
                         Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
                         Global.Node = new Network.RemoteNode(Global.RpcClient);
                     } else {
-                        debugLog(Global.RpcClient.Url);
+                        //debugLog(Global.RpcClient.Url);
                         if (Global.RpcClient.Url != node) {
                             Global.RpcClient = new Network.RPC.RpcClient(node);
                             Global.Blockchain = Core.Blockchain.registerBlockchain(new Implementations.Blockchains.RPC.RpcBlockchain(Global.RpcClient));
@@ -63,10 +60,9 @@
                         }
                     }
                 } else {
-                    throw new Error("网络连接中断333");
+                    throw new Error("网络连接中断");
                 }
                 }).then(success => {
-                    debugLog(Global.RpcClient.Url);
                 return Global.Blockchain.getBlockCount();
             }).then(result => {
                 let remoteHeight = result - 1;
@@ -78,7 +74,6 @@
                     $(".progress-bar").attr("aria-valuenow", process + "%");
                     $(".local_process").text(process);
                     $(".local_height").text(localHeight);
-                    debugLog("localHeight" + localHeight);
                 }
             }).then(() => {
                 return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {

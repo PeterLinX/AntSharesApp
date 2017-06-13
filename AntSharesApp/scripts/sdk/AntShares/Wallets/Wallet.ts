@@ -532,11 +532,9 @@
                 else
                     this.isclosed = true;
             }).catch(error => {
-                debugLog(111); 
-                debugLog(error);
                 setTimeout(this.processBlocks.bind(this), Global.reConnectMultiplier * 1000);
                 if (error == "Error: Network Error") {
-                    debugLog("网络连接中断123.");
+                    debugLog("网络连接中断.");
                 }
             });
 
