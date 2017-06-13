@@ -25,13 +25,13 @@
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "AntShares"
         },
-        "phonegap-plugin-barcodescanner": {
-            "PACKAGE_NAME": "AntShares"
-        },
         "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "AntShares"
         },
         "cordova-plugin-badge": {
+            "PACKAGE_NAME": "AntShares"
+        },
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "AntShares"
         }
     },

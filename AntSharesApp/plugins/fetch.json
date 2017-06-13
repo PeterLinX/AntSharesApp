@@ -56,15 +56,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "phonegap-plugin-barcodescanner": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-background-mode": {
         "source": {
             "type": "git",
@@ -89,6 +80,15 @@
             "id": "cordova-plugin-app-event"
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "phonegap-plugin-barcodescanner": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner",
+            "subdir": "."
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

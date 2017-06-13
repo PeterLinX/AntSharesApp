@@ -25,14 +25,14 @@
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "org.antshares.app"
         },
-        "phonegap-plugin-barcodescanner": {
-            "CAMERA_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "org.antshares.app"
-        },
         "cordova-plugin-background-mode": {
             "PACKAGE_NAME": "org.antshares.app"
         },
         "cordova-plugin-badge": {
+            "PACKAGE_NAME": "org.antshares.app"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "org.antshares.app"
         }
     },
