@@ -1,4 +1,5 @@
-﻿namespace AntShares.Wallets
+﻿/// <reference path="../../sdk/AntShares/Implementations/Wallets/IndexedDB/DbContext.ts"/>
+namespace AntShares.Wallets
 {
     export class Master extends Implementations.Wallets.IndexedDB.DbContext
     {

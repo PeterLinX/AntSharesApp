@@ -1,3 +1,4 @@
+/// <reference path="../../../Wallets/Wallet.ts"/>
 namespace AntShares.Implementations.Wallets.IndexedDB
 {
     export class IndexedDBWallet extends AntShares.Wallets.Wallet
