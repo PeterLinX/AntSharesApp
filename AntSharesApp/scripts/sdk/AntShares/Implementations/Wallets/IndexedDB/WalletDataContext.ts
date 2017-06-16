@@ -15,7 +15,7 @@
             objectStore.createIndex("type", "type", { unique: false });
             objectStore.createIndex("height", "height", { unique: false });
 
-            objectStore = db.createObjectStore("Coin", { keyPath: ["txid", "index"] });
+            objectStore = db.createObjectStore("Coin", { keyPath: ["txid", "index"] } as any);
             objectStore.createIndex("assetId", "assetId", { unique: false });
             objectStore.createIndex("scriptHash", "scriptHash", { unique: false });
         }

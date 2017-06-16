@@ -33,7 +33,7 @@
                 let cursor = <IDBCursor>(<IDBRequest>e.target).result;
                 if (cursor)
                 {
-                    array.push(cursor.key);
+                    array.push(cursor.key as any);
                     cursor.continue();
                 }
             };

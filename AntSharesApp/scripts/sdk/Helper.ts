@@ -30,7 +30,7 @@ interface Uint8ArrayConstructor
 Array.copy = function <T>(src: ArrayLike<T>, srcOffset: number, dst: ArrayLike<T>, dstOffset: number, count: number): void
 {
     for (let i = 0; i < count; i++)
-        dst[i + dstOffset] = src[i + srcOffset];
+        (<any>dst)[i + dstOffset] = src[i + srcOffset];
 }
 
 Array.from = Array.from || function <T>(arr: ArrayLike<T>): Array<T>

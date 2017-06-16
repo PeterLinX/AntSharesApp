@@ -439,7 +439,7 @@
             if (tx.outputs == null) throw new RangeError();
             if (tx.attributes == null) tx.attributes = new Array<Core.TransactionAttribute>();
             fee = fee.add(tx.systemFee);
-            let outputs = tx instanceof Core.IssueTransaction ? new Array<Core.TransactionOutput>() : tx.outputs;
+            let outputs = tx instanceof Core.IssueTransaction ? new Array<Core.TransactionOutput>() : (tx as any).outputs;
             let pay_total = new Map<string, { assetId: Uint256, value: Fixed8 }>();
             for (let i = 0; i < outputs.length; i++)
             {

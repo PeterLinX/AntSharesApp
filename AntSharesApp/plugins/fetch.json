@@ -48,14 +48,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-inappbrowser": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-inappbrowser@1.5.0"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-background-mode": {
         "source": {
             "type": "git",
@@ -87,6 +79,14 @@
             "type": "git",
             "url": "https://github.com/phonegap/phonegap-plugin-barcodescanner",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.7.1"
         },
         "is_top_level": true,
         "variables": {}

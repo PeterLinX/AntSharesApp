@@ -110,5 +110,19 @@
       <UserProperties />
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="_apacheCordovaProjectSourceItems.Targets" Condition="Exists('_apacheCordovaProjectSourceItems.Targets')" />
+  <ItemGroup>
+    <ProjectCapability Include="UseFileGlobs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <!-- Customize which folders are not shown by default -->
+    <ExcludedItems>bin;bld;platforms;node_modules;simulation</ExcludedItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="**\**" Exclude="**\platforms\**;**\bin\**;**\bld\**;**\node_modules\**;**\simulation\**;.gitignore;AntSharesApp.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
 </Project>

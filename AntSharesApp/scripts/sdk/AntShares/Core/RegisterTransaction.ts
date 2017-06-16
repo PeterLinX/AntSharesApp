@@ -29,7 +29,7 @@ namespace AntShares.Core
             this.admin = reader.readUint160();
         }
 
-        public getName(lang = navigator.language || navigator.browserLanguage): string
+        public getName(lang = navigator.language): string
         {
             let _names: string | Array<{ lang: string, name: string }>;
             try

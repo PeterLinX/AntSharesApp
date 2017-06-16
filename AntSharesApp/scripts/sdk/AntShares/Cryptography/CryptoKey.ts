@@ -11,7 +11,7 @@
     {
         constructor(private _key_bytes: Uint8Array)
         {
-            super("secret", true, { name: "AES-CBC", length: _key_bytes.length * 8 }, ["encrypt", "decrypt"]);
+            super("secret", true, { name: "AES-CBC", length: _key_bytes.length * 8 } as any, ["encrypt", "decrypt"]);
         }
 
         public static create(length: number): AesCryptoKey
@@ -40,7 +40,7 @@
     {
         constructor(public publicKey: ECPoint, public privateKey?: Uint8Array)
         {
-            super(privateKey == null ? "public" : "private", true, { name: "ECDSA", namedCurve: "P-256" }, [privateKey == null ? "verify" : "sign"]);
+            super(privateKey == null ? "public" : "private", true, { name: "ECDSA", namedCurve: "P-256" } as any, [privateKey == null ? "verify" : "sign"]);
         }
     }
 }

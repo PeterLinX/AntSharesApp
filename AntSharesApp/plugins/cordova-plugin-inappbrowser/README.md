@@ -21,9 +21,9 @@ description: Open an in-app browser window.
 #         under the License.
 -->
 
-|Android|iOS| Windows 8.1 Store | Windows 8.1 Phone | Windows 10 Store | Travis CI |
-|:-:|:-:|:-:|:-:|:-:|:-:|
-|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-8.1-store,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-8.1-store,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-8.1-phone,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-8.1-phone,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-inappbrowser.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-inappbrowser)|
+|Android 4.4|Android 5.1|Android 6.0|iOS 9.3|iOS 10.0|Windows 10 Store|Travis CI|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-inappbrowser)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-inappbrowser/)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-inappbrowser.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-inappbrowser)|
 
 # cordova-plugin-inappbrowser
 
@@ -69,7 +69,7 @@ Although `window.open` is in the global scope, InAppBrowser is not available unt
 Report issues with this plugin on the [Apache Cordova issue tracker](https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20InAppBrowser%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC)
 
 
-## <a id="reference">Reference
+## <a id="reference">Reference</a>
 ## Installation
 
     cordova plugin add cordova-plugin-inappbrowser
@@ -114,6 +114,7 @@ instance, or the system browser.
     - __hardwareback__: set to `yes` to use the hardware back button to navigate backwards through the `InAppBrowser`'s history. If there is no previous page, the `InAppBrowser` will close.  The default value is `yes`, so you must set it to `no` if you want the back button to simply close the InAppBrowser.
     - __mediaPlaybackRequiresUserAction__: Set to `yes` to prevent HTML5 audio or video from autoplaying (defaults to `no`).
     - __shouldPauseOnSuspend__: Set to `yes` to make InAppBrowser WebView to pause/resume with the app to stop background audio (this may be required to avoid Google Play issues like described in [CB-11013](https://issues.apache.org/jira/browse/CB-11013)).
+    - __useWideViewPort__: Sets whether the WebView should enable support for the "viewport" HTML meta tag or should use a wide viewport. When the value of the setting is `no`, the layout width is always set to the width of the WebView control in device-independent (CSS) pixels. When the value is `yes` and the page contains the viewport meta tag, the value of the width specified in the tag is used. If the page does not contain the tag or does not provide a width, then a wide viewport will be used. (defaults to `yes`).
 
     iOS only:
 
@@ -145,6 +146,7 @@ instance, or the system browser.
 - BlackBerry 10
 - Firefox OS
 - iOS
+- OSX
 - Windows 8 and 8.1
 - Windows Phone 7 and 8
 - Browser
@@ -185,6 +187,12 @@ opened with `target='_blank'`. The rules might look like these
 }
 ```
 
+### OSX Quirks
+
+At the moment the only supported target in OSX is `_system`.
+
+`_blank` and `_self` targets are not yet implemented and are ignored silently. Pull requests and patches to get these to work are greatly appreciated.
+
 ### Windows Quirks
 
 Windows 8.0, 8.1 and Windows Phone 8.1 don't support remote urls to be opened in the Cordova WebView so remote urls are always showed in the system's web browser if opened with `target='_self'`.
@@ -209,12 +217,13 @@ The object returned from a call to `cordova.InAppBrowser.open` when the target i
 - removeEventListener
 - close
 - show
+- hide
 - executeScript
 - insertCSS
 
 ## InAppBrowser.addEventListener
 
-> Adds a listener for an event from the `InAppBrowser`.
+> Adds a listener for an event from the `InAppBrowser`. (Only available when the target is set to `'_blank'`)
 
     ref.addEventListener(eventname, callback);
 
@@ -330,7 +339,7 @@ function executeScriptCallBack(params) {
 
 ## InAppBrowser.removeEventListener
 
-> Removes a listener for an event from the `InAppBrowser`.
+> Removes a listener for an event from the `InAppBrowser`. (Only available when the target is set to `'_blank'`)
 
     ref.removeEventListener(eventname, callback);
 
@@ -407,9 +416,30 @@ The function is passed an `InAppBrowserEvent` object.
     // some time later...
     ref.show();
 
+## InAppBrowser.hide
+
+> Hides the InAppBrowser window. Calling this has no effect if the InAppBrowser was already hidden.
+
+    ref.hide();
+
+- __ref__: reference to the InAppBrowser window (`InAppBrowser`)
+
+### Supported Platforms
+
+- Amazon Fire OS
+- Android
+- iOS
+- Windows 8 and 8.1
+
+### Quick Example
+
+    var ref = cordova.InAppBrowser.open('http://apache.org', '_blank');
+    // some time later...
+    ref.hide();
+
 ## InAppBrowser.executeScript
 
-> Injects JavaScript code into the `InAppBrowser` window
+> Injects JavaScript code into the `InAppBrowser` window. (Only available when the target is set to `'_blank'`)
 
     ref.executeScript(details, callback);
 
@@ -451,7 +481,7 @@ Due to [MSDN docs](https://msdn.microsoft.com/en-us/library/windows.ui.xaml.cont
 
 ## InAppBrowser.insertCSS
 
-> Injects CSS into the `InAppBrowser` window.
+> Injects CSS into the `InAppBrowser` window. (Only available when the target is set to `'_blank'`)
 
     ref.insertCSS(details, callback);
 

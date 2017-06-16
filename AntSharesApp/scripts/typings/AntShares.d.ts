@@ -1,13 +1,13 @@
 ﻿declare function escape(s: string): string;
 declare function unescape(s: string): string;
 
-interface Algorithm
-{
-    hash?: Algorithm;
-    iv?: ArrayBuffer | ArrayBufferView;
-    length?: number;
-    namedCurve?: string;
-}
+//interface Algorithm
+//{
+//    hash?: Algorithm;
+//    iv?: ArrayBuffer | ArrayBufferView;
+//    length?: number;
+//    namedCurve?: string;
+//}
 
 interface Crypto
 {

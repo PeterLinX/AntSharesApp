@@ -118,6 +118,11 @@ var IAB = {
             }
         });
     },
+    hide: function (win, lose) {
+        if (browserWrap) {
+            browserWrap.style.display = "none";
+        }
+    },
     open: function (win, lose, args) {
         // make function async so that we can add navigation events handlers before view is loaded and navigation occured
         setImmediate(function () {
@@ -176,7 +181,7 @@ var IAB = {
                 }
                 popup.style.borderWidth = "0px";
                 popup.style.width = "100%";
-                popup.style.marginBottom = "-3px";
+                popup.style.marginBottom = "-5px";
 
                 browserWrap.appendChild(popup);
 
@@ -308,7 +313,8 @@ var IAB = {
             }
 
             if (isWebViewAvailable && browserWrap && popup) {
-                var uri = new Windows.Foundation.Uri(filePath);
+                // CB-12364 getFileFromApplicationUriAsync does not support ms-appx-web
+                var uri = new Windows.Foundation.Uri(filePath.replace('ms-appx-web:', 'ms-appx:'));
                 Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri).done(function (file) {
                     Windows.Storage.FileIO.readTextAsync(file).done(function (code) {
                         var op = popup.invokeScriptAsync("eval", code);
@@ -345,7 +351,8 @@ var IAB = {
             filePath = filePath && urlutil.makeAbsolute(filePath);
 
             if (isWebViewAvailable && browserWrap && popup) {
-                var uri = new Windows.Foundation.Uri(filePath);
+                // CB-12364 getFileFromApplicationUriAsync does not support ms-appx-web
+                var uri = new Windows.Foundation.Uri(filePath.replace('ms-appx-web:', 'ms-appx:'));
                 Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri).then(function (file) {
                     return Windows.Storage.FileIO.readTextAsync(file);
                 }).done(function (code) {

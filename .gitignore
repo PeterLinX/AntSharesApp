@@ -197,3 +197,4 @@ FakesAssemblies/
 *.opt
 AntSharesApp/scripts/AntShares/UI/Test.ts
 build.json
+simulation

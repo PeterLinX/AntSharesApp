@@ -1,7 +1,8 @@
 {
   "name": "cordova-plugin-inappbrowser",
-  "version": "1.5.0",
+  "version": "1.7.1",
   "description": "Cordova InAppBrowser Plugin",
+  "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-inappbrowser",
     "platforms": [
@@ -9,6 +10,7 @@
       "amazon-fireos",
       "ubuntu",
       "ios",
+      "osx",
       "wp7",
       "wp8",
       "windows8",
@@ -31,6 +33,7 @@
     "cordova-amazon-fireos",
     "cordova-ubuntu",
     "cordova-ios",
+    "cordova-osx",
     "cordova-wp7",
     "cordova-wp8",
     "cordova-windows8",
