@@ -88,10 +88,11 @@
                 $("#menu_wallet_start").hide();
                 setCookie("hasBackup", "1", 365);
                 TabBase.showTab("#Tab_Account_Index");
+                $(".camera").show();
             }).catch(e =>
             {
                 $("#import_prikey").text(Resources.global.importPrikey);
-                alert(e.message)
+                alert(e.message);
             });
         }
     }

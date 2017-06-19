@@ -76,10 +76,8 @@
 
         private OnSetHeightButtonClick = () => {
             let height: number = $("#Tab_Advanced_DeveloperTool #input_curent_height").val();
-            console.log(height);
             Global.Blockchain.getBlockCount().then(result => {
                 let currentHeight: number = result - 1;
-                console.log(currentHeight);
                 let value = new Uint32Array([height]).buffer;
                 if (height < 0 || height > currentHeight) {
                     alert("输入值有误！");
