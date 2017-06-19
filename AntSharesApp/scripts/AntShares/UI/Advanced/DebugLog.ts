@@ -12,9 +12,9 @@
 
         private OnDebugClick1 = (str: string): void => {
             if (Global.isMainNet == true) {
-                debugLog("主网2.3");
+                debugLog("主网2.4");
             } else{
-                debugLog("测试网2.3");
+                debugLog("测试网2.4");
             }
             //TabBase.showTab("Tab_Wallet_Validate");
         }

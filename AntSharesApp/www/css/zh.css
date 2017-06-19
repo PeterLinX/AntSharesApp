@@ -162,3 +162,4 @@
 .lang-unlock-pattern::after { content:'解锁图案' }
 .lang-setup-gesture::after { content: '设置手势密码' }
 .lang-system-setup::after { content: '系统设置' }
+.lang-check-privatekey::after { content: '查看私钥'}

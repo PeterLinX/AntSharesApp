@@ -2,6 +2,10 @@
 {
     export class Receive extends TabBase
     {
+        protected oncreate(): void {
+            $(this.target).find("#show_prikey").click(this.showPrivateKey);
+        }
+
         protected onload(): void
         {
             if (Global.Wallet == null)
@@ -29,5 +33,10 @@
             });
         }
 
+        private showPrivateKey() {
+            Global.Wallet.getAccounts()[0].export().then(result => {
+                alert(result);
+            });
+        }
     }
 }

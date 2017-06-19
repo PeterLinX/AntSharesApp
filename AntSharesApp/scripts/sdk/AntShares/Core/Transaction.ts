@@ -45,7 +45,12 @@ namespace AntShares.Core
                 let transaction = <Transaction>new t();
                 if (transaction == null) throw new Error();
                 transaction.deserializeUnsignedWithoutType(reader);
-                transaction.scripts = <Scripts.Script[]>reader.readSerializableArray(Scripts.Script);
+                try {
+                    transaction.scripts = <Scripts.Script[]>reader.readSerializableArray(Scripts.Script);
+                }
+                catch (error) {
+                    debugLog(error.message);
+                }
                 return transaction;
             }
         }

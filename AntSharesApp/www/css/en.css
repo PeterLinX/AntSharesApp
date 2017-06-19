@@ -163,3 +163,4 @@
 .lang-unlock-pattern::after { content:'Unlock pattern' }
 .lang-setup-gesture::after { content: 'Setup gesture password' }
 .lang-system-setup::after { content: 'System setup' }
+.lang-check-privatekey::after { content: 'Check your private key'}

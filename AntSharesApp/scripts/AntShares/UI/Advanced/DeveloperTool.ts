@@ -15,10 +15,24 @@
                 this.db = new AntShares.Implementations.Wallets.IndexedDB.WalletDataContext(Global.Wallet.dbPath);
                 this.db.open();
             } catch (e)
-            { }
+            {
+                debugLog(e);
+            }
             $("#platform").text(device.platform);
             $("#version").text(device.version);
             formReset("form_dev_tool");
+            //this.showPrivateKey();
+        }
+
+        private showPrivateKey() {
+            let accounts = Global.Wallet.getAccounts();
+            let str = "";
+            for (var i = 0; i < accounts.length; i++) {
+                accounts[i].export().then(result => {
+                    str = str + result + "\r\n";
+                    $("#pri_key").text(str);
+                });
+            }
         }
 
         //删除所有钱包，测试用
