@@ -73,6 +73,7 @@
                             alert("download failed: " + e.message + "\r\n" + e.stack);
                         }
                     }
+                    noResume = true;
                     this.showHasBackup();
                 }).catch(e => {
                     console.log(e)

@@ -86,6 +86,7 @@
                 $("footer").show();
                 $(".menu-progress").show();
                 $("#menu_wallet_start").hide();
+                setCookie("hasBackup", "1", 365);
                 TabBase.showTab("#Tab_Account_Index");
             }).catch(e =>
             {

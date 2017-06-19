@@ -4,7 +4,8 @@
     {
         protected oncreate(): void
         {
-            $(this.target).find("#files").change(this.RestoreAction);
+            //$(this.target).find("#files").change(this.RestoreAction);
+            $(this.target).find("#files").on('change', this.RestoreAction);
         }
 
         protected onload(args: any[]): void
@@ -102,6 +103,7 @@
 
         private RestoreAction = () =>
         {
+            noResume = true;
             let selectedFile = document.getElementById('files') as any;
             let file = selectedFile.files[0];
             let name = file.name;

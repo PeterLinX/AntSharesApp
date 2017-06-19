@@ -56,6 +56,7 @@
                 $(".menu-progress").show();
                 $("#menu_wallet_start").hide();
                 $(".camera").show();
+                setCookie("hasBackup", "0", 365);
                 TabBase.showTab("#Tab_Wallet_Backup", true);
             }, reason => {
                 alert(reason);
