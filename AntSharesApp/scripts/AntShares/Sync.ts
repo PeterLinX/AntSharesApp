@@ -76,9 +76,10 @@
                     $(".local_height").text(localHeight);
                 }
             }).then(() => {
-                return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {
-                    return AntShares.Sync.connectNode(Global.isMainNet);
-                });
+                //return delay(AntShares.Core.Blockchain.SecondsPerBlock * 1000).then(() => {
+                //    return AntShares.Sync.connectNode(Global.isMainNet);
+                //});
+                AntShares.Sync.connectNode(Global.isMainNet);
             }).catch(error => {
                 debugLog("网络连接中断");
                 return delay(Global.reConnectMultiplier * 1000).then(() => {
