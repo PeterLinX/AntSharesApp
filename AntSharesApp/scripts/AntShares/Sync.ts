@@ -28,7 +28,8 @@
                     //    //MainNet PC Web https
                     //    nodeList = Global.mainHttpsNetList;
                     //}
-                    nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
+                    //nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
+                    nodeList = Global.mainHttpNetList;
                 } else {
                     //TestNet
                     nodeList = Global.testNetList;
