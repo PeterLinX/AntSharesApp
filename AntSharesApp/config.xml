@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="org.antshares.app" version="1.3.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="zh-CN" windows-packageVersion="1.3.0.0">
   <name>AntShares</name>
-  <description>AntShares App</description>
+  <description>Neo App</description>
   <author href="https://www.antshares.org/" email="dev@antshares.org">Antshares Developers</author>
   <content src="index.html" />
   <access origin="*" />

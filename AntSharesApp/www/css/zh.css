@@ -1,5 +1,5 @@
-﻿title::before { content:'antshares APP' }
-.lang-title::before { content:'antshares APP' }
+﻿title::before { content:'Neo App' }
+.lang-title::before { content:'Neo App' }
 .lang-create-wallet::before { content:'创建钱包' }
 .lang-open-wallet::after { content:'打开钱包' }
 .lang-input-wallet-name::before { content:'输入钱包名称' }
@@ -130,7 +130,7 @@
 .lang-no-contact::after { content:'您还没有联系人' }
 .lang-asset-balance::after { content:'余额' }
 .lang-ans::after { content:'Neo' }
-.lang-anc::after { content:'Neo Gas' }
+.lang-anc::after { content:'Gas' }
 .lang-start-create::after { content:'创建新钱包' }
 .lang-start-restore::after { content:'从备份文件恢复' }
 .lang-start-import::after { content:'从私钥创建钱包' }

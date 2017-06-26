@@ -8,7 +8,7 @@
         public static mainHttpNetList: string[] = ["http://seed8.antshares.org:10332"];
         public static mainHttpsNetList: string[] = ["https://seed8.antshares.org:10331"];
         //TestNet
-        public static testNetList: string[] = ["http://seed2.antshares.org:20332"];
+        public static testNetList: string[] = ["http://seed8.antshares.org:20332"];
 
         public static Wallet: Implementations.Wallets.IndexedDB.IndexedDBWallet;
         public static RpcClient: Network.RPC.RpcClient;
