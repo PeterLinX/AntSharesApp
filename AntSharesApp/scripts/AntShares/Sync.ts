@@ -21,15 +21,14 @@
                 let nodeList: string[] = new Array<string>();
 
                 if (isMainNet) {
-                    //if (isMobileApp.App()) {
-                    //    //MainNet App https&http
-                    //    nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
-                    //} else {
-                    //    //MainNet PC Web https
-                    //    nodeList = Global.mainHttpsNetList;
-                    //}
-                    //nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
-                    nodeList = Global.mainHttpNetList;
+                    if (isMobileApp.App()) {
+                        //MainNet App https&http
+                        //nodeList = Global.mainHttpsNetList.concat(Global.mainHttpNetList);
+                        nodeList = Global.mainHttpNetList;
+                    } else {
+                        //MainNet PC Web https
+                        nodeList = Global.mainHttpsNetList;
+                    }
                 } else {
                     //TestNet
                     nodeList = Global.testNetList;
