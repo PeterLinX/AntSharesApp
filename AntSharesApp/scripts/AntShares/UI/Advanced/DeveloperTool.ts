@@ -7,6 +7,7 @@
             $(this.target).find("#delete_wallet").click(this.OnDeleteButtonClick);
             $(this.target).find("#set_height").click(this.OnSetHeightButtonClick);
             $(this.target).find("#refresh_nood").click(this.OnRefreshNode);
+            $(this.target).find("#refresh_device").click(this.OnRefreshDevice);
             $(this.target).find("#no_backup").click(this.OnNoBackupButtonClick);
         }
 
@@ -18,8 +19,7 @@
             {
                 debugLog(e);
             }
-            $("#platform").text(device.platform);
-            $("#version").text(device.version);
+            
             formReset("form_dev_tool");
             //this.showPrivateKey();
         }
@@ -102,6 +102,11 @@
         private OnRefreshNode = () => {
             $("#seed").text(Global.RpcClient.Url);
 
+        }
+
+        private OnRefreshDevice = () => {
+            $("#platform").text(device.platform);
+            $("#version").text(device.version);
         }
 
     }
