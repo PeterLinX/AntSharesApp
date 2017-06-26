@@ -74,19 +74,19 @@
         static publicInputTplPlaceholder = "公钥";
         static publickeyitemPlaceholder = "公钥";
         static addPublicTitle = "添加公钥";
-        static transferTxoutPlaceholder = "对方小蚁地址";
+        static transferTxoutPlaceholder = "对方Neo地址";
         static transferValuePlaceholder = "金额";
         static inputDataPlaceholder = "待签名的交易";
         static inputAssetNamePlaceholder = "输入资产名称";
         static inputAmountPlaceholder = "输入资产总量";
         static issueOutputAddrPlaceholder = "地址";
         static issueOutputValuePlaceholder = "金额";
-        static inputAntcoinPlaceholder = "输入抵押的小蚁币数量";
+        static inputAntcoinPlaceholder = "输入抵押的Gas数量";
         static relayDataPlaceholder = "要广播的数据包";
         static addInputTitle = "添加输出";
         static accountAlreadyExits = "该账户已经存在";
-        static theAntsharesSystem = "小蚁系统";
-        static transferTxoutRequired = "对方小蚁地址不能为空";
+        static theAntsharesSystem = "Neo系统";
+        static transferTxoutRequired = "对方Neo地址不能为空";
         static transferValueRequired = "交易金额不能为空";
         static transferAssetRequired = "交易资产不能为空";
         static assetNameRequired = "资产名称不能为空";
@@ -99,7 +99,7 @@
         static unConfirmed = "未确认";
         static minerTx = "矿工交易";
         static issueTx = "资产发行";
-        static claimTx = "提取小蚁币";
+        static claimTx = "提取Gas";
         static enrollmentTx = "记账报名";
         static registerTx = "资产注册";
         static contractTx = "合约交易";
@@ -121,12 +121,12 @@
         static pleaseWait = "请稍候...";
         static importPrikey = "导入私钥";
         static transferValueRegex = "金额输入错误";
-        static browserIndexedb = "该浏览器不支持IndexedDB，无法使用小蚁钱包APP.";
-        static browserError = "无法在微信/QQ/微博的内置浏览器中使用小蚁钱包，请下载小蚁钱包APP.";
+        static browserIndexedb = "该浏览器不支持IndexedDB，无法使用Neo App.";
+        static browserError = "无法在微信/QQ/微博的内置浏览器中使用Neo钱包，请下载Neo App.";
         static contactExists = "已经添加过该联系人。";
         static showReceiveAddress = "现在你可以点击“收款”查看到你的收款地址了";
         static netError = "网络异常！"; 
-        static antshareIntegerOnly = "小蚁股转账金额只能为整数";
+        static antshareIntegerOnly = "Neo转账金额只能为整数";
         static gesturePwdWrong = "两次绘制的图案不一致，请重新绘制";
     }
 
@@ -192,7 +192,7 @@
         static publicInputTplPlaceholder = "public key";
         static publickeyitemPlaceholder = "public key";
         static addPublicTitle = "add key";
-        static transferTxoutPlaceholder = "Other antshares address";
+        static transferTxoutPlaceholder = "Other Neo address";
         static transferValuePlaceholder = "value";
         static inputDataPlaceholder = "Ready to sign Tx";
         static inputAssetNamePlaceholder = "Enter the asset's name";
@@ -203,8 +203,8 @@
         static relayDataPlaceholder = "Broadcast packets";
         static addInputTitle = "add input";
         static accountAlreadyExits = "The Account had been imported";
-        static theAntsharesSystem = "The Antshares System";
-        static transferTxoutRequired = "Other antshares address is required";
+        static theAntsharesSystem = "The Neo System";
+        static transferTxoutRequired = "Other Neo address is required";
         static transferValueRequired = "Transfer value is required";
         static transferAssetRequired = "Transfer asset is required";
         static assetNameRequired = "Asset name is required";
@@ -239,12 +239,12 @@
         static pleaseWait = "Please Wait...";
         static importPrikey = "Import private key";
         static transferValueRegex = "Incorrect value";
-        static browserIndexedb = "IndexedDB is not supported in this browser, please dowanload Antshares App in Appstore.";
-        static browserError = "This wallet cannot be used in embedded browser, please dowanload Antshares App in Appstore.";
+        static browserIndexedb = "IndexedDB is not supported in this browser, please dowanload Neo App in Appstore.";
+        static browserError = "This wallet cannot be used in embedded browser, please dowanload Neo App in Appstore.";
         static contactExists = "Contact already exists.";
         static showReceiveAddress = "Good job, Now you can click 'receive' and see receive address.";
         static netError = "Internet Error!";
-        static antshareIntegerOnly = "Integer only for Antshares";
+        static antshareIntegerOnly = "Integer only for Neo";
         static gesturePwdWrong = "Drawn twice does not match the pattern, please try again.";
     }
 }
