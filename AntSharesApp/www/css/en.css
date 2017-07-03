@@ -47,7 +47,7 @@
 .lang-max-to-transfer::before { content:'the maximum transfer' }
 .lang-receiver::before { content:'receiver' }
 .lang-confirm-transfer::before { content:'confirm transfer' }
-.lang-my-tx-list::before { content:'Recently Transaction' }
+.lang-my-tx-list::before { content:'Recent Transactions' }
 .lang-no-tx::before { content:"No transactions yet" }
 .lang-collapse-all::before { content:'collapse all' }
 .lang-tx::before { content:'transaction: ' }
@@ -134,10 +134,10 @@
 .lang-anc::after { content:'Gas' }
 .lang-start-create::after { content:'Create new wallet' }
 .lang-start-restore::after { content:'Restore from backup file' }
-.lang-start-import::after { content:'From private key to create wallets' }
+.lang-start-import::after { content:'Create wallet from private key' }
 .lang-start-create2::after { content:'If this is your first time using it, please do this, after creating a wallet purse please backup wallet files' }
 .lang-start-restore2::after { content:'The wallet if you want to restore the backup files, perform this operation' }
-.lang-start-import2::after { content:'If you have a antshares private key, and want to import into your wallet, please do this, need to wait after importing purse synchronization is complete before we can see the asset' }
+.lang-start-import2::after { content:'If you have an antshares private key, and want to import into your wallet, please do this, need to wait after importing purse synchronization is complete before we can see the asset' }
 .lang-my-wallet::after { content:'MY WALLET' }
 .lang-start-create3::after { content:'Create wallet' }
 .lang-start-restore3::after { content:'Restore wallet' }
