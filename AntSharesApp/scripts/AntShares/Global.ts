@@ -5,10 +5,10 @@
         public static isConnected: boolean = false;
         public static reConnectMultiplier: number = 15;
         //MainNet
-        public static mainHttpNetList: string[] = ["http://seed8.antshares.org:10332"];
-        public static mainHttpsNetList: string[] = ["https://seed8.antshares.org:10331"];
+        public static mainHttpNetList: string[] = ["http://seed1.neo.org:10332", "http://seed2.neo.org:10332", "http://seed3.neo.org:10332", "http://seed4.neo.org:10332", "http://seed5.neo.org:10332"];
+        public static mainHttpsNetList: string[] = ["https://seed1.neo.org:10331", "https://seed3.neo.org:10331"];
         //TestNet
-        public static testNetList: string[] = ["http://seed8.antshares.org:20332"];
+        public static testNetList: string[] = ["http://seed1.antshares.org:20332", "http://seed2.antshares.org:20332", "http://seed3.antshares.org:20332", "http://seed4.antshares.org:20332", "http://seed5.antshares.org:20332"];
 
         public static Wallet: Implementations.Wallets.IndexedDB.IndexedDBWallet;
         public static RpcClient: Network.RPC.RpcClient;
