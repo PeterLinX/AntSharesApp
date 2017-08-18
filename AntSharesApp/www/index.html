@@ -55,6 +55,7 @@
                 <div style="position:absolute; left:0; bottom:50px; height:50px; width:50px" onclick="showDevTools()"></div>
                 <div id="Tab_Wallet_Start" class="form-horizontal tab-pane">
                     <h3 class="page-header lang-welcome"></h3>
+
                     <div class="panel panel-success">
                         <div class="panel-heading lang-start-create"></div>
                         <div class="panel-body row">
@@ -64,6 +65,7 @@
                             <div class="col-md-9 col-sm-8 text-success lang-start-create2"></div>
                         </div>
                     </div>
+
                     <div class="panel panel-info">
                         <div class="panel-heading lang-start-restore"></div>
                         <div class="panel-body row">
@@ -351,8 +353,8 @@
                         </div>
                         <div id="receiver_address" class="col-lg-6 col-md-7 col-sm-10 select">
                             <pre class="select text-center">
-                                <span id="qrcode"></span>
-                                <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
+                            <span id="qrcode"></span>
+                            <span id="receiver"></span><i style="display:none" id="copy-addr" class="iconfont">&#xe689;</i>
                             </pre>
                             <a id="show_prikey" href="javascript:" class="lang-check-privatekey"></a>
                         </div>
@@ -493,7 +495,7 @@
                     </div>
                 </div>
                 <div id="Tab_Advanced_DebugLog" class="form-horizontal tab-pane">
-                    <button id="debug1" class="btn btn-primary" onclick="event.preventDefault();">test1</button><br/><br/>
+                    <button id="debug1" class="btn btn-primary" onclick="event.preventDefault();">test1</button><br /><br />
                     <div id="debugLog"></div>
                 </div>
                 <div id="Tab_Help_Help" class="tab-pane">
@@ -517,7 +519,7 @@
                             这是一个离线钱包，所有代码均在您的浏览器端执行，钱包文件、私钥均不会上传给服务器，因此Neo团队不能帮您保存、恢复钱包文件，请务必将钱包文件和私钥导出并妥善保管。
                         </p>
                         <br />
-                        
+
                         <p>QQ群：573816801</p>
                         <p>开发团队： <a href="mailto:dev@neo.org">dev@neo.org</a></p>
                         <p>官方网站： <a href="http://www.neo.org">www.neo.org</a></p>
@@ -544,6 +546,30 @@
                         <p>Copyright: Neo Team © 2014 - 2017</p>
                     </div>
                 </div>
+
+                <div id="Tab_Hint" class="tab-pane">
+                    <h3 class="page-header lang-hint"></h3>
+                    <div id="zh_hint" class="select">
+                        <p>
+                            由于Neo社区的急速成长，很多社区团队开发了钱包应用，为了鼓励社区开发更多产品、提供更好的服务，我们决定暂停该钱包的服务，只专注于维护好PC客户端。
+                        </p>
+                        <p>
+                            Neo开发团队接下来将更专注于底层技术的研发，为广大开发者提供更稳定、更便捷的平台服务。
+                        </p>
+                        <br />
+                        <br />
+                        <br />
+                        <p>版权所有： Neo团队 © 2017</p>
+                    </div>
+                    <div id="en_hint" class="select">
+                        <p></p>
+                        <br />
+                        <br />
+                        <br />
+                        <p>Copyright: Neo Team © 2017</p>
+                    </div>
+                </div>
+
                 <div id="Tab_Help_Privacy_Policy" class="tab-pane">
                     <h3 class="page-header lang-privacy"></h3>
                     <div id="zh_privacy" class="select">
@@ -602,7 +628,7 @@
                         <p><small>The Neo Team reserves the right of final interpretation of the aforementioned clauses, which are under the protection of <a href="https://github.com/AntShares/AntShares/blob/master/LICENSE">MIT open source protocol</a>.</small></p>
                     </div>
                 </div>
-                <div id="Tab_Wallet_Validate"  class="form-horizontal tab-pane">
+                <div id="Tab_Wallet_Validate" class="form-horizontal tab-pane">
                     <div class="gesture-password">
                         <div id="gesturepwdValidate"></div>
                     </div>
@@ -610,7 +636,7 @@
                 </div>
                 <div id="Tab_Wallet_GesturePassword" class="form-horizontal tab-pane">
                     <br /><br />
-                    <div style="text-align:center" ><img src="img/logo-sm.png" style="width:100px" /></div><br/>
+                    <div style="text-align:center"><img src="img/logo-sm.png" style="width:100px" /></div><br />
                     <div class="text-center lang-draw-unlock-pattern"></div><br />
                     <div class="gesture-password">
                         <div id="gesturepwdSet"></div>
@@ -628,10 +654,10 @@
                     <a class="col-xs-4 tab-trigger lang-receive withripple" href="#Tab_Account_Receive">
                         <i class="iconfont">&#xe6ab;</i>
                     </a>
-                    <a class="col-xs-4 tab-trigger lang-home withripple" href="#Tab_Account_Index">
+                    <a class="col-xs-4 tab-trigger lang-home withripple" href="#Tab_Wallet_Hint">
                         <i class="iconfont">&#xe686;</i>
                     </a>
-                    <a class="col-xs-4 tab-trigger lang-send withripple" href="#Tab_Account_Send">
+                    <a class="col-xs-4 tab-trigger lang-send withripple" href="#Tab_Wallet_Hint">
                         <i class="iconfont">&#xe610;</i>
                     </a>
                 </div>
@@ -647,13 +673,13 @@
                         <a class="fist-menu tab-trigger lang-open-wallet" href="#Tab_Wallet_Open"><i class="iconfont">&#xe62e;</i></a>
                     </li>
                     <li class="short-hidden withripple">
-                        <a class="fist-menu tab-trigger lang-home" href="#Tab_Account_Index"><i class="iconfont">&#xe686;</i></a>
+                        <a class="fist-menu tab-trigger lang-home" href="#Tab_Wallet_Hint"><i class="iconfont">&#xe686;</i></a>
                     </li>
                     <li class="short-hidden withripple">
                         <a class="fist-menu tab-trigger lang-receive" href="#Tab_Account_Receive"><i class="iconfont">&#xe6ab;</i></a>
                     </li>
                     <li class="short-hidden withripple">
-                        <a class="fist-menu tab-trigger lang-send" href="#Tab_Account_Send"><i class="iconfont">&#xe610;</i></a>
+                        <a class="fist-menu tab-trigger lang-send" href="#Tab_Wallet_Hint"><i class="iconfont">&#xe610;</i></a>
                     </li>
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-contacts" href="#Tab_Contacts_Index"><i class="iconfont">&#xe635;</i></a>
@@ -677,10 +703,13 @@
                     <li class="withripple">
                         <a class="fist-menu tab-trigger lang-about" href="#Tab_Help_About"><i class="iconfont">&#xe685;</i></a>
                     </li>
-                    <li id="developer_tool" style="display:none"  class="withripple">
+                    <!--<li class="withripple">
+                        <a class="fist-menu tab-trigger lang-hint" href="#Tab_Wallet_Hint"><i class="iconfont">&#xe685;</i></a>
+                    </li>-->
+                    <li id="developer_tool" style="display:none" class="withripple">
                         <a class="fist-menu tab-trigger lang-developer-tool" href="#Tab_Advanced_DeveloperTool"><i class="iconfont">&#xe66d;</i></a>
                     </li>
-                    <li id="debug_log" style="display:none"  class="withripple">
+                    <li id="debug_log" style="display:none" class="withripple">
                         <a class="fist-menu tab-trigger" href="#Tab_Advanced_DebugLog"><i class="iconfont">&#xe66d;</i>调试信息</a>
                     </li>
                 </ul>
@@ -810,7 +839,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body wrap lang-confirm-delete" style="word-break:break-all;">
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button id="btn_delte_contact" type="button" class="btn btn-danger lang-delete"></button>

@@ -55,7 +55,7 @@
                     //打开成功后跳转账户管理页面
                     $("#menu_wallet_open").hide();
                     $(".camera").show();
-                    TabBase.showTab("#Tab_Account_Index");
+                    TabBase.showTab("#Tab_Wallet_Hint");
                 }, reason => $("#open_error").show());
             }
         }
