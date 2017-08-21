@@ -73,7 +73,7 @@
 
         private OnSendClick() {
             let address = $("#contact_address_selected").val();
-            TabBase.showTab("#Tab_Account_Send", address);
+            TabBase.showTab("#Tab_Wallet_Hint");
         }
     }
 }
