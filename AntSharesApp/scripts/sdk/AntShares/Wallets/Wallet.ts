@@ -422,7 +422,7 @@
                 }
             }).then(() =>
             {
-                setTimeout(this.processBlocks.bind(this), Core.Blockchain.SecondsPerBlock * 1000);
+                //setTimeout(this.processBlocks.bind(this), Core.Blockchain.SecondsPerBlock * 1000);
             });
         }
 
